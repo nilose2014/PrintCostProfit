@@ -1,14 +1,23 @@
-PRINT COST & PROFIT — AVISO DE DERECHOS DE AUTOR Y USO RESTRICTIVO
+PRINT COST & PROFIT — LICENCIA RESTRICTIVA
 
 Copyright © 2026 Beatriz Toro Martin. Todos los derechos reservados.
 
-TITULARIDAD
-Este aviso identifica a Beatriz Toro Martin como titular declarada de los derechos sobre Print Cost & Profit y los materiales originales de este paquete, en la medida en que dichos derechos le correspondan. 
+**1. Titularidad**
 
-SIN LICENCIA DE EXPLOTACIÓN COMERCIAL
-La publicación o disponibilidad de este código en un repositorio público no concede por sí sola una licencia para vender, revender, sublicenciar, redistribuir, comercializar o explotar el programa, en su totalidad o en parte. Tampoco se autoriza la comercialización de versiones modificadas, adaptaciones o productos derivados sin autorización previa y por escrito de la titular de los derechos.
+Print Cost & Profit y sus materiales originales están protegidos por los derechos de propiedad intelectual que resulten aplicables.
 
-Salvo autorización expresa por escrito o cuando la legislación aplicable disponga lo contrario, no se concede ningún otro derecho de uso, reproducción, distribución, modificación o explotación comercial sobre los materiales protegidos de este proyecto.
+**2. Usos no autorizados**
 
-SOLICITUDES DE AUTORIZACIÓN
-Toda solicitud de autorización deberá realizarse por escrito y ser aceptada expresamente por la titular. No se incluye aquí una dirección de contacto pública.
+Sin autorización previa y por escrito de la titular, queda prohibido vender, revender, sublicenciar, redistribuir o explotar comercialmente este software, total o parcialmente, así como sus versiones modificadas o productos derivados.
+
+**3. Copias y modificaciones**
+
+La publicación del código en GitHub no concede por sí misma permiso para comercializarlo, redistribuirlo ni crear productos derivados para su explotación comercial.
+
+**4. Solicitud de permiso**
+
+Cualquier autorización deberá solicitarse por escrito y ser concedida expresamente por la titular de los derechos.
+
+**5. Derechos legales**
+
+Este aviso no limita los derechos que correspondan a terceros ni aquellos que no puedan excluirse conforme a la legislación aplicable.
