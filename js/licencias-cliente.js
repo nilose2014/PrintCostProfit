@@ -5,13 +5,13 @@
 (function (global) {
   'use strict';
   const FIREBASE_CONFIG = {
-    apiKey: '',
-    authDomain: '',
-    projectId: '',
-    storageBucket: '',
-    messagingSenderId: '',
-    appId: '',
-    measurementId: ''
+    apiKey: 'AIzaSyA8G0EDjClsqheXpt685B2q53YIb5lbiF8',
+    authDomain: 'print-cost-profit-web.firebaseapp.com',
+    projectId: 'print-cost-profit-web',
+    storageBucket: 'print-cost-profit-web.firebasestorage.app',
+    messagingSenderId: '684511559426',
+    appId: '1:684511559426:web:219c578552958f340e0c1b',
+    measurementId: 'G-S1KJXLJB9X'
   };
   let auth = null, getLicenseCallable = null, firebaseReady = null, authStateReady = null, authModRef = null;
   let lastLicense = null;

@@ -32,7 +32,7 @@ La disponibilidad de la información del monitor depende de que el puente local 
 
 1. Descarga o clona este repositorio en una carpeta local.
 2. Conserva juntos el HTML, las carpetas `js` y `css`, `storage-client.js`, los módulos Python y los scripts de integración.
-3. Inicia el servicio local con el script de arranque proporcionado para tu configuración Integracion_Orca_Postprocesado.bat.
+3. Inicia el servicio local con el script de arranque proporcionado para tu configuración.
 4. Abre la aplicación mediante el servidor local configurado; no abras el HTML directamente con `file://`, porque las funciones locales requieren el servidor.
 5. Configura el almacenamiento y la integración de OrcaSlicer siguiendo los parámetros de tu instalación.
 
