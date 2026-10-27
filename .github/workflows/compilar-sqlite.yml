@@ -1,0 +1,38 @@
+
+name: Compilar adaptador SQLite para Windows
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python para compilacion
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar PyInstaller
+        run: python -m pip install --upgrade pip pyinstaller
+
+      - name: Comprobar archivos necesarios
+        shell: pwsh
+        run: |
+          if (!(Test-Path "pcp_sqlite_api.py")) {
+            throw "No se encuentra pcp_sqlite_api.py en la raiz del repositorio."
+          }
+
+      - name: Compilar ejecutable
+        run: python -m PyInstaller --clean --onefile --name pcp_sqlite_api pcp_sqlite_api.py
+
+      - name: Publicar ejecutable compilado
+        uses: actions/upload-artifact@v4
+        with:
+          name: pcp-sqlite-api-windows
+          path: dist/pcp_sqlite_api.exe
+          if-no-files-found: error
