@@ -1,0 +1,8 @@
+
+#programOptionsView .section-note{margin:10px 0 14px!important;line-height:1.55!important;overflow-wrap:anywhere}
+#programOptionsView .actions{margin:12px 0 8px!important;gap:10px!important;align-items:center}
+#programOptionsView .field .actions{margin:0!important;gap:8px!important}
+#programOptionsView .pcp-printer-status{display:block;min-height:1.5em;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:rgba(0,0,0,.10)}
+#programOptionsView .field label{margin-bottom:7px}
+#programOptionsView .panel>.panel{margin-top:18px!important;margin-bottom:18px!important}
+#programOptionsView .panel>.panel:last-child{margin-bottom:0!important}

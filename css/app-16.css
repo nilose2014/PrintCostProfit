@@ -1,0 +1,207 @@
+/* v1.567 — legibilidad del inventario y monitor flotante en tema claro. */
+body.pcp-light-theme .spool-card .spool-percent{
+  display:inline-flex!important;align-items:center;justify-content:center;gap:4px;
+  min-width:76px;padding:7px 10px!important;border-radius:999px!important;
+  background:#d9f5e8!important;color:#075e45!important;border:1px solid #83d4b2!important;
+  font-size:13px!important;font-weight:800!important;line-height:1.2!important;
+  opacity:1!important;text-shadow:none!important;white-space:nowrap!important;
+}
+body.pcp-light-theme .spool-card .spool-swatch{
+  display:block!important;width:44px!important;height:44px!important;flex:0 0 44px!important;
+  border:2px solid #cbd5e1!important;border-radius:12px!important;
+  box-shadow:inset 0 0 0 1px #0002,0 2px 8px #0002!important;
+  opacity:1!important;filter:none!important;background-color:var(--spool-color,#808080)!important;background-image:none!important;
+}
+/* El monitor pasa a una superficie azul muy clara, con contraste legible. */
+body.pcp-light-theme #u1-monitor-panel,
+body.pcp-light-theme #u1MonitorPanel,
+body.pcp-light-theme .u1-monitor-panel,
+body.pcp-light-theme .monitor-floating{
+  background:#e4edf7!important;background-image:none!important;color:#172b45!important;
+  border:2px solid #9bb8d5!important;border-radius:14px!important;
+  box-shadow:0 8px 28px rgba(25,50,80,.24)!important;
+}
+body.pcp-light-theme #u1-monitor-panel .u1-head,
+body.pcp-light-theme #u1MonitorPanel .u1-head,
+body.pcp-light-theme .u1-monitor-panel .u1-head,
+body.pcp-light-theme .monitor-floating .u1-head{
+  background:#cfdeee!important;color:#173451!important;border-bottom:1px solid #b4c8dd!important;
+}
+body.pcp-light-theme #u1-monitor-panel .u1-body,
+body.pcp-light-theme #u1-monitor-panel #u1-consumption,
+body.pcp-light-theme #u1MonitorPanel .u1-body,
+body.pcp-light-theme #u1MonitorPanel #u1-consumption,
+body.pcp-light-theme .u1-monitor-panel .u1-body,
+body.pcp-light-theme .monitor-floating .u1-body{color:#172b45!important}
+body.pcp-light-theme #u1-monitor-panel .u1-label,
+body.pcp-light-theme #u1-monitor-panel #u1-consumption th,
+body.pcp-light-theme #u1MonitorPanel .u1-label,
+body.pcp-light-theme #u1MonitorPanel #u1-consumption th,
+body.pcp-light-theme .u1-monitor-panel .u1-label,
+body.pcp-light-theme .monitor-floating .u1-label{color:#405a76!important}
+body.pcp-light-theme #u1-monitor-panel .u1-value,
+body.pcp-light-theme #u1-monitor-panel #u1-consumption td,
+body.pcp-light-theme #u1MonitorPanel .u1-value,
+body.pcp-light-theme #u1MonitorPanel #u1-consumption td,
+body.pcp-light-theme .u1-monitor-panel .u1-value,
+body.pcp-light-theme .monitor-floating .u1-value{color:#172b45!important}
+body.pcp-light-theme #u1-monitor-panel #u1-consumption table,
+body.pcp-light-theme #u1MonitorPanel #u1-consumption table,
+body.pcp-light-theme .u1-monitor-panel #u1-consumption table,
+body.pcp-light-theme .monitor-floating #u1-consumption table{background:#fff!important;border-color:#c6d5e5!important}
+body.pcp-light-theme #u1-monitor-panel #u1-consumption th,
+body.pcp-light-theme #u1MonitorPanel #u1-consumption th,
+body.pcp-light-theme .u1-monitor-panel #u1-consumption th,
+body.pcp-light-theme .monitor-floating #u1-consumption th{background:#dce8f4!important;color:#243c57!important;border-bottom:1px solid #c1d0df!important}
+body.pcp-light-theme #u1-monitor-panel #u1-consumption td,
+body.pcp-light-theme #u1MonitorPanel #u1-consumption td,
+body.pcp-light-theme .u1-monitor-panel #u1-consumption td,
+body.pcp-light-theme .monitor-floating #u1-consumption td{background:#fff!important;color:#243c57!important;border-bottom:1px solid #d4dfeb!important}
+body.pcp-light-theme #u1-monitor-panel button,
+body.pcp-light-theme #u1MonitorPanel button,
+body.pcp-light-theme .u1-monitor-panel button,
+body.pcp-light-theme .monitor-floating button{background:#d2e0ef!important;color:#183652!important;border:1px solid #9bb3cc!important;box-shadow:none!important}
+body.pcp-light-theme #u1-monitor-panel #u1-register-personal,
+body.pcp-light-theme #u1-monitor-panel #u1-register-order,
+body.pcp-light-theme #u1MonitorPanel #u1-register-personal,
+body.pcp-light-theme #u1MonitorPanel #u1-register-order,
+body.pcp-light-theme .u1-monitor-panel #u1-register-personal,
+body.pcp-light-theme .u1-monitor-panel #u1-register-order,
+body.pcp-light-theme .monitor-floating #u1-register-personal,
+body.pcp-light-theme .monitor-floating #u1-register-order{background:#c9f1e5!important;color:#075e4b!important;border-color:#78cbb2!important}
+body.pcp-light-theme #u1-monitor-panel #u1-consumption .u1-warn,
+body.pcp-light-theme #u1MonitorPanel #u1-consumption .u1-warn,
+body.pcp-light-theme .u1-monitor-panel #u1-consumption .u1-warn,
+body.pcp-light-theme .monitor-floating #u1-consumption .u1-warn{color:#9a5b00!important}
+
+
+/* v1.568 — contraste reforzado: etiqueta de bobinas y monitor claro coherente con la interfaz. */
+/* La etiqueta de cantidad debe ser legible incluso si el tema no aplica la clase pcp-light-theme. */
+.spool-card .spool-percent{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  min-width:76px!important;min-height:30px!important;padding:7px 11px!important;
+  border-radius:999px!important;background:#d9f5e8!important;color:#075e45!important;
+  border:1px solid #83d4b2!important;font-size:13px!important;font-weight:800!important;
+  line-height:1.2!important;opacity:1!important;text-shadow:none!important;
+  box-shadow:none!important;white-space:nowrap!important;filter:none!important;
+}
+/* El monitor flotante se mantiene claro y legible, igual que el resto de la calculadora. */
+#u1-monitor-panel{
+  background:#e4edf7!important;background-image:none!important;color:#172b45!important;
+  border:2px solid #9bb8d5!important;border-radius:14px!important;
+  box-shadow:0 8px 28px rgba(25,50,80,.24)!important;
+}
+#u1-monitor-panel .u1-head{
+  background:#cfdeee!important;color:#173451!important;border-bottom:1px solid #b4c8dd!important;
+}
+#u1-monitor-panel .u1-body,#u1-monitor-panel #u1-consumption{color:#172b45!important}
+#u1-monitor-panel .u1-label{color:#405a76!important}
+#u1-monitor-panel .u1-value{color:#172b45!important}
+#u1-monitor-panel #u1-consumption table{background:#fff!important;border-color:#c6d5e5!important}
+#u1-monitor-panel #u1-consumption th{
+  background:#cbdced!important;color:#243c57!important;border-bottom:1px solid #afc3d8!important;
+}
+#u1-monitor-panel #u1-consumption td{
+  background:#fff!important;color:#243c57!important;border-bottom:1px solid #d4dfeb!important;
+}
+#u1-monitor-panel button{
+  background:#d2e0ef!important;color:#183652!important;border:1px solid #9bb3cc!important;
+  box-shadow:none!important;
+}
+#u1-monitor-panel #u1-register-personal,#u1-monitor-panel #u1-register-order{
+  background:#b7e5d7!important;color:#075e4b!important;border-color:#68bda5!important;
+}
+#u1-monitor-panel #u1-consumption .u1-warn{color:#9a5b00!important}
+#u1-monitor-panel #u1-error{color:#a61b1b!important}
+
+
+/* v1.569 — tono azul claro ligeramente más oscuro para mejorar la definición visual. */
+
+
+/* v1.573: el tema oscuro del monitor no debe dejar celdas ni superficies blancas */
+body:not(.pcp-light-theme) #u1-monitor-panel,
+body:not(.pcp-light-theme) #u1MonitorPanel,
+body:not(.pcp-light-theme) .u1-monitor-panel {
+  background: #101b2d !important;
+  color: #edf3fb !important;
+  border-color: #65d6c4 !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel .u1-head,
+body:not(.pcp-light-theme) #u1MonitorPanel .u1-head,
+body:not(.pcp-light-theme) .u1-monitor-panel .u1-head {
+  background: #1b2b43 !important;
+  color: #f4f7fb !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel .u1-body,
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-consumption,
+body:not(.pcp-light-theme) #u1MonitorPanel #u1-consumption,
+body:not(.pcp-light-theme) .u1-monitor-panel #u1-consumption {
+  background: #101b2d !important;
+  color: #edf3fb !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-consumption table,
+body:not(.pcp-light-theme) #u1MonitorPanel #u1-consumption table,
+body:not(.pcp-light-theme) .u1-monitor-panel #u1-consumption table,
+body:not(.pcp-light-theme) .monitor-floating #u1-consumption table {
+  background: #17263b !important;
+  color: #edf3fb !important;
+  border-color: #344a65 !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-consumption thead,
+body:not(.pcp-light-theme) #u1MonitorPanel #u1-consumption thead,
+body:not(.pcp-light-theme) .u1-monitor-panel #u1-consumption thead,
+body:not(.pcp-light-theme) .monitor-floating #u1-consumption thead {
+  background: #243851 !important;
+  color: #edf3fb !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-consumption th,
+body:not(.pcp-light-theme) #u1MonitorPanel #u1-consumption th,
+body:not(.pcp-light-theme) .u1-monitor-panel #u1-consumption th,
+body:not(.pcp-light-theme) .monitor-floating #u1-consumption th {
+  background: #243851 !important;
+  color: #edf3fb !important;
+  border-color: #3a506b !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-consumption tr,
+body:not(.pcp-light-theme) #u1MonitorPanel #u1-consumption tr,
+body:not(.pcp-light-theme) .u1-monitor-panel #u1-consumption tr,
+body:not(.pcp-light-theme) .monitor-floating #u1-consumption tr {
+  background: #17263b !important;
+  color: #edf3fb !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-consumption td,
+body:not(.pcp-light-theme) #u1MonitorPanel #u1-consumption td,
+body:not(.pcp-light-theme) .u1-monitor-panel #u1-consumption td,
+body:not(.pcp-light-theme) .monitor-floating #u1-consumption td {
+  background: #17263b !important;
+  color: #edf3fb !important;
+  border-color: #344a65 !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel .u1-label,
+body:not(.pcp-light-theme) #u1MonitorPanel .u1-label,
+body:not(.pcp-light-theme) .u1-monitor-panel .u1-label,
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-consumption .u1-muted {
+  color: #c4d2e4 !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel .u1-value,
+body:not(.pcp-light-theme) #u1MonitorPanel .u1-value,
+body:not(.pcp-light-theme) .u1-monitor-panel .u1-value {
+  color: #f4f7fb !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-consumption .u1-ok { color: #83dfb3 !important; }
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-consumption .u1-warn { color: #ffd166 !important; }
+body:not(.pcp-light-theme) #u1-monitor-panel button,
+body:not(.pcp-light-theme) #u1MonitorPanel button,
+body:not(.pcp-light-theme) .u1-monitor-panel button {
+  background: #263b55 !important;
+  color: #f4f7fb !important;
+  border-color: #536b87 !important;
+}
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-register-personal,
+body:not(.pcp-light-theme) #u1-monitor-panel #u1-register-order,
+body:not(.pcp-light-theme) #u1MonitorPanel #u1-register-personal,
+body:not(.pcp-light-theme) #u1MonitorPanel #u1-register-order {
+  background: #174e46 !important;
+  color: #e9fff8 !important;
+  border-color: #43a994 !important;
+}

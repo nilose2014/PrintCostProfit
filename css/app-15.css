@@ -1,0 +1,223 @@
+
+/* v1.562 — corrección integral del tema claro. El monitor flotante conserva su tema propio. */
+body.pcp-light-theme{
+ --bg:#f1f4f8;--panel:#ffffff;--panel2:#f7f9fc;--line:#cbd5e1;--txt:#172033;--muted:#536176;--accent:#0f8b7d;--accent2:#2563eb;--good:#087f5b;--bad:#b42336;
+ background:#f1f4f8!important;color:#172033!important;
+}
+body.pcp-light-theme header{background:#fff!important;background-image:none!important;border-bottom:1px solid #cbd5e1!important;color:#172033!important}
+body.pcp-light-theme .sub,body.pcp-light-theme .section-note,body.pcp-light-theme small{color:#536176!important}
+body.pcp-light-theme .panel,
+body.pcp-light-theme .card,
+body.pcp-light-theme .metric,
+body.pcp-light-theme .result-card,
+body.pcp-light-theme .estimate-accounting-option,
+body.pcp-light-theme .list-search-bar,
+body.pcp-light-theme .acc-report-card,
+body.pcp-light-theme .spool-card,
+body.pcp-light-theme .printer-profile-card,
+body.pcp-light-theme .profile-card,
+body.pcp-light-theme .quote-item,
+body.pcp-light-theme .invoice-card{
+ background:#fff!important;background-image:none!important;color:#172033!important;border-color:#cbd5e1!important;
+}
+body.pcp-light-theme .toolbar,
+body.pcp-light-theme .calculate-dock,
+body.pcp-light-theme .filemeta,
+body.pcp-light-theme .dark-box,
+body.pcp-light-theme .code-box,
+body.pcp-light-theme pre,
+body.pcp-light-theme .spool-brand-alternatives,
+body.pcp-light-theme .spool-alt-selected{background:#fff!important;background-image:none!important;color:#172033!important;border-color:#cbd5e1!important}
+body.pcp-light-theme .calculate-dock-note,
+body.pcp-light-theme .filemeta *,
+body.pcp-light-theme .dark-box *,
+body.pcp-light-theme .code-box *,
+body.pcp-light-theme pre *{color:#344256!important}
+body.pcp-light-theme .btn,
+body.pcp-light-theme .filelabel,
+body.pcp-light-theme button:not(.tab-button):not(.u1-monitor-panel button):not(.monitor-floating button){
+ background:#e7eef7!important;color:#172033!important;border:1px solid #c3cfdd!important;box-shadow:none!important;
+}
+body.pcp-light-theme .btn.primary,
+body.pcp-light-theme .filelabel.primary,
+body.pcp-light-theme button.primary,
+body.pcp-light-theme .calculate-dock-actions button:last-child{
+ background:#0f8277!important;color:#fff!important;border-color:#0f8277!important;
+}
+body.pcp-light-theme button:disabled,
+body.pcp-light-theme .btn:disabled{background:#e5e7eb!important;color:#6b7280!important;border-color:#d1d5db!important;opacity:1!important}
+body.pcp-light-theme input:not([type=checkbox]):not([type=radio]):not([type=file]),
+body.pcp-light-theme select,
+body.pcp-light-theme textarea,
+body.pcp-light-theme .list-search-controls input,
+body.pcp-light-theme .list-search-controls .search-sort-select{
+ background:#fff!important;color:#172033!important;border-color:#c4ceda!important;
+}
+body.pcp-light-theme input::placeholder,body.pcp-light-theme textarea::placeholder{color:#7b8798!important}
+body.pcp-light-theme label,
+body.pcp-light-theme .field label,
+body.pcp-light-theme h1,body.pcp-light-theme h2,body.pcp-light-theme h3,
+body.pcp-light-theme h4,body.pcp-light-theme strong{color:#172033}
+body.pcp-light-theme .list-search-bar label,
+body.pcp-light-theme .list-search-bar .search-sort-label{color:#172033!important}
+body.pcp-light-theme .list-search-bar label:before{background:#d9f5ef!important;color:#087f70!important}
+body.pcp-light-theme .list-search-controls input,
+body.pcp-light-theme .list-search-controls .search-sort-select{background:#fff!important;color:#172033!important;border-color:#c4ceda!important}
+body.pcp-light-theme table,
+body.pcp-light-theme .table-wrap,
+body.pcp-light-theme .accounting-table-wrap,
+body.pcp-light-theme .table-container{background:#fff!important;color:#172033!important;border-color:#cbd5e1!important}
+body.pcp-light-theme table th,
+body.pcp-light-theme .table th,
+body.pcp-light-theme thead th{background:#e7edf5!important;color:#243247!important;border-color:#cbd5e1!important}
+body.pcp-light-theme table td,
+body.pcp-light-theme .table td,
+body.pcp-light-theme tbody td{background:#fff!important;color:#243247!important;border-color:#d6dee8!important}
+body.pcp-light-theme tbody tr:nth-child(even) td{background:#f6f8fb!important}
+body.pcp-light-theme .profile-card *,
+body.pcp-light-theme .printer-profile-card *,
+body.pcp-light-theme .spool-card *,
+body.pcp-light-theme .acc-report-card *,
+body.pcp-light-theme .estimate-accounting-option *{color:inherit}
+body.pcp-light-theme .profile-card .metric,
+body.pcp-light-theme .printer-profile-card .metric{background:#f3f6fa!important;color:#172033!important;border-color:#d2dae5!important}
+body.pcp-light-theme .profile-card .metric *,
+body.pcp-light-theme .printer-profile-card .metric *{color:#344256!important}
+body.pcp-light-theme .profile-card .maintenance,
+body.pcp-light-theme .printer-profile-card .maintenance{background:#e7f5f1!important;color:#155e52!important;border-color:#b9e4d8!important}
+body.pcp-light-theme .profile-card .maintenance * ,
+body.pcp-light-theme .printer-profile-card .maintenance *{color:#155e52!important}
+body.pcp-light-theme .tab-navigation{background:#fff!important;border-color:#cbd5e1!important}
+body.pcp-light-theme .tab-button{background:#fff!important;color:#172033!important;border-color:#cbd5e1!important}
+body.pcp-light-theme .tab-button.active{background:#0f8277!important;color:#fff!important;border-color:#0f8277!important}
+body.pcp-light-theme .badge,
+body.pcp-light-theme .pill{background:#edf2f7!important;color:#334155!important;border-color:#cbd5e1!important}
+body.pcp-light-theme .notice,
+body.pcp-light-theme .section-note-box,
+body.pcp-light-theme .info-box{background:#eaf1f9!important;color:#334155!important;border-color:#cbd5e1!important}
+body.pcp-light-theme .notice *,
+body.pcp-light-theme .section-note-box *,
+body.pcp-light-theme .info-box *{color:#334155!important}
+/* Mantener deliberadamente oscuro el monitor flotante de la impresora */
+body.pcp-light-theme #u1MonitorPanel,
+body.pcp-light-theme #u1-monitor-panel,
+body.pcp-light-theme .u1-monitor-panel,
+body.pcp-light-theme .monitor-floating{background:#101b2d!important;color:#edf4ff!important;border-color:#35b9aa!important}
+body.pcp-light-theme #u1MonitorPanel *,
+body.pcp-light-theme #u1-monitor-panel *,
+body.pcp-light-theme .u1-monitor-panel *,
+body.pcp-light-theme .monitor-floating *{color:inherit}
+
+/* v1.563 — remate de contraste: texto legible en tarjetas y colores reales de bobinas. */
+body.pcp-light-theme .spool-card,
+body.pcp-light-theme .spool-card *:not([style*="background-color"]):not([style*="background:"]):not(input[type="color"]){
+  opacity:1!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme .spool-card,
+body.pcp-light-theme .spool-card .spool-card-top,
+body.pcp-light-theme .spool-card .spool-card-actions,
+body.pcp-light-theme .spool-card label,
+body.pcp-light-theme .spool-card span,
+body.pcp-light-theme .spool-card strong,
+body.pcp-light-theme .spool-card small,
+body.pcp-light-theme .spool-card p,
+body.pcp-light-theme .spool-card div{color:#172033!important}
+body.pcp-light-theme .spool-card input:not([type="color"]),
+body.pcp-light-theme .spool-card select{background:#fff!important;color:#172033!important;border-color:#c4ceda!important;opacity:1!important}
+body.pcp-light-theme .spool-card .spool-color,
+body.pcp-light-theme .spool-card .color-swatch,
+body.pcp-light-theme .spool-card .spool-color-swatch,
+body.pcp-light-theme .spool-card input[type="color"]{opacity:1!important;filter:none!important}
+body.pcp-light-theme .client-manager-card,
+body.pcp-light-theme .client-manager-card *:not(button):not(input):not(textarea):not(select),
+body.pcp-light-theme .settings-card,
+body.pcp-light-theme .settings-card *:not(button):not(input):not(textarea):not(select),
+body.pcp-light-theme .acc-printer-card,
+body.pcp-light-theme .acc-printer-card *:not(button):not(input):not(textarea):not(select),
+body.pcp-light-theme .machine-card,
+body.pcp-light-theme .machine-card *:not(button):not(input):not(textarea):not(select){
+  color:#172033!important;
+  text-shadow:none!important;
+  opacity:1;
+}
+body.pcp-light-theme .client-manager-card,
+body.pcp-light-theme .settings-card,
+body.pcp-light-theme .acc-printer-card,
+body.pcp-light-theme .machine-card{background:#fff!important;background-image:none!important;border-color:#cbd5e1!important}
+body.pcp-light-theme .client-manager-card small,
+body.pcp-light-theme .settings-card small,
+body.pcp-light-theme .acc-printer-card small,
+body.pcp-light-theme .machine-card small{color:#536176!important}
+body.pcp-light-theme .spool-card .spool-card-actions button,
+body.pcp-light-theme .client-manager-card button,
+body.pcp-light-theme .settings-card button,
+body.pcp-light-theme .machine-card button{opacity:1!important}
+
+
+/* v1.564 — colores de paleta protegidos frente a reglas globales de botones. */
+body.pcp-light-theme #spoolColorPalette [data-spool-palette-color] {
+  background: var(--spool-palette-color, transparent) !important;
+  opacity: 1 !important; filter: none !important;
+}
+/* Los bloques informativos de las bobinas deben conservar contraste en tema claro. */
+body.pcp-light-theme .spool-card .spool-stat {
+  background: #f1f5f9 !important; color: #172033 !important; border-color: #cbd5e1 !important;
+}
+body.pcp-light-theme .spool-card .spool-stat *,
+body.pcp-light-theme .spool-card .spool-stat span,
+body.pcp-light-theme .spool-card .spool-stat strong,
+body.pcp-light-theme .spool-card .spool-stat small { color: #172033 !important; opacity: 1 !important; }
+body.pcp-light-theme .spool-card .spool-cost { background: #e2f3ee !important; border-color: #b7e1d5 !important; }
+body.pcp-light-theme .spool-card .spool-cost * { color: #075e52 !important; }
+body.pcp-light-theme #spoolColorPicker { opacity: 1 !important; filter: none !important; }
+
+
+/* v1.565 — correcciones específicas tras comprobar las capturas. */
+body.pcp-light-theme #spoolColorPalette button[data-spool-palette-color]{
+  background:var(--spool-palette-color,#808080)!important;
+  background-color:var(--spool-palette-color,#808080)!important;
+  opacity:1!important;filter:none!important;
+}
+/* Los estilos globales de botones no deben tapar los colores de la paleta. */
+body.pcp-light-theme #spoolColorPalette button[data-spool-palette-color]:not([data-spool-palette-delete]){
+  border-color:#64748b!important;box-shadow:none!important;
+}
+body.pcp-light-theme .machine-card .machine-maint{
+  background:#e2f3ee!important;color:#075e52!important;border:1px solid #b7e1d5!important;
+}
+body.pcp-light-theme .machine-card .machine-maint *{
+  color:#075e52!important;opacity:1!important;text-shadow:none!important;
+}
+body.pcp-light-theme .machine-card .machine-stats,
+body.pcp-light-theme .machine-card .machine-stat{color:#172033!important}
+body.pcp-light-theme .machine-card .machine-stat span,
+body.pcp-light-theme .machine-card .machine-stat small{color:#536176!important}
+body.pcp-light-theme .machine-card .machine-stat strong{color:#172033!important}
+
+
+/* v1.566 — corrección dirigida a los colores que siguen fallando en las capturas. */
+/* El bloque de mantenimiento usa .machine-stat.machine-maint (no .maintenance). */
+body.pcp-light-theme .machine-card .machine-stats .machine-stat.machine-maint,
+body.pcp-light-theme .machine-card .machine-maint {
+  background:#e2f3ee!important; background-image:none!important; color:#075e52!important;
+  border:1px solid #b7e1d5!important; opacity:1!important;
+}
+body.pcp-light-theme .machine-card .machine-stats .machine-stat.machine-maint span,
+body.pcp-light-theme .machine-card .machine-stats .machine-stat.machine-maint small,
+body.pcp-light-theme .machine-card .machine-stats .machine-stat.machine-maint strong,
+body.pcp-light-theme .machine-card .machine-maint * {
+  color:#075e52!important; opacity:1!important; text-shadow:none!important;
+}
+/* Los números de presupuesto/factura no deben conservar el chip azul oscuro en tema claro. */
+body.pcp-light-theme #savedQuotesList .quote-number,
+body.pcp-light-theme #savedInvoicesList [data-inv-number],
+body.pcp-light-theme #savedInvoicesList .quote-number {
+  background:#f1f5f9!important; background-image:none!important; color:#172033!important;
+  border:1px solid #cbd5e1!important; text-shadow:none!important;
+}
+/* Filas de listas antiguas que conservan fondos oscuros definidos en hojas anteriores. */
+body.pcp-light-theme #savedQuotesList,
+body.pcp-light-theme #savedInvoicesList {background:#fff!important;color:#172033!important;border-color:#cbd5e1!important}
+body.pcp-light-theme #savedQuotesList .saved-quotes-table tbody td,
+body.pcp-light-theme #savedInvoicesList .saved-quotes-table tbody td {color:#243247!important}

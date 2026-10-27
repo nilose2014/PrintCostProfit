@@ -1,0 +1,266 @@
+/* v1.421: estilos exclusivos de los buscadores. No modifica colores globales, títulos ni tablas. */
+.list-search-bar{display:flex;flex-direction:column;gap:9px;margin:14px 0 16px;padding:14px 16px;background:linear-gradient(135deg,rgba(35,52,78,.82),rgba(15,25,43,.92));border:1px solid #344764;border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.18);color:#eaf1ff}
+.list-search-bar label{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:750;letter-spacing:.015em;color:#dbe7fb}
+.list-search-bar label:before{content:'⌕';display:inline-flex;align-items:center;justify-content:center;flex:0 0 28px;width:28px;height:28px;border-radius:9px;background:rgba(105,220,199,.15);color:#69dcc7;font-size:22px}
+.list-search-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.list-search-controls input{flex:1;min-width:260px;min-height:44px;padding:11px 14px;border-radius:10px;border:1px solid #344764;background:#0b1424;color:#edf3ff;outline:none;box-sizing:border-box;transition:border-color .18s,box-shadow .18s}
+.list-search-controls input:focus{border-color:#69dcc7;box-shadow:0 0 0 3px rgba(105,220,199,.17)}
+.list-search-controls input::placeholder{color:#91a1bc}
+.list-search-controls .btn{min-height:44px;padding:10px 19px;border-radius:10px;font-weight:750;white-space:nowrap}
+.list-search-controls .btn.primary{background:#69dcc7;color:#0b1424;border-color:#69dcc7;box-shadow:0 4px 12px rgba(82,207,186,.18)}
+.list-search-controls .btn:not(.primary){background:#24344e;color:#edf3ff;border:1px solid #3a4d6b}
+.list-pagination span,.acc-pagination span{font-size:12px;color:#aab8d0;padding:0 4px}
+@media(max-width:620px){.list-search-controls{display:grid;grid-template-columns:1fr 1fr}.list-search-controls input{grid-column:1/-1;min-width:0;width:100%}.list-search-controls .btn{width:100%}}
+
+/* v1.422: separación visual del resumen de impresoras y los trabajos contables */
+#accPrinterSummary{margin:0 0 24px;padding:0 0 22px;border-bottom:1px solid #2b3a54}
+#accPrinterSummary h3{margin:0 0 12px}
+#accountingRows{margin-top:12px}
+#accountingRows .accounting-table-wrap{margin-top:8px}
+
+/* v1.423: selector Ordenar por integrado en los buscadores */
+.list-search-bar .search-sort-label{font-size:12px;font-weight:700;color:#dbe7fb;white-space:nowrap}
+.list-search-bar .search-sort-select{min-height:44px;max-width:220px;min-width:165px;padding:9px 12px;border-radius:10px;border:1px solid #344764;background:#0b1424;color:#edf3ff;outline:none;box-sizing:border-box}
+.list-search-bar .search-sort-select:focus{border-color:#69dcc7;box-shadow:0 0 0 3px rgba(105,220,199,.17)}
+@media(max-width:760px){.list-search-bar .search-sort-label{grid-column:1/-1}.list-search-bar .search-sort-select{width:100%;max-width:none;grid-column:1/-1}}
+
+/* v1.425: selección explícita de bobina alternativa de otra marca */
+.gcode-spool-check{display:block;margin:5px 0}
+.spool-brand-alternatives{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:7px 0;padding:9px 10px;border:1px solid #344764;border-radius:10px;background:rgba(15,25,43,.48)}
+.spool-brand-alternatives strong{font-size:12px;color:#dbe7fb;margin-right:4px}
+.spool-brand-alternatives .btn{font-size:12px;padding:6px 10px;border-radius:8px;background:#24344e;color:#edf3ff;border:1px solid #3a4d6b;cursor:pointer}
+.spool-brand-alternatives .btn.primary{background:#69dcc7;color:#0b1424;border-color:#69dcc7}
+.spool-alt-selected{margin:7px 0;padding:8px 10px;border-radius:8px;background:rgba(105,220,199,.1);border:1px solid rgba(105,220,199,.35);color:#d9fff6;font-size:12px}
+
+/* v1.428: opción contable visible junto a Guardar tasación */
+.estimate-accounting-option{margin:8px 0 10px;padding:10px 12px;border:1px solid var(--border,#30415e);border-radius:8px;background:var(--panel,#101a2b)}.estimate-accounting-option label{display:flex;align-items:center;gap:9px;font-weight:600;cursor:pointer}.estimate-accounting-option input{width:auto;flex:0 0 auto}.estimate-accounting-option p{margin:5px 0 0 25px}
+
+
+/* v1.430 - Own expense report dialog */
+.acc-edit-dialog:has(.acc-expense-report){width:min(980px,94vw);max-width:980px;max-height:90vh;padding:0;border:1px solid #33445d;border-radius:18px;background:var(--panel,#111c2f);color:var(--text,#eef4ff);box-shadow:0 24px 80px #0009;overflow:auto}
+.acc-edit-dialog:has(.acc-expense-report)::backdrop{background:#050914bd;backdrop-filter:blur(4px)}
+.acc-expense-report{padding:26px;display:flex;flex-direction:column;gap:22px}
+.acc-expense-report-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding-bottom:20px;border-bottom:1px solid var(--border,#2c3b52)}
+.acc-report-eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:800;color:#71d8c6;margin-bottom:8px}
+.acc-expense-report-head h2{font-size:24px;line-height:1.2;margin:0 0 7px;font-weight:800}
+.acc-expense-report-head p{margin:0;color:var(--muted,#a8b6ca)}
+.acc-report-total{min-width:180px;padding:15px 18px;border:1px solid #27685f;border-radius:14px;background:linear-gradient(135deg,#123b3c,#17283a);display:flex;flex-direction:column;gap:6px}
+.acc-report-total span,.acc-report-card span{font-size:12px;color:var(--muted,#a8b6ca)}
+.acc-report-total strong{font-size:25px;color:#72e0cc;font-variant-numeric:tabular-nums}
+.acc-report-actions{display:flex;gap:9px;flex-wrap:wrap}
+.acc-report-actions .btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer}
+.acc-report-section{display:flex;flex-direction:column;gap:12px}
+.acc-report-section h3{font-size:15px;margin:0;font-weight:800}
+.acc-report-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.acc-report-card{padding:14px 15px;border:1px solid var(--border,#2c3b52);border-radius:12px;background:var(--card,#172338);display:flex;flex-direction:column;gap:8px;min-width:0}
+.acc-report-card strong{font-size:17px;font-variant-numeric:tabular-nums}
+.acc-report-table{width:100%;border-collapse:collapse}
+.acc-report-table th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted,#a8b6ca);text-align:left}
+.acc-report-table td,.acc-report-table th{padding:12px 10px;border-bottom:1px solid var(--border,#2c3b52);vertical-align:top}
+.acc-report-table tbody tr:hover{background:#ffffff08}
+.acc-report-table .money{text-align:right;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.acc-detail-status{display:inline-block;font-size:11px;padding:4px 8px;border-radius:999px;white-space:normal}
+.acc-detail-status.is-available{background:#153b32;color:#80e2bc}
+.acc-detail-status.is-missing{background:#49351e;color:#ffd38b}
+@media(max-width:650px){.acc-expense-report{padding:16px}.acc-expense-report-head{flex-direction:column}.acc-report-total{width:100%;box-sizing:border-box}.acc-report-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.acc-report-actions .btn{flex:1 1 40%}}
+@media print{.acc-expense-report{color:#111;background:#fff}.acc-report-card,.acc-report-total{background:#fff;border:1px solid #ccc;color:#111}.acc-report-total strong{color:#111}}
+
+/* v1.431 - Accounting import from saved documents */
+#accImportDocumentWrap[hidden]{display:none!important}
+#accImportSource,#accImportDocument{max-width:100%}
+
+/* v1.442: separa el importe del botón Ver detalle en el resumen por impresora */
+#accPrinterSummary .metric .value,
+#accPrinterSummary .metric strong,
+#accPrinterSummary .metric .acc-metric-value{margin-right:10px}
+#accPrinterSummary .metric button,
+#accPrinterSummary .metric .btn{margin-left:12px;vertical-align:middle}
+#accPrinterSummary .metric{column-gap:10px}
+
+
+/* v1.561: corrección global del tema claro.
+   Mantiene el tema oscuro original y neutraliza fondos/textos oscuros heredados
+   en paneles, botones, tablas, tarjetas, formularios y vistas de gestión. */
+body.pcp-light-theme{
+  background:var(--bg)!important;
+  color:var(--txt)!important;
+}
+body.pcp-light-theme header,
+body.pcp-light-theme .topbar,
+body.pcp-light-theme .toolbar,
+body.pcp-light-theme nav,
+body.pcp-light-theme .nav-tabs{
+  color:var(--txt);
+}
+body.pcp-light-theme .panel,
+body.pcp-light-theme section.panel,
+body.pcp-light-theme .card,
+body.pcp-light-theme .settings-card,
+body.pcp-light-theme .list-search-bar,
+body.pcp-light-theme .spool-card,
+body.pcp-light-theme .machine-card,
+body.pcp-light-theme .metric,
+body.pcp-light-theme .result-card,
+body.pcp-light-theme .resultline,
+body.pcp-light-theme .total-order-box,
+body.pcp-light-theme .history-panel,
+body.pcp-light-theme .table-wrap,
+body.pcp-light-theme .modal-content,
+body.pcp-light-theme .modal-body{
+  background:var(--panel)!important;
+  color:var(--txt)!important;
+  border-color:var(--line)!important;
+}
+body.pcp-light-theme .panel *,
+body.pcp-light-theme .card *,
+body.pcp-light-theme .settings-card *,
+body.pcp-light-theme .spool-card *,
+body.pcp-light-theme .machine-card *,
+body.pcp-light-theme .metric *,
+body.pcp-light-theme .result-card *,
+body.pcp-light-theme .resultline *,
+body.pcp-light-theme .total-order-box *,
+body.pcp-light-theme .history-panel *{
+  text-shadow:none;
+}
+body.pcp-light-theme .muted,
+body.pcp-light-theme small,
+body.pcp-light-theme .sub,
+body.pcp-light-theme .help,
+body.pcp-light-theme .hint,
+body.pcp-light-theme .description,
+body.pcp-light-theme .list-pagination span,
+body.pcp-light-theme .acc-pagination span{
+  color:var(--muted)!important;
+}
+body.pcp-light-theme .btn,
+body.pcp-light-theme .filelabel,
+body.pcp-light-theme button,
+body.pcp-light-theme .list-search-controls .btn,
+body.pcp-light-theme .actions button{
+  color:#172033;
+  border-color:#b9c5d6;
+}
+body.pcp-light-theme .btn:not(.primary):not(.success):not(.danger):not(.warning),
+body.pcp-light-theme .filelabel,
+body.pcp-light-theme .list-search-controls .btn:not(.primary),
+body.pcp-light-theme .actions button:not(.primary):not(.success):not(.danger){
+  background:#e8eef7!important;
+  color:#172033!important;
+  border-color:#c4cfdd!important;
+}
+body.pcp-light-theme .btn.primary,
+body.pcp-light-theme .btn.success,
+body.pcp-light-theme button.primary,
+body.pcp-light-theme .list-search-controls .btn.primary{
+  background:#087f72!important;
+  color:#fff!important;
+  border-color:#087f72!important;
+}
+body.pcp-light-theme button.danger,
+body.pcp-light-theme .btn.danger{
+  background:#fff0f0!important;
+  color:#a51d2d!important;
+  border-color:#e5aeb5!important;
+}
+body.pcp-light-theme button:disabled,
+body.pcp-light-theme .btn:disabled,
+body.pcp-light-theme button[disabled]{
+  background:#edf0f4!important;
+  color:#7b8798!important;
+  border-color:#d7dde5!important;
+  opacity:1!important;
+}
+body.pcp-light-theme input,
+body.pcp-light-theme select,
+body.pcp-light-theme textarea,
+body.pcp-light-theme .list-search-controls input{
+  background:#fff!important;
+  color:#172033!important;
+  border-color:#b9c5d6!important;
+}
+body.pcp-light-theme input::placeholder,
+body.pcp-light-theme textarea::placeholder{
+  color:#778398!important;
+}
+body.pcp-light-theme table,
+body.pcp-light-theme thead,
+body.pcp-light-theme tbody,
+body.pcp-light-theme tr,
+body.pcp-light-theme th,
+body.pcp-light-theme td{
+  color:var(--txt);
+  border-color:var(--line);
+}
+body.pcp-light-theme thead,
+body.pcp-light-theme th{
+  background:#e8eef7!important;
+  color:#172033!important;
+}
+body.pcp-light-theme tbody tr:nth-child(even){
+  background:#f7f9fc!important;
+}
+body.pcp-light-theme tbody tr:nth-child(odd){
+  background:#fff!important;
+}
+body.pcp-light-theme .list-search-bar{
+  background:#fff!important;
+  color:#172033!important;
+  border-color:#cbd5e1!important;
+}
+body.pcp-light-theme .list-search-bar label,
+body.pcp-light-theme .list-search-bar label:before{
+  color:#172033!important;
+}
+body.pcp-light-theme .list-search-controls input{
+  background:#fff!important;color:#172033!important;
+}
+body.pcp-light-theme .acc-printer-card,
+body.pcp-light-theme #accPrinterSummary .acc-printer-card,
+body.pcp-light-theme #accPrinterSummary .acc-printer-metric{
+  background:#fff!important;color:#172033!important;border-color:#cbd5e1!important;
+}
+body.pcp-light-theme #accPrinterSummary .acc-printer-card-head h4,
+body.pcp-light-theme #accPrinterSummary .acc-printer-metric strong,
+body.pcp-light-theme #accPrinterSummary .acc-printer-total{
+  color:#172033!important;
+}
+body.pcp-light-theme #accPrinterSummary .acc-printer-card-head small,
+body.pcp-light-theme #accPrinterSummary .acc-printer-metric span{
+  color:#526078!important;
+}
+body.pcp-light-theme .u1-cost-dialog{
+  background:#fff!important;color:#172033!important;border-color:#cbd5e1!important;
+}
+body.pcp-light-theme .u1-cost-dialog h1,
+body.pcp-light-theme .u1-cost-dialog h2,
+body.pcp-light-theme .u1-cost-dialog h3,
+body.pcp-light-theme .u1-cost-dialog p,
+body.pcp-light-theme .u1-cost-dialog label,
+body.pcp-light-theme .u1-cost-dialog span,
+body.pcp-light-theme .u1-cost-dialog strong{
+  color:#172033!important;
+}
+body.pcp-light-theme .u1-cost-file,
+body.pcp-light-theme .u1-cost-item,
+body.pcp-light-theme .u1-cost-sale,
+body.pcp-light-theme .u1-cost-sale .u1-cost-item{
+  background:#f2f5fa!important;color:#172033!important;border-color:#cbd5e1!important;
+}
+body.pcp-light-theme .u1-cost-item span,
+body.pcp-light-theme .u1-cost-time,
+body.pcp-light-theme .u1-cost-label{
+  color:#526078!important;
+}
+body.pcp-light-theme .u1-cost-item strong{color:#172033!important}
+body.pcp-light-theme .u1-cost-mark{background:#dff4ef!important;color:#087f72!important}
+body.pcp-light-theme .calculate-dock,
+body.pcp-light-theme .dark-box,
+body.pcp-light-theme .code-box,
+body.pcp-light-theme pre{
+  background:#f2f5fa!important;color:#172033!important;border-color:#cbd5e1!important;
+}
+body.pcp-light-theme .calculate-dock *,
+body.pcp-light-theme .dark-box *,
+body.pcp-light-theme .code-box *,
+body.pcp-light-theme pre *{color:inherit}

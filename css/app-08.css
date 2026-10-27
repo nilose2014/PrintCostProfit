@@ -1,0 +1,4 @@
+
+.calculate-dock-multicolor{width:100%;box-sizing:border-box;margin:0 0 18px;position:sticky;bottom:28px;align-self:start;z-index:10;}
+.calculate-dock-multicolor .calculate-dock-actions{min-width:0;}
+@media(max-width:1050px){.calculate-dock-multicolor{width:100%;}}

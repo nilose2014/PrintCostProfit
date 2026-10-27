@@ -1,0 +1,15 @@
+
+#programOptionsView .pcp-opt-section-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:10px 0 12px;padding:9px 10px;border:1px solid var(--border,#29364f);border-radius:12px;background:rgba(10,18,34,.42)}
+#programOptionsView .pcp-opt-section-tools .pcp-opt-spacer{flex:1}
+#programOptionsView .pcp-opt-section-tools button{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--border,#34445f);border-radius:9px;padding:6px 10px;background:rgba(90,110,145,.16);color:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}
+#programOptionsView .pcp-opt-section-tools button:hover{background:rgba(90,180,190,.18);border-color:#55c5c0;transform:translateY(-1px)}
+#programOptionsView .pcp-opt-section-tools button:disabled{opacity:.35;cursor:not-allowed;transform:none}
+#programOptionsView .pcp-opt-section-tools .pcp-opt-toggle{background:rgba(72,190,174,.13);border-color:rgba(72,190,174,.45)}
+#programOptionsView .pcp-opt-content{overflow:hidden;transition:opacity .18s}
+#programOptionsView .pcp-opt-section-tools{position:relative;z-index:1}
+#programOptionsView .pcp-opt-section-tools button{min-height:30px}
+#programOptionsView .pcp-opt-section-collapsed .pcp-opt-content{display:none}
+#programOptionsView .pcp-opt-section-collapsed{padding-bottom:8px}
+#programOptionsView .pcp-opt-section-collapsed .pcp-opt-section-tools{margin-bottom:0}
+#programOptionsView .pcp-opt-order-label{font-size:11px;opacity:.68;margin-right:2px}
+@media(max-width:650px){#programOptionsView .pcp-opt-section-tools{gap:5px}#programOptionsView .pcp-opt-section-tools button{padding:6px 8px}}

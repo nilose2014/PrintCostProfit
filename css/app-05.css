@@ -1,0 +1,2 @@
+
+.pcp-options-note,.pcp-printer-status{display:block;white-space:normal;overflow-wrap:anywhere;line-height:1.55;margin:10px 0 0!important;position:static!important;height:auto!important;min-height:1.4em}.panel .actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:12px 0}.panel .fields{row-gap:14px}.panel .field>p.section-note{position:static!important;margin:8px 0 0!important;line-height:1.5}.pcp-printer-status{padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:rgba(100,116,139,.08)}

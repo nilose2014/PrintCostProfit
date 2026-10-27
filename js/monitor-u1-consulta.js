@@ -1,0 +1,21 @@
+
+(function(){
+ const el=id=>document.getElementById(id); const status=el('pcpPrinterStatus'); const ipInput=el('pcpU1PrinterIp');
+ if(!status||!ipInput)return;
+ const root=()=>{const v=((el('pcpPrinterUrl')&&el('pcpPrinterUrl').value)||'http://127.0.0.1:8700').trim().replace(/\/+$/,'');return v||'http://127.0.0.1:8700'};
+ const tr=(key,values={})=>window.PCP_I18N&&window.PCP_I18N.format?window.PCP_I18N.format(key,values):key; const say=t=>{status.textContent=t;status.style.display='block';};
+ const request=async(url,ms=18000)=>{const c=new AbortController();const timer=setTimeout(()=>c.abort(),ms);try{return await fetch(url,{cache:'no-store',signal:c.signal});}finally{clearTimeout(timer)}};
+ const discover=el('pcpDiscoverU1');
+ if(discover){const clone=discover.cloneNode(true);discover.parentNode.replaceChild(clone,discover);clone.addEventListener('click',async()=>{
+  clone.disabled=true;say(tr('Buscando la impresora en la red local… Si no aparece en 18 segundos, podrás introducir su IP manualmente.'));
+  try{const r=await request(root()+'/api/u1/discover?t='+Date.now(),19000);let d={};try{d=await r.json()}catch(_){}if(!r.ok||!d.ok)throw new Error(d.error||('HTTP '+r.status));if(d.ip){ipInput.value=d.ip;try{localStorage.setItem('pcp_u1_manual_ip_v178',d.ip)}catch(_){}say(tr('Impresora encontrada: {ip}{hostname}.',{ip:d.ip,hostname:d.printerInfo&&d.printerInfo.hostname?' · '+d.printerInfo.hostname:''}));}else say(d.message?tr('No se encontró la impresora. {message}',{message:d.message}):tr('No se encontró la impresora. Introduce su IP manualmente y pulsa Guardar IP manual.'));}
+  catch(e){say(e.name==='AbortError'?tr('La búsqueda agotó el tiempo de espera. Introduce la IP de la impresora manualmente.'):tr('No se pudo completar la búsqueda: {message}. Introduce la IP de la impresora manualmente.',{message:e.message||String(e)}));}finally{clone.disabled=false;}
+ });}
+ const save=el('pcpSaveU1Ip');if(save){const clone=save.cloneNode(true);save.parentNode.replaceChild(clone,save);clone.addEventListener('click',async()=>{
+  const ip=ipInput.value.trim();if(!/^(?:(?:25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|1?\d?\d)$/.test(ip)){say(tr('Introduce una dirección IPv4 válida, por ejemplo 192.168.1.48.'));return;}
+  clone.disabled=true;try{localStorage.setItem('pcp_u1_manual_ip_v178',ip);localStorage.setItem('pcp_u1_manual_ip_v177',ip);localStorage.setItem('pcp_u1_manual_ip_v176',ip);}catch(_){}say(tr('IP {ip} guardada en esta aplicación. Comprobando ahora la impresora…',{ip}));
+  try{const r=await request(root()+'/api/u1/config?ip='+encodeURIComponent(ip)+'&t='+Date.now(),6000);let d={};try{d=await r.json()}catch(_){}if(!r.ok||!d.ok)throw new Error(d.error||('HTTP '+r.status));say(tr('IP guardada y validada: {ip}. Pulsa «Ver impresora conectada» para consultar su estado.',{ip}));}
+  catch(e){say(e.name==='AbortError'?tr('La IP {ip} se ha guardado en la aplicación, pero el puente no pudo validarla (tiempo de espera agotado). Comprueba que el puente esté iniciado; puedes volver a pulsar «Ver impresora conectada» después.',{ip}):tr('La IP {ip} se ha guardado en la aplicación, pero el puente no pudo validarla: {message}. Comprueba que el puente esté iniciado; puedes volver a pulsar «Ver impresora conectada» después.',{ip,message:e.message||String(e)}));}finally{clone.disabled=false;}
+ });}
+ const view=el('pcpShowConnectedU1');if(view){const clone=view.cloneNode(true);view.parentNode.replaceChild(clone,view);clone.addEventListener('click',async()=>{clone.disabled=true;say(tr('Consultando la impresora configurada…'));try{const r=await request(root()+'/api/u1/printer?t='+Date.now(),6000);let d={};try{d=await r.json()}catch(_){}if(!r.ok||!d.ok)throw new Error(d.error||('HTTP '+r.status));say(tr('IMPRESORA CONECTADA · {name} · IP {ip} · Estado: {state} · Archivo: {file}{software}. Consulta completada.',{name:d.name||'Snapmaker U1',ip:d.ip,state:d.state||tr('desconocido'),file:d.filename||tr('ninguno'),software:d.softwareVersion?' · Software: '+d.softwareVersion:''}));}catch(e){say(e.name==='AbortError'?tr('No se pudo consultar la impresora (tiempo de espera agotado). Comprueba la IP y que el puente esté iniciado.'):tr('No se pudo consultar la impresora: {message}. Comprueba la IP y que el puente esté iniciado.',{message:e.message||String(e)}));}finally{clone.disabled=false;}});}
+})();

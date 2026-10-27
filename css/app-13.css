@@ -1,0 +1,40 @@
+body{font:12px Arial,sans-serif;color:#222;margin:24px}h1{font-size:20px}.date{color:#555;margin-bottom:18px}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}.card{border:1px solid #bbb;padding:10px}.card strong{display:block;font-size:15px;margin-top:5px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{border:1px solid #bbb;padding:6px;text-align:left;vertical-align:top}th{background:#eee}@page{size:A4 landscape;margin:12mm}@media print{thead{display:table-header-group}tr{break-inside:avoid}}
+/* v1.394: accounting printer summaries */
+.acc-printer-summary{display:grid;gap:12px;margin:16px 0}
+.acc-printer-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.acc-printer-cards .panel{margin:0;padding:14px}
+.acc-printer-cards h4{margin:0 0 10px}
+.acc-printer-cards p{display:flex;justify-content:space-between;gap:12px;margin:7px 0}
+.accounting-history th,.accounting-history td{vertical-align:top}
+
+/* v1.394: improve accounting table readability */
+#accPrinterSummary{min-width:0}#accPrinterSummary>.panel{min-width:0}#accPrinterSummary .acc-printer-cards{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}#accountingRows .accounting-history{font-size:12px}#accountingRows .accounting-history td:nth-child(5){min-width:440px}
+
+/* v1.397: printer accounting cards match printer profile cards */
+.acc-printer-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,390px),1fr));gap:12px;align-items:stretch}
+.acc-printer-cards .acc-printer-card{margin:0;padding:14px;border:1px solid var(--border-color,#2b3b55);border-radius:16px;background:var(--panel-bg,rgba(20,30,49,.72));min-width:0}
+.acc-printer-card-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.acc-printer-icon{width:42px;height:42px;display:grid;place-items:center;flex:0 0 42px;border:1px solid var(--border-color,#2b3b55);border-radius:12px;font-size:22px;color:var(--accent,#6bd7c6)}
+.acc-printer-card-head h4{margin:0 0 4px;font-size:15px}
+.acc-printer-card-head small{color:var(--muted,#aab8cc);font-size:12px}
+.acc-printer-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.acc-printer-metric{display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-width:0;min-height:68px;padding:12px;border:1px solid var(--border-color,#2b3b55);border-radius:12px;background:rgba(8,15,29,.38)}
+.acc-printer-metric span{font-size:12px;color:var(--muted,#aab8cc)}
+.acc-printer-metric strong{font-size:18px;line-height:1.2;overflow-wrap:anywhere}
+.acc-printer-metric.is-profit{border-color:rgba(80,210,170,.45);background:rgba(22,110,91,.15);color:var(--accent,#6bd7c6)}
+.acc-printer-total{margin-top:12px;padding:10px 2px 0;display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--border-color,#2b3b55);font-size:13px}
+@media(max-width:560px){.acc-printer-metrics{grid-template-columns:1fr}.acc-printer-metric{min-height:unset}}
+
+/* v1.399: keep accounting printer cards compact and prevent global header styles leaking in */
+#accPrinterSummary .acc-printer-cards{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))!important;gap:12px!important;align-items:stretch}
+#accPrinterSummary .acc-printer-card{display:block!important;min-width:0!important;padding:14px!important;border:1px solid var(--border-color,#2b3b55)!important;border-radius:16px!important;background:var(--panel-bg,rgba(20,30,49,.72))!important;overflow:hidden}
+#accPrinterSummary .acc-printer-card-head{display:flex!important;align-items:center!important;gap:12px!important;margin:0 0 14px!important;padding:0!important;min-height:42px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+#accPrinterSummary .acc-printer-card-head h4{margin:0 0 4px!important;font-size:15px!important;line-height:1.25!important}
+#accPrinterSummary .acc-printer-card-head small{display:block!important;font-size:12px!important;line-height:1.35!important}
+#accPrinterSummary .acc-printer-metrics{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+#accPrinterSummary .acc-printer-metric{display:flex!important;flex-direction:column!important;justify-content:space-between!important;gap:8px!important;min-width:0!important;min-height:68px!important;padding:12px!important;border:1px solid var(--border-color,#2b3b55)!important;border-radius:12px!important;background:rgba(8,15,29,.38)!important}
+#accPrinterSummary .acc-printer-metric span{font-size:12px!important;line-height:1.35!important}
+#accPrinterSummary .acc-printer-metric strong{font-size:18px!important;line-height:1.2!important;overflow-wrap:anywhere}
+#accPrinterSummary .acc-printer-metric.is-profit{border-color:rgba(80,210,170,.45)!important;background:rgba(18,100,85,.16)!important}
+#accPrinterSummary .acc-printer-total{margin-top:12px!important;padding-top:10px!important;border-top:1px solid var(--border-color,#2b3b55)!important;font-size:13px!important}
+@media(max-width:520px){#accPrinterSummary .acc-printer-metrics{grid-template-columns:1fr!important}}
