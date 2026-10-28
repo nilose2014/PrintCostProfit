@@ -249,6 +249,7 @@ function u1ShowCompletionSummary(job){
  const shownKey='pcp_u1_completion_summary_shown_v1';
  let shown=[];try{shown=JSON.parse(localStorage.getItem(shownKey)||'[]')}catch(e){}
  if(shown.includes(job.id))return;
+ shown.push(job.id);try{localStorage.setItem(shownKey,JSON.stringify(shown.slice(-200)))}catch(e){}
  const lang=window.PCP_I18N?.language||'es',li={es:0,en:1,fr:2,de:3,it:4,pl:5}[lang]??0;
  const words={
   title:['Impresión finalizada · Resumen de costes','Print completed · Cost summary','Impression terminée · Résumé des coûts','Druck abgeschlossen · Kostenübersicht','Stampa completata · Riepilogo costi','Druk zakończony · Podsumowanie kosztów'],
@@ -274,7 +275,7 @@ function u1ShowCompletionSummary(job){
  const overlay=document.createElement('div');overlay.id='pcp-u1-completion-summary';overlay.style.cssText='position:fixed;inset:0;z-index:2147483647;background:rgba(4,10,20,.78);display:flex;align-items:center;justify-content:center;padding:18px;font:14px Arial,sans-serif;color:#eaf1fb';
  const rows=[['filament',filament],['electricity',electricity],['wear',wear],['maintenance',maintenance],['labor',labor],['failure',reserve]];
  overlay.innerHTML='<section role="dialog" aria-modal="true" style="width:min(520px,100%);max-height:90vh;overflow:auto;background:#142238;border:1px solid #55708f;border-radius:14px;box-shadow:0 20px 70px #000;padding:22px"><h2 style="margin:0 0 8px;font-size:20px">'+t('title')+'</h2><p style="margin:0 0 16px;color:#b9c9df;overflow-wrap:anywhere">'+t('file')+': '+u1Esc(job.file||'—')+'</p><p style="margin:0 0 12px;color:#b9c9df">'+t('grams')+': <strong>'+grams.toFixed(1)+' g</strong></p><div>'+rows.map(r=>'<div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #34465e"><span>'+t(r[0])+'</span><strong>'+u1Esc(money(r[1]))+'</strong></div>').join('')+'</div><div style="display:flex;justify-content:space-between;gap:16px;padding:15px 0;font-size:18px"><strong>'+t('total')+'</strong><strong>'+u1Esc(money(total))+'</strong></div><p style="font-size:12px;color:#b9c9df">'+t('note')+'</p><button type="button" style="width:100%;padding:11px;border-radius:8px;border:1px solid #65d6c4;background:#164e45;color:white;font-weight:bold;cursor:pointer">'+t('close')+'</button></section>';
- const close=()=>{try{const now=JSON.parse(localStorage.getItem(shownKey)||'[]');if(!now.includes(job.id))now.push(job.id);localStorage.setItem(shownKey,JSON.stringify(now.slice(-200)))}catch(e){}overlay.remove()};
+ const close=()=>{overlay.remove()};
  overlay.querySelector('button').addEventListener('click',close);overlay.addEventListener('click',e=>{if(e.target===overlay)close()});document.addEventListener('keydown',function esc(e){if(e.key==='Escape'&&overlay.isConnected){close();document.removeEventListener('keydown',esc)}});document.body.appendChild(overlay);
 }
 
