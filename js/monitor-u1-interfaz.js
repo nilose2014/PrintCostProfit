@@ -177,6 +177,7 @@ function u1CompleteJob(file){
  if(!u1SaveSpools(spools)){u1SetNote('La impresión terminó, pero no se pudo guardar el inventario. No cierres la aplicación; revisa almacenamiento local.');return}
  try{done.push(job.id);localStorage.setItem(DONE_KEY,JSON.stringify(done.slice(-200)));job.deducted=true;job.completedAt=new Date().toISOString();job.deductionBySpool=planned;u1WriteActive(job);}catch(e){}
  try{if(typeof renderSpools==='function')renderSpools()}catch(e){}
+ try{window.dispatchEvent(new CustomEvent('pcp-external-storage-sync'));window.dispatchEvent(new CustomEvent('pcp-spools-updated'))}catch(e){}
  u1SetNote('Descuento aplicado (estimación del G-code): '+changes.join(' · ')+(job.items.some(x=>x.spoolIndex===null&&x.grams>0)?' · Se ha repartido el consumo entre bobinas compatibles cuando ha sido necesario.':''));
 }
 function u1FinalizeAccountingMoves(file, options={}){
