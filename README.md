@@ -114,7 +114,7 @@ Estas herramientas permiten obtener información útil cuando un componente no s
 
 Antes de iniciar el programa, se recomienda disponer de:
 
-- Un ordenador con Windows 10 o Windows 11.
+- Un ordenador con Windows 10 o Windows 11 o linux.
 
 - Una carpeta local permanente para instalar el proyecto.
 
@@ -136,7 +136,7 @@ No ejecutes la aplicación directamente desde el archivo ZIP. Extrae primero tod
 
 1. Abre el repositorio oficial:
 
-   https\://github.com/nilose2014/PrintCostProfit
+   https\://github.com/nilose2014/PrintCostProfit para windows y https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1 para linux
 
 2. Pulsa **Code**.
 
@@ -580,7 +580,7 @@ These tools provide useful information when a component fails to start or an ope
 
 Before starting the program, make sure you have:
 
-- A computer running Windows 10 or Windows 11.
+- A computer running Windows 10 or Windows 11 or linux
 
 - A permanent local folder for the project.
 
@@ -602,7 +602,7 @@ Do not run the application directly from the ZIP file. Extract all files first.
 
 1. Open the official repository:
 
-   https\://github.com/nilose2014/PrintCostProfit
+   https\://github.com/nilose2014/PrintCostProfit for widows or   https\://github.com/nilose2014/PrintCostProfit para windows y https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1 para linux for linux
 
 2. Click **Code**.
 
