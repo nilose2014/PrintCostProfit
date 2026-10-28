@@ -1,4 +1,4 @@
-# Print Cost & Profit v1.0
+****# Print Cost & Profit v1.0
 
 ## Calculadora de costes, producción y gestión para impresión 3D
 
@@ -324,7 +324,7 @@ La protección contra el cambio silencioso al almacenamiento del navegador está
 
 ---
 
-# 8. Scripts y herramientas incluidos\n\n![Documentación y ayuda](galeria/es/19-documentacion-y-ayuda.jpg)
+# 8. Scripts y herramientas incluidos ![Documentación y ayuda](galeria/es/19-documentacion-y-ayuda.jpg)
 
 El repositorio contiene diferentes archivos auxiliares. No todos deben ejecutarse manualmente en el uso habitual.
 
