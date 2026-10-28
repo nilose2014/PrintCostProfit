@@ -4,7 +4,7 @@
 
 Print Cost & Profit es una aplicación diseñada para ayudar a los usuarios de impresión 3D a calcular los costes reales de fabricación, controlar el consumo de filamento, gestionar materiales y organizar la actividad comercial relacionada con sus impresiones.
 
-La aplicación integra una calculadora de costes con herramientas de gestión, almacenamiento local e integración con OrcaSlicer, con el objetivo de centralizar la información necesaria para controlar la rentabilidad de un negocio de impresión 3D.
+La aplicación integra una calculadora de costes con herramientas de gestión, almacenamiento local e integración con laminadores basados en OrcaSlicer, especialmente Snapmaker Orca, OrcaSlicer y Creality Print. También incluye un monitor para impresoras compatibles, con distintos niveles de compatibilidad según el modelo y la conexión disponible.
 
 ## Capturas de la aplicación
 
@@ -82,17 +82,19 @@ Si se utilizan varias impresoras, es importante seleccionar el perfil adecuado p
 
 ![Perfiles y monitor de impresoras](galeria/es/06-perfiles-y-monitor-de-impresoras.jpg)
 
-## 1.4. Integración con OrcaSlicer
+## 1.4. Compatibilidad con laminadores
 
-Print Cost & Profit incluye una integración mediante scripts de posprocesamiento de OrcaSlicer.
+La integración está diseñada para laminadores basados en OrcaSlicer, especialmente **Snapmaker Orca, OrcaSlicer y Creality Print**. La compatibilidad con estos laminadores está aproximadamente al **90 %**; todavía puede haber diferencias de comportamiento según la versión y la configuración. Por tanto, no debe describirse como una compatibilidad del 100 %.
 
-Esta integración permite procesar un archivo G-code generado por el laminador y utilizar los datos disponibles para facilitar su incorporación al flujo de trabajo de la aplicación.
-
-La información que se pueda recuperar depende del archivo generado, de la configuración de OrcaSlicer y de las funciones disponibles en la instalación.
+La integración mediante scripts de posprocesamiento permite procesar archivos G-code generados por el laminador y utilizar los datos disponibles en el flujo de trabajo de Print Cost & Profit. La información recuperable depende del archivo, de la configuración y de la versión del laminador.
 
 ![Presupuestos](galeria/es/08-presupuestos.jpg)
 
-## 1.5. Almacenamiento local SQLite
+## 1.5. Monitor y compatibilidad con impresoras
+
+La impresora con compatibilidad confirmada al **100 %** es la **Snapmaker U1**. El monitor también funciona con otras impresoras, incluidas las que permiten acceder a través de **Fluidd** o **Mainsail/Moonraker** (según la configuración), pero la compatibilidad de esos modelos todavía está en fase de ajuste. Algunas funciones pueden no estar disponibles o comportarse de forma diferente mientras continúan las pruebas.
+
+## 1.6. Almacenamiento local SQLite
 
 La aplicación incluye componentes de almacenamiento local mediante SQLite.
 
@@ -100,7 +102,7 @@ El objetivo es conservar los datos en una base de datos del ordenador y evitar q
 
 Si el almacenamiento local no puede iniciarse, la aplicación debe mostrar el error correspondiente en lugar de cambiar silenciosamente a otro almacenamiento.
 
-## 1.6. Herramientas de diagnóstico
+## 1.7. Herramientas de diagnóstico
 
 El proyecto incluye scripts para ayudar a comprobar el inicio de la aplicación, el funcionamiento del puente local y determinados problemas de integración.
 
@@ -116,7 +118,7 @@ Antes de iniciar el programa, se recomienda disponer de:
 
 - Una carpeta local permanente para instalar el proyecto.
 
-- OrcaSlicer si se desea utilizar la integración con el laminador.
+- Un laminador basado en OrcaSlicer —especialmente Snapmaker Orca, OrcaSlicer o Creality Print— si se desea utilizar la integración.
 
 - Los archivos completos de la distribución descargada.
 
@@ -168,9 +170,11 @@ No necesitas abrir primero el archivo HTML ni iniciar por separado el puente loc
 
 ---
 
-# 4. Configurar OrcaSlicer
+# 4. Configurar un laminador basado en OrcaSlicer
 
-La integración utiliza el script de posprocesamiento para procesar el G-code una vez que OrcaSlicer termina de laminar.
+La integración está pensada para laminadores basados en OrcaSlicer, especialmente Snapmaker Orca, OrcaSlicer y Creality Print. Los nombres de menús y algunos detalles pueden variar entre ellos. La compatibilidad general está aproximadamente al 90 %, por lo que conviene realizar una prueba con la versión instalada.
+
+La integración utiliza el script de posprocesamiento para procesar el G-code cuando el laminador termina de laminar.
 
 ## Paso 1. Localizar el archivo de integración
 
@@ -198,7 +202,7 @@ Si has instalado el programa en otra ubicación, utiliza la ruta real.
 
 6. Localiza el apartado **Scripts de posprocesamiento**.
 
-Los nombres y la disposición de los menús pueden variar según la versión y el idioma de OrcaSlicer.
+Los nombres y la disposición de los menús pueden variar según el laminador, su versión y el idioma seleccionado.
 
 ## Paso 3. Añadir el script
 
@@ -208,7 +212,7 @@ Introduce la ruta completa de:
 
 Guarda los ajustes del perfil.
 
-Si OrcaSlicer necesita una sintaxis concreta para las rutas o los argumentos, utiliza el formato correspondiente a tu versión.
+Si tu laminador necesita una sintaxis concreta para las rutas o los argumentos, utiliza el formato correspondiente a esa versión.
 
 ## Paso 4. Realizar una prueba
 
@@ -254,7 +258,7 @@ El proyecto incluye:
 
 Para realizar una prueba:
 
-1. Localiza un archivo G-code generado por OrcaSlicer.
+1. Localiza un archivo G-code generado por el laminador compatible que estés utilizando.
 
 2. Arrastra el archivo sobre `Probar_Integracion_con_Gcode.bat`.
 
@@ -328,7 +332,7 @@ El repositorio contiene diferentes archivos auxiliares. No todos deben ejecutars
 
 |---|---|
 
-| `Integracion_Orca_Postprocesado.bat` | Inicio manual de la aplicación y entrada del posprocesamiento de OrcaSlicer. |
+| `Integracion_Orca_Postprocesado.bat` | Inicio manual de la aplicación y entrada del posprocesamiento de laminadores compatibles basados en OrcaSlicer. |
 
 | `Iniciar_Puente_Orca.ps1` | Inicio o comprobación del puente de integración. |
 
@@ -382,7 +386,7 @@ Si aparece un error HTTP 500, revisa el estado del servicio y los mensajes de di
 
 No cambies al almacenamiento del navegador ni elimines la base de datos como solución improvisada.
 
-## OrcaSlicer no ejecuta la integración
+## El laminador no ejecuta la integración
 
 1. Verifica la ruta del archivo `.bat`.
 
@@ -438,7 +442,7 @@ Para comunicar un problema, incluye:
 
 - Versión de Windows.
 
-- Versión de OrcaSlicer.
+- Nombre y versión del laminador (Snapmaker Orca, OrcaSlicer, Creality Print u otro).
 
 - Impresora utilizada, si es relevante.
 
