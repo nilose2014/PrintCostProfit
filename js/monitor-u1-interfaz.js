@@ -243,6 +243,41 @@ function u1CancelAccountingMoves(file, progressValue){
  }catch(e){console.warn('[PCP] No se pudo recalcular el coste parcial de la impresión cancelada',e);return false}
 }
 
+
+function u1ShowCompletionSummary(job){
+ if(!job||!job.completedAt||!job.id)return;
+ const shownKey='pcp_u1_completion_summary_shown_v1';
+ let shown=[];try{shown=JSON.parse(localStorage.getItem(shownKey)||'[]')}catch(e){}
+ if(shown.includes(job.id))return;
+ const lang=window.PCP_I18N?.language||'es',li={es:0,en:1,fr:2,de:3,it:4,pl:5}[lang]??0;
+ const words={
+  title:['Impresión finalizada · Resumen de costes','Print completed · Cost summary','Impression terminée · Résumé des coûts','Druck abgeschlossen · Kostenübersicht','Stampa completata · Riepilogo costi','Druk zakończony · Podsumowanie kosztów'],
+  file:['Archivo','File','Fichier','Datei','File','Plik'],filament:['Filamento','Filament','Filament','Filament','Filamento','Filament'],
+  electricity:['Electricidad','Electricity','Électricité','Strom','Elettricità','Energia elektryczna'],
+  wear:['Desgaste de impresora','Printer wear','Usure de l’imprimante','Druckerverschleiß','Usura stampante','Zużycie drukarki'],
+  maintenance:['Mantenimiento','Maintenance','Entretien','Wartung','Manutenzione','Konserwacja'],
+  labor:['Mano de obra y extras','Labour and extras','Main-d’œuvre et extras','Arbeitszeit und Extras','Manodopera ed extra','Robocizna i dodatki'],
+  failure:['Reserva por fallos','Failure reserve','Réserve pour échecs','Fehlerreserve','Riserva errori','Rezerwa na nieudane wydruki'],
+  total:['Coste total estimado','Estimated total cost','Coût total estimé','Geschätzte Gesamtkosten','Costo totale stimato','Szacowany koszt całkowity'],
+  grams:['Consumo de filamento','Filament used','Filament consommé','Filamentverbrauch','Filamento consumato','Zużyty filament'],
+  close:['Cerrar','Close','Fermer','Schließen','Chiudi','Zamknij'],
+  note:['Resumen informativo: no se ha registrado ningún gasto ni pedido.','Informational summary: no expense or order has been recorded.','Résumé informatif : aucune dépense ni commande n’a été enregistrée.','Informationsübersicht: Es wurde keine Ausgabe und kein Auftrag erfasst.','Riepilogo informativo: non è stata registrata alcuna spesa né ordine.','Podsumowanie informacyjne: nie zarejestrowano wydatku ani zamówienia.']
+ };
+ const t=k=>words[k][li]||words[k][0], money=n=>{try{return typeof formatMoney==='function'?formatMoney(n,document.getElementById('currency')?.value||'EUR'):Number(n||0).toFixed(2)+' €'}catch(e){return Number(n||0).toFixed(2)+' €'}};
+ const spools=(()=>{try{return JSON.parse(localStorage.getItem('pcp_spools')||'[]')}catch(e){return []}})();
+ let filament=0,grams=0;for(const it of job.items||[]){const g=Math.max(0,Number(it.grams)||0);grams+=g;const sp=Number.isInteger(it.spoolIndex)?spools[it.spoolIndex]:null;if(sp&&Number(sp.initial)>0&&Number(sp.price)>=0)filament+=g*Number(sp.price)/Number(sp.initial)}
+ const val=id=>Math.max(0,Number(document.getElementById(id)?.value)||0);
+ const hours=(()=>{const n=String(job.file||'').match(/(?:^|[_\s-])(?=\d)(?:(\d+)d)?(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?(?=\.gcode$|$)/i);if(n&&n[0]&&/[dhms]/i.test(n[0]))return Number(n[1]||0)*24+Number(n[2]||0)+Number(n[3]||0)/60+Number(n[4]||0)/3600;return val('printHours')})();
+ const electricity=hours*val('watts')/1000*val('electricity'),wear=hours*val('wear'),maintenance=hours*val('maintenanceHour');
+ const labor=val('labor')+val('extra')+val('packing')*Math.max(1,Math.floor(val('qty')||1))+((val('postMinutes')+val('assemblyMinutes'))/60*val('hourlyLabor')*Math.max(1,Math.floor(val('qty')||1)))+val('finishCost')*Math.max(1,Math.floor(val('qty')||1));
+ const reserve=(filament+electricity+wear+maintenance+labor)*val('failurePct')/100,total=filament+electricity+wear+maintenance+labor+reserve;
+ const overlay=document.createElement('div');overlay.id='pcp-u1-completion-summary';overlay.style.cssText='position:fixed;inset:0;z-index:2147483647;background:rgba(4,10,20,.78);display:flex;align-items:center;justify-content:center;padding:18px;font:14px Arial,sans-serif;color:#eaf1fb';
+ const rows=[['filament',filament],['electricity',electricity],['wear',wear],['maintenance',maintenance],['labor',labor],['failure',reserve]];
+ overlay.innerHTML='<section role="dialog" aria-modal="true" style="width:min(520px,100%);max-height:90vh;overflow:auto;background:#142238;border:1px solid #55708f;border-radius:14px;box-shadow:0 20px 70px #000;padding:22px"><h2 style="margin:0 0 8px;font-size:20px">'+t('title')+'</h2><p style="margin:0 0 16px;color:#b9c9df;overflow-wrap:anywhere">'+t('file')+': '+u1Esc(job.file||'—')+'</p><p style="margin:0 0 12px;color:#b9c9df">'+t('grams')+': <strong>'+grams.toFixed(1)+' g</strong></p><div>'+rows.map(r=>'<div style="display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #34465e"><span>'+t(r[0])+'</span><strong>'+u1Esc(money(r[1]))+'</strong></div>').join('')+'</div><div style="display:flex;justify-content:space-between;gap:16px;padding:15px 0;font-size:18px"><strong>'+t('total')+'</strong><strong>'+u1Esc(money(total))+'</strong></div><p style="font-size:12px;color:#b9c9df">'+t('note')+'</p><button type="button" style="width:100%;padding:11px;border-radius:8px;border:1px solid #65d6c4;background:#164e45;color:white;font-weight:bold;cursor:pointer">'+t('close')+'</button></section>';
+ const close=()=>{try{const now=JSON.parse(localStorage.getItem(shownKey)||'[]');if(!now.includes(job.id))now.push(job.id);localStorage.setItem(shownKey,JSON.stringify(now.slice(-200)))}catch(e){}overlay.remove()};
+ overlay.querySelector('button').addEventListener('click',close);overlay.addEventListener('click',e=>{if(e.target===overlay)close()});document.addEventListener('keydown',function esc(e){if(e.key==='Escape'&&overlay.isConnected){close();document.removeEventListener('keydown',esc)}});document.body.appendChild(overlay);
+}
+
 function u1TrackJob(state,file){
  const st=String(state||'').toLowerCase(), fn=String(file||'').split(/[\\/]/).pop();
  const printing=['printing','paused'].includes(st);
@@ -265,6 +300,10 @@ function u1TrackJob(state,file){
   if(candidate)u1FinalizeAccountingMoves(candidate);else u1FinalizeAccountingMoves('');
   if(activeJob&&candidate&&activeJob.file===candidate&&!activeJob.deducted){
    u1CompleteJob(candidate);
+  }
+  const completedJob=u1ReadActive();
+  if(completedJob&&candidate&&completedJob.file===candidate&&completedJob.completedAt){
+   u1ShowCompletionSummary(completedJob);
   }
  }
  lastU1State=st; if(fn)lastU1File=fn;u1RenderConsumption(u1ReadActive());
