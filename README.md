@@ -928,3 +928,11 @@ Developed by Beatriz Toro Martin.
 
 &#x20; Calculate your costs, track your jobs, and improve the financial management of your 3D printing work.   &#x20;
 
+
+---
+
+## Copyright and License
+
+Copyright © 2026 Beatriz Toro Martin. All rights reserved.
+
+Print Cost & Profit is licensed under the GNU General Public License v3.0 (GPL-3.0). See the `LICENSE` file for the complete license terms.
