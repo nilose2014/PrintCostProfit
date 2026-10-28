@@ -270,7 +270,7 @@ Esta prueba ayuda a distinguir entre un problema del procesamiento del archivo y
 
 ---
 
-# 6. Gestión de costes y rentabilidad\n\n![Resumen de costes](galeria/es/14-resumen-de-costes.jpg)
+# 6. Gestión de costes y rentabilidad ![Resumen de costes](galeria/es/14-resumen-de-costes.jpg)
 
 Para obtener resultados útiles, conviene configurar los datos económicos antes de calcular el precio de una pieza.
 
