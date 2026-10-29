@@ -9,7 +9,7 @@ Esta carpeta contiene el servidor local para Linux. No modifica ni reemplaza los
 - Datos en `~/.local/share/PrintCostProfit/data/printcostprofit.db`, o en `$XDG_DATA_HOME/PrintCostProfit/data/printcostprofit.db` cuando `XDG_DATA_HOME` está definido.
 - Copias de seguridad en la subcarpeta `backups`.
 - API de almacenamiento: `snapshot`, `health`, `write`, `remove`, `import`, listado, creación, validación, configuración y restauración de copias de seguridad.
-- Endpoints U1 implementados parcialmente: configuración de IP, descubrimiento, información de impresora, estado, lectura de filamentos desde G-code y consulta del progreso de lectura.
+- Endpoints U1 implementados parcialmente: configuración de IP, descubrimiento de impresoras en las redes IPv4 privadas locales, información de impresora, estado, lectura de filamentos desde G-code y consulta del progreso de lectura.
 - El soporte del monitor y la lectura de G-code deben probarse con una Snapmaker U1 real antes de considerar la versión estable.
 - La integración de posprocesamiento del laminador no se considera validada en Linux y no debe anunciarse como compatible hasta completar sus pruebas.
 
