@@ -129,7 +129,7 @@ class LinuxServerSmokeTests(unittest.TestCase):
         translations = urlopen(self.base + "/js/traducciones.js", timeout=4).read()
         self.assertGreater(len(translations), 100_000)
         license_config = (ROOT / "licencias-config.js").read_text(encoding="utf-8")
-        self.assertRegex(license_config, r"enabled\\s*:\\s*false")
+        self.assertRegex(license_config, r"enabled\s*:\s*false")
 
     def test_sqlite_write_snapshot_conflict_and_remove(self):
         initial = self.request("GET", "/api/storage/snapshot")
