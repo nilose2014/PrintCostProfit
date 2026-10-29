@@ -19,6 +19,9 @@ U1_CONFIG = DATA / 'u1-config.json'
 sys.path.insert(0, str(ROOT))
 from pcp_sqlite_store import SQLiteStore, StorageError, RevisionConflict, extract_legacy_values
 STORE = SQLiteStore(DB, BACKUPS)
+APP_VERSION = (ROOT / 'VERSION').read_text(encoding='utf-8').strip() or 'unknown'
+HOST = '127.0.0.1'
+PORT = int(os.environ.get('PCP_LINUX_PORT', '8700'))
 _jobs_lock = threading.Lock()
 _jobs = {}
 _status_lock = threading.Lock()
@@ -250,9 +253,9 @@ class Handler(SimpleHTTPRequestHandler):
                 integrity = STORE.integrity_check(); backups = STORE.list_backups()
                 files = sorted(BACKUPS.glob('printcostprofit_*.db'), key=lambda p: p.stat().st_mtime, reverse=True)
                 ok = bool(integrity.get('ok'))
-                return self.send_json({'ok': ok, 'version':'linux-dev', 'database':str(DB), 'databaseExists':DB.exists(), 'databaseBytes':DB.stat().st_size if DB.exists() else 0, 'integrity':integrity, 'backupDirectory':str(BACKUPS), 'backupCount':len(files), 'latestBackup':time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(files[0].stat().st_mtime)) if files else None, 'maxBackups':backups.get('maxBackups',100), 'backupIntervalMinutes':backups.get('backupIntervalMinutes',5), 'checkedAt':time.strftime('%Y-%m-%d %H:%M:%S')}, 200 if ok else 500)
+                return self.send_json({'ok': ok, 'version':APP_VERSION, 'database':str(DB), 'databaseExists':DB.exists(), 'databaseBytes':DB.stat().st_size if DB.exists() else 0, 'integrity':integrity, 'backupDirectory':str(BACKUPS), 'backupCount':len(files), 'latestBackup':time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(files[0].stat().st_mtime)) if files else None, 'maxBackups':backups.get('maxBackups',100), 'backupIntervalMinutes':backups.get('backupIntervalMinutes',5), 'checkedAt':time.strftime('%Y-%m-%d %H:%M:%S')}, 200 if ok else 500)
             if path == '/api/storage/backups': return self.send_json(STORE.list_backups())
-            if path == '/api/version': return self.send_json({'ok':True,'version':'linux-dev','build':'linux-dev'})
+            if path == '/api/version': return self.send_json({'ok':True,'version':APP_VERSION,'build':APP_VERSION})
             if path == '/api/u1/config':
                 ip = str((qs.get('ip') or [''])[0]).strip()
                 if not ip:
@@ -344,9 +347,9 @@ class Handler(SimpleHTTPRequestHandler):
 
 def main():
     DATA.mkdir(parents=True, exist_ok=True); BACKUPS.mkdir(parents=True, exist_ok=True); U1_DIR.mkdir(parents=True, exist_ok=True)
-    server = ThreadingHTTPServer(('127.0.0.1', 8700), Handler)
+    server = ThreadingHTTPServer((HOST, PORT), Handler)
     print('Print Cost & Profit para Linux — almacenamiento SQLite + monitor U1', flush=True)
-    print('Interfaz: http://127.0.0.1:8700/', flush=True)
+    print(f'Interfaz: http://{HOST}:{PORT}/', flush=True)
     print('Base de datos:', DB, flush=True)
     print('Configuración U1:', U1_CONFIG, flush=True)
     print('Solo escucha en 127.0.0.1; no está expuesto a la red.', flush=True)
