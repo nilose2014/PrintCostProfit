@@ -1,6 +1,9 @@
 # Historial de cambios
 
-## 1.561-rc.1 — Candidato de estabilización Linux
+## 1.561-rc.2 — Candidato de estabilización Linux
+
+- La búsqueda automática de impresoras U1 detecta las redes IPv4 privadas del equipo en lugar de limitarse a 192.168.1.x; en redes amplias reduce el barrido a la subred /24 local.
+- Se mantiene la licencia desactivada y la aplicación gratuita.
 
 - Añadidas pruebas automáticas de humo para servidor HTTP, persistencia SQLite, conflictos de revisión, importación y restauración de copias.
 - Añadido flujo de GitHub Actions para comprobar sintaxis Python y ejecutar las pruebas Linux.
