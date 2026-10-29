@@ -1,14 +1,14 @@
 # Historial de cambios
 
-## 1.561-rc.2 — Candidato de estabilización Linux
+## 1.561 — Versión estable Linux
 
-- La búsqueda automática de impresoras U1 detecta las redes IPv4 privadas del equipo en lugar de limitarse a 192.168.1.x; en redes amplias reduce el barrido a la subred /24 local.
-- Se mantiene la licencia desactivada y la aplicación gratuita.
-
-- Añadidas pruebas automáticas de humo para servidor HTTP, persistencia SQLite, conflictos de revisión, importación y restauración de copias.
-- Añadido flujo de GitHub Actions para comprobar sintaxis Python y ejecutar las pruebas Linux.
-- El servidor informa de la versión del archivo VERSION y permite seleccionar un puerto alternativo solo mediante variable de entorno para las pruebas; por defecto sigue usando 127.0.0.1:8700.
-- La validación automatizada no sustituye la prueba manual con una impresora Snapmaker U1 real ni la verificación de los flujos del laminador.
+- Estabilizada la rama Linux con servidor local en 127.0.0.1:8700 y almacenamiento SQLite independiente.
+- La búsqueda automática de impresoras U1 detecta redes IPv4 privadas del equipo y limita el barrido a la subred /24 en redes amplias.
+- Pruebas automáticas de humo para servidor HTTP, persistencia SQLite, conflictos de revisión, importación y restauración de copias.
+- GitHub Actions comprueba la sintaxis Python y JavaScript y ejecuta las pruebas Linux.
+- El servidor informa de la versión definida en el archivo VERSION; el puerto alternativo solo se habilita mediante variable de entorno para pruebas.
+- Según las pruebas manuales comunicadas por el usuario, el monitor de Snapmaker U1 y el procesamiento de G-code funcionan correctamente.
+- La aplicación se mantiene gratuita, con licencias y suscripciones desactivadas.
 
 ## 1.0 — Primera versión pública
 
