@@ -2,7 +2,7 @@
 
 Esta carpeta contiene el servidor local para Linux. No modifica ni reemplaza los scripts de Windows.
 
-## Estado de la versión estable 1.561
+## Estado de la versión 1.0 emparejada con Windows
 
 - Servidor HTTP local: `127.0.0.1:8700`.
 - Persistencia SQLite mediante `pcp_sqlite_store.py`.
@@ -57,4 +57,4 @@ Las pruebas crean una carpeta temporal independiente y no usan ni modifican la b
 
 ## Importante
 
-La versión 1.561 se declara estable para la rama Linux según las pruebas automáticas y las comprobaciones manuales comunicadas. No copies la base de datos real de Windows: Linux y Windows mantienen sus bases de datos independientes. Conserva copias de seguridad y usa una base de datos de prueba para validar restauraciones futuras.
+La numeración Linux se alinea con Windows v1.0; la implementación Linux mantiene componentes propios y una base de datos independiente. Las pruebas automáticas y las comprobaciones manuales comunicadas respaldan los flujos probados. No copies la base de datos real de Windows: Linux y Windows mantienen sus bases de datos independientes. Conserva copias de seguridad y usa una base de datos de prueba para validar restauraciones futuras.
