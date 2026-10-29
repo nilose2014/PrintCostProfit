@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 1.561-rc.1 — Candidato de estabilización Linux
+
+- Añadidas pruebas automáticas de humo para servidor HTTP, persistencia SQLite, conflictos de revisión, importación y restauración de copias.
+- Añadido flujo de GitHub Actions para comprobar sintaxis Python y ejecutar las pruebas Linux.
+- El servidor informa de la versión del archivo VERSION y permite seleccionar un puerto alternativo solo mediante variable de entorno para las pruebas; por defecto sigue usando 127.0.0.1:8700.
+- La validación automatizada no sustituye la prueba manual con una impresora Snapmaker U1 real ni la verificación de los flujos del laminador.
+
 ## 1.0 — Primera versión pública
 
 - Calculadora de costes de impresión 3D y tasaciones guardadas.
