@@ -97,7 +97,7 @@ def _discover_local_ips():
             capture_output=True, text=True, timeout=2, check=False,
         )
         for line in result.stdout.splitlines():
-            match = re.search(r"\\binet\\s+(\\d+\\.\\d+\\.\\d+\\.\\d+/\\d+)", line)
+            match = re.search(r"\binet\s+(\d+\.\d+\.\d+\.\d+/\d+)", line)
             if not match:
                 continue
             try:
