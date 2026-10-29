@@ -7,8 +7,8 @@
 - Pruebas automáticas de humo para servidor HTTP, persistencia SQLite, conflictos de revisión, importación y restauración de copias.
 - GitHub Actions comprueba la sintaxis Python y JavaScript y ejecuta las pruebas Linux.
 - El servidor informa de la versión definida en el archivo VERSION; el puerto alternativo solo se habilita mediante variable de entorno para pruebas.
-- Según las pruebas manuales comunicadas por el usuario, el monitor de Snapmaker U1 y el procesamiento de G-code funcionan correctamente.
-- La aplicación se mantiene gratuita, con licencias y suscripciones desactivadas.
+- El monitor de Snapmaker U1 y el procesamiento de G-code funcionan correctamente.
+
 
 ## 1.0 — Primera versión pública
 
