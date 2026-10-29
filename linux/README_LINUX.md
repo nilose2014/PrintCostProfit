@@ -2,7 +2,7 @@
 
 Esta carpeta contiene el servidor local para Linux. No modifica ni reemplaza los scripts de Windows.
 
-## Estado de esta versión candidata
+## Estado de la versión estable 1.561
 
 - Servidor HTTP local: `127.0.0.1:8700`.
 - Persistencia SQLite mediante `pcp_sqlite_store.py`.
@@ -10,8 +10,8 @@ Esta carpeta contiene el servidor local para Linux. No modifica ni reemplaza los
 - Copias de seguridad en la subcarpeta `backups`.
 - API de almacenamiento: `snapshot`, `health`, `write`, `remove`, `import`, listado, creación, validación, configuración y restauración de copias de seguridad.
 - Endpoints U1 implementados parcialmente: configuración de IP, descubrimiento de impresoras en las redes IPv4 privadas locales, información de impresora, estado, lectura de filamentos desde G-code y consulta del progreso de lectura.
-- El soporte del monitor y la lectura de G-code deben probarse con una Snapmaker U1 real antes de considerar la versión estable.
-- La integración de posprocesamiento del laminador no se considera validada en Linux y no debe anunciarse como compatible hasta completar sus pruebas.
+- Según las pruebas manuales comunicadas por el usuario, el monitor de la Snapmaker U1 y el procesamiento de G-code funcionan correctamente.
+- La integración específica de posprocesamiento del laminador debe distinguirse del procesamiento de G-code desde el servidor; no se debe asumir que son el mismo flujo.
 
 ## Requisitos
 
@@ -44,7 +44,7 @@ python3 -m unittest discover -s linux/tests -v
 
 Las pruebas crean una carpeta temporal independiente y no usan ni modifican la base de datos real del usuario. También se ejecutan automáticamente en GitHub Actions en cada push o pull request a la rama `linux`.
 
-## Comprobación manual antes de publicar
+## Comprobaciones manuales recomendadas para futuras regresiones
 
 1. Iniciar y cerrar el servidor varias veces.
 2. Crear y editar una tasación, cerrar el navegador, volver a abrirlo y comprobar que persiste.
@@ -57,4 +57,4 @@ Las pruebas crean una carpeta temporal independiente y no usan ni modifican la b
 
 ## Importante
 
-Esta es una versión candidata de estabilización, no una declaración de que todas las funciones ya están validadas. No copies la base de datos real de Windows para la primera prueba. Conserva copias de seguridad y usa una base de datos de prueba para validar la restauración.
+La versión 1.561 se declara estable para la rama Linux según las pruebas automáticas y las comprobaciones manuales comunicadas. No copies la base de datos real de Windows: Linux y Windows mantienen sus bases de datos independientes. Conserva copias de seguridad y usa una base de datos de prueba para validar restauraciones futuras.
