@@ -1,8 +1,8 @@
 # Historial de cambios
 
-## 1.561 — Versión estable Linux
+## 1.0 — Versión Linux emparejada con Windows v1.0
 
-- Estabilizada la rama Linux con servidor local en 127.0.0.1:8700 y almacenamiento SQLite independiente.
+- Número de versión alineado con Windows v1.0. La implementación Linux mantiene su servidor local en 127.0.0.1:8700 y su almacenamiento SQLite independiente.
 - La búsqueda automática de impresoras U1 detecta redes IPv4 privadas del equipo y limita el barrido a la subred /24 en redes amplias.
 - Pruebas automáticas de humo para servidor HTTP, persistencia SQLite, conflictos de revisión, importación y restauración de copias.
 - GitHub Actions comprueba la sintaxis Python y JavaScript y ejecuta las pruebas Linux.
