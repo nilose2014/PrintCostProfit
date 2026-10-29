@@ -3,7 +3,7 @@
 
 Run from the repository root with:
     python3 -m unittest discover -s linux/tests -v
-The server is started with an isolated XDG_DATA_HOME and an ephemeral test port.
+Each test gets an isolated data directory and an ephemeral localhost port.
 """
 from __future__ import annotations
 
@@ -25,18 +25,17 @@ SERVER = ROOT / "linux" / "pcp_linux_server.py"
 
 
 class LinuxServerSmokeTests(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.temp = tempfile.TemporaryDirectory(prefix="pcp-linux-test-")
-        cls.data_home = Path(cls.temp.name) / "xdg"
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="pcp-linux-test-")
+        self.data_home = Path(self.temp.name) / "xdg"
         with socket.socket() as sock:
             sock.bind(("127.0.0.1", 0))
-            cls.port = sock.getsockname()[1]
-        cls.base = f"http://127.0.0.1:{cls.port}"
+            self.port = sock.getsockname()[1]
+        self.base = f"http://127.0.0.1:{self.port}"
         env = os.environ.copy()
-        env["XDG_DATA_HOME"] = str(cls.data_home)
-        env["PCP_LINUX_PORT"] = str(cls.port)
-        cls.process = subprocess.Popen(
+        env["XDG_DATA_HOME"] = str(self.data_home)
+        env["PCP_LINUX_PORT"] = str(self.port)
+        self.process = subprocess.Popen(
             [sys.executable, str(SERVER)],
             cwd=ROOT,
             env=env,
@@ -45,34 +44,31 @@ class LinuxServerSmokeTests(unittest.TestCase):
         )
         deadline = time.monotonic() + 12
         while time.monotonic() < deadline:
-            if cls.process.poll() is not None:
-                raise RuntimeError("El servidor Linux terminó antes de iniciar.")
+            if self.process.poll() is not None:
+                self.fail("El servidor Linux terminó antes de iniciar.")
             try:
-                cls.request("GET", "/api/version")
+                self.request("GET", "/api/version")
                 break
             except (URLError, TimeoutError, OSError):
                 time.sleep(0.15)
         else:
-            cls.process.terminate()
-            raise RuntimeError("El servidor Linux no respondió en 12 segundos.")
+            self.fail("El servidor Linux no respondió en 12 segundos.")
 
-    @classmethod
-    def tearDownClass(cls):
-        if getattr(cls, "process", None) and cls.process.poll() is None:
-            cls.process.terminate()
+    def tearDown(self):
+        if getattr(self, "process", None) and self.process.poll() is None:
+            self.process.terminate()
             try:
-                cls.process.wait(timeout=5)
+                self.process.wait(timeout=5)
             except subprocess.TimeoutExpired:
-                cls.process.kill()
-                cls.process.wait(timeout=5)
-        if getattr(cls, "temp", None):
-            cls.temp.cleanup()
+                self.process.kill()
+                self.process.wait(timeout=5)
+        if getattr(self, "temp", None):
+            self.temp.cleanup()
 
-    @classmethod
-    def request(cls, method, path, payload=None, expected_status=200):
+    def request(self, method, path, payload=None, expected_status=200):
         data = None if payload is None else json.dumps(payload).encode("utf-8")
         req = Request(
-            cls.base + path,
+            self.base + path,
             data=data,
             method=method,
             headers={"Content-Type": "application/json; charset=utf-8"} if data is not None else {},
@@ -83,7 +79,7 @@ class LinuxServerSmokeTests(unittest.TestCase):
         except HTTPError as exc:
             status, raw = exc.code, exc.read()
         if status != expected_status:
-            raise AssertionError(
+            self.fail(
                 f"{method} {path}: HTTP {status}, esperado {expected_status}; "
                 f"respuesta={raw[:500]!r}"
             )
