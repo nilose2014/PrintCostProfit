@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+from html.parser import HTMLParser
 import socket
 import subprocess
 import sys
@@ -22,6 +23,19 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[2]
 SERVER = ROOT / "linux" / "pcp_linux_server.py"
+
+
+class LocalAssetParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.assets = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        for attr in ("src", "href"):
+            value = attrs.get(attr, "")
+            if value and not value.startswith(("http://", "https://", "data:", "#", "javascript:")):
+                self.assets.append(value.split("?", 1)[0].split("#", 1)[0])
 
 
 class LinuxServerSmokeTests(unittest.TestCase):
@@ -98,8 +112,24 @@ class LinuxServerSmokeTests(unittest.TestCase):
         self.assertEqual(health.get("version"), expected)
         page = urlopen(self.base + "/", timeout=4).read().decode("utf-8")
         self.assertIn("Print Cost", page)
+        parser = LocalAssetParser()
+        parser.feed(page)
+        missing = []
+        for asset in sorted(set(parser.assets)):
+            path = asset.lstrip("/")
+            if not path or path.startswith(("mailto:", "tel:")):
+                continue
+            local_path = ROOT / path
+            if not local_path.is_file():
+                missing.append(asset)
+                continue
+            response = urlopen(self.base + "/" + path, timeout=4)
+            self.assertEqual(response.status, 200, asset)
+        self.assertEqual(missing, [], "Recursos locales que faltan: " + ", ".join(missing))
         translations = urlopen(self.base + "/js/traducciones.js", timeout=4).read()
         self.assertGreater(len(translations), 100_000)
+        license_config = (ROOT / "licencias-config.js").read_text(encoding="utf-8")
+        self.assertRegex(license_config, r"enabled\\s*:\\s*false")
 
     def test_sqlite_write_snapshot_conflict_and_remove(self):
         initial = self.request("GET", "/api/storage/snapshot")
