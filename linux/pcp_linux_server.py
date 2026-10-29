@@ -8,7 +8,7 @@ from urllib.parse import urlparse, unquote, parse_qs, quote
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import base64, ipaddress, json, os, re, socket, sys, threading, time, uuid
+import base64, ipaddress, json, os, re, socket, subprocess, sys, threading, time, uuid
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = Path(os.environ.get('XDG_DATA_HOME', Path.home() / '.local' / 'share')) / 'PrintCostProfit' / 'data'
@@ -83,17 +83,45 @@ def _filename_from_status(status):
 
 
 def _discover_local_ips():
-    # En WSL, la red virtual no coincide con la LAN física de las impresoras.
-    # Se incluyen las IP conocidas y se examina la red física confirmada.
+    """Busca impresoras en las redes IPv4 privadas conectadas a este equipo."""
     candidates = {
         "192.168.1.48",
         "192.168.1.51",
         "192.168.1.54",
     }
-    network = ipaddress.ip_network("192.168.1.0/24")
-    candidates.update(str(ip) for ip in network.hosts())
-    return sorted(candidates, key=lambda ip: tuple(int(x) for x in ip.split(".")))
+    networks = set()
+    try:
+        # Usa las interfaces reales del equipo; no presupone que la LAN sea 192.168.1.x.
+        result = subprocess.run(
+            ["ip", "-o", "-4", "addr", "show", "scope", "global"],
+            capture_output=True, text=True, timeout=2, check=False,
+        )
+        for line in result.stdout.splitlines():
+            match = re.search(r"\\binet\\s+(\\d+\\.\\d+\\.\\d+\\.\\d+/\\d+)", line)
+            if not match:
+                continue
+            try:
+                interface = ipaddress.ip_interface(match.group(1))
+                address = interface.ip
+                if not address.is_private or address.is_loopback or address.is_link_local:
+                    continue
+                network = interface.network
+                # En redes muy grandes limita la búsqueda a la /24 local del adaptador.
+                if network.num_addresses > 512:
+                    network = ipaddress.ip_network(f"{address}/24", strict=False)
+                networks.add(network)
+            except ValueError:
+                continue
+    except (OSError, subprocess.SubprocessError):
+        pass
 
+    # Compatibilidad con sistemas donde el comando ip no está disponible.
+    if not networks:
+        networks.add(ipaddress.ip_network("192.168.1.0/24"))
+
+    for network in networks:
+        candidates.update(str(ip) for ip in network.hosts())
+    return sorted(candidates, key=lambda ip: tuple(int(x) for x in ip.split(".")))
 
 
 def _probe_printer(ip):
