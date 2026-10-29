@@ -1,4 +1,4 @@
-/* Print Cost & Profit v1.560
+/* Print Cost & Profit v1.561-rc.1
  * Interruptor reversible del sistema de licencias.
  * enabled: false = modo gratuito, sin inicio de sesión ni bloqueo Pro.
  * enabled: true  = vuelve a activar autenticación y comprobación de licencias.
