@@ -11,7 +11,7 @@ Desarrollado por Beatriz Toro Martin.
 
 **Recommended: download the Windows installer directly.**
 
-[Download PrintCostProfit-Setup-1.1.exe](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.1/PrintCostProfit-Setup-1.1.exe)
+[Download PrintCostProfit-Setup-1.1.exe](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.1/PrintCostProfit-Windows-Installer-v1.1.zip)
 
 Run the downloaded EXE and follow the installation steps. The installer includes the components needed to run the application; Python does not need to be installed separately.
 
@@ -499,7 +499,7 @@ Print Cost & Profit is licensed under the GNU General Public License v3.0 (GPL-3
 
 **Recomendado: descarga directamente el instalador de Windows.**
 
-[Descargar PrintCostProfit-Setup-1.1.exe](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.1/PrintCostProfit-Setup-1.1.exe)
+[Descargar PrintCostProfit-Setup-1.1.exe](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.1/PrintCostProfit-Windows-Installer-v1.1.zip)
 
 Ejecuta el EXE descargado y sigue los pasos de instalación. El instalador incluye los componentes necesarios para utilizar la aplicación; no necesitas instalar Python por separado.
 
