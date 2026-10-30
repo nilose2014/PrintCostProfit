@@ -26,7 +26,6 @@ PrivilegesRequired=admin
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
-CloseApplications=force
 RestartApplications=no
 Uninstallable=yes
 VersionInfoVersion=1.1.0.0
