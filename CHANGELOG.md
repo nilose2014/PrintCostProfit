@@ -1,3 +1,9 @@
+## v1.3
+- El instalador transmite a la aplicación el idioma elegido durante la instalación (español, inglés, francés, alemán, italiano o polaco).
+- En el primer inicio, la aplicación aplica ese idioma si todavía no existe una preferencia guardada; no sobrescribe el idioma que el usuario haya elegido previamente.
+- El servidor local incorpora un endpoint para consultar el idioma inicial del instalador.
+- Se mantiene la preferencia de idioma en el navegador y se respeta cualquier cambio posterior desde el selector de la aplicación.
+
 ## v1.2
 - Añadido comprobador de nuevas versiones: consulta las publicaciones oficiales de GitHub al iniciar la aplicación y cada seis horas.
 - Muestra un aviso con la versión instalada y la nueva, y permite abrir la página oficial de descarga.
