@@ -67,12 +67,21 @@ jobs:
 
           Remove-Item $pfxPath -Force
           "signed=true" >> $env:GITHUB_OUTPUT
+      - name: Empaquetar instalador en ZIP para descarga
+        shell: pwsh
+        run: |
+          $installer = Get-ChildItem "dist-installer\PrintCostProfit-Setup-*.exe" | Select-Object -First 1
+          if (!$installer) { throw "No se encuentra el instalador para empaquetar." }
+          $version = (Get-Content VERSION -Raw).Trim()
+          $zipPath = "dist-installer\PrintCostProfit-Windows-Installer-v$version.zip"
+          Compress-Archive -Path $installer.FullName -DestinationPath $zipPath -Force
+          if (!(Test-Path $zipPath)) { throw "No se ha creado el ZIP del instalador." }
       - name: Publicar artefacto de compilacion manual
         if: github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v4
         with:
           name: PrintCostProfit-Windows-Installer-v${{ steps.app_version.outputs.version }}
-          path: dist-installer/PrintCostProfit-Setup-*.exe
+          path: dist-installer/PrintCostProfit-Windows-Installer-v*.zip
           if-no-files-found: error
       - name: Crear Release y adjuntar instalador en ejecucion manual o etiqueta
         if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
@@ -84,4 +93,4 @@ jobs:
           generate_release_notes: false
           body: Instalador de Windows actualizado para Print Cost & Profit v1.1. Sustituye el instalador anterior; la versión pública de la aplicación sigue siendo v1.1.
           overwrite_files: true
-          files: dist-installer/PrintCostProfit-Setup-*.exe
+          files: dist-installer/PrintCostProfit-Windows-Installer-v*.zip
