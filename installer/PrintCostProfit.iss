@@ -1,5 +1,5 @@
 #define MyAppName "Print Cost & Profit"
-#define MyAppVersion "1.2"
+#define MyAppVersion "1.3"
 #define MyAppPublisher "Beatriz Toro Martín"
 #define MyAppURL "https://github.com/nilose2014/PrintCostProfit"
 
@@ -27,7 +27,7 @@ SolidCompression=yes
 WizardStyle=modern
 RestartApplications=no
 Uninstallable=yes
-VersionInfoVersion=1.2.0.0
+VersionInfoVersion=1.3.0.0
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoDescription=Instalador de Print Cost & Profit
 VersionInfoProductName={#MyAppName}
@@ -60,3 +60,24 @@ Filename: "{app}\Integracion_Orca_Postprocesado.bat"; Description: "Iniciar Prin
 
 [UninstallDelete]
 ; No borrar LOCALAPPDATA: ahi se guardan la base de datos y las copias de seguridad.
+
+[Code]
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  InstallerLanguage: String;
+begin
+  if CurStep = ssPostInstall then
+  begin
+    InstallerLanguage := ExpandConstant('{language}');
+    if InstallerLanguage = 'spanish' then InstallerLanguage := 'es'
+    else if InstallerLanguage = 'english' then InstallerLanguage := 'en'
+    else if InstallerLanguage = 'french' then InstallerLanguage := 'fr'
+    else if InstallerLanguage = 'german' then InstallerLanguage := 'de'
+    else if InstallerLanguage = 'italian' then InstallerLanguage := 'it'
+    else if InstallerLanguage = 'polish' then InstallerLanguage := 'pl'
+    else InstallerLanguage := 'es';
+
+    SaveStringToFile(ExpandConstant('{app}\pcp-installer-language.txt'),
+      InstallerLanguage + #13#10, False);
+  end;
+end;
