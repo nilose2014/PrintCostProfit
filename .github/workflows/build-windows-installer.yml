@@ -37,6 +37,36 @@ jobs:
           if (!(Test-Path "dist\pcp_sqlite_api.exe")) { throw "No se ha generado pcp_sqlite_api.exe" }
           & $compiler "installer\PrintCostProfit.iss"
           if ($LASTEXITCODE -ne 0) { throw "ISCC ha terminado con codigo $LASTEXITCODE" }
+      - name: Firmar instalador de Windows (si hay certificado configurado)
+        shell: pwsh
+        env:
+          WINDOWS_CERTIFICATE_PFX: ${{ secrets.WINDOWS_CERTIFICATE_PFX }}
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
+        run: |
+          $installer = Get-ChildItem "dist-installer\\PrintCostProfit-Setup-*.exe" | Select-Object -First 1
+          if (!$installer) { throw "No se encuentra el instalador para firmar." }
+
+          if ([string]::IsNullOrWhiteSpace($env:WINDOWS_CERTIFICATE_PFX) -or
+              [string]::IsNullOrWhiteSpace($env:WINDOWS_CERTIFICATE_PASSWORD)) {
+            Write-Warning "No se ha configurado el certificado. El instalador se publicará SIN firma digital."
+            "signed=false" >> $env:GITHUB_OUTPUT
+            exit 0
+          }
+
+          $pfxPath = Join-Path $env:RUNNER_TEMP "windows-signing-certificate.pfx"
+          [IO.File]::WriteAllBytes($pfxPath, [Convert]::FromBase64String($env:WINDOWS_CERTIFICATE_PFX))
+          $signtool = Get-ChildItem "${env:ProgramFiles(x86)}\\Windows Kits\\10\\bin\\*\\x64\\signtool.exe" |
+            Sort-Object FullName -Descending | Select-Object -First 1
+          if (!$signtool) { throw "No se encuentra signtool.exe en el runner." }
+
+          & $signtool.FullName sign /fd SHA256 /f $pfxPath /p $env:WINDOWS_CERTIFICATE_PASSWORD /tr http://timestamp.digicert.com /td SHA256 $installer.FullName
+          if ($LASTEXITCODE -ne 0) { throw "La firma digital ha fallado (signtool: $LASTEXITCODE)." }
+
+          & $signtool.FullName verify /pa /v $installer.FullName
+          if ($LASTEXITCODE -ne 0) { throw "La verificación de la firma digital ha fallado." }
+
+          Remove-Item $pfxPath -Force
+          "signed=true" >> $env:GITHUB_OUTPUT
       - name: Publicar artefacto de compilacion manual
         if: github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v4
