@@ -3,7 +3,7 @@
 
 Desarrollado por Beatriz Toro Martin.
 
-&#x20; Calcula tus costes, controla tus trabajos y mejora la gestión económica d   &#x20;
+&#x20; Calcula tus costes, controla tus trabajos y mejora la gestión económica    &#x20;
 
 # Print Cost & Profit v1.0
 
