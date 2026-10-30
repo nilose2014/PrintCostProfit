@@ -161,17 +161,30 @@ $thumbnailData = ''
 try {
   $thumbMatches = [regex]::Matches($text, '(?im)^;\s*thumbnail(?:\s+begin)?\s+(\d+)x(\d+)(?:\s+\d+)?\s*\r?\n([\s\S]*?)^;\s*thumbnail\s+end\s*$')
   $bestArea = 0
+  $bestWidth = 0; $bestHeight = 0
+  $thumbnailCount = $thumbMatches.Count
   foreach ($tm in $thumbMatches) {
     $w = [int]$tm.Groups[1].Value; $h = [int]$tm.Groups[2].Value
     $b64 = ($tm.Groups[3].Value -split '\r?\n' | ForEach-Object { $_ -replace '^;\s?', '' -replace '\s', '' }) -join ''
-    if ($b64 -match '^[A-Za-z0-9+/]+={0,2}$' -and ($w * $h) -gt $bestArea) {
-      $mime = if ($b64.StartsWith('iVBOR')) { 'image/png' } elseif ($b64.StartsWith('/9j/')) { 'image/jpeg' } else { 'image/png' }
+    if ($b64 -notmatch '^[A-Za-z0-9+/]+={0,2}$' -or ($w * $h) -le $bestArea) { continue }
+    try { $imageBytes = [Convert]::FromBase64String($b64) } catch { continue }
+    if ($imageBytes.Length -lt 12) { continue }
+    $mime = ''
+    if ($imageBytes[0] -eq 137 -and $imageBytes[1] -eq 80 -and $imageBytes[2] -eq 78 -and $imageBytes[3] -eq 71) {
+      $mime = 'image/png'
+    } elseif ($imageBytes[0] -eq 255 -and $imageBytes[1] -eq 216) {
+      $mime = 'image/jpeg'
+    } elseif ([Text.Encoding]::ASCII.GetString($imageBytes,0,4) -eq 'RIFF' -and [Text.Encoding]::ASCII.GetString($imageBytes,8,4) -eq 'WEBP') {
+      $mime = 'image/webp'
+    }
+    if ($mime) {
       $thumbnailData = 'data:' + $mime + ';base64,' + $b64
       $bestArea = $w * $h
+      $bestWidth = $w; $bestHeight = $h
     }
   }
 } catch { Write-IntegrationLog ('No se pudo extraer la miniatura del G-code: ' + $_.Exception.Message) }
-if ($thumbnailData) { Write-IntegrationLog ('Miniatura extraída automáticamente del G-code (' + $bestArea + ' píxeles aprox.).') } else { Write-IntegrationLog 'El G-code no contiene una miniatura compatible; la calculadora abrirá sin imagen automática.' }
+if ($thumbnailData) { Write-IntegrationLog ('Miniatura extraída automáticamente del G-code: ' + $thumbnailCount + ' bloque(s), selección ' + $bestWidth + 'x' + $bestHeight + ' px, Base64 ' + $thumbnailData.Length + ' caracteres.') } else { Write-IntegrationLog ('No se pudo extraer una miniatura válida. Bloques encontrados: ' + $thumbnailCount + '. La calculadora abrirá sin imagen automática.') }
 $layerLine = Find-LineValue '^;\s*total layer number\s*:\s*(.+)$'
 $heightLine = Find-LineValue '^;\s*max_z_height\s*:\s*(.+)$'
 $diameterLine = Find-LineValue '^;\s*filament_diameter\s*:\s*(.+)$'

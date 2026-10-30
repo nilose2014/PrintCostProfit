@@ -1,4 +1,4 @@
-# Print Cost & Profit v1.0
+# Print Cost & Profit v1.1
 
 ## Cost calculator, production and management for 3D printing
 
@@ -458,7 +458,7 @@ Do not include passwords, private keys, or unnecessary personal information.
 
 ---
 
-**Print Cost & Profit v1.0** &#x20;
+**Print Cost & Profit v1.1** &#x20;
 
 Developed by Beatriz Toro Martin.
 

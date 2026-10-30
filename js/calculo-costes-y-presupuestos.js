@@ -31,35 +31,56 @@ function readWithFileReader(file,resolve,reject){if(typeof FileReader==='undefin
 const {extractGcodeThumbnail}=window.PCPImageUtils;
 function buildSavedGcodeInventoryReport(all,weights,types,colors){
  const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
- const findAll=(key)=>{
-  const indexed=[...all.matchAll(new RegExp('^;\\s*'+key+'\\[(\\d+)\\]\\s*=\\s*(.*?)\\s*$','gim'))].sort((a,b)=>Number(a[1])-Number(b[1])).map(m=>m[2].trim());
-  if(indexed.length)return indexed;
-  const flat=all.match(new RegExp('^;\\s*'+key+'\\s*=\\s*(.*?)\\s*$','im'));
-  return flat?flat[1].split(';').map(v=>v.trim()):[];
- };
- const vendors=findAll('filament_vendor'),profiles=findAll('filament_settings_id'),materials=findAll('filament_type'),hexes=findAll('filament_colour');
+ const hexOf=s=>window.PCPColorUtils?.parseHex(s?.hex||s?.colorHex||s?.color||'')?.rgb||'';
+ const distance=(a,b)=>{if(!/^#[0-9a-f]{6}$/i.test(a||'')||!/^#[0-9a-f]{6}$/i.test(b||''))return Infinity;const ar=parseInt(a.slice(1,3),16),ag=parseInt(a.slice(3,5),16),ab=parseInt(a.slice(5,7),16),br=parseInt(b.slice(1,3),16),bg=parseInt(b.slice(3,5),16),bb=parseInt(b.slice(5,7),16);const mean=(ar+br)/2;return Math.sqrt((2+mean/256)*(ar-br)**2+4*(ag-bg)**2+(2+(255-mean)/256)*(ab-bb)**2)};
  const inventory=typeof getSpools==='function'?getSpools():[];
- const distance=(a,b)=>{if(!/^#[0-9a-f]{6}$/i.test(a||'')||!/^#[0-9a-f]{6}$/i.test(b||''))return Infinity;return Math.sqrt([0,2,4].reduce((sum,p)=>sum+Math.pow(parseInt(a.slice(p+1,p+3),16)-parseInt(b.slice(p+1,p+3),16),2),0));};
  const rows=weights.map((grams,i)=>{
-  const material=materials[i]||types[i]||'Material no indicado',hex=String(hexes[i]||colors[i]||'').toUpperCase(),brand=vendors[i]||'',profile=profiles[i]||'';
-  const materialCandidates=inventory.map((s,idx)=>({s,idx,d:distance(hex,String(s.hex||'').toUpperCase())})).filter(({s})=>norm(s.material)===norm(material)).sort((a,b)=>a.d-b.d);
-  const brandCandidates=materialCandidates.filter(({s})=>!brand||!norm(s.brand)||norm(s.brand)===norm(brand)||norm(s.brand).includes(norm(brand))||norm(brand).includes(norm(s.brand)));
-  const nearCandidates=materialCandidates.filter(({d})=>d===0||d<=52);
-  /* Elegir primero una coincidencia de marca y color; si no existe, mostrar alternativas de otras marcas con color idéntico o muy parecido. */
-  const sameBrandChoice=brandCandidates.find(x=>Number(x.s.remaining)>0&&(x.d===0||x.d<=52))||brandCandidates.find(x=>Number(x.s.remaining)>0)||brandCandidates[0];
-  const alternatives=nearCandidates.filter(x=>Number(x.s.remaining)>0).slice(0,6);
-  const chosen=sameBrandChoice||null,colorName=typeof namedColor==='function'?namedColor(hex):hex;
-  const shownBrand=brand||(chosen&&chosen.s.brand)||'Marca no identificada';
-  const shownProfile=profile||(chosen&&(chosen.s.profile||chosen.s.name))||'';
+  const material=String(types[i]||'Material no indicado'),hex=window.PCPColorUtils?.parseHex(colors[i]||'')?.rgb||'',brandLine=(()=>{const indexed=[...all.matchAll(/^;\s*filament_vendor\[(\d+)\]\s*=\s*(.*?)\s*$/gim)].sort((a,b)=>Number(a[1])-Number(b[1]));if(indexed.length)return indexed.find(m=>Number(m[1])===i)?.[2]?.trim()||'';const m=all.match(/^;\s*filament_vendor\s*=\s*(.*?)\s*$/im);return m?m[1].split(/[;,]+/)[i]?.trim()||'':''})(),profile='';
+  const candidates=inventory.map((sp,idx)=>({s:sp,idx,d:distance(hex,hexOf(sp))})).filter(x=>norm(x.s.material)===norm(material));
+  const exact=candidates.filter(x=>x.d===0);
+  const brandExact=exact.filter(x=>!brandLine||!norm(x.s.brand)||norm(x.s.brand)===norm(brandLine));
+  const chosen=brandExact[0]||(!brandLine?exact[0]||null:null);
+  const otherExact=exact.filter(x=>(!chosen||x.idx!==chosen.idx)&&Number(x.s.remaining)>0).sort((a,b)=>(Number(b.s.remaining)||0)-(Number(a.s.remaining)||0));
+  const near=candidates.filter(x=>x.d>0&&x.d<=105&&Number(x.s.remaining)>0).sort((a,b)=>a.d-b.d).slice(0,4);
+  const alternatives=chosen?[]:(otherExact.length?otherExact:near);
+  const colorName=namedColor(hex),brand=brandLine||'—';
   let status='';
-  if(!chosen)status=`<span class="warn">⚠ No se encontró una bobina compatible en inventario: ${escapeHtml(shownBrand)} ${escapeHtml(material)} ${escapeHtml(colorName)} (${escapeHtml(hex||'sin HEX')}). Revisa marca, material y color.</span>`;
-  else {const stock=Math.max(0,Number(chosen.s.remaining)||0),after=stock-Number(grams||0);status=after>=0?`Inventario: hay ${stock.toFixed(2)} g · gastaría ${Number(grams||0).toFixed(2)} g · quedarían ${after.toFixed(2)} g.`:`<span class="warn">⚠ Stock insuficiente: hay ${stock.toFixed(2)} g y se necesitan ${Number(grams||0).toFixed(2)} g; faltarían ${Math.abs(after).toFixed(2)} g.</span>`;if(chosen.d>0)status+=` <span class="warn">Color aproximado (HEX inventario: ${escapeHtml(chosen.s.hex||'sin HEX')}); revisa la bobina antes de confirmar.</span>`;}
-  const altHtml=(!brandCandidates.length&&alternatives.length)?`<div class="spool-brand-alternatives"><strong>¿Usar una bobina de otra marca?</strong> ${alternatives.map(x=>`<button type="button" class="btn" data-spool-alt="${x.idx}" data-spool-grams="${Number(grams||0)}" data-spool-material="${escapeHtml(material)}" data-spool-hex="${escapeHtml(hex)}" data-spool-brand="${escapeHtml(x.s.brand||'')}" data-spool-color="${escapeHtml(x.s.colorName||x.s.color||x.s.name||x.s.hex||'Color')}" data-spool-stock="${Number(x.s.remaining)||0}">${escapeHtml(x.s.brand||'Sin marca')} · ${escapeHtml(x.s.colorName||x.s.color||x.s.hex||'Color')} (${Number(x.s.remaining||0).toFixed(0)} g)</button>`).join(' ')}</div>`:'';
-  return `<div class="gcode-spool-check">${escapeHtml(shownBrand)} · ${escapeHtml(material)} · ${escapeHtml(colorName||'color no indicado')} (${escapeHtml(hex||'HEX no indicado')}) · ${Number(grams||0).toFixed(2)} g${shownProfile?' · perfil: '+escapeHtml(shownProfile):''}<br><span>${status}</span>${altHtml}</div>`;
+  if(chosen){const stock=Math.max(0,Number(chosen.s.remaining)||0),after=stock-Number(grams||0);status=after>=0?`Inventario: hay ${stock.toFixed(2)} g · gastaría ${Number(grams||0).toFixed(2)} g · quedarían ${after.toFixed(2)} g.`:`<span class="warn">Stock insuficiente: hay ${stock.toFixed(2)} g y se necesitan ${Number(grams||0).toFixed(2)} g.</span>`;}
+  else status=`<span class="warn">${window.PCP_I18N?.t('No hay una bobina exacta asignada.')||'No hay una bobina exacta asignada.'}</span>`;
+  const alternativesHtml=alternatives.length?`<div class="pcp-gcode-choice"><strong>${otherExact.length?(window.PCP_I18N?.t('Mismo color disponible en otras marcas:')||'Mismo color disponible en otras marcas:'):(window.PCP_I18N?.t('Colores más parecidos disponibles:')||'Colores más parecidos disponibles:')}</strong><div class="pcp-gcode-choice-list">${alternatives.map(x=>`<button type="button" class="btn pcp-spool-choice" data-spool-alt="${x.idx}" data-filament-index="${i}" data-spool-grams="${Number(grams)||0}"><span class="pcp-choice-swatch" style="background:${hexOf(x.s)||'#888'}"></span><span><b>${escapeHtml(x.s.brand||'—')}</b> · ${escapeHtml(x.s.colorName||x.s.color||namedColor(hexOf(x.s)))} · ${escapeHtml(x.s.material||material)}<small>${escapeHtml(hexOf(x.s))} · ${Number(x.s.remaining||0).toFixed(0)} g ${x.d===0?'· '+(window.PCP_I18N?.t('Color exacto')||'Color exacto'):'· '+(window.PCP_I18N?.t('Color aproximado')||'Color aproximado')}</small></span><span>＋</span></button>`).join('')}</div></div>`:'';
+  const createButton=!chosen?`<button type="button" class="btn primary pcp-create-spool" data-create-spool="${i}" data-material="${escapeHtml(material)}" data-hex="${escapeHtml(hex)}" data-grams="${Number(grams)||0}">${window.PCP_I18N?.t('＋ Crear bobina nueva')||'＋ Crear bobina nueva'}</button>`:'';
+  return `<div class="gcode-spool-check" data-filament-index="${i}"><div><b>${escapeHtml(material)} · ${escapeHtml(colorName)} (${escapeHtml(hex||'—')})</b> · ${Number(grams||0).toFixed(2)} g${brandLine?' · '+escapeHtml(brandLine):''}</div><div class="pcp-gcode-status">${status}</div>${alternativesHtml}<div class="pcp-gcode-create">${createButton}</div></div>`;
  });
- return rows.length?'<br><strong>Materiales y comprobación de inventario:</strong><br>'+rows.join('<br>')+'<br><span class="warn">El inventario solo se consulta: estas cantidades no se descuentan ni modifican el stock.</span>':'';
+ return rows.length?'<br><strong>Materiales y comprobación de inventario:</strong><br>'+rows.join('')+'<br><span class="warn">El inventario solo se consulta: no se descuenta hasta registrar el trabajo.</span>':'';
 }
-document.addEventListener('click',function(e){const b=e.target.closest('[data-spool-alt]');if(!b)return;const row=b.closest('.gcode-spool-check');if(!row)return;const grams=Number(b.dataset.spoolGrams||0),stock=Number(b.dataset.spoolStock||0),after=stock-grams;row.querySelectorAll('[data-spool-alt]').forEach(x=>x.classList.remove('primary'));b.classList.add('primary');let note=row.querySelector('.spool-alt-selected');if(!note){note=document.createElement('div');note.className='spool-alt-selected';row.appendChild(note)}const tr=(key,fallback)=>window.PCP_I18N?.t?.(key)||fallback;note.textContent=tr('Bobina alternativa seleccionada: {brand} · {color}. Hay {stock} g; tras el trabajo quedarían {after} g.{shortage} El inventario no se modifica.',`Bobina alternativa seleccionada: {brand} · {color}. Hay {stock} g; tras el trabajo quedarían {after} g.{shortage} El inventario no se modifica.`).replace('{brand}',b.dataset.spoolBrand).replace('{color}',b.dataset.spoolColor).replace('{stock}',stock.toFixed(2)).replace('{after}',after.toFixed(2)).replace('{shortage}',after<0?(tr(' Stock insuficiente.',' Stock insuficiente.')):'');});
+function pcpTranslate(key){return window.PCP_I18N?.t?.(key)||key}
+function pcpCreateSpoolDialog(data){
+ const existing=document.getElementById('pcpQuickSpoolOverlay');if(existing)existing.remove();
+ const brands=Array.from(document.getElementById('spoolBrand')?.options||[]).filter(o=>o.value&&o.value!=='__custom__');
+ const overlay=document.createElement('div');overlay.id='pcpQuickSpoolOverlay';overlay.className='pcp-quick-spool-overlay';
+ const brandOptions=brands.map(o=>`<option value="${escapeHtml(o.value)}">${escapeHtml(o.textContent)}</option>`).join('')+'<option value="__custom__">'+escapeHtml(pcpTranslate('Otra marca…'))+'</option>';
+ overlay.innerHTML=`<section class="pcp-quick-spool-dialog" role="dialog" aria-modal="true" aria-labelledby="pcpQuickSpoolTitle"><header><div><span class="pcp-quick-spool-kicker">${escapeHtml(pcpTranslate('Inventario de filamento'))}</span><h2 id="pcpQuickSpoolTitle">${escapeHtml(pcpTranslate('Crear bobina nueva'))}</h2><p>${escapeHtml(pcpTranslate('Se guardará en tu inventario y quedará asignada a este material del G-code.'))}</p></div><button type="button" class="pcp-quick-close" data-close-spool>×</button></header><div class="pcp-quick-spool-body"><div class="pcp-quick-color"><span class="pcp-quick-swatch" style="background:${escapeHtml(data.hex||'#888')}" ></span><div><b>${escapeHtml(namedColor(data.hex))}</b><small>${escapeHtml(data.material)} · ${escapeHtml(data.hex)}</small></div></div><label>${escapeHtml(pcpTranslate('Material'))}<input id="pcpQuickMaterial" value="${escapeHtml(data.material)}" readonly></label><label>${escapeHtml(pcpTranslate('Marca'))}<select id="pcpQuickBrand">${brandOptions}</select></label><label id="pcpQuickCustomBrandWrap" hidden>${escapeHtml(pcpTranslate('Nombre de la marca'))}<input id="pcpQuickCustomBrand" maxlength="60" placeholder="${escapeHtml(pcpTranslate('Escribe la marca'))}"></label><div class="pcp-quick-two"><label>${escapeHtml(pcpTranslate('Peso inicial de la bobina (g)'))}<input id="pcpQuickInitial" type="number" min="1" step="1" value="1000"></label><label>${escapeHtml(pcpTranslate('Peso restante actual (g)'))}<input id="pcpQuickRemaining" type="number" min="0" step="1" value="1000"></label></div><label>${escapeHtml(pcpTranslate('Precio de compra de la bobina (opcional)'))}<input id="pcpQuickPrice" type="number" min="0" step="0.01" value="0"></label><p class="pcp-quick-hint">${escapeHtml(pcpTranslate('El peso restante se guarda tal como lo indiques. No se descuenta el consumo de este cálculo.'))}</p><p class="pcp-quick-error" id="pcpQuickError" role="alert"></p></div><footer><button type="button" class="btn" data-close-spool>${escapeHtml(pcpTranslate('Cancelar'))}</button><button type="button" class="btn primary" id="pcpQuickSaveSpool">${escapeHtml(pcpTranslate('Crear y asignar bobina'))}</button></footer></section>`;
+ document.body.appendChild(overlay);
+ const close=()=>overlay.remove();overlay.querySelectorAll('[data-close-spool]').forEach(b=>b.addEventListener('click',close));overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+ const brandSelect=overlay.querySelector('#pcpQuickBrand'),customWrap=overlay.querySelector('#pcpQuickCustomBrandWrap');brandSelect.addEventListener('change',()=>{customWrap.hidden=brandSelect.value!=='__custom__'});
+ overlay.querySelector('#pcpQuickSaveSpool').addEventListener('click',()=>{
+  const initial=Math.max(0,Number(overlay.querySelector('#pcpQuickInitial').value)||0),remaining=Math.max(0,Number(overlay.querySelector('#pcpQuickRemaining').value)||0),price=Math.max(0,Number(overlay.querySelector('#pcpQuickPrice').value)||0);
+  const brand=brandSelect.value==='__custom__'?overlay.querySelector('#pcpQuickCustomBrand').value.trim():brandSelect.value;
+  const err=overlay.querySelector('#pcpQuickError');if(!brand){err.textContent=pcpTranslate('Selecciona o escribe una marca.');return}if(initial<=0||remaining>initial){err.textContent=pcpTranslate('El peso restante debe estar entre 0 y el peso inicial.');return}
+  const list=getSpools(),item={material:data.material,brand,color:namedColor(data.hex),colorName:namedColor(data.hex),hex:data.hex,initial,remaining,quantity:1,price};list.push(item);
+  if(!STORE.set('pcp_spools',JSON.stringify(list))){err.textContent=pcpTranslate('No se pudo guardar la bobina en el inventario.');return}
+  const index=list.length-1,row=document.querySelectorAll('#filamentRows .filament-row')[Number(data.index)];if(row)applySpoolToFilament(row,index,true);
+  window.dispatchEvent(new CustomEvent('pcp-spools-updated'));const report=document.querySelector(`.gcode-spool-check[data-filament-index="${Number(data.index)}"]`);if(report){report.querySelector('.pcp-gcode-status').textContent=pcpTranslate('Bobina nueva creada y asignada: {brand} · {color}.').replace('{brand}',brand).replace('{color}',item.colorName);report.querySelector('.pcp-gcode-choice')?.remove();report.querySelector('.pcp-gcode-create')?.remove();}
+  close();toast(pcpTranslate('Bobina creada y asignada al cálculo.'));
+ });
+ overlay.querySelector('#pcpQuickBrand').focus();
+}
+document.addEventListener('click',function(e){
+ const create=e.target.closest('[data-create-spool]');if(create){pcpCreateSpoolDialog({index:Number(create.dataset.createSpool),material:create.dataset.material||'PETG',hex:create.dataset.hex||'#808080',grams:Number(create.dataset.grams)||0});return;}
+ const b=e.target.closest('[data-spool-alt]');if(!b)return;const row=b.closest('.gcode-spool-check');if(!row)return;const index=Number(b.dataset.spoolAlt),filamentIndex=Number(b.dataset.filamentIndex),spool=getSpools()[index];if(!spool)return;
+ const filamentRow=document.querySelectorAll('#filamentRows .filament-row')[filamentIndex];if(filamentRow)applySpoolToFilament(filamentRow,index,true);
+ row.querySelectorAll('[data-spool-alt]').forEach(x=>x.classList.remove('primary'));b.classList.add('primary');let note=row.querySelector('.spool-alt-selected');if(!note){note=document.createElement('div');note.className='spool-alt-selected';row.appendChild(note)}note.textContent=pcpTranslate('Bobina seleccionada: {brand} · {color}. La asignación se ha aplicado al cálculo; el inventario no se descuenta ahora.').replace('{brand}',spool.brand||'—').replace('{color}',spool.colorName||spool.color||'');
+});
 function parseGcode(text,filename){const all=text;const gcodeThumbnail=extractGcodeThumbnail(all);if(gcodeThumbnail){showPieceImage(gcodeThumbnail);if($('pieceImage'))$('pieceImage').value='';}const find=(re)=>{const m=all.match(re);return m?m[1].trim():''};const baseName=filename.replace(/\.(gcode|gco|gc|bgcode|txt)(?:\.pp)?$/i,'').replace(/^\.?\d+(?:\.\d+)+$/,'').trim();let metaName=find(/^;\s*(?:project_name|project name|model_name|model name|object name|print name|model).*?[:=]\s*(.+)$/im);if(metaName&&(/\.gcode(?:\.|$)|\.gco(?:\.|$)|\.gc(?:\.|$)|\.pp$/i.test(metaName)||/^\.?\d+(?:\.\d+){1,}/.test(metaName)))metaName='';let name=metaName||baseName; if(!name||/^(unknown|untitled|model|object|\.?\d+(?:\.\d+)+)$/i.test(name.trim())){const objs=[...all.matchAll(/^;\s*printing object\s+(.+?)\s+id:/gim)].map(m=>m[1].trim().replace(/\.(stl|3mf|obj|amf)$/i,'')).filter(Boolean);const uniq=[...new Set(objs)];const preferred=uniq.sort((a,b)=>b.length-a.length)[0]||'';name=preferred||baseName||'Pieza importada';}
 let time=find(/^;\s*estimated printing time(?: \(normal mode\))?\s*=\s*(.+)$/im)||find(/^;\s*(?:model printing time|total estimated time)\s*[:=]\s*(.+)$/im)||find(/^;\s*TIME\s*[:=]\s*(.+)$/im);let hours=time?parseTime(time):0;let timeSource=time?'metadatos del G-code':'';if(!(hours>0)){const fn=baseName.match(/(?:(\d+)h)?(\d+)m(\d+)s/i)||baseName.match(/(?:(\d+)h)?(\d+)m(?![a-z])/i);if(fn){hours=Number(fn[1]||0)+Number(fn[2]||0)/60+Number(fn[3]||0)/3600;timeSource='nombre del archivo';}}
 const metaValues=(keys)=>{for(const key of keys){const re=new RegExp('^\\s*;\\s*'+key+'\\s*[:=]\\s*(.*?)\\s*$','im');const m=all.match(re);if(m&&m[1])return m[1].split(/[;,]+/).map(v=>v.trim()).filter(Boolean);}return [];};
@@ -72,10 +93,10 @@ if(!colors.length) colors=readMetaList(['filament_colour','filament_color','fila
 const countGuess=Math.max(types.length,colors.length,weights.length);
 for(let i=0;i<countGuess;i++){
  const tv=String(types[i]||''); const cv=String(colors[i]||'');
- const tm=tv.match(/#?([0-9a-f]{6})\b/i); const cm=cv.match(/#?([0-9a-f]{6})\b/i);
+ const tm=tv.match(/#?([0-9a-f]{6}(?:[0-9a-f]{2})?)\b/i); const cm=cv.match(/#?([0-9a-f]{6}(?:[0-9a-f]{2})?)\b/i);
  if(tm) colors[i]='#'+tm[1].toUpperCase();
  if(!tv&&cm) types[i]='';
- if(tm) types[i]=tv.replace(/\s*[·|,/:-]?\s*#?[0-9a-f]{6}\b/ig,'').trim();
+ if(tm) types[i]=tv.replace(/\s*[·|,/:-]?\s*#?[0-9a-f]{6}(?:[0-9a-f]{2})?\b/ig,'').trim();
  if(cm) colors[i]='#'+cm[1].toUpperCase();
 }
 if(!types.length){const fm=baseName.match(/\b(PLA\+?|PETG(?:-CF)?|ABS|ASA|TPU|PA(?:-CF)?|NYLON|PC)\b/ig);if(fm)types=[...new Set(fm.map(x=>x.toUpperCase()))];}
@@ -84,9 +105,86 @@ let gramsLine=find(/^;\s*(?:total )?filament used\s*\[g\]\s*=\s*(.+)$/im)||find(
 if(!weights.length){const matches=[...all.matchAll(/^;\s*filament used\s*\[g\]\s*=\s*([\d.,]+)/gim)];if(matches.length)weights=matches.map(m=>Number(m[1].replace(',','.'))).filter(v=>Number.isFinite(v)&&v>0);}
 let estimatedByExtrusion=false;if(!weights.length){const ext=estimateExtrusionGrams(text,types);if(ext.length){weights=ext.map(x=>x.grams);estimatedByExtrusion=true;if(!colors.length)colors=ext.map(x=>`T${x.tool}`);if(!types.length)types=ext.map(()=> 'Filamento estimado');}}
 if(weights.length>1&&/^;\s*total filament used\s*\[g\]/im.test(all)&&/^;\s*filament used\s*\[g\]/im.test(all)){const a=all.match(/^;\s*filament used\s*\[g\]\s*=\s*(.+)$/im);if(a)weights=(a[1].match(/-?\d+(?:[.,]\d+)?/g)||[]).map(v=>Number(v.replace(',','.'))).filter(v=>Number.isFinite(v)&&v>0)||weights;}
-if(weights.length>1&&types.length===1)types=weights.map(()=>types[0]);if(colors.length&&colors.length<weights.length)colors=weights.map((_,i)=>colors[i]||colors[0]);const oldPrices=getFilaments().map(f=>f.price);if(weights.length){$('filamentRows').innerHTML='';const vendorsLine=find(/^;\s*filament_vendor\s*=\s*(.+)$/im);const vendors=vendorsLine?vendorsLine.split(/[;,]+/).map(v=>v.trim()):[];const normHex=v=>String(v||'').trim().toUpperCase().replace(/^#?([0-9A-F]{6})$/,'#$1');const normMat=v=>String(v||'').trim().toLowerCase().replace(/[^a-z0-9+]/g,'');const spools=getSpools();weights.forEach((g,i)=>{let type=String(types[i]||'Filamento genérico').trim();let rawColor=String(colors[i]||'').trim();const embeddedHex=type.match(/#?([0-9a-f]{6})\b/i);if(!rawColor&&embeddedHex)rawColor='#'+embeddedHex[1].toUpperCase();if(embeddedHex)type=type.replace(/\s*[·|,/:-]?\s*#?[0-9a-f]{6}\b/ig,'').trim()||'Filamento genérico';const hex=/^#[0-9A-F]{6}$/i.test(rawColor)?normHex(rawColor):guessedColor([rawColor,type].filter(Boolean).join(' '));const colorName=namedColor(hex);const label=(type||'Filamento genérico')+' · '+colorName;const importedPrice=importedPrices[i];let price=(importedPrice!==null&&importedPrice!==undefined)?importedPrice:(oldPrices[i]??20);const matches=spools.map((sp,idx)=>({sp,idx})).filter(({sp})=>{const spoolHex=normHex(sp.hex||(/^#[0-9a-f]{6}$/i.test(sp.color||'')?sp.color:''));const colorMatch=spoolHex===hex || (!spoolHex && String(sp.colorName||sp.color||'').trim().toLowerCase()===colorName.toLowerCase());const spoolMat=normMat(sp.material),gcodeMat=normMat(type);const matMatch=!type||/^filamento/i.test(type)||spoolMat===gcodeMat||spoolMat.startsWith(gcodeMat)||gcodeMat.startsWith(spoolMat);return colorMatch&&matMatch;});const unique=matches.length===1?String(matches[0].idx):'';if(unique!==''){const sp=matches[0].sp;const initial=Math.max(0,Number(sp.initial)||0);if(initial>0)price=Math.max(0,Number(sp.price)||0)*1000/initial;}const row=addFilament(label,g,price,hex,unique);if(unique===''){row.dataset.spoolIndex='';row.querySelector('.f-spool').value='';row.querySelector('.fname').value=label;row.querySelector('.fprice').value=Number(price).toFixed(2);row.querySelector('.fcolor').value=/^#[0-9A-F]{6}$/i.test(hex)?hex.toLowerCase():'#808080';row.querySelector('.f-color-name').textContent=colorName;row.querySelector('.f-color-hex').textContent=row.querySelector('.fcolor').value.toUpperCase();}});parsedFilament=true;}else{parsedFilament=false;}
+if(weights.length>1&&types.length===1)types=weights.map(()=>types[0]);if(colors.length&&colors.length<weights.length)colors=weights.map((_,i)=>colors[i]||colors[0]);const oldPrices=getFilaments().map(f=>f.price);if(weights.length){$('filamentRows').innerHTML='';const vendorsLine=find(/^;\s*filament_vendor\s*=\s*(.+)$/im);const vendors=vendorsLine?vendorsLine.split(/[;,]+/).map(v=>v.trim()):[];const normHex=v=>{const p=window.PCPColorUtils?.parseHex(v);return p?p.rgb:''};const normMat=v=>String(v||'').trim().toLowerCase().replace(/[^a-z0-9+]/g,'');const spools=getSpools();weights.forEach((g,i)=>{let type=String(types[i]||'Filamento genérico').trim();let rawColor=String(colors[i]||'').trim();const embeddedHex=type.match(/#?([0-9a-f]{6}(?:[0-9a-f]{2})?)\b/i);if(!rawColor&&embeddedHex)rawColor='#'+embeddedHex[1].toUpperCase();if(embeddedHex)type=type.replace(/\s*[·|,/:-]?\s*#?[0-9a-f]{6}(?:[0-9a-f]{2})?\b/ig,'').trim()||'Filamento genérico';const parsedColor=window.PCPColorUtils?.parseHex(rawColor);
+ const hex=parsedColor?parsedColor.rgb:guessedColor([rawColor,type].filter(Boolean).join(' '));const colorName=namedColor(hex);const label=(type||'Filamento genérico')+' · '+colorName;const importedPrice=importedPrices[i];let price=(importedPrice!==null&&importedPrice!==undefined)?importedPrice:(oldPrices[i]??20);const matches=spools.map((sp,idx)=>({sp,idx})).filter(({sp})=>{const spoolHex=normHex(sp.hex||sp.colorHex||sp.color||'');const colorMatch=spoolHex===hex || (!spoolHex && String(sp.colorName||sp.color||'').trim().toLowerCase()===colorName.toLowerCase());const spoolMat=normMat(sp.material),gcodeMat=normMat(type);const matMatch=!type||/^filamento/i.test(type)||spoolMat===gcodeMat||spoolMat.startsWith(gcodeMat)||gcodeMat.startsWith(spoolMat);return colorMatch&&matMatch;});const unique=matches.length===1?String(matches[0].idx):'';if(unique!==''){const sp=matches[0].sp;const initial=Math.max(0,Number(sp.initial)||0);if(initial>0)price=Math.max(0,Number(sp.price)||0)*1000/initial;}const row=addFilament(label,g,price,hex,unique);if(unique===''){row.dataset.spoolIndex='';row.querySelector('.f-spool').value='';row.querySelector('.fname').value=label;row.querySelector('.fprice').value=Number(price).toFixed(2);row.querySelector('.fcolor').value=/^#[0-9A-F]{6}$/i.test(hex)?hex.toLowerCase():'#808080';row.querySelector('.f-color-name').textContent=colorName;row.querySelector('.f-color-hex').textContent=row.querySelector('.fcolor').value.toUpperCase();}});parsedFilament=true;}else{parsedFilament=false;}
 $('pieceName').value=name||'Pieza importada';if(hours>0){$('printHours').value=hours.toFixed(3);parsedTime=true;}else{parsedTime=false;}
-const info=[];info.push(`<strong>${escapeHtml(filename)}</strong>`);info.push(weights.length?`${weights.length} filamento(s) detectado(s): ${weights.reduce((a,b)=>a+b,0).toFixed(2)} g ${estimatedByExtrusion?'estimados a partir de la extrusión (aproximados)':'según las estadísticas de Orca'}`:'No se detectaron gramos; introduce el peso manualmente o comprueba los metadatos del G-code.');if(types.length||colors.length)info.push('Materiales del G-code: '+weights.map((_,i)=>`${types[i]||'Material no indicado'} (${colors[i]||'color no indicado'})`).join(' · '));const importedPriceCount=importedPrices.filter(v=>v!==null&&v!==undefined).length;if(importedPriceCount)info.push(`Precio del filamento importado desde el laminador: ${importedPriceCount} precio(s) por kg. Comprueba que coincida con el precio de tu bobina.`);info.push(hours>0?`Tiempo detectado: ${hours.toFixed(2)} h${timeSource?' (desde '+timeSource+')':''}`:'No se detectó el tiempo; introdúcelo manualmente.');if(estimatedByExtrusion)info.push('<span class="warn">El peso por extrusión es una estimación; verifica el dato antes de calcular el precio.</span>');$('fileMeta').innerHTML=info.join('<br>')+buildSavedGcodeInventoryReport(all,weights,types,colors)+'<br><span class="warn">Comprueba siempre los datos detectados antes de calcular el precio.</span>';calculate();toast('Archivo cargado. Revisa los datos del laminado.');}
+const info=[];info.push(`<strong>${escapeHtml(filename)}</strong>`);info.push(weights.length?`${weights.length} filamento(s) detectado(s): ${weights.reduce((a,b)=>a+b,0).toFixed(2)} g ${estimatedByExtrusion?'estimados a partir de la extrusión (aproximados)':'según las estadísticas de Orca'}`:'No se detectaron gramos; introduce el peso manualmente o comprueba los metadatos del G-code.');if(types.length||colors.length)info.push('Materiales del G-code: '+weights.map((_,i)=>{const raw=String(colors[i]||'').trim();const parsed=window.PCPColorUtils?.parseHex(raw);const hex=parsed?.rgb||'';const colorLabel=hex?`${namedColor(hex)} · ${hex}`:(raw||'color no indicado');return `${types[i]||'Material no indicado'} (${colorLabel})`;}).join(' · '));const importedPriceCount=importedPrices.filter(v=>v!==null&&v!==undefined).length;if(importedPriceCount)info.push(`Precio del filamento importado desde el laminador: ${importedPriceCount} precio(s) por kg. Comprueba que coincida con el precio de tu bobina.`);info.push(hours>0?`Tiempo detectado: ${hours.toFixed(2)} h${timeSource?' (desde '+timeSource+')':''}`:'No se detectó el tiempo; introdúcelo manualmente.');if(estimatedByExtrusion)info.push('<span class="warn">El peso por extrusión es una estimación; verifica el dato antes de calcular el precio.</span>');$('fileMeta').innerHTML=info.join('<br>')+buildSavedGcodeInventoryReport(all,weights,types,colors)+'<br><span class="warn">Comprueba siempre los datos detectados antes de calcular el precio.</span>';calculate();toast('Archivo cargado. Revisa los datos del laminado.');}
+// v1.586: permite importar el G-code activo del monitor U1 directamente al cálculo.
+window.PCPImportMonitorJob=function(job){
+ try{
+  if(!job||!Array.isArray(job.items)||!job.items.length)throw new Error(window.PCP_I18N?.t('El monitor no tiene datos de filamento para enviar.')||'El monitor no tiene datos de filamento para enviar.');
+  const filename=String(job.file||'G-code de U1').trim();
+  const rows=$('filamentRows');if(!rows)throw new Error('No se encontró el formulario de filamentos.');
+  rows.innerHTML='';filamentId=0;currentFile=filename;
+  const spools=getSpools();
+  const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9+]/g,'');
+  const hex=v=>window.PCPColorUtils?.parseHex(String(v||'').trim())?.rgb||'';
+  // El monitor puede incluir canales/herramientas sin consumo (0 g). No deben crear
+  // filas vacías ni contaminar el resumen de materiales de la calculadora.
+  const usedItems=job.items.map(f=>({...f,grams:Math.max(0,Number(f.grams)||0)})).filter(f=>f.grams>0);
+  if(!usedItems.length)throw new Error(window.PCP_I18N?.t('No se detectaron gramos; introduce el peso manualmente o comprueba los metadatos del G-code.')||'No se detectaron gramos; introduce el peso manualmente o comprueba los metadatos del G-code.');
+  const weights=[],types=[],colors=[];
+  let total=0;
+  usedItems.forEach((f)=>{
+   const material=String(f.material||f.name||'Filamento').trim()||'Filamento';
+   const colorHex=hex(f.color||f.hex||'')||'#808080';
+   const colorName=String(f.colorName||'').trim()||namedColor(colorHex);
+   const grams=f.grams;total+=grams;weights.push(grams);types.push(material);colors.push(colorHex);
+   let index=(f.spoolIndex!==null&&f.spoolIndex!==''&&Number.isInteger(Number(f.spoolIndex))&&spools[Number(f.spoolIndex)])?Number(f.spoolIndex):'';
+   if(index===''){
+    const matches=spools.map((sp,i)=>({sp,i})).filter(({sp})=>hex(sp.hex||sp.colorHex||sp.color)===colorHex&&(!norm(material)||!norm(sp.material)||norm(material)===norm(sp.material)||norm(material).startsWith(norm(sp.material))||norm(sp.material).startsWith(norm(material))));
+    if(matches.length===1)index=matches[0].i;
+   }
+   let price=20;
+   if(index!==''){
+    const sp=spools[index],initial=Math.max(0,Number(sp.initial)||0);
+    if(initial>0)price=Math.max(0,Number(sp.price)||0)*1000/initial;
+   }
+   addFilament(material+' · '+colorName,grams,price,colorHex,index);
+  });
+  const base=filename.replace(/\.(gcode|gco|gc|bgcode|txt)$/i,'');
+  $('pieceName').value=String(job.pieceName||base||'Trabajo U1');
+  // Recupera la miniatura del G-code integrada por Orca y el tiempo del trabajo.
+  // Si el trabajo activo procede de una sesión anterior, se usa la integración
+  // disponible cuando corresponde al mismo archivo; si no, se conserva el borrador.
+  const integration=window.PCP_INTEGRATION_DATA||{};
+  // El trabajo del monitor puede haberse creado antes de que la integración
+  // terminara de cargar o puede llevar un nombre distinto al archivo temporal
+  // que Orca/Creality Print entrega al monitor. La miniatura incrustada en la
+  // página integrada pertenece al G-code que abrió esta sesión: si el trabajo
+  // no guardó una imagen propia, úsala como respaldo sin exigir igualdad literal
+  // de nombres (que puede fallar por .stl, sufijos de duración o renombrados).
+  const validImage=value=>typeof value==='string'&&/^data:image\/(?:png|jpeg|webp);base64,/i.test(value);
+  const imageData=validImage(job.thumbnailData)?job.thumbnailData:
+    (validImage(integration.thumbnailData)?integration.thumbnailData:'');
+  if(imageData){showPieceImage(imageData);if($('pieceImage'))$('pieceImage').value='';}
+  else {console.warn('[PCP] No hay miniatura válida en el trabajo ni en los datos de integración.',{filename,jobHasThumbnail:validImage(job.thumbnailData),integrationHasThumbnail:validImage(integration.thumbnailData)});}
+  const timeHours=Math.max(0,Number(job.hours)||((String(filename).match(/(?:^|[_\s-])(?=\d)(?:(\d+)d)?(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?(?=\.(?:gcode|gco|gc|bgcode)$|$)/i)||[]).slice(1).reduce((a,v,i)=>a+(Number(v||0)*[24,1,1/60,1/3600][i]),0)));
+  if(timeHours>0&&$('printHours')){$('printHours').value=timeHours.toFixed(3);parsedTime=true;}
+  const meta=$('fileMeta');
+  if(meta){
+   const info=[];
+   const title=document.createElement('strong');title.textContent=filename;meta.replaceChildren(title,document.createElement('br'));
+   info.push((window.PCP_I18N?.format('{n} filamento(s) detectado(s): {grams} g según las estadísticas de Orca',{n:usedItems.length,grams:total.toFixed(2)})||`${usedItems.length} filamento(s) detectado(s): ${total.toFixed(2)} g según el G-code activo de la U1.`));
+   info.push('Materiales del G-code: '+weights.map((g,i)=>{const c=window.PCPColorUtils?.parseHex(colors[i])?.rgb||'';return `${types[i]} (${namedColor(c)} · ${c})`;}).join(' · '));
+   if(timeHours>0)info.push(window.PCP_I18N?.format('Tiempo detectado: {time} h (desde metadatos del G-code)',{time:timeHours.toFixed(2)})||`Tiempo detectado: ${timeHours.toFixed(2)} h`);
+   info.forEach((line,i)=>{if(i)meta.appendChild(document.createElement('br'));meta.appendChild(document.createTextNode(line));});
+   // Reutiliza el mismo informe visual de comprobación de bobinas que al cargar
+   // manualmente un G-code: stock, bobina asignada y alternativas disponibles.
+   const report=document.createElement('div');report.innerHTML=buildSavedGcodeInventoryReport('',weights,types,colors);meta.appendChild(report);
+   const note=document.createElement('span');note.className='warn';note.textContent=window.PCP_I18N?.t('El inventario solo se consulta: estas cantidades no se descuentan ni modifican el stock.')||'El inventario solo se consulta: estas cantidades no se descuentan ni modifican el stock.';meta.appendChild(note);
+  }
+  // La importación del monitor debe dejar la calculadora en el mismo estado
+  // de resultados que la carga manual de G-code.
+  resultCalculated=true;
+  calculate();saveDraft();
+  const home=document.querySelector('[data-tab="homeView"]');if(home)home.click();
+  $('pieceName')?.scrollIntoView({behavior:'smooth',block:'center'});
+  toast(window.PCP_I18N?.t('G-code del monitor enviado a la calculadora.')||'G-code del monitor enviado a la calculadora.');
+  return true;
+ }catch(err){console.error('[PCP] No se pudo importar el G-code del monitor',err);toast(err.message||String(err));return false;}
+};
+
 function loadIntegrationData(){
  try{
   // La versión 1.12 prioriza los datos incrustados por PowerShell en una copia local
@@ -109,7 +207,7 @@ function loadIntegrationData(){
   }
   if(Number(data.hours)>0)$('printHours').value=Number(data.hours).toFixed(3);
   $('filamentRows').innerHTML='';
-  if(data.filaments.length){data.filaments.forEach(f=>{let rawName=String(f.name||f.material||'Filamento').trim();const m=rawName.match(/#?([0-9a-f]{6})\b/i);const hex=(f.color||f.hex||f.colorHex||(m?'#'+m[1].toUpperCase():''));const cleanName=rawName.replace(/\s*[·|,/:-]?\s*#?[0-9a-f]{6}\b/ig,'').trim()||'Filamento genérico';const color=/^#[0-9a-f]{6}$/i.test(hex)?hex.toUpperCase():guessedColor(rawName);const material=String(f.material||cleanName.replace(/\s*[·|,/:-]?\s*(negro|black|rojo|red|blanco|white|azul|blue|verde|green|amarillo|yellow|rosa|pink|gris|gray|grey|naranja|orange|morado|purple)\s*$/i,'').trim()||cleanName);const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9+]/g,'');const normHex=v=>String(v||'').trim().toUpperCase().replace(/^#?([0-9A-F]{6})$/,'#$1');const inventory=getSpools();const matches=inventory.map((sp,idx)=>({sp,idx})).filter(({sp})=>{const spoolHex=normHex(sp.hex||(/^#[0-9a-f]{6}$/i.test(sp.color||'')?sp.color:''));const colorMatch=spoolHex===normHex(color)||(!spoolHex&&norm(sp.colorName||sp.color)===norm(namedColor(color)));const sm=norm(sp.material),gm=norm(material),rn=norm(cleanName);const materialMatch=!gm||/^filamento/i.test(material)||sm===gm||sm.startsWith(gm)||gm.startsWith(sm)||sm===rn||rn.startsWith(sm);return colorMatch&&materialMatch;});const available=matches.filter(({sp})=>Number(sp.remaining)>0);const candidates=available.length?available:matches;const unique=candidates.length===1?String(candidates[0].idx):'';let price=Math.max(0,Number(f.price)||20);if(unique!==''){const sp=candidates[0].sp;const initial=Math.max(0,Number(sp.initial)||0);if(initial>0)price=Math.max(0,Number(sp.price)||0)*1000/initial;}const row=addFilament(cleanName+' · '+namedColor(color),Math.max(0,Number(f.grams)||0),price,color,unique);row.querySelector('.fname').value=unique!==''?[candidates[0].sp.brand,candidates[0].sp.material,candidates[0].sp.colorName||candidates[0].sp.color].filter(Boolean).join(' · '):cleanName+' · '+namedColor(color);row.querySelector('.fcolor').value=color.toLowerCase();row.querySelector('.f-color-name').textContent=namedColor(color);row.querySelector('.f-color-hex').textContent=color.toUpperCase();if(unique===''){row.dataset.spoolIndex='';row.querySelector('.f-spool').value='';row.querySelector('.fprice').value=Number(price).toFixed(2);} });parsedFilament=true;}else{addFilament('Filamento (sin peso detectado)',0,20);parsedFilament=false;}
+  if(data.filaments.length){data.filaments.forEach(f=>{let rawName=String(f.name||f.material||'Filamento').trim();const m=rawName.match(/#?([0-9a-f]{6}(?:[0-9a-f]{2})?)\b/i);const hex=(f.color||f.hex||f.colorHex||(m?'#'+m[1].toUpperCase():''));const cleanName=rawName.replace(/\s*[·|,/:-]?\s*#?[0-9a-f]{6}(?:[0-9a-f]{2})?\b/ig,'').trim()||'Filamento genérico';const parsedHex=window.PCPColorUtils?.parseHex(hex);const color=parsedHex?.rgb||guessedColor(rawName);const material=String(f.material||cleanName.replace(/\s*[·|,/:-]?\s*(negro|black|rojo|red|blanco|white|azul|blue|verde|green|amarillo|yellow|rosa|pink|gris|gray|grey|naranja|orange|morado|purple)\s*$/i,'').trim()||cleanName);const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9+]/g,'');const normHex=v=>{const p=window.PCPColorUtils?.parseHex(v);return p?p.rgb:''};const inventory=getSpools();const matches=inventory.map((sp,idx)=>({sp,idx})).filter(({sp})=>{const spoolHex=normHex(sp.hex||sp.colorHex||sp.color||'');const colorMatch=spoolHex===normHex(color)||(!spoolHex&&norm(sp.colorName||sp.color)===norm(namedColor(color)));const sm=norm(sp.material),gm=norm(material),rn=norm(cleanName);const materialMatch=!gm||/^filamento/i.test(material)||sm===gm||sm.startsWith(gm)||gm.startsWith(sm)||sm===rn||rn.startsWith(sm);return colorMatch&&materialMatch;});const available=matches.filter(({sp})=>Number(sp.remaining)>0);const candidates=available.length?available:matches;const unique=candidates.length===1?String(candidates[0].idx):'';let price=Math.max(0,Number(f.price)||20);if(unique!==''){const sp=candidates[0].sp;const initial=Math.max(0,Number(sp.initial)||0);if(initial>0)price=Math.max(0,Number(sp.price)||0)*1000/initial;}const row=addFilament(cleanName+' · '+namedColor(color),Math.max(0,Number(f.grams)||0),price,color,unique);row.querySelector('.fname').value=unique!==''?[candidates[0].sp.brand,candidates[0].sp.material,candidates[0].sp.colorName||candidates[0].sp.color].filter(Boolean).join(' · '):cleanName+' · '+namedColor(color);row.querySelector('.fcolor').value=color.toLowerCase();row.querySelector('.f-color-name').textContent=namedColor(color);row.querySelector('.f-color-hex').textContent=color.toUpperCase();if(unique===''){row.dataset.spoolIndex='';row.querySelector('.f-spool').value='';row.querySelector('.fprice').value=Number(price).toFixed(2);} });parsedFilament=true;}else{addFilament('Filamento (sin peso detectado)',0,20);parsedFilament=false;}
   parsedTime=Number(data.hours)>0;
   const totalIntegratedGrams=data.filaments.reduce((a,f)=>a+(Number(f.grams)||0),0);
   const integratedPriceCount=data.filaments.filter(f=>f.price!==null&&f.price!==undefined&&Number.isFinite(Number(f.price))&&Number(f.price)>0).length;
@@ -117,14 +215,14 @@ function loadIntegrationData(){
   const inventory=getSpools();
   const integratedMaterials=data.filaments.map(f=>{
     const raw=String(f.name||f.material||'Material no indicado').trim();
-    const match=raw.match(/#?([0-9a-f]{6})\b/i);
-    const material=String(f.material||raw.replace(/\s*[·|,/:-]?\s*#?[0-9a-f]{6}\b/ig,'').trim()||'Material no indicado');
-    const hex=String(f.color||f.hex||f.colorHex||(match?'#'+match[1].toUpperCase():'')).toUpperCase();
+    const match=raw.match(/#?([0-9a-f]{6}(?:[0-9a-f]{2})?)\b/i);
+    const material=String(f.material||raw.replace(/\s*[·|,/:-]?\s*#?[0-9a-f]{6}(?:[0-9a-f]{2})?\b/ig,'').trim()||'Material no indicado');
+    const rawHex=String(f.color||f.hex||f.colorHex||(match?'#'+match[1].toUpperCase():'')).toUpperCase();const hex=window.PCPColorUtils?.parseHex(rawHex)?.rgb||'';
     const brand=String(f.brand||'').trim();
     const profile=String(f.profile||'').trim();
     const colorName=namedColor(/^#[0-9a-f]{6}$/i.test(hex)?hex:(match?'#'+match[1]:'#808080'));
     const expected=Math.max(0,Number(f.grams)||0);
-    const hexDistance=(a,b)=>{if(!/^#[0-9a-f]{6}$/i.test(a||'')||!/^#[0-9a-f]{6}$/i.test(b||''))return Infinity;const x=a.slice(1),y=b.slice(1);return Math.sqrt([0,2,4].reduce((sum,p)=>sum+Math.pow(parseInt(x.slice(p,p+2),16)-parseInt(y.slice(p,p+2),16),2),0));};
+    const hexDistance=(a,b)=>{const x=window.PCPColorUtils?.parseHex(a)?.rgb,y=window.PCPColorUtils?.parseHex(b)?.rgb;if(!x||!y)return Infinity;return Math.sqrt([1,3,5].reduce((sum,p)=>sum+Math.pow(parseInt(x.slice(p,p+2),16)-parseInt(y.slice(p,p+2),16),2),0));};
     const candidates=inventory.map((s,i)=>({s,i,distance:hexDistance(hex,String(s.hex||'').toUpperCase())})).filter(({s,distance})=>{
       const materialMatch=normalizeInventoryText(s.material)===normalizeInventoryText(material);
       const brandMatch=!brand||!normalizeInventoryText(s.brand)||normalizeInventoryText(s.brand)===normalizeInventoryText(brand);
@@ -137,9 +235,10 @@ function loadIntegrationData(){
     }else{
       const stock=Math.max(0,Number(chosen.s.remaining)||0);
       const after=stock-expected;
-      inventoryText=after>=0
+      const inventoryHex=window.PCPColorUtils?.parseHex(chosen.s.hex||chosen.s.colorHex||chosen.s.color||'')?.rgb||hex;const inventoryColor=String(chosen.s.colorName||chosen.s.color||namedColor(inventoryHex)).trim();const colorCheck=chosen.distance>0?` <span class="warn">${window.PCP_I18N?.format('Color de inventario aproximado: {color} (HEX {hex}); revisa la bobina.',{color:escapeHtml(inventoryColor),hex:escapeHtml(inventoryHex||'sin HEX')})||`Color de inventario aproximado: ${escapeHtml(inventoryColor)} (HEX ${escapeHtml(inventoryHex||'sin HEX')}); revisa la bobina.`}</span>`:'';
+      inventoryText=(after>=0
         ?`${window.PCP_I18N?.format('Inventario: hay {stock} g · gastaría {used} g · quedarían {left} g.',{stock:stock.toFixed(2),used:expected.toFixed(2),left:after.toFixed(2)})||`Inventario: hay ${stock.toFixed(2)} g · gastaría ${expected.toFixed(2)} g · quedarían ${after.toFixed(2)} g.`}`
-        :`<span class="warn">⚠ Stock insuficiente: hay ${stock.toFixed(2)} g y se necesitan ${expected.toFixed(2)} g; faltarían ${Math.abs(after).toFixed(2)} g. No llegaría con esta bobina.</span>`;
+        :`<span class="warn">⚠ Stock insuficiente: hay ${stock.toFixed(2)} g y se necesitan ${expected.toFixed(2)} g; faltarían ${Math.abs(after).toFixed(2)} g. No llegaría con esta bobina.</span>`)+colorCheck;
     }
     return `${escapeHtml(brand||'Marca no identificada')} · ${escapeHtml(material)} · ${escapeHtml(colorName)} (${escapeHtml(hex||'HEX no indicado')}) · ${expected.toFixed(2)} g${profile?' · perfil: '+escapeHtml(profile):''}<br><span>${inventoryText}</span>`;
   });
