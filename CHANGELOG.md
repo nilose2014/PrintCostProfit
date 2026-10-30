@@ -1,8 +1,7 @@
-## v1.3
-- El instalador transmite a la aplicación el idioma elegido durante la instalación (español, inglés, francés, alemán, italiano o polaco).
-- En el primer inicio, la aplicación aplica ese idioma si todavía no existe una preferencia guardada; no sobrescribe el idioma que el usuario haya elegido previamente.
-- El servidor local incorpora un endpoint para consultar el idioma inicial del instalador.
-- Se mantiene la preferencia de idioma en el navegador y se respeta cualquier cambio posterior desde el selector de la aplicación.
+## v1.1 — revisión del instalador de Windows
+- Se mantiene la versión pública 1.1; esta compilación sustituye el instalador anterior sin crear una versión 1.2 o 1.3.
+- El instalador conserva GNU GPL v3, los seis idiomas y el guardado del idioma elegido para el primer inicio.
+- Se incluye el comprobador de publicaciones y se mantiene la conservación de datos locales durante la desinstalación.
 
 ## v1.2
 - Añadido comprobador de nuevas versiones: consulta las publicaciones oficiales de GitHub al iniciar la aplicación y cada seis horas.
