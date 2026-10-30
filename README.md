@@ -7,6 +7,18 @@ Desarrollado por Beatriz Toro Martin.
 
 # Print Cost & Profit v1.1
 
+## Download for Windows
+
+**Recommended: download the Windows installer directly.**
+
+[Download PrintCostProfit-Setup-1.1.exe](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.1/PrintCostProfit-Setup-1.1.exe)
+
+Run the downloaded EXE and follow the installation steps. The installer includes the components needed to run the application; Python does not need to be installed separately.
+
+If you prefer the source package, continue with the ZIP instructions below.
+
+
+
 ## Cost calculator, production and management for 3D printing
 
 Print Cost & Profit is an application designed to help 3D printing users estimate manufacturing costs, monitor filament consumption, manage materials, and organise the business activity related to their prints.
@@ -25,7 +37,7 @@ The screenshots below show several areas of Print Cost & Profit. Available funct
 
 **Author:** Beatriz Toro Martin &#x20;
 
-**Published version:** v1.0 &#x20;
+**Published version:** v1.1 &#x20;
 
 **Reference operating systems:** Windows 10 and Windows 11 &#x20;
 
@@ -483,6 +495,18 @@ Print Cost & Profit is licensed under the GNU General Public License v3.0 (GPL-3
 
 ****# Print Cost & Profit v1.1
 
+## Descargar para Windows
+
+**Recomendado: descarga directamente el instalador de Windows.**
+
+[Descargar PrintCostProfit-Setup-1.1.exe](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.1/PrintCostProfit-Setup-1.1.exe)
+
+Ejecuta el EXE descargado y sigue los pasos de instalación. El instalador incluye los componentes necesarios para utilizar la aplicación; no necesitas instalar Python por separado.
+
+Si prefieres el paquete con los archivos del proyecto, puedes seguir las instrucciones del ZIP que aparecen a continuación.
+
+
+
 ## Calculadora de costes, producción y gestión para impresión 3D
 
 Print Cost & Profit es una aplicación diseñada para ayudar a los usuarios de impresión 3D a calcular los costes reales de fabricación, controlar el consumo de filamento, gestionar materiales y organizar la actividad comercial relacionada con sus impresiones.
@@ -501,7 +525,7 @@ A continuación se muestran algunas pantallas de Print Cost & Profit. Las imáge
 
 **Autoría:** Beatriz Toro Martin &#x20;
 
-**Versión publicada:** v1.0 &#x20;
+**Versión publicada:** v1.1 &#x20;
 
 **Sistema operativo de referencia:** Windows 10 y Windows 11 &#x20;
 
