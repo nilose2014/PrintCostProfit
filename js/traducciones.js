@@ -10286,3 +10286,18 @@ if(window.PCP_I18N){if(typeof window.PCP_I18N.completePolish==='function')window
 'G-code del monitor enviado a la calculadora.':['Monitor G-code sent to the calculator.','G-code du moniteur envoyé au calculateur.','Monitor-G-Code an den Rechner gesendet.','G-code del monitor inviato al calcolo.','G-code monitora wysłany do kalkulatora.'],
 'No hay un G-code activo con filamentos para enviar a la calculadora.':['There is no active G-code with filaments to send to the calculator.','Aucun G-code actif contenant des filaments à envoyer au calculateur.','Es gibt keinen aktiven G-Code mit Filamenten zum Senden an den Rechner.','Non c’è un G-code attivo con filamenti da inviare al calcolo.','Brak aktywnego G-code z filamentami do wysłania do kalkulatora.'],
 'La calculadora todavía no está preparada para recibir los datos.':['The calculator is not ready to receive the data yet.','Le calculateur n’est pas encore prêt à recevoir les données.','Der Rechner ist noch nicht bereit, die Daten zu empfangen.','Il calcolo non è ancora pronto a ricevere i dati.','Kalkulator nie jest jeszcze gotowy na przyjęcie danych.']};for(const [k,v] of Object.entries(entries))d[k]=v;if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();})();
+
+
+// v1.2 — avisos de nuevas versiones (ES, EN, FR, DE, IT, PL).
+;(function(){
+  const d=window.PCP_I18N&&window.PCP_I18N.dictionary;
+  if(!d)return;
+  const entries={
+    'Hay una nueva versión de Print Cost & Profit disponible':['A new version of Print Cost & Profit is available','Une nouvelle version de Print Cost & Profit est disponible','Eine neue Version von Print Cost & Profit ist verfügbar','È disponibile una nuova versione di Print Cost & Profit','Dostępna jest nowa wersja Print Cost & Profit'],
+    'Versión instalada: {installed} · Nueva versión: {latest}. Antes de actualizar, crea una copia de seguridad de tus datos.':['Installed version: {installed} · New version: {latest}. Back up your data before updating.','Version installée : {installed} · Nouvelle version : {latest}. Sauvegardez vos données avant la mise à jour.','Installierte Version: {installed} · Neue Version: {latest}. Sichern Sie Ihre Daten vor dem Update.','Versione installata: {installed} · Nuova versione: {latest}. Esegui un backup dei dati prima di aggiornare.','Zainstalowana wersja: {installed} · Nowa wersja: {latest}. Przed aktualizacją wykonaj kopię zapasową danych.'],
+    'Ver actualización y descargar':['View update and download','Voir la mise à jour et télécharger','Update ansehen und herunterladen','Visualizza aggiornamento e scarica','Zobacz aktualizację i pobierz'],
+    'Recordármelo más tarde':['Remind me later','Me le rappeler plus tard','Später erinnern','Ricordamelo più tardi','Przypomnij mi później']
+  };
+  for(const [k,v] of Object.entries(entries))d[k]=v;
+  if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();
+})();
