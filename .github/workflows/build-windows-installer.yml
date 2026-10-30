@@ -1,0 +1,45 @@
+name: Crear instalador Windows Print Cost & Profit
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build-installer:
+    runs-on: windows-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+      - name: Configurar Python de compilacion
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias de compilacion
+        run: |
+          python -m pip install --upgrade pip pyinstaller pillow
+      - name: Compilar servicio SQLite
+        run: python -m PyInstaller --clean --onefile --name pcp_sqlite_api pcp_sqlite_api.py
+      - name: Crear icono de Windows
+        run: python installer/create_icon.py
+      - name: Instalar Inno Setup
+        shell: pwsh
+        run: choco install innosetup --yes --no-progress
+      - name: Compilar instalador
+        shell: pwsh
+        run: |
+          $compiler = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (!(Test-Path $compiler)) { throw "No se encuentra Inno Setup: $compiler" }
+          if (!(Test-Path "dist\pcp_sqlite_api.exe")) { throw "No se ha generado pcp_sqlite_api.exe" }
+          & $compiler "installer\PrintCostProfit.iss"
+          if ($LASTEXITCODE -ne 0) { throw "ISCC ha terminado con codigo $LASTEXITCODE" }
+      - name: Publicar instalador
+        uses: actions/upload-artifact@v4
+        with:
+          name: PrintCostProfit-Windows-Installer-v1.1
+          path: dist-installer/PrintCostProfit-Setup-1.1.exe
+          if-no-files-found: error
