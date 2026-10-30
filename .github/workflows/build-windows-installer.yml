@@ -30,6 +30,10 @@ jobs:
       - name: Instalar Inno Setup
         shell: pwsh
         run: choco install innosetup --yes --no-progress
+      - name: Leer version de la aplicacion
+        id: app_version
+        shell: pwsh
+        run: echo "version=$((Get-Content VERSION -Raw).Trim())" >> $env:GITHUB_OUTPUT
       - name: Compilar instalador
         shell: pwsh
         run: |
@@ -45,9 +49,13 @@ jobs:
           name: PrintCostProfit-Windows-Installer-v1.2
           path: dist-installer/PrintCostProfit-Setup-1.2.exe
           if-no-files-found: error
-      - name: Crear Release y adjuntar instalador al publicar una etiqueta
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Crear Release y adjuntar instalador en ejecucion manual o etiqueta
+        if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.app_version.outputs.version }}
+          target_commitish: main
+          name: Print Cost & Profit v${{ steps.app_version.outputs.version }}
           generate_release_notes: true
+          overwrite_files: true
           files: dist-installer/PrintCostProfit-Setup-1.2.exe
