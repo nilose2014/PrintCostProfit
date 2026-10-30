@@ -1,3 +1,9 @@
+## v1.2
+- Añadido comprobador de nuevas versiones: consulta las publicaciones oficiales de GitHub al iniciar la aplicación y cada seis horas.
+- Muestra un aviso con la versión instalada y la nueva, y permite abrir la página oficial de descarga.
+- La comprobación no instala ni reemplaza archivos automáticamente; recomienda crear una copia de seguridad antes de actualizar.
+- Añadidas traducciones del aviso en español, inglés, francés, alemán, italiano y polaco.
+
 ## v1.1
 - Se ha comprobado el G-code `Cubo_PETG_1h33m.gcode`: contiene dos miniaturas PNG incrustadas (96×96 y 300×300); se selecciona la de mayor resolución.
 - La integración PowerShell valida la firma real de la imagen PNG/JPEG/WebP antes de crear el dato Base64 y registra cuántos bloques encontró y cuál seleccionó.
