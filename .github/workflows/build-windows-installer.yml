@@ -53,9 +53,10 @@ jobs:
         if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.app_version.outputs.version }}
+          tag_name: v1.1
           target_commitish: main
-          name: Print Cost & Profit v${{ steps.app_version.outputs.version }}
-          generate_release_notes: true
+          name: Print Cost & Profit v1.1 (instalador actualizado)
+          generate_release_notes: false
+          body: Instalador de Windows actualizado para Print Cost & Profit v1.1. Sustituye el instalador anterior; la versión pública de la aplicación sigue siendo v1.1.
           overwrite_files: true
           files: dist-installer/PrintCostProfit-Setup-*.exe
