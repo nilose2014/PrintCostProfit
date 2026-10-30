@@ -219,6 +219,18 @@ while ($Listener.IsListening) {
         $ctx.Response.StatusCode = [int]$result.__status
       } catch { $json = @{ok=$false;error=$_.Exception.Message}|ConvertTo-Json -Compress; $ctx.Response.StatusCode=500 }
       $bytes = [Text.Encoding]::UTF8.GetBytes($json); $ctx.Response.ContentType = 'application/json; charset=utf-8'; $ctx.Response.Headers.Add('Cache-Control','no-store')
+    } elseif ($reqPath -eq '/api/installer-language') {
+      $installerLanguage = 'es'
+      $languageFile = Join-Path $Root 'pcp-installer-language.txt'
+      if (Test-Path -LiteralPath $languageFile -PathType Leaf) {
+        $candidate = (Get-Content -LiteralPath $languageFile -Raw -ErrorAction SilentlyContinue).Trim().ToLowerInvariant()
+        if ($candidate -in @('es','en','fr','de','it','pl')) { $installerLanguage = $candidate }
+      }
+      $json = @{ ok = $true; language = $installerLanguage } | ConvertTo-Json -Compress
+      $bytes = [Text.Encoding]::UTF8.GetBytes($json)
+      $ctx.Response.StatusCode = 200
+      $ctx.Response.ContentType = 'application/json; charset=utf-8'
+      $ctx.Response.Headers.Add('Cache-Control','no-store')
     } elseif ($reqPath -eq '/api/version') {
       $json = @{ ok = $true; version = $AppVersion; build = ('v' + $AppVersion) } | ConvertTo-Json -Compress
       $bytes = [Text.Encoding]::UTF8.GetBytes($json)
