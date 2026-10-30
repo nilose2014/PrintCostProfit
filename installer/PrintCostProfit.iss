@@ -47,6 +47,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "startmenuicon"; Description: "Crear acceso directo en el menú Inicio"; GroupDescription: "{cm:AdditionalIcons}"; Flags: checkedonce
 
 [Files]
+Source: "print-cost-profit.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\pcp_sqlite_api.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: ".git\*,.github\*,installer\*,dist\*,dist-installer\*,build\*,__pycache__\*,*.pyc,*.log,*.db,*.db-wal,*.db-shm"
 
 [Icons]
