@@ -3,11 +3,13 @@ name: Crear instalador Windows Print Cost & Profit
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     tags:
       - "v*"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-installer:
@@ -20,8 +22,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Instalar dependencias de compilacion
-        run: |
-          python -m pip install --upgrade pip pyinstaller pillow
+        run: python -m pip install --upgrade pip pyinstaller pillow
       - name: Compilar servicio SQLite
         run: python -m PyInstaller --clean --onefile --name pcp_sqlite_api pcp_sqlite_api.py
       - name: Crear icono de Windows
@@ -37,9 +38,16 @@ jobs:
           if (!(Test-Path "dist\pcp_sqlite_api.exe")) { throw "No se ha generado pcp_sqlite_api.exe" }
           & $compiler "installer\PrintCostProfit.iss"
           if ($LASTEXITCODE -ne 0) { throw "ISCC ha terminado con codigo $LASTEXITCODE" }
-      - name: Publicar instalador
+      - name: Publicar artefacto de compilacion manual
+        if: github.event_name == 'workflow_dispatch'
         uses: actions/upload-artifact@v4
         with:
-          name: PrintCostProfit-Windows-Installer-v1.1
-          path: dist-installer/PrintCostProfit-Setup-1.1.exe
+          name: PrintCostProfit-Windows-Installer-v1.2
+          path: dist-installer/PrintCostProfit-Setup-1.2.exe
           if-no-files-found: error
+      - name: Crear Release y adjuntar instalador al publicar una etiqueta
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: dist-installer/PrintCostProfit-Setup-1.2.exe
