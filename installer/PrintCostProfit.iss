@@ -16,7 +16,6 @@ DefaultDirName={autopf}\Print Cost & Profit
 DefaultGroupName=Print Cost & Profit
 DisableProgramGroupPage=yes
 LicenseFile=..\LICENSE
-LicenseForceCheckbox=no
 SetupIconFile=print-cost-profit.ico
 UninstallDisplayIcon={app}\print-cost-profit.ico
 OutputDir=..\dist-installer
