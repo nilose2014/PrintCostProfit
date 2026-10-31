@@ -4,22 +4,22 @@ Choose the package for your operating system:
 
 ### Windows 10 / 11 — stable version v1.2
 
-- **[Download the Windows installer v1.2](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip)**.
+- [**Download the Windows installer v1.2**](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip).
 - Extract the ZIP file and run `PrintCostProfit-Setup-1.2.exe`.
-- Follow the installer steps. After installation, start Print Cost & Profit from the shortcut created by the installer.
-- The installer includes the components required for local SQLite storage; Python does not need to be installed manually.
+- Follow the installer steps. After installation, start Print Cost & Profit from the shortcut created.
+- The installer includes the components required for local SQLite storage; you do not need to install Python manually.
 
-**Windows source repository:** [PrintCostProfit — main](https://github.com/nilose2014/PrintCostProfit). To install from the source package instead, open **Code → Download ZIP**, extract all files into a permanent folder, and run `Integracion_Orca_Postprocesado.bat`.
+**Windows repository:** [PrintCostProfit — main branch](https://github.com/nilose2014/PrintCostProfit). To install from the source code instead, open **Code → Download ZIP**, extract all files into a permanent folder, and run `Integracion_Orca_Postprocesado.bat`.
 
-### Linux / Ubuntu — experimental preview 0.1
+### Linux / Ubuntu — experimental Preview 0.1
 
-- **[Download PrintCostProfit-Linux-inicial.zip](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-preview-0.1/PrintCostProfit-Linux-inicial.zip)**.
+- [**Download PrintCostProfit-Linux-inicial.zip**](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-preview-0.1/PrintCostProfit-Linux-inicial.zip).
 - Extract the ZIP file.
 - Follow the installation and startup instructions included in the Linux package.
 
-**Linux repository / preview:** [PrintCostProfit — Linux preview 0.1](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1).
+**Linux repository / version:** [PrintCostProfit — Linux Preview 0.1](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1).
 
-> **Linux notice:** this is an experimental preview, not equivalent to the stable Windows version. Some features are still pending validation, including full Snapmaker U1 monitor adaptation and OrcaSlicer post-processing integration. Keep backups of your data.
+> **Linux notice:** this is an experimental version and is not equivalent to the stable Windows release. Some features are still pending validation, including full adaptation of the Snapmaker U1 monitor and OrcaSlicer post-processing integration. Keep backups of your data.
 
 ---
 
