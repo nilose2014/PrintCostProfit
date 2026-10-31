@@ -11,15 +11,14 @@ Choose the package for your operating system:
 
 **Windows repository:** [PrintCostProfit — main branch](https://github.com/nilose2014/PrintCostProfit). To install from the source code instead, open **Code → Download ZIP**, extract all files into a permanent folder, and run `Integracion_Orca_Postprocesado.bat`.
 
-### Linux / Ubuntu — experimental Preview 0.1
+### Linux / Ubuntu — versión estable
 
-- [**Download PrintCostProfit-Linux-inicial.zip**](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-preview-0.1/PrintCostProfit-Linux-inicial.zip).
-- Extract the ZIP file.
-- Follow the installation and startup instructions included in the Linux package.
+- **[Descargar la versión estable de Linux](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1)**.
+- Extrae el archivo ZIP descargado.
+- Sigue las instrucciones de instalación y arranque incluidas en el paquete.
 
-**Linux repository / version:** [PrintCostProfit — Linux Preview 0.1](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1).
+**Repositorio / versión de Linux:** [PrintCostProfit — Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux).
 
-> **Linux notice:** this is an experimental version and is not equivalent to the stable Windows release. Some features are still pending validation, including full adaptation of the Snapmaker U1 monitor and OrcaSlicer post-processing integration. Keep backups of your data.
 
 ---
 
