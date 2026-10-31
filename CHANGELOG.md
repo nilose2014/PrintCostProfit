@@ -5,7 +5,7 @@
 - Al abrir la aplicación, se vuelve a aplicar al puente local la IP de la impresora seleccionada y guardada antes de consultar su estado.
 - La comprobación de conexión se realiza después de sincronizar la configuración, evitando mostrar como desconectada una impresora online por conservar el puente una IP anterior.
 - Se mantiene la selección y la IP guardada cuando la impresora está realmente offline; no se fuerza una búsqueda de red ni se cambia de impresora.
-- Cambio probado en el PC del usuario.
+
 
 ### Cambios del 30 de octubre: monitor U1, miniaturas y SQLite
 
