@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 $Root = $PSScriptRoot
 $ConfigPath = Join-Path $Root 'u1-printer-config.json'
 $StorageDir = Join-Path $env:LOCALAPPDATA 'PrintCostProfit_SQLite_v1.249\data'
@@ -219,18 +219,6 @@ while ($Listener.IsListening) {
         $ctx.Response.StatusCode = [int]$result.__status
       } catch { $json = @{ok=$false;error=$_.Exception.Message}|ConvertTo-Json -Compress; $ctx.Response.StatusCode=500 }
       $bytes = [Text.Encoding]::UTF8.GetBytes($json); $ctx.Response.ContentType = 'application/json; charset=utf-8'; $ctx.Response.Headers.Add('Cache-Control','no-store')
-    } elseif ($reqPath -eq '/api/installer-language') {
-      $installerLanguage = 'es'
-      $languageFile = Join-Path $Root 'pcp-installer-language.txt'
-      if (Test-Path -LiteralPath $languageFile -PathType Leaf) {
-        $candidate = (Get-Content -LiteralPath $languageFile -Raw -ErrorAction SilentlyContinue).Trim().ToLowerInvariant()
-        if ($candidate -in @('es','en','fr','de','it','pl')) { $installerLanguage = $candidate }
-      }
-      $json = @{ ok = $true; language = $installerLanguage } | ConvertTo-Json -Compress
-      $bytes = [Text.Encoding]::UTF8.GetBytes($json)
-      $ctx.Response.StatusCode = 200
-      $ctx.Response.ContentType = 'application/json; charset=utf-8'
-      $ctx.Response.Headers.Add('Cache-Control','no-store')
     } elseif ($reqPath -eq '/api/version') {
       $json = @{ ok = $true; version = $AppVersion; build = ('v' + $AppVersion) } | ConvertTo-Json -Compress
       $bytes = [Text.Encoding]::UTF8.GetBytes($json)
@@ -241,7 +229,8 @@ while ($Listener.IsListening) {
       try {
         $ip = [string]$ctx.Request.QueryString['ip']
         if ($ip -notmatch '^(?:(?:25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|1?\d?\d)$') { throw 'Dirección IPv4 no válida.' }
-        $test = Invoke-RestMethod -Uri "http://$ip`:7125/printer/info" -Method Get -TimeoutSec 3
+        # La IP se puede guardar aunque la impresora esté apagada o temporalmente
+        # fuera de línea. La disponibilidad se informa por separado en /api/u1/printer.
         @{ ip = $ip; ok = $true } | ConvertTo-Json | Set-Content -LiteralPath $ConfigPath -Encoding UTF8
         $Printer = "http://$ip`:7125"
         # Cambiar de impresora invalida el estado anterior y cualquier consulta en curso.
@@ -249,7 +238,9 @@ while ($Listener.IsListening) {
         $U1StatusJob = $null
         $U1StatusLastLaunch = [DateTime]::MinValue
         Remove-Item -LiteralPath $U1StatusCachePath -Force -ErrorAction SilentlyContinue
-        $json = @{ ok = $true; ip = $ip; message = 'IP comprobada y guardada para el puente.' } | ConvertTo-Json -Compress
+        $isOnline = $false; $offlineError = ''
+        try { $test = Invoke-RestMethod -Uri "http://$ip`:7125/printer/info" -Method Get -TimeoutSec 2; $isOnline = [bool]$test.result } catch { $offlineError = $_.Exception.Message }
+        $json = @{ ok = $true; ip = $ip; online = $isOnline; printerOffline = (-not $isOnline); error = $offlineError; message = $(if($isOnline){'IP comprobada y guardada para el puente.'}else{'IP guardada. La impresora está fuera de línea.'}) } | ConvertTo-Json -Compress
         $ctx.Response.StatusCode = 200
       } catch {
         $json = @{ ok = $false; error = ('No se pudo validar la impresora en esa IP: ' + $_.Exception.Message) } | ConvertTo-Json -Compress
@@ -292,13 +283,18 @@ while ($Listener.IsListening) {
         foreach ($candidateIp in ($openIps | Select-Object -Unique)) {
           try {
             $info = Invoke-RestMethod -Uri "http://$candidateIp`:7125/printer/info" -Method Get -TimeoutSec 2
-            if ($info.result) { $printers += [pscustomobject]@{ ip=$candidateIp; hostname=$info.result.hostname; softwareVersion=$info.result.software_version; state='ready' } }
+            if ($info.result) { $printers += [pscustomobject]@{ ip=$candidateIp; hostname=$info.result.hostname; softwareVersion=$info.result.software_version; state='ready'; online=$true } }
           } catch {}
         }
         $currentIp = ($Printer -replace '^http://','' -replace ':7125/?$','')
         # Conserva siempre la impresora ya configurada si responde, aunque la exploración de red no la haya enumerado.
         if ($currentIp -match '^(?:(?:25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|1?\d?\d)$' -and -not (@($printers | Where-Object { $_.ip -eq $currentIp }).Count)) {
-          try { $curInfo = Invoke-RestMethod -Uri "http://$currentIp`:7125/printer/info" -Method Get -TimeoutSec 3; if ($curInfo.result) { $printers += [pscustomobject]@{ ip=$currentIp; hostname=$curInfo.result.hostname; softwareVersion=$curInfo.result.software_version; state='ready' } } } catch {}
+          try {
+            $curInfo = Invoke-RestMethod -Uri "http://$currentIp`:7125/printer/info" -Method Get -TimeoutSec 2
+            if ($curInfo.result) { $printers += [pscustomobject]@{ ip=$currentIp; hostname=$curInfo.result.hostname; softwareVersion=$curInfo.result.software_version; state='ready'; online=$true } }
+          } catch {
+            $printers += [pscustomobject]@{ ip=$currentIp; hostname=''; softwareVersion=''; state='offline'; online=$false }
+          }
         }
         if ($printers.Count -eq 1) {
           $chosen = $printers[0].ip
@@ -320,16 +316,15 @@ while ($Listener.IsListening) {
       $ctx.Response.ContentType = 'application/json; charset=utf-8'
       $ctx.Response.Headers.Add('Cache-Control','no-store')
     } elseif ($reqPath -eq '/api/u1/printer') {
+      $ip = ($Printer -replace '^http://','' -replace ':7125/?$','')
       try {
-        $ip = ($Printer -replace '^http://','' -replace ':7125/?$','')
         $info = Invoke-RestMethod -Uri "$Printer/printer/info" -Method Get -TimeoutSec 2
         $state = Invoke-RestMethod -Uri "$Printer/printer/objects/query?print_stats&webhooks" -Method Get -TimeoutSec 2
-        $json = @{ ok = $true; ip = $ip; baseUrl = $Printer; name = $info.result.hostname; softwareVersion = $info.result.software_version; state = $state.result.status.print_stats.state; filename = $state.result.status.print_stats.filename; message = 'Impresora conectada y verificada.' } | ConvertTo-Json -Depth 8 -Compress
-        $ctx.Response.StatusCode = 200
+        $json = @{ ok = $true; online=$true; printerOffline=$false; ip = $ip; baseUrl = $Printer; name = $info.result.hostname; softwareVersion = $info.result.software_version; state = $state.result.status.print_stats.state; filename = $state.result.status.print_stats.filename; message = 'Impresora conectada y verificada.' } | ConvertTo-Json -Depth 8 -Compress
       } catch {
-        $json = @{ ok = $false; ip = $ip; error = $_.Exception.Message; message = 'No se ha podido verificar la impresora configurada.' } | ConvertTo-Json -Compress
-        $ctx.Response.StatusCode = 502
+        $json = @{ ok = $true; online=$false; printerOffline=$true; ip = $ip; error = $_.Exception.Message; message = 'La impresora configurada está fuera de línea. La IP se conserva.' } | ConvertTo-Json -Compress
       }
+      $ctx.Response.StatusCode = 200
       $bytes = [Text.Encoding]::UTF8.GetBytes($json)
       $ctx.Response.ContentType = 'application/json; charset=utf-8'
       $ctx.Response.Headers.Add('Cache-Control','no-store')
@@ -446,12 +441,12 @@ while ($Listener.IsListening) {
           } else {
             $cacheError = [string]$cachedPayload.error
             if ([string]::IsNullOrWhiteSpace($cacheError)) { $cacheError = 'La impresora no ha devuelto un estado válido.' }
-            $json = @{ ok=$false; error=$cacheError; cached=$true; updatedAt=$cachedPayload.updatedAt } | ConvertTo-Json -Compress
-            $ctx.Response.StatusCode = 502
+            $json = @{ ok=$true; online=$false; printerOffline=$true; error=$cacheError; cached=$true; updatedAt=$cachedPayload.updatedAt } | ConvertTo-Json -Compress
+            $ctx.Response.StatusCode = 200
           }
         } else {
-          $json = @{ ok=$false; error='Esperando la primera respuesta de la Snapmaker U1.'; cached=$true; updatedAt=$null } | ConvertTo-Json -Compress
-          $ctx.Response.StatusCode = 502
+          $json = @{ ok=$true; online=$null; connecting=$true; printerOffline=$false; error='Esperando la primera respuesta de la Snapmaker U1.'; cached=$true; updatedAt=$null } | ConvertTo-Json -Compress
+          $ctx.Response.StatusCode = 200
         }
         $bytes = [Text.Encoding]::UTF8.GetBytes($json)
       } catch {

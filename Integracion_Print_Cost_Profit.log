@@ -1,0 +1,10 @@
+[30/10/2026  7:35:10,72] Lanzador Orca iniciado. G-code=C:\Users\jose\AppData\Local\Temp/crealityprint_model/Thu_Oct_29/21_48_12#184628#662/Metadata\.184628.1.gcode.pp
+[30/10/2026  7:35:10,72] Comprobando/iniciando puente local.
+[2026-10-30 07:35:11] Puente local ya activo; versión informada por /api/version: 1.591. No se inicia otra instancia.
+[2026-10-30 07:35:11] Inicio del postprocesado v1.591 (HTML único; copia integrada temporal generada desde Print_Cost_Profit.html).
+[2026-10-30 07:35:11] G-code detectado: C:\Users\jose\AppData\Local\Temp\crealityprint_model\Thu_Oct_29\21_48_12#184628#662\Metadata\.184628.1.gcode.pp
+[2026-10-30 07:35:12] Miniatura extraída automáticamente del G-code (90000 píxeles aprox.).
+[2026-10-30 07:35:12] Datos analizados. Archivo=.184628.1.gcode.pp; Tiempo=1h 33m 7s; horas=1.55194444444444; gramos=52.22; materiales=1; miniatura=True; precios/kg=20; archivo integrado=C:\PrintCostProfit112\print_cost_profit_build\Print_Cost_Profit_Integrado.html
+[2026-10-30 07:35:12] Solicitud de apertura enviada al navegador predeterminado mediante el puente local: http://127.0.0.1:8700/
+[2026-10-30 07:35:12] Fin del postprocesado sin errores.
+[30/10/2026  7:35:15,77] Postprocesado completado correctamente. No se abre otra ventana del navegador desde el postprocesado.

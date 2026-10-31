@@ -1,4 +1,4 @@
-# Print Cost & Profit v1.1
+# Print Cost & Profit v1.2
 
 ## Cost calculator, production and management for 3D printing
 
@@ -18,7 +18,7 @@ The screenshots below show several areas of Print Cost & Profit. Available funct
 
 **Author:** Beatriz Toro Martin &#x20;
 
-**Published version:** v1.0 &#x20;
+**Published version:** v1.2 &#x20;
 
 **Reference operating systems:** Windows 10 and Windows 11 &#x20;
 
@@ -458,7 +458,7 @@ Do not include passwords, private keys, or unnecessary personal information.
 
 ---
 
-**Print Cost & Profit v1.1** &#x20;
+**Print Cost & Profit v1.2** &#x20;
 
 Developed by Beatriz Toro Martin.
 

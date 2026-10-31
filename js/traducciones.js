@@ -1,7 +1,15 @@
-/* v1.529 — Auditoría de cobertura y corrección de traducciones polacas mixtas. */
+﻿/* v1.595 — Restauración automática de la impresora seleccionada al iniciar. */
 
 (()=>{
 const D={
+  "Cambios pendientes de guardar…": ["Changes waiting to be saved…", "Modifications en attente d’enregistrement…", "Änderungen warten auf das Speichern…", "Modifiche in attesa di salvataggio…", "Zmiany oczekujące na zapisanie…"],
+  "Comprobando conexión con la impresora…": ["Checking printer connection…", "Vérification de la connexion à l’imprimante…", "Druckerverbindung wird geprüft…", "Verifica della connessione alla stampante…", "Sprawdzanie połączenia z drukarką…"],
+  "Impresora encontrada pero está sin conexión: {ip}. Se conserva en la lista.": ["Printer found but offline: {ip}. It remains in the list.", "Imprimante trouvée mais hors ligne : {ip}. Elle reste dans la liste.", "Drucker gefunden, aber offline: {ip}. Er bleibt in der Liste.", "Stampante trovata ma offline: {ip}. Rimane nell’elenco.", "Znaleziono drukarkę, ale jest offline: {ip}. Pozostaje na liście."],
+  "SIN CONEXIÓN": ["OFFLINE", "HORS LIGNE", "OFFLINE", "OFFLINE", "OFFLINE"],
+  "Impresora sin conexión": ["Printer offline", "Imprimante hors ligne", "Drucker offline", "Stampante offline", "Drukarka offline"],
+  "La impresora está apagada o no responde. Se conserva su configuración.": ["The printer is powered off or not responding. Its configuration has been retained.", "L’imprimante est éteinte ou ne répond pas. Sa configuration a été conservée.", "Der Drucker ist ausgeschaltet oder antwortet nicht. Seine Konfiguration wurde beibehalten.", "La stampante è spenta o non risponde. La sua configurazione è stata conservata.", "Drukarka jest wyłączona lub nie odpowiada. Jej konfiguracja została zachowana."],
+  "Impresora seleccionada, pero está sin conexión: {ip}. La configuración se ha conservado.": ["Printer selected but offline: {ip}. The configuration has been retained.", "Imprimante sélectionnée mais hors ligne : {ip}. La configuration a été conservée.", "Drucker ausgewählt, aber offline: {ip}. Die Konfiguration wurde beibehalten.", "Stampante selezionata ma offline: {ip}. La configurazione è stata conservata.", "Wybrano drukarkę, ale jest offline: {ip}. Konfiguracja została zachowana."],
+  "IMPRESORA SIN CONEXIÓN · {ip}. Se conserva seleccionada y aparecerá conectada cuando vuelva a responder.": ["PRINTER OFFLINE · {ip}. It remains selected and will show as connected when it responds again.", "IMPRIMANTE HORS LIGNE · {ip}. Elle reste sélectionnée et apparaîtra connectée dès qu’elle répondra.", "DRUCKER OFFLINE · {ip}. Er bleibt ausgewählt und wird als verbunden angezeigt, sobald er wieder antwortet.", "STAMPANTE OFFLINE · {ip}. Rimane selezionata e apparirà connessa quando tornerà a rispondere.", "DRUKARKA OFFLINE · {ip}. Pozostaje wybrana i będzie widoczna jako połączona, gdy znów zacznie odpowiadać."],
   "Hay una sesión activa, pero no se pudo verificar la licencia online. Comprueba la conexión y vuelve a intentarlo.": ["A session is active, but the license could not be verified online. Check your connection and try again.", "Une session est active, mais la licence n’a pas pu être vérifiée en ligne. Vérifiez votre connexion et réessayez.", "Eine Sitzung ist aktiv, aber die Lizenz konnte online nicht geprüft werden. Prüfen Sie die Verbindung und versuchen Sie es erneut.", "È attiva una sessione, ma non è stato possibile verificare la licenza online. Controlla la connessione e riprova.", "Sesja jest aktywna, ale nie można zweryfikować licencji online. Sprawdź połączenie i spróbuj ponownie."],
 
   "Comprobando si hay una sesión activa…": ["Checking for an active session…", "Vérification d’une session active…", "Suche nach einer aktiven Sitzung…", "Verifica di una sessione attiva…", "Sprawdzanie aktywnej sesji…"],
@@ -10270,7 +10278,11 @@ if(window.PCP_I18N){if(typeof window.PCP_I18N.completePolish==='function')window
   'Bobina nueva creada y asignada: {brand} · {color}.':['New spool created and assigned: {brand} · {color}.','Nouvelle bobine créée et affectée : {brand} · {color}.','Neue Spule erstellt und zugeordnet: {brand} · {color}.','Nuova bobina creata e assegnata: {brand} · {color}.','Utworzono i przypisano nową szpulę: {brand} · {color}.'],
   'Bobina creada y asignada al cálculo.':['Spool created and assigned to the calculation.','Bobine créée et affectée au calcul.','Spule erstellt und der Berechnung zugeordnet.','Bobina creata e assegnata al calcolo.','Szpula została utworzona i przypisana do obliczenia.'],
   'Crear y asignar bobina':['Create and assign spool','Créer et affecter la bobine','Spule erstellen und zuordnen','Crea e assegna bobina','Utwórz i przypisz szpulę'],
-  'Cancelar':['Cancel','Annuler','Abbrechen','Annulla','Anuluj']
+  'Hay una nueva versión de Print Cost & Profit disponible':['A new version of Print Cost & Profit is available','Une nouvelle version de Print Cost & Profit est disponible','Eine neue Version von Print Cost & Profit ist verfügbar','È disponibile una nuova versione di Print Cost & Profit','Dostępna jest nowa wersja Print Cost & Profit'],
+'Versión instalada: {installed} · Nueva versión: {latest}. Antes de actualizar, crea una copia de seguridad de tus datos.':['Installed version: {installed} · New version: {latest}. Back up your data before updating.','Version installée : {installed} · Nouvelle version : {latest}. Sauvegardez vos données avant la mise à jour.','Installierte Version: {installed} · Neue Version: {latest}. Sichern Sie Ihre Daten vor dem Update.','Versione installata: {installed} · Nuova versione: {latest}. Esegui un backup dei dati prima di aggiornare.','Zainstalowana wersja: {installed} · Nowa wersja: {latest}. Przed aktualizacją wykonaj kopię zapasową danych.'],
+'Ver actualización y descargar':['View update and download','Voir la mise à jour et télécharger','Update anzeigen und herunterladen','Visualizza aggiornamento e scarica','Zobacz aktualizację i pobierz'],
+'Recordármelo más tarde':['Remind me later','Me le rappeler plus tard','Später erinnern','Ricordamelo più tardi','Przypomnij mi później'],
+'Cancelar':['Cancel','Annuler','Abbrechen','Annulla','Anuluj']
  };
  for(const [k,v] of Object.entries(entries))d[k]=v;
  if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();
@@ -10286,18 +10298,3 @@ if(window.PCP_I18N){if(typeof window.PCP_I18N.completePolish==='function')window
 'G-code del monitor enviado a la calculadora.':['Monitor G-code sent to the calculator.','G-code du moniteur envoyé au calculateur.','Monitor-G-Code an den Rechner gesendet.','G-code del monitor inviato al calcolo.','G-code monitora wysłany do kalkulatora.'],
 'No hay un G-code activo con filamentos para enviar a la calculadora.':['There is no active G-code with filaments to send to the calculator.','Aucun G-code actif contenant des filaments à envoyer au calculateur.','Es gibt keinen aktiven G-Code mit Filamenten zum Senden an den Rechner.','Non c’è un G-code attivo con filamenti da inviare al calcolo.','Brak aktywnego G-code z filamentami do wysłania do kalkulatora.'],
 'La calculadora todavía no está preparada para recibir los datos.':['The calculator is not ready to receive the data yet.','Le calculateur n’est pas encore prêt à recevoir les données.','Der Rechner ist noch nicht bereit, die Daten zu empfangen.','Il calcolo non è ancora pronto a ricevere i dati.','Kalkulator nie jest jeszcze gotowy na przyjęcie danych.']};for(const [k,v] of Object.entries(entries))d[k]=v;if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();})();
-
-
-// v1.2 — avisos de nuevas versiones (ES, EN, FR, DE, IT, PL).
-;(function(){
-  const d=window.PCP_I18N&&window.PCP_I18N.dictionary;
-  if(!d)return;
-  const entries={
-    'Hay una nueva versión de Print Cost & Profit disponible':['A new version of Print Cost & Profit is available','Une nouvelle version de Print Cost & Profit est disponible','Eine neue Version von Print Cost & Profit ist verfügbar','È disponibile una nuova versione di Print Cost & Profit','Dostępna jest nowa wersja Print Cost & Profit'],
-    'Versión instalada: {installed} · Nueva versión: {latest}. Antes de actualizar, crea una copia de seguridad de tus datos.':['Installed version: {installed} · New version: {latest}. Back up your data before updating.','Version installée : {installed} · Nouvelle version : {latest}. Sauvegardez vos données avant la mise à jour.','Installierte Version: {installed} · Neue Version: {latest}. Sichern Sie Ihre Daten vor dem Update.','Versione installata: {installed} · Nuova versione: {latest}. Esegui un backup dei dati prima di aggiornare.','Zainstalowana wersja: {installed} · Nowa wersja: {latest}. Przed aktualizacją wykonaj kopię zapasową danych.'],
-    'Ver actualización y descargar':['View update and download','Voir la mise à jour et télécharger','Update ansehen und herunterladen','Visualizza aggiornamento e scarica','Zobacz aktualizację i pobierz'],
-    'Recordármelo más tarde':['Remind me later','Me le rappeler plus tard','Später erinnern','Ricordamelo più tardi','Przypomnij mi później']
-  };
-  for(const [k,v] of Object.entries(entries))d[k]=v;
-  if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();
-})();

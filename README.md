@@ -1,23 +1,6 @@
 
-**Print Cost & Profit v1.1** &#x20;
 
-Desarrollado por Beatriz Toro Martin.
-
-&#x20; Calcula tus costes, controla tus trabajos y mejora la gestión económica d   &#x20;
-
-# Print Cost & Profit v1.1
-
-## Download for Windows
-
-**Recommended: download the Windows installer directly.**
-
-[Download PrintCostProfit-Setup-1.1.exe](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.1/PrintCostProfit-Windows-Installer-v1.1.zip)
-
-Run the downloaded EXE and follow the installation steps. The installer includes the components needed to run the application; Python does not need to be installed separately.
-
-If you prefer the source package, continue with the ZIP instructions below.
-
-
+# Print Cost & Profit v1.2
 
 ## Cost calculator, production and management for 3D printing
 
@@ -37,7 +20,7 @@ The screenshots below show several areas of Print Cost & Profit. Available funct
 
 **Author:** Beatriz Toro Martin &#x20;
 
-**Published version:** v1.1 &#x20;
+**Published version:** v1.2 &#x20;
 
 **Reference operating systems:** Windows 10 and Windows 11 &#x20;
 
@@ -477,7 +460,7 @@ Do not include passwords, private keys, or unnecessary personal information.
 
 ---
 
-**Print Cost & Profit v1.1** &#x20;
+**Print Cost & Profit v1.2** &#x20;
 
 Developed by Beatriz Toro Martin.
 
@@ -493,19 +476,7 @@ Copyright © 2026 Beatriz Toro Martin. All rights reserved.
 Print Cost & Profit is licensed under the GNU General Public License v3.0 (GPL-3.0). See the `LICENSE` file for the complete license terms.
 
 
-****# Print Cost & Profit v1.1
-
-## Descargar para Windows
-
-**Recomendado: descarga directamente el instalador de Windows.**
-
-[Descargar PrintCostProfit-Setup-1.1.exe](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.1/PrintCostProfit-Windows-Installer-v1.1.zip)
-
-Ejecuta el EXE descargado y sigue los pasos de instalación. El instalador incluye los componentes necesarios para utilizar la aplicación; no necesitas instalar Python por separado.
-
-Si prefieres el paquete con los archivos del proyecto, puedes seguir las instrucciones del ZIP que aparecen a continuación.
-
-
+****# Print Cost & Profit v1.2
 
 ## Calculadora de costes, producción y gestión para impresión 3D
 
@@ -525,7 +496,7 @@ A continuación se muestran algunas pantallas de Print Cost & Profit. Las imáge
 
 **Autoría:** Beatriz Toro Martin &#x20;
 
-**Versión publicada:** v1.1 &#x20;
+**Versión publicada:** v1.2 &#x20;
 
 **Sistema operativo de referencia:** Windows 10 y Windows 11 &#x20;
 
@@ -962,3 +933,9 @@ Para comunicar un problema, incluye:
 No incluyas contraseñas, claves privadas ni datos personales innecesarios.
 
 ---
+
+**Print Cost & Profit v1.2** &#x20;
+
+Desarrollado por Beatriz Toro Martin.
+
+&#x20; Calcula tus costes, controla tus trabajos y mejora la gestión económica d   &#x20;
