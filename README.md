@@ -476,7 +476,32 @@ Copyright © 2026 Beatriz Toro Martin. All rights reserved.
 Print Cost & Profit is licensed under the GNU General Public License v3.0 (GPL-3.0). See the `LICENSE` file for the complete license terms.
 
 
-****# Print Cost & Profit v1.2
+****# Instalación rápida
+
+Elige el paquete correspondiente a tu sistema operativo:
+
+### Windows 10 / 11 — versión estable v1.2
+
+- **[Descargar el instalador de Windows v1.2](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip)**.
+- Extrae el archivo ZIP y ejecuta `PrintCostProfit-Setup-1.2.exe`.
+- Sigue los pasos del instalador. Después, inicia Print Cost & Profit desde el acceso directo creado.
+- El instalador incluye los componentes necesarios para el almacenamiento local SQLite; no necesitas instalar Python manualmente.
+
+**Repositorio de Windows:** [PrintCostProfit — rama principal](https://github.com/nilose2014/PrintCostProfit). Si prefieres instalar desde el código fuente, entra en **Code → Download ZIP**, extrae todos los archivos en una carpeta permanente y ejecuta `Integracion_Orca_Postprocesado.bat`.
+
+### Linux / Ubuntu — versión experimental Preview 0.1
+
+- **[Descargar PrintCostProfit-Linux-inicial.zip](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-preview-0.1/PrintCostProfit-Linux-inicial.zip)**.
+- Extrae el archivo ZIP.
+- Sigue las instrucciones de instalación y arranque incluidas en el paquete de Linux.
+
+**Repositorio / versión de Linux:** [PrintCostProfit — Linux Preview 0.1](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1).
+
+> **Aviso sobre Linux:** se trata de una versión experimental y no es equivalente a la versión estable de Windows. Algunas funciones siguen pendientes de validación, incluida la adaptación completa del monitor Snapmaker U1 y la integración de posprocesamiento con OrcaSlicer. Conserva copias de seguridad de tus datos.
+
+---
+
+# Print Cost & Profit v1.2
 
 ## Calculadora de costes, producción y gestión para impresión 3D
 
