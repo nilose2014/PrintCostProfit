@@ -1,5 +1,5 @@
 #define MyAppName "Print Cost & Profit"
-#define MyAppVersion "1.1"
+#define MyAppVersion "1.2"
 #define MyAppPublisher "Beatriz Toro Martín"
 #define MyAppURL "https://github.com/nilose2014/PrintCostProfit"
 
@@ -27,7 +27,7 @@ SolidCompression=yes
 WizardStyle=modern
 RestartApplications=no
 Uninstallable=yes
-VersionInfoVersion=1.1.0.0
+VersionInfoVersion=1.2.0.0
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoDescription=Instalador de Print Cost & Profit
 VersionInfoProductName={#MyAppName}
