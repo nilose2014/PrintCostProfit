@@ -1,13 +1,13 @@
 ## Historial de versiones
 
-### v1.4 — Comprobación automática de actualizaciones
+### v1.3 — Comprobación automática de actualizaciones
 - Se carga el comprobador de versiones desde la aplicación para detectar nuevas publicaciones de GitHub y mostrar el aviso de actualización.
 - Se mantiene la descarga manual desde la página oficial de la publicación; el comprobador no modifica ni instala archivos automáticamente.
 - Los textos del aviso ya están centralizados y traducidos en `js/traducciones.js` para los ocho idiomas.
 - No se modifica el sistema de licencias ni se activa ninguna función de pago.
 
 
-### v1.3 — Licencias, traducciones e idiomas del instalador
+### v1.3 — Licencias, traducciones, idiomas del instalador y actualizaciones
 - Se incorporan en `js/traducciones.js` las traducciones que faltaban en los flujos de inicio de sesión, autenticación y consulta de licencias para español, inglés, francés, alemán, italiano y polaco.
 - Los textos fijos del diálogo global («Aviso» y «Aceptar») utilizan el sistema central de traducciones, sin mantener un diccionario independiente.
 - Se integran y mantienen los textos de la aplicación en los ocho idiomas disponibles: español, inglés, francés, alemán, italiano, polaco, árabe y chino simplificado.
