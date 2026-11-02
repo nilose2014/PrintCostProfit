@@ -1,6 +1,9 @@
 name: Crear instalador Windows Print Cost & Profit
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
