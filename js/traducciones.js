@@ -1,4 +1,4 @@
-/* v1.4 — Corrección de referencias históricas v1.0 en README y CHANGELOG de los ocho idiomas. */
+/* v1.3 — Traducciones del sistema de licencias e idiomas del instalador. */
 
 (()=>{
 const D={
