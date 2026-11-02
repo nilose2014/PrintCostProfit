@@ -129,15 +129,16 @@ Write-Host 'EN: Local server connecting Print Cost & Profit with Snapmaker Orca.
 Write-Host 'FR: Serveur local reliant Print Cost & Profit a Snapmaker Orca.' -ForegroundColor White
 Write-Host 'DE: Lokaler Server zur Verbindung von Print Cost & Profit mit Snapmaker Orca.' -ForegroundColor White
 Write-Host 'IT: Server locale che collega Print Cost & Profit a Snapmaker Orca.' -ForegroundColor White
+Write-Host 'PL: Serwer lokalny łączący Print Cost & Profit z programem Snapmaker Orca.' -ForegroundColor White
 Write-Host ''
-Write-Host 'Estado / Status / Etat / Status / Stato: EN EJECUCION' -ForegroundColor Green
+Write-Host 'Estado / Status / État / Status / Stato / Stan: EN EJECUCIÓN / RUNNING / EN COURS / LÄUFT / IN ESECUZIONE / URUCHOMIONY' -ForegroundColor Green
 Write-Host "Direccion local: $Prefix"
 Write-Host "Impresora configurada: $Printer"
 Write-Host 'Funciones: atender solicitudes locales, comunicar datos y registrar actividad/errores.'
 Write-Host 'Seguridad: escucha solo en 127.0.0.1; no envia comandos de impresion.' -ForegroundColor Gray
 Write-Host 'Cierra esta ventana solo cuando hayas terminado de usar la integracion.' -ForegroundColor Yellow
 Write-Host ''
-Write-Host '--- REGISTRO DE ACTIVIDAD / ACTIVITY LOG / JOURNAL / AKTIVITAT / ATTIVITA ---' -ForegroundColor Cyan
+Write-Host '--- REGISTRO DE ACTIVIDAD / ACTIVITY LOG / JOURNAL / AKTIVITÄT / ATTIVITÀ / DZIENNIK AKTYWNOŚCI ---' -ForegroundColor Cyan
 while ($Listener.IsListening) {
   $ctx = $null
   try {

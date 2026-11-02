@@ -9,13 +9,13 @@
  if(save)save.addEventListener('click',async()=>{
   const ip=ipInput.value.trim(); if(!/^(?:(?:25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|1?\d?\d)$/.test(ip)){say(window.PCP_I18N.t('Introduce una IPv4 válida, por ejemplo 192.168.1.48.'));return;}
   save.disabled=true; say(window.PCP_I18N.format('Comprobando la impresora en {ip}:7125…',{ip}));
-  try{const r=await fetch(root()+'/api/u1/config?ip='+encodeURIComponent(ip),{cache:'no-store'});let d={};try{d=await r.json()}catch(_){} if(!r.ok||!d.ok)throw new Error(d.error||('El puente respondió HTTP '+r.status));localStorage.setItem('pcp_u1_manual_ip_v176',ip);say(window.PCP_I18N.format('IP comprobada y guardada: {ip}. Pulsa «Probar conexión» para verificar el estado.',{ip}));}
+  try{const r=await fetch(root()+'/api/u1/config?ip='+encodeURIComponent(ip),{cache:'no-store'});let d={};try{d=await r.json()}catch(_){} if(!r.ok||!d.ok)throw new Error(d.error||(window.PCP_I18N?.format('El puente respondió HTTP {status}',{status:r.status})||('El puente respondió HTTP '+r.status)));localStorage.setItem('pcp_u1_manual_ip_v176',ip);say(window.PCP_I18N.format('IP comprobada y guardada: {ip}. Pulsa «Probar conexión» para verificar el estado.',{ip}));}
   catch(e){say(window.PCP_I18N.format('No se pudo aplicar la IP {ip}. {message}. Comprueba que el puente esté iniciado y que la U1 responda en el puerto 7125.',{ip,message:e.message||String(e)}));}
   finally{save.disabled=false;}
  });
  if(discover)discover.addEventListener('click',async()=>{
   discover.disabled=true; say(window.PCP_I18N.t('Buscando una Snapmaker U1 en la red local. Puede tardar hasta 15 segundos…'));
-  try{const r=await fetch(root()+'/api/u1/discover',{cache:'no-store'});let d={};try{d=await r.json()}catch(_){} if(!r.ok||!d.ok)throw new Error(d.error||('El puente respondió HTTP '+r.status));if(d.ip){ipInput.value=d.ip;localStorage.setItem('pcp_u1_manual_ip_v176',d.ip);say(window.PCP_I18N.format('Snapmaker U1 encontrada y configurada: {ip}. Pulsa «Probar conexión».',{ip:d.ip}));}else say((d.message||window.PCP_I18N.t('No se encontró la impresora.'))+' '+window.PCP_I18N.t('Puedes escribir su IP manualmente.'));}
+  try{const r=await fetch(root()+'/api/u1/discover',{cache:'no-store'});let d={};try{d=await r.json()}catch(_){} if(!r.ok||!d.ok)throw new Error(d.error||(window.PCP_I18N?.format('El puente respondió HTTP {status}',{status:r.status})||('El puente respondió HTTP '+r.status)));if(d.ip){ipInput.value=d.ip;localStorage.setItem('pcp_u1_manual_ip_v176',d.ip);say(window.PCP_I18N.format('Snapmaker U1 encontrada y configurada: {ip}. Pulsa «Probar conexión».',{ip:d.ip}));}else say((d.message||window.PCP_I18N.t('No se encontró la impresora.'))+' '+window.PCP_I18N.t('Puedes escribir su IP manualmente.'));}
   catch(e){say(window.PCP_I18N.format('La búsqueda no ha podido completarse: {message}. Puedes introducir la IP manualmente.',{message:e.message||String(e)}));}
   finally{discover.disabled=false;}
  });

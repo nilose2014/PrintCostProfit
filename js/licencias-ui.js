@@ -1,4 +1,4 @@
-/* Print Cost & Profit v1.554 — catálogo central de funciones y bloqueo visual Pro.
+/* Print Cost & Profit v1.3.36 — catálogo central de funciones y bloqueo visual Pro.
  * Solo aparece cuando licencias-config.js establece enabled: true.
  * La interfaz no habilita funciones de pago; eso requiere autorización validada por el servidor.
  */

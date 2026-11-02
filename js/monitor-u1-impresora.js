@@ -93,7 +93,7 @@ async function useIp(ip){if(!ip)return;ipInput.value=ip;try{localStorage.setItem
   render(known,current);
   if(verified&&verified.online!==false)say(tr('IMPRESORA CONECTADA · {name} · IP {ip} · Estado: {state} · Archivo: {file}{software}.',{name:verified.name||'Snapmaker U1',ip:verified.ip,state:verified.state||tr('desconocido'),file:verified.filename||tr('ninguno'),software:verified.softwareVersion?' · Software: '+verified.softwareVersion:''}));
   else if(verified&&verified.online===false)say(tr('IMPRESORA SIN CONEXIÓN · {ip}. Se conserva seleccionada y aparecerá conectada cuando vuelva a responder.',{ip:verified.ip||current}));
-  else if(!configSynced)say(tr('No se pudo seleccionar la impresora: {message}',{message:configError||'Error de conexión'}));
+  else if(!configSynced)say(tr('No se pudo seleccionar la impresora: {message}',{message:configError||window.PCP_I18N?.t('Error de conexión')||'Error de conexión'}));
   else if(known.length)say(tr('Se han cargado {count} impresora(s) guardadas. Puedes seleccionar y conectar cualquiera sin volver a buscar. Para descubrir impresoras nuevas, pulsa «Buscar automáticamente».',{count:known.length}));
   else say(tr('No hay impresoras guardadas todavía. Pulsa «Buscar automáticamente» para descubrir las impresoras de la red.'));
  }

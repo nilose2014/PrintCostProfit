@@ -238,3 +238,22 @@ body.pcp-light-theme .pcp-quick-spool-dialog{background:#fff;color:#172033;borde
 body.pcp-light-theme .pcp-quick-spool-dialog header p,body.pcp-light-theme .pcp-quick-hint{color:#526174}
 body.pcp-light-theme .pcp-quick-spool-body label{color:#263449}
 body.pcp-light-theme .pcp-quick-spool-body input,body.pcp-light-theme .pcp-quick-spool-body select{background:#f8fafc;color:#172033;border-color:#cbd5e1}
+
+
+/* v1.3.17 — contraste accesible del selector de imagen de pieza */
+.piece-file-control .filelabel.primary{
+  background:#69dcc7!important;
+  color:#08251f!important;
+  border:1px solid #69dcc7!important;
+  font-weight:700!important;
+  text-shadow:none!important;
+  opacity:1!important;
+}
+.piece-file-control .filelabel.primary:hover,
+.piece-file-control .filelabel.primary:focus-visible{
+  background:#83ead8!important;
+  color:#08251f!important;
+  border-color:#83ead8!important;
+  outline:2px solid #d6fff6;
+  outline-offset:2px;
+}
