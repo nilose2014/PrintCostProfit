@@ -10,43 +10,43 @@
 
 **English**
 - Arabic and Simplified Chinese are added to the installer language selection.
-- The selected language is saved as `ar` or `zh-CN` so the application can retain the selection.
+- The selected language code (`ar` or `zh-CN`) is saved in the installer language configuration file.
 - The installer version is read from `VERSION`, now set to 1.4.
 - The application translation catalog remains centralized in `js/traducciones.js` and supports all eight languages.
 
 **Français**
 - L’arabe et le chinois simplifié sont ajoutés aux langues proposées pendant l’installation.
-- La langue choisie est enregistrée sous le code `ar` ou `zh-CN` afin que l’application conserve ce choix.
+- La langue choisie est enregistrée dans le fichier de configuration de l’installateur sous le code `ar` ou `zh-CN`.
 - La version de l’installateur est lue depuis `VERSION`, désormais définie sur 1.4.
 - Le catalogue de traductions de l’application reste centralisé dans `js/traducciones.js` et prend en charge les huit langues.
 
 **Deutsch**
 - Arabisch und vereinfachtes Chinesisch werden der Sprachauswahl des Installationsprogramms hinzugefügt.
-- Die gewählte Sprache wird als `ar` oder `zh-CN` gespeichert, damit die Anwendung diese Auswahl übernehmen kann.
+- Der gewählte Sprachcode (`ar` oder `zh-CN`) wird in der Sprachkonfigurationsdatei des Installationsprogramms gespeichert.
 - Die Installationsversion wird aus `VERSION` gelesen; der Wert ist jetzt 1.4.
 - Der Übersetzungskatalog der Anwendung bleibt in `js/traducciones.js` zentralisiert und unterstützt alle acht Sprachen.
 
 **Italiano**
 - L’arabo e il cinese semplificato vengono aggiunti alle lingue disponibili durante l’installazione.
-- La lingua scelta viene salvata come `ar` o `zh-CN`, così l’applicazione può mantenere la selezione.
+- Il codice della lingua scelta (`ar` o `zh-CN`) viene salvato nel file di configurazione della lingua dell’installatore.
 - La versione del programma di installazione viene letta da `VERSION`, ora impostata a 1.4.
 - Il catalogo delle traduzioni dell’applicazione rimane centralizzato in `js/traducciones.js` e supporta tutte e otto le lingue.
 
 **Polski**
 - Arabski i chiński uproszczony zostają dodane do języków dostępnych podczas instalacji.
-- Wybrany język jest zapisywany jako `ar` lub `zh-CN`, aby aplikacja mogła zachować ten wybór.
+- Wybrany kod języka (`ar` lub `zh-CN`) jest zapisywany w pliku konfiguracji języka instalatora.
 - Wersja instalatora jest pobierana z pliku `VERSION`, którego wartość wynosi teraz 1.4.
 - Katalog tłumaczeń aplikacji pozostaje scentralizowany w `js/traducciones.js` i obsługuje wszystkie osiem języków.
 
 **العربية**
 - تمت إضافة العربية والصينية المبسطة إلى اللغات المتاحة أثناء التثبيت.
-- تُحفظ اللغة المختارة بالرمز `ar` أو `zh-CN` لكي يحتفظ التطبيق بهذا الاختيار.
+- يُحفظ رمز اللغة المختارة (`ar` أو `zh-CN`) في ملف إعدادات لغة برنامج التثبيت.
 - تُقرأ نسخة برنامج التثبيت من الملف `VERSION`، وأصبحت الآن 1.4.
 - يظل كتالوج ترجمات التطبيق مركزيًا في `js/traducciones.js` ويدعم اللغات الثماني.
 
 **简体中文**
 - 在安装程序的语言选择中新增阿拉伯语和简体中文。
-- 所选语言将保存为 `ar` 或 `zh-CN`，以便应用保留该语言设置。
+- 所选语言代码（`ar` 或 `zh-CN`）将保存到安装程序的语言配置文件中。
 - 安装程序版本从 `VERSION` 文件读取，现已更新为 1.4。
 - 应用翻译目录仍统一维护在 `js/traducciones.js` 中，并支持全部八种语言。
 
