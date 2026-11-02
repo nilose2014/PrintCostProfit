@@ -1,5 +1,11 @@
 ## Historial de versiones
 
+### v1.4 — Corrección de detección de actualizaciones
+- El comprobador obtiene primero la versión de la propia interfaz (cabecera y pie) y solo consulta `/api/version` como alternativa. Así evita comparar contra la versión de otro servidor local que pueda estar activo.
+- Se mantiene la comprobación de publicaciones oficiales de GitHub y los textos traducidos existentes en `js/traducciones.js`.
+- No se modifica el sistema de licencias ni se activa ninguna función de pago.
+
+
 ### v1.3 — Comprobación automática de actualizaciones
 - Se carga el comprobador de versiones desde la aplicación para detectar nuevas publicaciones de GitHub y mostrar el aviso de actualización.
 - Se mantiene la descarga manual desde la página oficial de la publicación; el comprobador no modifica ni instala archivos automáticamente.
