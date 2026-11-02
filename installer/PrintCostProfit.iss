@@ -1,8 +1,8 @@
 #ifndef MyAppVersion
-  #define MyAppVersion "1.4"
+  #define MyAppVersion "1.3"
 #endif
 #ifndef MyAppVersionInfo
-  #define MyAppVersionInfo "1.4.0.0"
+  #define MyAppVersionInfo "1.3.0.0"
 #endif
 #define MyAppName "Print Cost & Profit"
 #define MyAppPublisher "Beatriz Toro Martín"
