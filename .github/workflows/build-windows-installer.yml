@@ -48,7 +48,8 @@ jobs:
       - name: Compilar instalador
         shell: pwsh
         run: |
-          $compiler = "$env:ProgramFiles(x86)\Inno Setup 6\ISCC.exe"
+          $programFilesX86 = [Environment]::GetFolderPath("ProgramFilesX86")
+          $compiler = Join-Path $programFilesX86 "Inno Setup 6\ISCC.exe"
           if (!(Test-Path $compiler)) { throw "No se encuentra Inno Setup: $compiler" }
           if (!(Test-Path "dist\pcp_sqlite_api.exe")) { throw "No se ha generado pcp_sqlite_api.exe" }
           & $compiler "/DMyAppVersion=${{ steps.app_version.outputs.version }}" "/DMyAppVersionInfo=${{ steps.app_version.outputs.version_info }}" "installer\PrintCostProfit.iss"
