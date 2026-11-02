@@ -56,29 +56,6 @@ jobs:
           $installer = "dist-installer\PrintCostProfit-Setup-${{ steps.app_version.outputs.version }}.exe"
           if (!(Test-Path $installer)) { throw "No se ha generado el instalador esperado: $installer" }
 
-      - name: Firmar instalador (opcional)
-        if: ${{ secrets.WINDOWS_CERTIFICATE_PFX != '' && secrets.WINDOWS_CERTIFICATE_PASSWORD != '' }}
-        shell: pwsh
-        env:
-          WINDOWS_CERTIFICATE_PFX: ${{ secrets.WINDOWS_CERTIFICATE_PFX }}
-          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
-        run: |
-          $installer = Get-ChildItem "dist-installer\PrintCostProfit-Setup-*.exe" | Select-Object -First 1
-          if (!$installer) { throw "No se encuentra el instalador para firmar." }
-          $pfxPath = Join-Path $env:RUNNER_TEMP "windows-signing-certificate.pfx"
-          try {
-            [IO.File]::WriteAllBytes($pfxPath, [Convert]::FromBase64String($env:WINDOWS_CERTIFICATE_PFX))
-            $signtool = Get-ChildItem "$env:ProgramFiles(x86)\Windows Kits\10\bin\*\x64\signtool.exe" |
-              Sort-Object FullName -Descending | Select-Object -First 1
-            if (!$signtool) { throw "No se encuentra signtool.exe en el runner." }
-            & $signtool.FullName sign /fd SHA256 /f $pfxPath /p $env:WINDOWS_CERTIFICATE_PASSWORD /tr http://timestamp.digicert.com /td SHA256 $installer.FullName
-            if ($LASTEXITCODE -ne 0) { throw "La firma digital ha fallado (signtool: $LASTEXITCODE)." }
-            & $signtool.FullName verify /pa /v $installer.FullName
-            if ($LASTEXITCODE -ne 0) { throw "La verificacion de la firma digital ha fallado." }
-          } finally {
-            if (Test-Path $pfxPath) { Remove-Item $pfxPath -Force }
-          }
-
       - name: Empaquetar instalador en ZIP para descarga
         shell: pwsh
         run: |
