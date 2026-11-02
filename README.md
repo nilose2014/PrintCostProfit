@@ -164,7 +164,7 @@ Do not run the application directly from the ZIP file. Extract all files first.
 
 1. Open the official repository:
 
-   https\://github.com/nilose2014/PrintCostProfit for widows or   https\://github.com/nilose2014/PrintCostProfit para windows y [https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1](https://github.com/nilose2014/PrintCostProfit/releases/tag/v1.0) para linux for linux
+   https\://github.com/nilose2014/PrintCostProfit for widows or   https\://github.com/nilose2014/PrintCostProfit para windows y [Print Cost & Profit Linux v1.0 — Stable](https://github.com/nilose2014/PrintCostProfit/releases/tag/v1.0) para linux for linux
 
 2. Click **Code**.
 
