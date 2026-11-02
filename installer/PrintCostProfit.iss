@@ -1,5 +1,10 @@
+#ifndef MyAppVersion
+  #define MyAppVersion "1.3"
+#endif
+#ifndef MyAppVersionInfo
+  #define MyAppVersionInfo "1.3.0.0"
+#endif
 #define MyAppName "Print Cost & Profit"
-#define MyAppVersion "1.2"
 #define MyAppPublisher "Beatriz Toro Martín"
 #define MyAppURL "https://github.com/nilose2014/PrintCostProfit"
 
@@ -27,7 +32,7 @@ SolidCompression=yes
 WizardStyle=modern
 RestartApplications=no
 Uninstallable=yes
-VersionInfoVersion=1.2.0.0
+VersionInfoVersion={#MyAppVersionInfo}
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoDescription=Instalador de Print Cost & Profit
 VersionInfoProductName={#MyAppName}
@@ -48,7 +53,7 @@ Name: "startmenuicon"; Description: "Crear acceso directo en el menú Inicio"; G
 [Files]
 Source: "print-cost-profit.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\dist\pcp_sqlite_api.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: ".git\*,.github\*,installer\*,dist\*,dist-installer\*,build\*,__pycache__\*,*.pyc,*.log,*.db,*.db-wal,*.db-shm"
+Source: "..\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: ".git\*;.github\*;installer\*;dist\*;dist-installer\*;build\*;__pycache__\*;*.pyc;*.log;*.db;*.db-wal;*.db-shm"
 
 [Icons]
 Name: "{autoprograms}\Print Cost & Profit"; Filename: "{app}\Integracion_Orca_Postprocesado.bat"; WorkingDir: "{app}"; IconFilename: "{app}\print-cost-profit.ico"; Tasks: startmenuicon
