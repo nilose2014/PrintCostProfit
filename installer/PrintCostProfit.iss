@@ -1,8 +1,8 @@
 #ifndef MyAppVersion
-  #define MyAppVersion "1.3"
+  #define MyAppVersion "1.4"
 #endif
 #ifndef MyAppVersionInfo
-  #define MyAppVersionInfo "1.3.0.0"
+  #define MyAppVersionInfo "1.4.0.0"
 #endif
 #define MyAppName "Print Cost & Profit"
 #define MyAppPublisher "Beatriz Toro Martín"
@@ -45,6 +45,8 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "polish"; MessagesFile: "compiler:Languages\Polish.isl"
+Name: "arabic"; MessagesFile: "compiler:Languages\Arabic.isl"
+Name: "chinesesimplified"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: checkedonce
@@ -80,6 +82,8 @@ begin
     else if InstallerLanguage = 'german' then InstallerLanguage := 'de'
     else if InstallerLanguage = 'italian' then InstallerLanguage := 'it'
     else if InstallerLanguage = 'polish' then InstallerLanguage := 'pl'
+    else if InstallerLanguage = 'arabic' then InstallerLanguage := 'ar'
+    else if InstallerLanguage = 'chinesesimplified' then InstallerLanguage := 'zh-CN'
     else InstallerLanguage := 'es';
 
     SaveStringToFile(ExpandConstant('{app}\pcp-installer-language.txt'),
