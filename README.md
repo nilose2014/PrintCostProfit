@@ -2,10 +2,10 @@
 
 Choose the package for your operating system:
 
-### Windows 10 / 11 — stable version v1.2
+### Windows 10 / 11 — stable version v1.3
 
-- [**Download the Windows installer v1.2**](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip).
-- Extract the ZIP file and run `PrintCostProfit-Setup-1.2.exe`.
+- [**Download the Windows installer v1.3**](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.3/PrintCostProfit-Windows-Installer-v1.3.zip).
+- Extract the ZIP file and run `PrintCostProfit-Setup-1.3.exe`.
 - Follow the installer steps. After installation, start Print Cost & Profit from the shortcut created.
 - The installer includes the components required for local SQLite storage; you do not need to install Python manually.
 
@@ -24,7 +24,7 @@ Choose the package for your operating system:
 
 
 
-# Print Cost & Profit v1.2
+# Print Cost & Profit v1.3
 
 ## Cost calculator, production and management for 3D printing
 
@@ -44,7 +44,7 @@ The screenshots below show several areas of Print Cost & Profit. Available funct
 
 **Author:** Beatriz Toro Martin &#x20;
 
-**Published version:** v1.2 &#x20;
+**Published version:** v1.3 &#x20;
 
 **Reference operating systems:** Windows 10 and Windows 11 &#x20;
 
@@ -78,7 +78,7 @@ Depending on the configuration, cost items may include:
 
 The goal is to understand how much a part costs to manufacture before setting its selling price.
 
-## 1.2. Selling price, profit and margin
+## 1.3. Selling price, profit and margin
 
 The calculator helps assess the estimated financial outcome of a print.
 
@@ -484,7 +484,7 @@ Do not include passwords, private keys, or unnecessary personal information.
 
 ---
 
-**Print Cost & Profit v1.2** &#x20;
+**Print Cost & Profit v1.3** &#x20;
 
 Developed by Beatriz Toro Martin.
 
@@ -504,10 +504,10 @@ Print Cost & Profit is licensed under the GNU General Public License v3.0 (GPL-3
 
 Elige el paquete correspondiente a tu sistema operativo:
 
-### Windows 10 / 11 — versión estable v1.2
+### Windows 10 / 11 — versión estable v1.3
 
-- **[Descargar el instalador de Windows v1.2](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip)**.
-- Extrae el archivo ZIP y ejecuta `PrintCostProfit-Setup-1.2.exe`.
+- **[Descargar el instalador de Windows v1.3](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.3/PrintCostProfit-Windows-Installer-v1.3.zip)**.
+- Extrae el archivo ZIP y ejecuta `PrintCostProfit-Setup-1.3.exe`.
 - Sigue los pasos del instalador. Después, inicia Print Cost & Profit desde el acceso directo creado.
 - El instalador incluye los componentes necesarios para el almacenamiento local SQLite; no necesitas instalar Python manualmente.
 
@@ -524,7 +524,7 @@ Elige el paquete correspondiente a tu sistema operativo:
 
 ---
 
-# Print Cost & Profit v1.2
+# Print Cost & Profit v1.3
 
 ## Calculadora de costes, producción y gestión para impresión 3D
 
@@ -544,7 +544,7 @@ A continuación se muestran algunas pantallas de Print Cost & Profit. Las imáge
 
 **Autoría:** Beatriz Toro Martin &#x20;
 
-**Versión publicada:** v1.2 &#x20;
+**Versión publicada:** v1.3 &#x20;
 
 **Sistema operativo de referencia:** Windows 10 y Windows 11 &#x20;
 
@@ -578,7 +578,7 @@ Entre los conceptos de coste que se pueden utilizar, según la configuración di
 
 El objetivo es conocer cuánto cuesta fabricar una pieza antes de decidir su precio de venta.
 
-## 1.2. Precio de venta, beneficio y margen
+## 1.3. Precio de venta, beneficio y margen
 
 La calculadora permite estudiar el resultado económico estimado de una impresión.
 
@@ -982,7 +982,7 @@ No incluyas contraseñas, claves privadas ni datos personales innecesarios.
 
 ---
 
-**Print Cost & Profit v1.2** &#x20;
+**Print Cost & Profit v1.3** &#x20;
 
 Desarrollado por Beatriz Toro Martin.
 
