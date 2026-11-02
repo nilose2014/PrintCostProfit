@@ -1,4 +1,4 @@
-/* v1.3.98 — Corrección de referencias históricas v1.0 en README y CHANGELOG de los ocho idiomas. */
+/* v1.4 — Corrección de referencias históricas v1.0 en README y CHANGELOG de los ocho idiomas. */
 
 (()=>{
 const D={
