@@ -1,23 +1,28 @@
-# Quick installation
+****# Instalación rápida
 
-Choose the package for your operating system:
+Elige el paquete correspondiente a tu sistema operativo:
 
-### Windows 10 / 11 — stable version v1.3
+### Windows 10 / 11 — versión estable v1.4
 
-- [**Download the Windows installer v1.3**](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.3/PrintCostProfit-Windows-Installer-v1.3.zip).
-- Extract the ZIP file and run `PrintCostProfit-Setup-1.3.exe`.
-- Follow the installer steps. After installation, start Print Cost & Profit from the shortcut created.
-- The installer includes the components required for local SQLite storage; you do not need to install Python manually.
+- **[Descargar el instalador de Windows v1.4](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.4/PrintCostProfit-Windows-Installer-v1.4.zip)**.
+- Extrae el archivo ZIP y ejecuta `PrintCostProfit-Setup-1.4.exe`.
+- Sigue los pasos del instalador. Después, inicia Print Cost & Profit desde el acceso directo creado.
+- El instalador incluye los componentes necesarios para el almacenamiento local SQLite; no necesitas instalar Python manualmente.
 
-**Windows repository:** [PrintCostProfit — main branch](https://github.com/nilose2014/PrintCostProfit). To install from the source code instead, open **Code → Download ZIP**, extract all files into a permanent folder, and run `Integracion_Orca_Postprocesado.bat`.
+**Repositorio de Windows:** [PrintCostProfit — rama principal](https://github.com/nilose2014/PrintCostProfit). Si prefieres instalar desde el código fuente, entra en **Code → Download ZIP**, extrae todos los archivos en una carpeta permanente y ejecuta `Integracion_Orca_Postprocesado.bat`.
 
 ### Linux / Ubuntu — versión estable
 
-- **[Descargar la versión estable de Linux](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1)**.
+- **[Descargar la versión estable de Linux](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.0/PrintCostProfit_Linux_v1.0.zip)**.
 - Extrae el archivo ZIP descargado.
 - Sigue las instrucciones de instalación y arranque incluidas en el paquete.
 
 **Repositorio / versión de Linux:** [PrintCostProfit — Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux).
+
+
+---
+
+# Print Cost & Profit v1.4
 
 
 ---
