@@ -84,7 +84,7 @@
 - Erste öffentliche Version: Kostenrechner, Schätzungen, Orca/G-Code-Integration, U1-Monitor, Lager, Buchhaltung, Kunden, Angebote, Aufträge, Rechnungen, SQLite und sechs Sprachen.
 - Vor v1.2 veröffentlichte Verbesserungen werden hier zusammengefasst, um eine einheitliche kommerzielle Versionsnummerierung zu gewährleisten, ohne interne Entwicklungsnummern anzuzeigen.
 
-### v1.4.1 — Linux-DEB-Installationspaket
-- Installierbares `.deb`-Paket für Ubuntu und Debian (64 Bit) hinzugefügt.
-- Enthält einen Eintrag im Anwendungsmenü und den Start des lokalen Servers.
-- Bei der Deinstallation bleiben Datenbank, Sicherungen und Benutzereinstellungen erhalten.
+#### Linux-Installationspaket (DEB)
+- `.deb`-Installationspaket für Ubuntu und Debian (64 Bit) passend zur Anwendung v1.4 hinzugefügt.
+- Das Paket verwendet die Debian-Revision `1.4-1`; die Anwendung selbst bleibt bei v1.4.
+- Enthält einen Eintrag im Anwendungsmenü und den Start des lokalen Servers. Bei der Deinstallation bleiben SQLite-Datenbank, Sicherungen und Benutzereinstellungen erhalten.
