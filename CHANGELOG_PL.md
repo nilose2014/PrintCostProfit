@@ -84,7 +84,7 @@
 - Pierwsza wersja publiczna: kalkulator kosztów, wyceny, integracja Orca/G-code, monitor U1, magazyn, księgowość, klienci, oferty, zamówienia, faktury, SQLite i sześć języków.
 - Ulepszenia opublikowane przed v1.2 zebrano tutaj, aby zachować spójną numerację handlową bez wyświetlania wewnętrznych numerów rozwojowych.
 
-### v1.4.1 — Instalator Linux DEB
-- Dodano instalowalny pakiet `.deb` dla 64-bitowych systemów Ubuntu i Debian.
-- Zawiera pozycję w menu aplikacji i uruchamianie lokalnego serwera.
-- Odinstalowanie zachowuje bazę danych, kopie zapasowe i konfigurację użytkownika.
+#### Pakiet instalacyjny Linux (DEB)
+- Dodano instalator `.deb` dla 64-bitowych systemów Ubuntu i Debian, odpowiadający aplikacji v1.4.
+- Pakiet używa rewizji Debiana `1.4-1`; sama aplikacja nadal zgłasza wersję v1.4.
+- Zawiera pozycję w menu aplikacji i uruchamianie lokalnego serwera. Odinstalowanie zachowuje bazę SQLite, kopie zapasowe i ustawienia użytkownika.
