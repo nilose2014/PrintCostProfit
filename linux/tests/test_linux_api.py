@@ -36,7 +36,7 @@ class LinuxApiSmokeTests(unittest.TestCase):
         except HTTPError as e: return e.code,json.loads(e.read().decode())
 
     def test_version(self):
-        status,data=self.request('/api/version'); self.assertEqual(status,200); self.assertEqual(data['version'],'1.4'); self.assertTrue(data['logsApi'])
+        status,data=self.request('/api/version'); self.assertEqual(status,200); self.assertEqual(data['version'],(ROOT/'VERSION').read_text(encoding='utf-8').strip()); self.assertTrue(data['logsApi'])
 
     def test_snapshot_and_revision_control(self):
         status,snap=self.request('/api/storage/snapshot'); self.assertEqual(status,200)
