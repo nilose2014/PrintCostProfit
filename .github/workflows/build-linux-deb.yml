@@ -32,7 +32,7 @@ jobs:
         run: |
           set -euo pipefail
           VERSION="$(tr -d '[:space:]' < VERSION)"
-          PKG_VERSION="${VERSION}.1"
+          PKG_VERSION="${VERSION}"
           ROOT="$PWD"
           PKG="$RUNNER_TEMP/pkg"
           APP="$PKG/opt/printcostprofit"
