@@ -84,7 +84,7 @@
 - Version publique initiale : calculateur de coûts, estimations, intégration Orca/G-code, moniteur U1, inventaire, comptabilité, clients, devis, commandes, factures, SQLite et six langues.
 - Les améliorations publiées avant v1.2 sont regroupées ici afin de conserver une numérotation commerciale cohérente, sans afficher les numéros internes de développement.
 
-### v1.4.1 — Installateur Linux DEB
-- Ajout d’un paquet `.deb` installable pour Ubuntu et Debian 64 bits.
-- Inclut une entrée dans le menu des applications et le lancement du serveur local.
-- La désinstallation conserve la base de données, les sauvegardes et la configuration de l’utilisateur.
+#### Paquet d’installation Linux (DEB)
+- Ajout du programme d’installation `.deb` pour Ubuntu et Debian 64 bits, correspondant à l’application v1.4.
+- Le paquet utilise la révision Debian `1.4-1` ; l’application reste en v1.4.
+- Inclut une entrée dans le menu des applications et le lancement du serveur local. La désinstallation conserve la base SQLite, les sauvegardes et la configuration utilisateur.
