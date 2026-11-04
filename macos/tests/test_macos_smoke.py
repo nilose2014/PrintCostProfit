@@ -6,7 +6,7 @@ from pathlib import Path
 from urllib.request import urlopen, Request
 from urllib.error import URLError, HTTPError
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 SERVER = ROOT / "linux" / "pcp_linux_server.py"
 
 def main():
