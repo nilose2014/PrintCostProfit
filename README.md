@@ -75,6 +75,32 @@ The Linux v1.4 release is distributed as a native Debian package for 64-bit (`am
 - Application data is stored separately from the program files in the user's Linux application-data directory. Updating the package should not require deleting that data.
 - For upgrades, install the newer `.deb` package over the existing installation. Back up your application data first.
 
+- ### Integrating Print Cost & Profit with Snapmaker Orca
+
+To send print information from Snapmaker Orca to Print Cost & Profit, you need to configure the post-processing script.
+
+This integration allows the application to receive the exported G-code information and use it in the cost calculator.
+
+#### Windows – Snapmaker Orca
+
+1. Install and launch Print Cost & Profit v1.4.
+2. Make sure the local Print Cost & Profit server is running at:
+   `http://127.0.0.1:8700/`
+3. Open **Snapmaker Orca**.
+4. Open the printer profile you use with your Snapmaker U1.
+5. Go to the printer's **General** settings.
+6. Find the **Post-processing scripts** field.
+7. Enter the path to the Print Cost & Profit integration script included with the application installation.
+8. Save the printer profile.
+
+When you slice and export a G-code file, Snapmaker Orca will execute the configured script. Print Cost & Profit can then receive the print data.
+
+**Important:** Use the actual path where the integration script is installed on your computer. Do not enter the server URL in the post-processing scripts field.
+
+#### Linux – Snapmaker Orca
+
+1. Install and launch Print Cost & Profit
+
 ### First launch and printer connection
 
 - Start the local application server before opening the web interface.
