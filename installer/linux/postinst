@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+chmod 0755 /opt/printcostprofit/linux/iniciar_linux.sh /opt/printcostprofit/linux/pcp_linux_server.py /usr/bin/printcostprofit
+if [ -f /opt/printcostprofit/assets/logo.png ]; then
+  install -D -m 0644 /opt/printcostprofit/assets/logo.png /usr/share/icons/hicolor/256x256/apps/printcostprofit.png
+  gtk-update-icon-cache -f /usr/share/icons/hicolor 2>/dev/null || true
+fi
+update-desktop-database -q 2>/dev/null || true
+exit 0
