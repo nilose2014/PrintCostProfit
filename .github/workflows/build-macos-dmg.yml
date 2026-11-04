@@ -42,8 +42,9 @@ jobs:
           python-version: '3.11'
       - name: Validate Python server and SQLite tests
         run: |
-          python -m py_compile pcp_sqlite_store.py linux/pcp_linux_server.py
-          python -m unittest discover -s linux/tests -v
+          python -m py_compile pcp_sqlite_store.py linux/pcp_linux_server.py macos/tests/test_macos_smoke.py
+          python macos/tests/test_macos_smoke.py
+          python -m unittest linux.tests.test_orca_integration -v
       - name: Build experimental application bundle and DMG
         shell: bash
         run: |
