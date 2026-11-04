@@ -17,7 +17,7 @@ Start here. Download only from the official GitHub repository and its Releases p
 | Platform | Version | Direct download | Release page |
 |---|---:|---|---|
 | **Windows** | **v1.4** | [Download Windows installer ZIP](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.4/PrintCostProfit-Windows-Installer-v1.4.zip) | [Windows v1.4 release](https://github.com/nilose2014/PrintCostProfit/releases/tag/v1.4) |
-| **Linux (64-bit)** | **v1.4** | [Download Debian package (.deb)]([https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/PrintCostProfit-Linux-v1.4-amd64.deb](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb)) | [Linux v1.4 release](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4) |
+| **Linux (64-bit)** | **v1.4** | [Download Debian package (.deb)](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb) | [Linux v1.4 release](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4) | |
 
 ### Official project links
 
