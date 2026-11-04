@@ -18,7 +18,7 @@ Start here. Only download Print Cost & Profit from the official GitHub repositor
 |---|---|---|---|
 | **Windows** | **v1.4** | [Download Windows Installer ZIP](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.4/PrintCostProfit-Windows-Installer-v1.4.zip) | [Windows v1.4 Release](https://github.com/nilose2014/PrintCostProfit/releases/tag/v1.4) |
 | **Linux (64-bit)** | **v1.4** | [Download Debian Package (.deb)](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb) | [Linux v1.4 Release](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4) |
-| **macOS (experimental)** | **v1.4.4** | Build artifacts only — no public release yet | [Experimental macOS branch](https://github.com/nilose2014/PrintCostProfit/tree/macos-experimental) |
+| **macOS (experimental)** | **v1.4.5** | Build artifacts only — no public release yet | [Experimental macOS branch](https://github.com/nilose2014/PrintCostProfit/tree/macos-experimental) |
 
 ### macOS experimental build
 
