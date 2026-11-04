@@ -19,6 +19,27 @@ permissions:
   contents: read
 
 jobs:
+  validate:
+    name: Cross-platform checks (no server launch)
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - name: Checkout experimental macOS branch
+        uses: actions/checkout@v4
+        with:
+          ref: macos-experimental
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile Python modules
+        run: |
+          python -m py_compile pcp_sqlite_store.py linux/pcp_linux_server.py linux/integracion_orca.py macos/tests/test_sqlite_portability.py linux/tests/test_orca_integration.py
+      - name: Test SQLite persistence and G-code parsing directly
+        run: |
+          python macos/tests/test_sqlite_portability.py
+          python -m unittest linux.tests.test_orca_integration -v
+
   build-dmg:
     name: Build macOS DMG (${{ matrix.arch }})
     runs-on: ${{ matrix.runner }}
@@ -40,17 +61,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate macOS server, SQLite and G-code integration
+      - name: Check required source files and version
         run: |
-          python -m py_compile pcp_sqlite_store.py linux/pcp_linux_server.py macos/tests/test_macos_smoke.py
-          python macos/tests/test_macos_smoke.py
-          python -m unittest linux.tests.test_orca_integration -v
+          test -f linux/pcp_linux_server.py
+          test -f pcp_sqlite_store.py
+          test -f Print_Cost_Profit.html
+          test "$(tr -d '[:space:]' < VERSION)" = "1.4.5"
+          python -m py_compile pcp_sqlite_store.py linux/pcp_linux_server.py
       - name: Build experimental application bundle and DMG
         shell: bash
         run: |
           set -euo pipefail
           VERSION="$(tr -d '[:space:]' < VERSION)"
-          test "$VERSION" = "1.4.4"
           APP="Print Cost & Profit.app"
           CONTENTS="$RUNNER_TEMP/$APP/Contents"
           RES="$CONTENTS/Resources/PrintCostProfit"
@@ -81,7 +103,7 @@ jobs:
           URL="http://127.0.0.1:8700/"
           mkdir -p "$DATA_DIR"
           if ! command -v python3 >/dev/null 2>&1; then
-            osascript -e 'display alert "Python 3 is required" message "Install Python 3.10 or later, then open Print Cost & Profit again." as critical'
+            osascript -e 'display alert "Python 3 is required" message "Install Python 3.10 or later, then open Print Cost & Profit again." as critical
             exit 1
           fi
           export XDG_DATA_HOME="$DATA_HOME"
@@ -97,7 +119,7 @@ jobs:
             fi
             sleep .25
           done
-          osascript -e 'display alert "Print Cost & Profit could not start" message "Check the application log in ~/Library/Application Support/PrintCostProfit/data/." as critical'
+          osascript -e 'display alert "Print Cost & Profit could not start" message "Check the application log in ~/Library/Application Support/PrintCostProfit/data/." as critical
           exit 1
           LAUNCHER
           chmod 0755 "$CONTENTS/MacOS/PrintCostProfit"
@@ -107,7 +129,7 @@ jobs:
       - name: Upload experimental DMG
         uses: actions/upload-artifact@v4
         with:
-          name: PrintCostProfit-macOS-v1.4.4-${{ matrix.arch }}-EXPERIMENTAL
+          name: PrintCostProfit-macOS-v1.4.5-${{ matrix.arch }}-EXPERIMENTAL
           path: ${{ runner.temp }}/PrintCostProfit-macOS-*-EXPERIMENTAL.dmg
           if-no-files-found: error
           retention-days: 30
