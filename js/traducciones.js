@@ -1,4 +1,4 @@
-﻿/* v5.58 — Mantenimiento ampliado, navegación y traducciones de ocho idiomas. */
+﻿/* v5.59 — Mantenimiento ampliado, navegación y traducciones de ocho idiomas. */
 
 (()=>{
 const D={
