@@ -40,7 +40,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Validate Python server and SQLite tests
+      - name: Validate macOS server, SQLite and G-code integration
         run: |
           python -m py_compile pcp_sqlite_store.py linux/pcp_linux_server.py macos/tests/test_macos_smoke.py
           python macos/tests/test_macos_smoke.py
