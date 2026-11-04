@@ -1,0 +1,2 @@
+Windows v1.4 ZIP archive test.
+This file is intentionally minimal and does not modify application functionality.
