@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+APP_DIR="/opt/printcostprofit"
+DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/PrintCostProfit/data"
+RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp}"
+PID_FILE="$RUNTIME_DIR/printcostprofit-$UID.pid"
+LOG_FILE="$DATA_DIR/printcostprofit-launcher.log"
+URL="http://127.0.0.1:8700/"
+mkdir -p "$DATA_DIR"
+if ! command -v python3 >/dev/null 2>&1; then
+  if command -v zenity >/dev/null 2>&1; then zenity --error --text="Print Cost & Profit necesita Python 3. Instálalo con: sudo apt install python3"; else echo "Falta Python 3. Instálalo con: sudo apt install python3" >&2; fi
+  exit 1
+fi
+if [[ -f "$PID_FILE" ]] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+  :
+else
+  (cd "$APP_DIR" && nohup python3 "$APP_DIR/linux/pcp_linux_server.py" >>"$LOG_FILE" 2>&1 & echo $! > "$PID_FILE")
+fi
+for _ in $(seq 1 40); do
+  if python3 -c "import urllib.request; urllib.request.urlopen('$URL', timeout=.5)" >/dev/null 2>&1; then
+    xdg-open "$URL" >/dev/null 2>&1 || true
+    exit 0
+  fi
+  sleep .25
+done
+echo "No se pudo iniciar Print Cost & Profit. Consulta $LOG_FILE" >&2
+exit 1
