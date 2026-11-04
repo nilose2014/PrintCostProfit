@@ -4,153 +4,47 @@
 
 Print Cost & Profit ayuda a conocer el coste real de cada impresión, fijar precios de venta sostenibles, supervisar impresoras compatibles, gestionar el filamento y organizar las operaciones comerciales.
 
-## Descarga, repositorios e instalación
+> **Versión estable Windows: v1.4**  
+> **Paquete Linux: v1.4**  
+> Consulta [GitHub Releases](https://github.com/nilose2014/PrintCostProfit/releases) para ver las publicaciones y descargas disponibles.
 
-Empieza aquí. Descarga Print Cost & Profit únicamente desde el repositorio oficial de GitHub y sus páginas de lanzamientos.
+## Descargas, repositorios e instalación
 
-| **Plataforma** | **Versión** | **Descarga directa** | **Página de lanzamiento** |
-|---|---|---|---|
-| **Windows** | **v1.4** | [Descargar ZIP del instalador de Windows](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.4/PrintCostProfit-Windows-Installer-v1.4.zip) | [Versión de Windows v1.4](https://github.com/nilose2014/PrintCostProfit/releases/tag/v1.4) |
-| **Linux (64 bits)** | **v1.4** | [Descargar paquete Debian (.deb)](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb) | [Versión de Linux v1.4](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4) |
+| Plataforma | Descarga | Instalación |
+|---|---|---|
+| **Windows** | [Últimas publicaciones](https://github.com/nilose2014/PrintCostProfit/releases/latest): descarga el instalador `.exe` o el paquete Windows disponible. | Ejecuta el instalador y sigue el asistente. |
+| **Linux** | [Rama Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux) o [Releases](https://github.com/nilose2014/PrintCostProfit/releases/latest): descarga el paquete Linux v1.4 cuando esté publicado. | Extrae el paquete y ejecuta el script de inicio. |
 
-### Enlaces oficiales de proyectos
+### Enlaces oficiales
+- **Repositorio principal:** https://github.com/nilose2014/PrintCostProfit
+- **Código Linux:** https://github.com/nilose2014/PrintCostProfit/tree/linux
+- **Todas las versiones:** https://github.com/nilose2014/PrintCostProfit/releases
+- **Última versión:** https://github.com/nilose2014/PrintCostProfit/releases/latest
+- **Errores y sugerencias:** https://github.com/nilose2014/PrintCostProfit/issues
 
-- **Repositorio principal:** [Print Cost & Profit](https://github.com/nilose2014/PrintCostProfit)
-- **Rama fuente de Linux:** [Linux branch](https://github.com/nilose2014/PrintCostProfit/tree/linux)
-- **Todos los lanzamientos y descargas:** [GitHub Releases](https://github.com/nilose2014/PrintCostProfit/releases)
-- **Versión de Windows v1.4:** [Windows v1.4](https://github.com/nilose2014/PrintCostProfit/releases/tag/v1.4)
-- **Versión de Linux v1.4:** [Linux v1.4](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4)
-- **Instalador de Windows v1.4 (ZIP):** [Descarga directa](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.4/PrintCostProfit-Windows-Installer-v1.4.zip)
-- **Paquete Debian de Linux:** [Descarga directa](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb)
-- **Última versión:** [GitHub Latest Release](https://github.com/nilose2014/PrintCostProfit/releases/latest)
-- **Problemas e informes de errores:** [GitHub Issues](https://github.com/nilose2014/PrintCostProfit/issues)
+La página Releases es la fuente oficial de los instaladores y paquetes disponibles. Los archivos pueden cambiar entre publicaciones; no utilices enlaces directos antiguos.
 
-> La página oficial de lanzamientos es la referencia para consultar las versiones y sus archivos de instalación.
+### Instalación en Windows
+1. Abre [Releases](https://github.com/nilose2014/PrintCostProfit/releases).
+2. Descarga el instalador `.exe` más reciente o el ZIP disponible.
+3. Ejecuta el instalador o extrae el ZIP completo en una carpeta con permisos de escritura.
+4. Inicia la aplicación desde el acceso directo o el script incluido.
+5. Si el navegador no se abre, visita `http://127.0.0.1:8700/`.
+6. Mantén juntos los archivos HTML, JavaScript, CSS y del servidor.
 
-### Instalación de Windows
+**Notas:** el servidor local debe permanecer activo. Tras actualizar, cierra el servidor anterior, inicia el de la carpeta actualizada y recarga con `Ctrl + F5`. Haz copias de seguridad antes de sustituir archivos. No borres el directorio de datos.
 
-1. Abre la [versión de Windows v1.4](https://github.com/nilose2014/PrintCostProfit/releases/tag/v1.4).
-2. Descarga [PrintCostProfit-Windows-Installer-v1.4.zip](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.4/PrintCostProfit-Windows-Installer-v1.4.zip).
-3. Extrae el archivo ZIP en una carpeta de tu ordenador.
-4. Ejecuta el instalador incluido y sigue las instrucciones.
-5. Inicia **Print Cost & Profit** desde el acceso directo instalado.
-6. Si el navegador no se abre automáticamente, visita:
-
-   `http://127.0.0.1:8700/`
-
-**Notas de Windows**
-
-- El servidor local debe estar funcionando mientras utilizas la aplicación.
-- Si el navegador muestra una interfaz antigua después de actualizar, cierra el servidor anterior, inicia el servidor de la instalación actualizada y realiza una actualización completa con `Ctrl + F5`.
-- Haz una copia de seguridad de los datos antes de actualizar.
-- No elimines el directorio de datos al desinstalar o sustituir los archivos del programa, salvo que quieras borrar intencionadamente tu información.
-
-### Instalación de Linux (Ubuntu, Debian y distribuciones compatibles)
-
-La versión Linux v1.4 se distribuye como un paquete nativo Debian para sistemas de 64 bits (`amd64`).
-
-1. Abre la [versión de Linux v1.4](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4).
-2. Descarga el [paquete Debian de Print Cost & Profit](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb).
-3. Abre un terminal en la carpeta donde se ha descargado el archivo.
-4. Instala el paquete:
-
+### Instalación en Linux (Ubuntu, Debian y derivados)
+1. Descarga el paquete desde la [rama Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux) o [Releases](https://github.com/nilose2014/PrintCostProfit/releases).
+2. Extrae el paquete completo y abre un terminal en su carpeta raíz.
+3. Ejecuta:
    ```bash
-   sudo apt install ./printcostprofit_1.4.1_amd64.deb
+   chmod +x linux/iniciar_linux.sh
+   ./linux/iniciar_linux.sh
    ```
+4. Abre `http://127.0.0.1:8700/`.
 
-5. Inicia **Print Cost & Profit** desde el menú de aplicaciones o ejecuta:
-
-   ```bash
-   printcostprofit
-   ```
-
-6. Si el navegador no se abre automáticamente, visita:
-
-   `http://127.0.0.1:8700/`
-
-**Notas sobre Linux**
-
-- La versión de la aplicación es **v1.4**.
-- El paquete está destinado a sistemas Linux de 64 bits (`amd64`).
-- El instalador declara las dependencias necesarias para que `apt` pueda resolverlas.
-- Los datos de la aplicación se guardan separados de los archivos del programa, en el directorio de datos del usuario.
-- Para actualizar, instala el nuevo paquete `.deb` sobre la instalación existente.
-- Haz una copia de seguridad antes de actualizar y no elimines el directorio de datos si deseas conservar tu información.
-
----
-
-## Integración de Print Cost & Profit con Snapmaker Orca
-
-Para enviar automáticamente la información de impresión desde Snapmaker Orca a Print Cost & Profit, debes configurar el script de postprocesado.
-
-Esta integración permite que la aplicación reciba los datos disponibles del G-code y los utilice en la calculadora de costes.
-
-### Windows – Snapmaker Orca
-
-1. Instala y ejecuta **Print Cost & Profit v1.4**.
-2. Comprueba que el servidor local está funcionando en:
-
-   `http://127.0.0.1:8700/`
-
-3. Abre **Snapmaker Orca**.
-4. Selecciona el perfil de impresora que utilizas con tu Snapmaker U1.
-5. Entra en **Configuración de impresora → General**.
-6. Localiza el campo **Scripts de postprocesado (Post-processing scripts)**.
-7. Introduce la ruta completa al script de integración incluido con la instalación.
-
-   **Ejemplo:** si has instalado Print Cost & Profit en la ruta predeterminada `C:\PrintCostProfit`, introduce:
-
-   ```text
-   C:\PrintCostProfit\Integracion_Orca_Postprocesado.bat
-   ```
-
-   Si has instalado el programa en otra carpeta, sustituye `C:\PrintCostProfit` por la ruta real de tu instalación.
-
-8. Guarda el perfil de impresora.
-
-Cuando lamines y exportes un archivo G-code, Snapmaker Orca ejecutará el script configurado y enviará la información de impresión a Print Cost & Profit.
-
-**Importante:** no introduzcas la dirección del servidor en el campo de scripts de postprocesado. Debes introducir la ruta del archivo de integración.
-
-### Linux – Snapmaker Orca
-
-1. Instala **Print Cost & Profit v1.4** utilizando el paquete Debian indicado anteriormente.
-2. Inicia la aplicación y comprueba que el servidor local está funcionando.
-3. Abre **Snapmaker Orca**.
-4. Selecciona el perfil de tu Snapmaker U1.
-5. Entra en **Configuración de impresora → General**.
-6. Localiza el campo **Scripts de postprocesado (Post-processing scripts)**.
-7. Introduce la ruta completa al script de integración de Linux incluido con la instalación.
-8. Guarda el perfil de impresora.
-
-Si el script no tiene permisos de ejecución, puedes habilitarlos desde un terminal:
-
-```bash
-chmod +x /ruta/al/script-de-integracion.sh
-```
-
-Sustituye la ruta del ejemplo por la ubicación real del script instalado.
-
-### Cómo utilizar la integración
-
-Una vez configurada la integración:
-
-1. Abre Print Cost & Profit y Snapmaker Orca.
-2. Lamina tu modelo en Snapmaker Orca.
-3. Exporta el archivo G-code.
-4. El script de postprocesado enviará los datos de impresión disponibles a Print Cost & Profit.
-5. Abre la calculadora y revisa la información importada.
-
-La aplicación puede recibir, según los datos incluidos en el G-code:
-
-- Materiales de los filamentos.
-- Colores de cada filamento.
-- Consumo estimado de filamento en gramos.
-- Tiempo estimado de impresión.
-
-Comprueba las asignaciones de bobinas, los materiales y el tiempo antes de realizar el cálculo de costes.
-
-**Importante:** el servidor local de Print Cost & Profit debe permanecer funcionando para que Snapmaker Orca pueda comunicarse con la aplicación.
+**Notas:** ejecuta estos comandos en Linux o en el terminal Ubuntu de WSL, nunca en PowerShell. Se requiere Python 3 y SQLite. Conserva la estructura de carpetas. Los datos se guardan en el directorio de datos del usuario, separado del programa. Si falla una prueba de inicio, conserva el resultado y no ignores el error.
 
 ### Primer inicio y conexión de impresora
 Inicia el servidor antes de abrir la web. El ordenador y la impresora deben ser accesibles en la red local. Configura Moonraker con la IP LAN y el puerto de la impresora. Puedes guardar la configuración aunque esté apagada, pero el estado en directo requiere que esté conectada. La integración Snapmaker Orca utiliza el flujo local y el script de posprocesado del paquete correspondiente.
