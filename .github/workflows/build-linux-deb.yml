@@ -51,7 +51,7 @@ jobs:
             mkdir -p "$PKG/usr/share/icons/hicolor/256x256/apps"
             install -m 0644 "$APP/assets/logo.png" "$PKG/usr/share/icons/hicolor/256x256/apps/printcostprofit.png"
           fi
-          dpkg-deb --root-owner-group --build --compress-method gzip --build "$PKG" "$RUNNER_TEMP/printcostprofit_${PKG_VERSION}_amd64.deb"
+          dpkg-deb --root-owner-group --build -Zgzip --build "$PKG" "$RUNNER_TEMP/printcostprofit_${PKG_VERSION}_amd64.deb"
           dpkg-deb --info "$RUNNER_TEMP/printcostprofit_${PKG_VERSION}_amd64.deb"
           dpkg-deb --contents "$RUNNER_TEMP/printcostprofit_${PKG_VERSION}_amd64.deb" > "$RUNNER_TEMP/deb-contents.txt"
           head -80 "$RUNNER_TEMP/deb-contents.txt"
