@@ -1,0 +1,61 @@
+name: Build Linux DEB installer
+
+on:
+  push:
+    branches: [linux]
+    paths:
+      - '.github/workflows/build-linux-deb.yml'
+      - 'installer/linux/**'
+      - 'linux/**'
+      - 'pcp_sqlite_store.py'
+      - 'VERSION'
+      - 'Print_Cost_Profit.html'
+      - 'js/**'
+      - 'css/**'
+      - 'assets/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout Linux branch
+        uses: actions/checkout@v4
+        with:
+          ref: linux
+      - name: Build Debian package
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(tr -d '[:space:]' < VERSION)"
+          PKG_VERSION="${VERSION}.1"
+          ROOT="$PWD"
+          PKG="$RUNNER_TEMP/pkg"
+          APP="$PKG/opt/printcostprofit"
+          mkdir -p "$APP" "$PKG/DEBIAN" "$PKG/usr/bin" "$PKG/usr/share/applications"
+          rsync -a --exclude='.git' --exclude='.github' --exclude='installer' --exclude='*.bat' --exclude='*.cmd' --exclude='*.ps1' --exclude='*.exe' "$ROOT/" "$APP/"
+          install -m 0755 installer/linux/printcostprofit-launcher "$PKG/usr/bin/printcostprofit"
+          install -m 0644 installer/linux/printcostprofit.desktop "$PKG/usr/share/applications/printcostprofit.desktop"
+          install -m 0644 installer/linux/control "$PKG/DEBIAN/control"
+          sed -i "s/^Version:.*/Version: $PKG_VERSION/" "$PKG/DEBIAN/control"
+          install -m 0755 installer/linux/postinst "$PKG/DEBIAN/postinst"
+          install -m 0755 installer/linux/prerm "$PKG/DEBIAN/prerm"
+          chmod 0755 "$APP/linux/iniciar_linux.sh" "$APP/linux/pcp_linux_server.py"
+          if [ -f "$APP/assets/logo.png" ]; then
+            mkdir -p "$PKG/usr/share/icons/hicolor/256x256/apps"
+            install -m 0644 "$APP/assets/logo.png" "$PKG/usr/share/icons/hicolor/256x256/apps/printcostprofit.png"
+          fi
+          dpkg-deb --root-owner-group --build "$PKG" "$RUNNER_TEMP/printcostprofit_${PKG_VERSION}_amd64.deb"
+          dpkg-deb --info "$RUNNER_TEMP/printcostprofit_${PKG_VERSION}_amd64.deb"
+          dpkg-deb --contents "$RUNNER_TEMP/printcostprofit_${PKG_VERSION}_amd64.deb" | head -80
+      - name: Upload DEB installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: PrintCostProfit-Linux-DEB
+          path: ${{ runner.temp }}/printcostprofit_*_amd64.deb
+          if-no-files-found: error
+          retention-days: 30
