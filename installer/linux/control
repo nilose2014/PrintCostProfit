@@ -1,0 +1,10 @@
+Package: printcostprofit
+Version: 1.4.1
+Section: utils
+Priority: optional
+Architecture: amd64
+Depends: python3 (>= 3.10), xdg-utils
+Maintainer: Print Cost & Profit
+Description: Calculadora de costes y beneficios de impresión 3D
+ Aplicación local para gestionar costes, inventario, presupuestos,
+ facturas, contabilidad, mantenimiento e integración Snapmaker U1/Orca.
