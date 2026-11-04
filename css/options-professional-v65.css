@@ -1,0 +1,77 @@
+/* v5.18 · Corrección de distribución: opciones en una columna continua y perfiles a ancho completo */
+#programOptionsView{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:16px!important;
+  min-width:0;
+}
+/* El panel contenedor inicial solo aporta el título; sus apartados internos pasan
+   a ocupar el mismo flujo que el resto de opciones, sin crear una cuadrícula anidada. */
+#programOptionsView>section.panel:first-child{display:contents!important}
+#programOptionsView>h2,
+#programOptionsView>p.section-note{width:100%;box-sizing:border-box}
+#programOptionsView .pcp-opt-section,
+#programOptionsView>#machinesPanel,
+#programOptionsView>#pcpPrinterSettingsPanel,
+#programOptionsView>#pcpBackupSettingsPanel,
+#programOptionsView>#pcpVersionUpdatesPanel,
+#programOptionsView>#pcpDocumentationPanel,
+#programOptionsView>#pcpLogsPanel{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  grid-column:auto!important;
+  align-self:stretch!important;
+}
+#programOptionsView .pcp-opt-content{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+#programOptionsView .pcp-opt-content>.fields,
+#programOptionsView #machinesPanel .fields,
+#programOptionsView #pcpPrinterSettingsPanel .fields,
+#programOptionsView #pcpBackupSettingsPanel .fields{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  width:100%!important;
+  max-width:none!important;
+  gap:14px 18px!important;
+  align-items:start!important;
+}
+#programOptionsView #machinesPanel .field,
+#programOptionsView #machinesPanel .actions,
+#programOptionsView #machinesPanel #machineDepreciationStatus,
+#programOptionsView #machinesPanel #machinesList{min-width:0;max-width:none}
+#programOptionsView #machinesPanel #machinesList{display:block!important;width:100%!important;margin:18px 0 0!important}
+#programOptionsView #machinesPanel .machine-cards{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  width:100%!important;
+  gap:14px!important;
+  align-items:stretch!important;
+}
+#programOptionsView #machinesPanel .machine-card{width:auto!important;min-width:0!important}
+#programOptionsView #pcpBackupMetrics{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;width:100%!important}
+#programOptionsView #pcpLogsList{width:100%!important;max-width:none!important}
+#programOptionsView .pcp-opt-section-tools{width:100%;box-sizing:border-box}
+#programOptionsView .field.wide{grid-column:1/-1}
+@media(max-width:900px){
+  #programOptionsView #machinesPanel .machine-cards{grid-template-columns:1fr!important}
+  #programOptionsView #pcpBackupMetrics{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:650px){
+  #programOptionsView{gap:12px!important}
+  #programOptionsView .pcp-opt-section{padding:14px!important}
+  #programOptionsView .pcp-opt-content>.fields,
+  #programOptionsView #machinesPanel .fields,
+  #programOptionsView #pcpPrinterSettingsPanel .fields,
+  #programOptionsView #pcpBackupSettingsPanel .fields,
+  #programOptionsView #pcpBackupMetrics{grid-template-columns:1fr!important}
+  #programOptionsView .field.wide{grid-column:auto}
+}

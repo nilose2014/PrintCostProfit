@@ -1,0 +1,50 @@
+/* v5.2 · Ajuste suave del brillo de los iconos neón */
+.pcp-calculator-page .pcp-calculator-heading:before,
+.pcp-calculator-page>.grid>main>section h2:before,
+.pcp-calculator-page>.grid>aside>section h2:before,
+.pcp-calculator-page #dashboardPanel h2:before,
+.pcp-calculator-page #failureSimPanel h2:before,
+.pcp-calculator-page #comparePanel h2:before {
+  /* El pseudo-elemento anterior solo dibuja el marco: elimina la máscara heredada
+     de v4.8 que estaba pintando un segundo icono superpuesto. */
+  -webkit-mask: none !important;
+  mask: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  width: 40px !important;
+  height: 40px !important;
+  flex-basis: 40px !important;
+  min-width: 40px !important;
+  background: linear-gradient(145deg,rgba(19,208,239,.20),rgba(126,78,255,.25)) !important;
+  box-shadow: 0 0 11px rgba(37,202,255,.17), inset 0 0 10px rgba(118,91,255,.13) !important;
+}
+.pcp-calculator-page>.grid>main>section h2:after,
+.pcp-calculator-page>.grid>aside>section h2:after,
+.pcp-calculator-page #dashboardPanel h2:after,
+.pcp-calculator-page #failureSimPanel h2:after,
+.pcp-calculator-page #comparePanel h2:after {
+  left: 10px !important;
+  width: 22px !important;
+  height: 22px !important;
+  filter: drop-shadow(0 0 3px rgba(58,220,255,.78)) drop-shadow(0 0 6px rgba(160,94,255,.46)) !important;
+}
+.pcp-calculator-page>.grid>main>section>h2,
+.pcp-calculator-page>.grid>aside>section>h2 {
+  gap: 12px !important;
+  min-height: 44px !important;
+}
+@media(max-width:850px) {
+  .pcp-calculator-page>.grid>main>section h2:before,
+  .pcp-calculator-page>.grid>aside>section h2:before {
+    width: 36px !important;
+    height: 36px !important;
+    flex-basis: 36px !important;
+    min-width: 36px !important;
+  }
+  .pcp-calculator-page>.grid>main>section h2:after,
+  .pcp-calculator-page>.grid>aside>section h2:after {
+    left: 9px !important;
+    width: 20px !important;
+    height: 20px !important;
+  }
+}

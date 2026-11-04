@@ -1,0 +1,3 @@
+/* v5.15 · Elimina el subtítulo pequeño duplicado bajo el título de Calculadora */
+.pcp-calculator-page .pcp-calculator-heading:after,
+.pcp-calculator-page .pcp-calculator-heading p{content:none!important;display:none!important}

@@ -1,465 +1,539 @@
-# Print Cost & Profit v1.0
+# Print Cost & Profit
 
-## Cost calculator, production and management for 3D printing
+**A complete cost-calculation, production-monitoring and business-management workspace for 3D printing.**
 
-Print Cost & Profit is an application designed to help 3D printing users estimate manufacturing costs, monitor filament consumption, manage materials, and organise the business activity related to their prints.
+Print Cost & Profit helps makers and small 3D-printing businesses understand the real cost of every print, calculate sustainable selling prices, monitor compatible printers, manage filament stock and organize day-to-day sales operations.
 
-The application combines a cost calculator with management tools, local storage, and integration with OrcaSlicer-based slicers, especially Snapmaker Orca, OrcaSlicer, and Creality Print. It also includes a printer monitor, with compatibility depending on the printer model and connection method.
-
-## Application screenshots
-
-The screenshots below show several areas of Print Cost & Profit. Available functions depend on the installed version and configuration.
-
-![Cost calculator](galeria/en/01-cost-calculator.jpg)
-
-![Cost result and profit](galeria/en/02-cost-result-and-profit.jpg)
-
-![Floating print panel](galeria/en/03-floating-print-panel.jpg)
-
-**Author:** Beatriz Toro Martin &#x20;
-
-**Published version:** v1.0 &#x20;
-
-**Reference operating systems:** Windows 10 and Windows 11 &#x20;
-
-**Official repository:** https\://github.com/nilose2014/PrintCostProfit
+> **Current Windows stable version: v1.4**  
+> **Linux package: v1.4**  
+> Check the Releases page for the latest published builds and platform-specific files.
 
 ---
 
-# 1. Main features
+## Download, repositories and installation
 
-## 1.1. 3D printing cost calculator
+Start here. Download only from the official GitHub repository and its Releases page.
 
-The calculator estimates the manufacturing cost of a part using print parameters and associated costs.
+| Platform | Download | Installation |
+|---|---|---|
+| **Windows** | [Open the latest GitHub Releases](https://github.com/nilose2014/PrintCostProfit/releases/latest) and download the Windows `.exe` installer (or the Windows package, if provided). | Run the installer, follow the setup wizard and launch Print Cost & Profit. |
+| **Linux** | [Open the Linux branch](https://github.com/nilose2014/PrintCostProfit/tree/linux) or [GitHub Releases](https://github.com/nilose2014/PrintCostProfit/releases/latest) and download the Linux v1.4 package when listed. | Extract the package, open a terminal in its folder and run the Linux startup script as described below. |
 
-Depending on the configuration, cost items may include:
+### Official project links
 
-- Filament consumption.
+- **Main repository:** https://github.com/nilose2014/PrintCostProfit
+- **Linux source branch:** https://github.com/nilose2014/PrintCostProfit/tree/linux
+- **All releases and downloads:** https://github.com/nilose2014/PrintCostProfit/releases
+- **Latest release:** https://github.com/nilose2014/PrintCostProfit/releases/latest
+- **Issues and bug reports:** https://github.com/nilose2014/PrintCostProfit/issues
 
-- Material price.
+> Release assets can change between builds. The Releases page is the authoritative place for the current Windows installer and Linux package. Do not use an old direct download URL copied from an earlier release.
 
-- Printing time.
+### Windows installation
 
-- Printer operating and wear costs.
+1. Open the [Releases page](https://github.com/nilose2014/PrintCostProfit/releases).
+2. Download the Windows `.exe` installer from the latest release. If that release provides a ZIP package instead, download and extract that package.
+3. If using the installer, run the `.exe` and follow the installation steps.
+4. If using the ZIP package, extract the complete folder to a location where your Windows account has write access.
+5. Start Print Cost & Profit using its installed shortcut or the supplied startup script.
+6. Open the application in your browser if it does not open automatically. The local Windows service uses `http://127.0.0.1:8700/` by default.
+7. Keep the application folder together. Do not move individual HTML, JavaScript, CSS or server files out of it.
 
-- Equipment depreciation.
+**Windows notes**
+- The local server must be running while you use the application.
+- If the browser shows an old interface or version after an update, close the old server first, start the server from the updated installation folder and perform a hard refresh (`Ctrl + F5`).
+- Back up your application data before replacing an installation.
+- Do not delete the data directory when uninstalling or replacing program files unless you intentionally want to remove your stored data.
 
-- Other manufacturing-related expenses.
+### Linux installation (Ubuntu, Debian and compatible distributions)
 
-- Desired profit margin.
+The Linux build includes a Python server and a startup script.
 
-- Selected taxes and currency.
+1. Download the Linux package from the [Linux branch](https://github.com/nilose2014/PrintCostProfit/tree/linux) or the [Releases page](https://github.com/nilose2014/PrintCostProfit/releases).
+2. Extract the complete package.
+3. Open a terminal in the extracted project directory.
+4. Make the startup script executable:
+   ```bash
+   chmod +x linux/iniciar_linux.sh
+   ```
+5. Start the application:
+   ```bash
+   ./linux/iniciar_linux.sh
+   ```
+6. When the server is ready, open:
+   ```text
+   http://127.0.0.1:8700/
+   ```
 
-The goal is to understand how much a part costs to manufacture before setting its selling price.
+**Linux notes**
+- Run Linux commands in a Linux terminal. On Windows Subsystem for Linux (WSL), use the Ubuntu terminal, not Windows PowerShell.
+- Python 3 and SQLite must be available. The startup script checks the required runtime and runs the included smoke tests.
+- Keep the `linux` directory, application files and startup script in their original relative locations.
+- The Linux application stores its data in the user's application-data location (following the Linux data-directory convention), separately from the program files.
+- If the startup tests report a failure, do not ignore it. Keep the output and report it with your Linux distribution and Python version.
 
-## 1.2. Selling price, profit and margin
+### First launch and printer connection
 
-The calculator helps assess the estimated financial outcome of a print.
-
-The calculations help distinguish between:
-
-- **Manufacturing cost:** estimated cost of the resources used.
-
-- **Selling price:** amount intended to be charged for the part.
-
-- **Estimated profit:** calculated difference between revenue and the costs considered.
-
-- **Margin:** relationship between profit and selling price, according to the calculation used.
-
-- **Recommended price:** suggested price calculated from the configured parameters.
-
-Results depend on the prices, percentages, times, and other values entered. Keep filament, printer, and additional costs up to date for useful estimates.
-
-![Product inventory](galeria/en/04-product-inventory.jpg)
-
-## 1.3. Printer profiles
-
-Profiles let you configure the economic parameters associated with the equipment you use.
-
-Where supported by a profile, these may include purchase cost, estimated service life, and operating costs.
-
-If you use multiple printers, select the correct profile so estimates reflect differences between machines.
-
-![Printer profiles and monitoring](galeria/en/06-printer-profiles-and-monitoring.jpg)
-
-## 1.4. OrcaSlicer integration
-
-Print Cost & Profit integrates with OrcaSlicer through post-processing scripts.
-
-This integration processes a G-code file generated by the slicer and uses the available data to support the application workflow.
-
-The information that can be retrieved depends on the generated file, OrcaSlicer settings, and the features available in the installation.
-
-![Quotes and estimates](galeria/en/08-quotes-and-estimates.jpg)
-
-## 1.5. Printer monitor and printer compatibility
-
-The printer confirmed to be **100% compatible** is the **Snapmaker U1**. The monitor also works with other printers, including printers accessible through **Fluidd** or **Mainsail/Moonraker** (depending on their setup), but support for those models is still being refined. Some features may be unavailable or behave differently while testing and adjustments continue.
-
-## 1.6. Local SQLite storage
-
-The application includes local storage components based on SQLite.
-
-The goal is to keep data in a database on the computer and avoid splitting it between PC storage and browser storage.
-
-If local storage cannot start, the application should display the relevant error instead of silently switching to another storage location.
-
-## 1.7. Diagnostic tools
-
-The project includes scripts to help check application startup, the local bridge, and certain integration issues.
-
-These tools provide useful information when a component fails to start or an operation does not complete successfully.
+- Start the local application server before opening the web interface.
+- For printer monitoring, the computer and printer must be reachable on the local network.
+- Configure the printer's Moonraker connection using the printer's LAN address and the port configured by the printer.
+- The printer can be offline while its connection settings are saved; live status and monitoring require the printer to be online.
+- Snapmaker Orca integration depends on the supported local integration workflow and the post-processing script supplied with the relevant platform package.
 
 ---
 
-# 2. Prerequisites
+## What is Print Cost & Profit?
 
-Before starting the program, make sure you have:
+Print Cost & Profit is designed to bring the technical and commercial sides of 3D printing into one place.
 
-- A computer running Windows 10 or Windows 11.
+A slicer estimates material use and print duration. A business, however, also needs to account for electricity, machine wear, maintenance, labor, finishing, failed prints, stock and the final selling price. Print Cost & Profit combines these considerations in a practical workflow:
 
-- A permanent local folder for the project.
+1. Import print information from a supported G-code workflow or enter the job details manually.
+2. Calculate the real production cost.
+3. Set a profit target and calculate a recommended price.
+4. Review material availability and printer information.
+5. Save estimates and manage the associated business records.
+6. Track production, stock, maintenance and financial activity.
 
-- An OrcaSlicer-based slicer—especially Snapmaker Orca, OrcaSlicer, or Creality Print—if you want to use the integration.
+The interface uses a dark, high-contrast layout with dedicated sections for the calculator, dashboard, printer monitor, inventory and business-management tools.
 
-- All files from the downloaded distribution.
+## Main features
 
-- The storage and configuration components included in the distribution package.
+### 1. Print-cost calculator
 
-The distribution should include the SQLite executable prepared for Windows so end users do not need to install Python manually.
+The calculator is the core of the application. It turns print parameters and operating costs into an understandable cost and price breakdown.
 
-Do not run the application directly from the ZIP file. Extract all files first.
+Depending on the information supplied, the calculation workflow supports:
+
+- Filament/material consumption in grams.
+- Material price and cost per kilogram.
+- Print duration.
+- Electricity consumption and electricity cost.
+- Printer amortization and machine-related costs.
+- Maintenance cost allocation.
+- Labor and preparation time.
+- Additional costs and finishing.
+- Painting or finishing cost per unit.
+- A reserve for failed prints.
+- Profit percentage / target benefit.
+- Recommended selling price.
+- Cost per unit and profit per unit.
+- Profit margin and comparison of price scenarios.
+
+The calculator is intended to make the difference between **production cost**, **selling price**, **profit** and **margin** visible, rather than treating filament cost as the entire cost of a print.
+
+#### G-code and slicer data
+
+The supported Orca workflow can pass print metadata to the application, reducing manual entry. Depending on the G-code metadata available, the import process can identify:
+
+- The G-code filename.
+- Filament/material entries.
+- Filament colours and colour codes.
+- Estimated filament consumption.
+- Estimated print time.
+- Available thumbnail information.
+
+Imported values should be reviewed before calculating. Slicer metadata and inventory assignments may need confirmation, particularly when a project uses several materials or colours.
+
+#### Price comparison and saved calculations
+
+The calculator includes tools to compare price scenarios and work with saved valuations. This helps assess how a different profit target or an additional amount affects the final price.
+
+### 2. Dashboard and business overview
+
+The dashboard brings key business figures and activity into a single overview.
+
+It is designed to help review:
+
+- Sales and business totals.
+- Cost and profit indicators.
+- Financial summaries and charts.
+- Stock-related information.
+- Printer and production status.
+- Recent activity and shortcuts to frequently used areas.
+
+The dashboard is an overview; detailed records remain available in their corresponding sections.
+
+### 3. Printer monitor — Snapmaker U1 / Moonraker workflow
+
+The printer monitor connects the application to a compatible printer through its local network interface and Moonraker-compatible endpoints.
+
+Monitor capabilities include:
+
+- Printer discovery and manual IP configuration.
+- Saving printer connection settings.
+- Checking whether a printer is online or offline.
+- Reading printer state and print progress.
+- Displaying the active print/job information when supplied by the printer.
+- Showing available print metadata such as filename, progress and filament usage.
+- Listing files exposed by the printer.
+- Working with available G-code thumbnail data.
+- Selecting a printer when more than one printer is configured.
+- Sending the active print information to the calculator for cost estimation.
+
+The monitor and calculator are connected so that a print can move from production monitoring into the costing workflow. Imported print information should be checked before using it for a quote or valuation.
+
+**Connectivity:** The computer running Print Cost & Profit must be able to reach the printer on the LAN. Network isolation, firewall rules, an incorrect IP address or an unavailable Moonraker service can prevent monitoring.
+
+### 4. Filament inventory and stock
+
+The filament inventory is designed around the physical spools used by the printers.
+
+Inventory records can include:
+
+- Brand.
+- Material type (for example PLA, PETG and other configured materials).
+- Colour name.
+- Colour value / HEX code.
+- Initial spool weight.
+- Remaining filament weight.
+- Price per kilogram.
+- Stock information used by the print workflow.
+
+The application can compare imported G-code material and colour information with stored spools. When a suitable match is not clear, the assignment should be reviewed and selected rather than assumed.
+
+The stock workflow is intended to help identify whether enough filament is available before a print. A warning about insufficient material is not the same as a confirmed physical measurement: spool weights and inventory values must be kept up to date.
+
+### 5. Printers and machine profiles
+
+The application includes printer-related configuration and monitoring areas.
+
+These support workflows such as:
+
+- Configuring printers and their connection details.
+- Identifying printers on the local network where discovery is supported.
+- Keeping printer information available for later sessions.
+- Reviewing printer status in the monitor.
+- Associating production and accounting information with the relevant printer.
+
+The monitor is designed for the Snapmaker U1 workflow described in this project. Other printers or firmware combinations may require compatible Moonraker endpoints and have not necessarily been validated.
+
+### 6. Maintenance centre
+
+The maintenance area helps organize preventive and corrective work on 3D printers.
+
+It provides a structured place to record and review maintenance tasks, including machine-specific checks. Depending on the selected printer and configured maintenance plan, examples include:
+
+- Cleaning and general inspection.
+- Lubrication and greasing of axes and moving parts.
+- Checking belts, guides and mechanical movement.
+- Hotend inspection.
+- Nozzle inspection and nozzle replacement.
+- Checking extruder and filament-feed components.
+- Checking fans and cooling.
+- Reviewing print-bed condition and adhesion.
+- Checking cables, connectors and other visible components.
+- Recording maintenance actions and their status.
+
+Maintenance requirements differ by printer model. Always follow the manufacturer's maintenance instructions and safety guidance; the application is a tracking aid, not a substitute for the service manual.
+
+### 7. Estimates, orders and invoices
+
+Print Cost & Profit includes business-document workflows to help manage customer requests and completed work.
+
+The available areas cover:
+
+- Creating and saving estimates/quotes.
+- Managing orders.
+- Creating invoices.
+- Working with customer information.
+- Reviewing document details and totals.
+- Producing PDF documents for sharing or record keeping.
+- Moving from an estimate toward an invoice where the workflow supports it.
+
+Document numbering, tax settings, currency and customer details should be checked before issuing a document. Always verify the generated PDF before sending it to a customer.
+
+### 8. Customer management
+
+The customer area provides a place to store customer details and associate them with commercial documents.
+
+It is intended to reduce repeated data entry and keep estimates, orders and invoices organized around the relevant customer.
+
+### 9. Accounting and financial tracking
+
+The accounting area is designed to record business movements and review the financial results of 3D-printing activity.
+
+It supports a workflow for reviewing income, costs and benefits, with printer-related context where configured. Use it alongside the calculator and commercial documents to understand how individual jobs contribute to the overall business.
+
+Accounting records should be checked against the user's official bookkeeping and tax requirements. Print Cost & Profit is an operational management tool, not accounting or tax advice.
+
+### 10. Product catalogue and product information
+
+The project includes product-catalogue functionality for organizing products made or sold by the business.
+
+Product information can be used to keep product records together with the wider sales workflow. Where enabled in the build, product presentation and QR-related features help connect a physical product with its catalogue information.
+
+### 11. Activity log and diagnostics
+
+The application includes local activity/logging functionality to help review events and investigate problems.
+
+Logs are useful when diagnosing:
+
+- Local server startup issues.
+- Printer connection problems.
+- API errors.
+- Import and integration problems.
+- Backup and storage operations.
+
+When reporting a problem, include the relevant log output, operating system, application version and the steps that reproduce the issue. Remove private information such as customer details, network credentials and public/private access tokens before sharing logs.
+
+### 12. Backups, data storage and recovery
+
+The application uses local data storage and includes backup and recovery workflows in the supported builds.
+
+The Linux server includes API support for snapshots, revision control, backups and logs. The Windows build includes its own local server and storage workflow.
+
+Good practice:
+
+- Make a backup before installing an update.
+- Keep backup copies somewhere separate from the application folder.
+- Do not manually edit the database while the application is running.
+- Do not delete the application-data directory when replacing program files.
+- Test restoration procedures with a copy of the data before relying on them for business-critical recovery.
+
+### 13. Settings and interface customization
+
+The settings area groups application configuration and interface options. The interface also supports panel/section organization controls, such as hiding fields and changing section order where available.
+
+Available options can vary by platform build and release.
+
+### 14. Multi-language interface
+
+The application centralizes interface text in `js/traducciones.js` and is designed for these eight languages:
+
+- Spanish
+- English
+- French
+- German
+- Italian
+- Polish
+- Arabic (right-to-left layout support)
+- Simplified Chinese
+
+New interface text, including labels, fields, dialogs, buttons, warnings and errors, should be added to the centralized translation system and translated across all supported languages.
 
 ---
 
-# 3. Download and install Print Cost & Profit
+## Screenshots
 
-## Step 1. Download the program
+The screenshots below are from the application interface and show the main areas and workflows. They are included in this repository package under `assets/screenshots/`.
 
-1. Open the official repository:
+### Dashboard and overview
 
-   https\://github.com/nilose2014/PrintCostProfit
+![Print Cost & Profit dashboard](assets/screenshots/screenshot-02.jpg)
 
-2. Click **Code**.
+### Cost calculator and print information
 
-3. Select **Download ZIP**.
+![Cost calculator](assets/screenshots/screenshot-03.jpg)
 
-4. Wait for the download to finish.
+![Print data and calculator workflow](assets/screenshots/screenshot-01.jpg)
 
-5. Extract the ZIP contents.
+### Production, estimates and business workflows
 
-## Step 2. Choose a folder
+![Business workflow screen](assets/screenshots/screenshot-05.jpg)
 
-You can use a folder such as:
+![Cost and pricing overview](assets/screenshots/screenshot-06.jpg)
 
-`C:\PrintCostProfit`
+![Configuration and business records](assets/screenshots/screenshot-07.jpg)
 
-You can choose another permanent location. Avoid temporary folders, and do not move the program after configuring OrcaSlicer paths unless you update those paths.
+### Settings, documentation and application configuration
 
-## Step 3. Start the program
+![Application configuration](assets/screenshots/screenshot-08.jpg)
 
-Open the folder where you extracted the files and double-click:
+![Application settings](assets/screenshots/screenshot-09.jpg)
 
-**`Integracion_Orca_Postprocesado.bat`**
+![Version and update settings](assets/screenshots/screenshot-10.jpg)
 
-This file is used both to start the application manually and for OrcaSlicer integration.
+### Customers, estimates, orders and invoices
 
-When run manually, it checks whether the local service is available. If it does not respond, it attempts to start it and waits until it is ready before opening the interface in the browser.
+![Customer management](assets/screenshots/screenshot-12.jpg)
 
-You do not need to open the HTML file first or start the local bridge separately when the launcher can handle this.
+![Customer and document workflow](assets/screenshots/screenshot-13.jpg)
 
-**Important:** to use features that require local storage, start the application with this file instead of opening `Print_Cost_Profit.html` directly.
+![Document management](assets/screenshots/screenshot-14.jpg)
 
----
+![Order and estimate workflow](assets/screenshots/screenshot-15.jpg)
 
-# 4. Configure an OrcaSlicer-based slicer
+![Invoice and commercial records](assets/screenshots/screenshot-16.jpg)
 
-The integration is intended for OrcaSlicer-based slicers, especially Snapmaker Orca, OrcaSlicer, and Creality Print. Menu names and details may differ between them. Overall compatibility is approximately 90%, so test it with your installed version.
+![Customer and sales details](assets/screenshots/screenshot-17.jpg)
 
-The post-processing script processes G-code when the slicer finishes slicing.
+### Filament inventory and printer-related workflows
 
-## Step 1. Locate the integration file
+![Filament stock](assets/screenshots/screenshot-18.jpg)
 
-In the program folder, locate:
+![Filament inventory cards](assets/screenshots/screenshot-19.jpg)
 
-`Integracion_Orca_Postprocesado.bat`
+![Printer and material overview](assets/screenshots/screenshot-20.jpg)
 
-Copy its full path. If you used the example folder, it will be:
+### Profitability, reporting and invoices
 
-`C:\PrintCostProfit\Integracion_Orca_Postprocesado.bat`
+![Profitability dashboard](assets/screenshots/screenshot-21.jpg)
 
-If you installed the program elsewhere, use the actual path.
+![Financial overview](assets/screenshots/screenshot-22.jpg)
 
-## Step 2. Open print settings
+![Invoice PDF example](assets/screenshots/screenshot-23.jpg)
 
-1. Open OrcaSlicer.
+### Maintenance centre
 
-2. Select the printer profile you want to use.
+![Maintenance centre overview](assets/screenshots/screenshot-24.jpg)
 
-3. Open the print settings.
+![Maintenance tasks](assets/screenshots/screenshot-25.jpg)
 
-4. Enable Advanced or Expert mode if needed.
+### Additional application screens
 
-5. Open the **Others** section.
+![Additional application screen](assets/screenshots/screenshot-04.jpg)
 
-6. Find **Post-processing scripts**.
+![Additional application screen](assets/screenshots/screenshot-11.jpg)
 
-Menu names and layouts may vary by slicer, version, and selected language.
-
-## Step 3. Add the script
-
-Enter the full path to:
-
-`Integracion_Orca_Postprocesado.bat`
-
-Save the profile settings.
-
-If your slicer requires a specific path or argument syntax, use the format appropriate for that version.
-
-## Step 4. Run a test
-
-1. Load a simple model.
-
-2. Select the printer and print profile.
-
-3. Configure the material.
-
-4. Slice the model.
-
-5. Export the G-code.
-
-6. Check that post-processing runs without errors.
-
-The script processes the G-code file when OrcaSlicer calls it with the file path. In this case, it behaves differently from manual startup: it processes the file and exits without opening a second application window.
+![Additional application screen](assets/screenshots/screenshot-26.jpg)
 
 ---
 
-# 5. Processing G-code files
+## Typical workflow
 
-G-code contains instructions generated by the slicer for the 3D printer.
+A typical print-to-sale workflow can look like this:
 
-Print Cost & Profit integration processes these files to retrieve available data useful for calculations and job records.
-
-Depending on the file contents and available features, relevant data may include:
-
-- File name or path.
-
-- Print information generated by the slicer.
-
-- Estimated time and material usage.
-
-- Filament information when available.
-
-Values from G-code are slicing estimates and should not automatically be treated as actual consumption confirmed by the printer.
-
-## Manual G-code test
-
-The project includes:
-
-`Probar_Integracion_con_Gcode.bat`
-
-To run a test:
-
-1. Find a G-code file generated by the compatible slicer you are using.
-
-2. Drag the file onto `Probar_Integracion_con_Gcode.bat`.
-
-3. Wait for the process to finish.
-
-4. Check the result and any error messages.
-
-This test helps distinguish a file-processing problem from a local service problem.
+1. **Prepare the job** in the slicer and generate the G-code.
+2. **Import print data** through the supported Orca integration or enter the values manually.
+3. **Review materials and colours** and match them with the filament inventory.
+4. **Check the printer** and available filament before production.
+5. **Calculate the real cost**, including material, time, electricity, machine costs, labor and finishing.
+6. **Set the selling price** using the target profit and review the margin.
+7. **Save the estimate** and associate it with the customer where appropriate.
+8. **Monitor the print** through the printer monitor.
+9. **Record the sale or invoice** and review the resulting financial activity.
+10. **Keep stock and maintenance records current** for the next job.
 
 ---
 
-# 6. Cost and profitability management\n\n![Cost summary](galeria/en/14-cost-summary.jpg)
+## System requirements
 
-For useful results, configure the financial data before calculating a part price.
+### Windows
 
-## Filament
+- Supported 64-bit Windows environment.
+- A user account with permission to run the application and write to its data directory.
+- Local network access to the printer for monitoring.
+- Internet access for checking GitHub releases and downloading updates.
 
-Keep the price of each material up to date. Changes in price per kilogram can significantly affect manufacturing costs.
+### Linux
 
-## Printer
+- A compatible Linux distribution (the documented workflow targets Ubuntu, Debian and derivatives).
+- Python 3.
+- SQLite support.
+- Permission to execute the startup script.
+- Local network access to the printer for monitoring.
 
-Use the profile for the machine that will make the part. Depreciation and wear parameters should be based on reasonable cost and service-life estimates.
+### Printer integration
 
-## Manufacturing time
-
-The slicer time estimate helps calculate machine-use costs. Actual results may vary due to pauses, material changes, failures, or differences between estimated and actual time.
-
-## Additional expenses
-
-Include job-related expenses that are supported by the calculator configuration.
-
-## Selling price
-
-Review the recommended price alongside cost, profit, and margin. A calculated price is only as reliable as the data entered.
-
----
-
-# 7. Data storage and retention
-
-Print Cost & Profit uses a local service and an SQLite database for features that depend on this storage.
-
-The installation’s data location may be inside the Windows user’s local profile.
-
-## Recommendations
-
-- Do not delete the database while the service is running.
-
-- Do not manually move the data folder.
-
-- Back up your data before updating the program.
-
-- Check that the local service starts correctly after an update.
-
-- Verify that data remains available after closing and reopening the application.
-
-## If a storage error appears
-
-If the application reports that PC storage cannot start, do not continue entering data as though it were being saved correctly.
-
-Check the local service and use the diagnostic tools. Do not delete the database to try to fix the problem.
-
-The protection against silently switching to browser storage is designed to prevent data from being split across two locations.
+- A supported printer connection workflow.
+- Moonraker-compatible local API access for the monitor.
+- Correct printer IP address and network configuration.
+- Snapmaker Orca integration configured as described in the platform package.
 
 ---
 
-# 8. Included scripts and tools\n\n![Documentation and help](galeria/en/19-documentation-and-help.jpg)
+## Versioning and updates
 
-The repository contains various supporting files. Not all of them need to be run manually during normal use.
+The Windows stable baseline and the Linux package documented here are **v1.4**. Always check the version shown in the application's version panel and the version included in the downloaded release.
 
-| File | Purpose |
+For updates:
 
-|---|---|
+1. Back up your application data.
+2. Download the correct package for your operating system from GitHub Releases.
+3. Stop the currently running local server.
+4. Update the program files using the release instructions.
+5. Start the server from the updated installation directory.
+6. Confirm the version shown by the application before continuing work.
 
-| `Integracion_Orca_Postprocesado.bat` | Starts the application manually and serves as the post-processing entry point for compatible OrcaSlicer-based slicers. |
-
-| `Iniciar_Puente_Orca.ps1` | Starts or checks the integration bridge. |
-
-| `Iniciar_Puente_Orca_Independiente.cmd` | Standalone launcher for the local bridge. |
-
-| `Integracion_Print_Cost_Profit.ps1` | Processes integration using the G-code file. |
-
-| `Probar_Integracion_con_Gcode.bat` | Manually tests G-code processing. |
-
-| `Comprobar_Puente_U1.bat` | Checks the bridge related to the Snapmaker U1. |
-
-| `Diagnostico_Arranque.bat` | Helps investigate startup problems. |
-
-| `Diagnostico_Print_Cost_Profit.bat` | Application diagnostic tool. |
-
-| `Diagnostico_Version.bat` | Checks version information. |
-
-| `pcp_sqlite_api.py` | SQLite storage service code. |
-
-| `pcp_sqlite_store.py` | SQLite storage access and management component. |
-
-| `storage-client.js` | Client used by the interface to communicate with storage. |
-
-| `VERSION` | Project version information. |
-
-| `LICENSE.txt` | Terms of use and copyright notice. |
-
-The availability and exact behaviour of each feature depend on the files included in the distribution and their configuration.
+Do not run two copies of the local server on the same port. The default local address is `127.0.0.1:8700`.
 
 ---
 
-# 9. Troubleshooting
+## Troubleshooting
 
-## The application does not open
+### The application does not open
 
-1. Make sure you extracted all files.
+- Confirm that the local server is running.
+- Check the terminal or PowerShell window for startup errors.
+- Open `http://127.0.0.1:8700/` manually.
+- Make sure another application is not already using port `8700`.
 
-2. Run `Integracion_Orca_Postprocesado.bat`.
+### The application shows the wrong version
 
-3. Wait for the local service to respond.
+- Stop the old server.
+- Start the server from the intended installation directory.
+- Check the local version endpoint:
+  - `http://127.0.0.1:8700/api/version`
+- Confirm that the `VERSION` file in that same directory contains the expected version.
+- Hard-refresh the browser with `Ctrl + F5`.
 
-4. If it does not open, run `Diagnostico_Arranque.bat`.
+### The printer is offline or cannot be found
 
-5. Keep the full error message.
+- Check that the printer is powered on and connected to the same reachable network.
+- Verify the printer IP address.
+- Check Moonraker availability and firewall rules.
+- Try manual IP configuration if discovery does not find the printer.
 
-## PC storage does not start
+### G-code data or thumbnails are missing
 
-Check that the package includes the SQLite executable for Windows and that it is in the location expected by the server.
+- Confirm that the G-code file contains the expected metadata.
+- Check whether the slicer/export workflow provides a thumbnail.
+- Review the imported material, colour, weight and duration before calculating.
+- Some files or firmware versions may not expose all metadata.
 
-If an HTTP 500 error appears, check the service status and diagnostic messages before trying to modify data.
+### Linux startup tests fail
 
-Do not switch to browser storage or delete the database as a workaround.
-
-## The slicer does not run the integration
-
-1. Verify the path to the `.bat` file.
-
-2. Check that the file exists.
-
-3. Review the print profile settings.
-
-4. Test with `Probar_Integracion_con_Gcode.bat`.
-
-5. Keep the error and the path of the G-code used.
-
-## Data is not retained
-
-Check that you started the application with the launcher and that the local service is running.
-
-Then test with non-critical data and verify that it remains after restarting the application.
-
-Do not delete existing data to try to repair storage.
+- Run the startup script from the extracted project root.
+- Confirm Python 3 and SQLite are installed.
+- Keep the full error output from the test that failed.
+- Do not continue with a failed startup check until the cause is understood.
 
 ---
 
-# 10. Security and best practices
+## Project structure (high level)
 
-- Download the program from the official repository.
+The application is organized around a web interface, modular JavaScript functionality, CSS resources and a local server.
 
-- Do not share passwords, private keys, or credentials.
+- `Print_Cost_Profit.html` — application interface.
+- `js/` — application modules, integrations and centralized translations.
+- `css/` — interface styles.
+- `VERSION` — application version used by the local server.
+- `Servidor_Panel_U1.ps1` — Windows local server.
+- `linux/` — Linux server, startup script and Linux-specific tests/integration.
+- Local application data — database, logs and backups stored separately from the program files according to the platform configuration.
 
-- Do not run scripts from unknown sources.
-
-- Do not expose the local service to the internet without appropriate security configuration.
-
-- Keep backups of important data.
-
-- Check dependencies and program operation before replacing files during an update.
-
----
-
-# 11. Copyright and terms of use
-
-Print Cost & Profit is subject to the terms set out in `LICENSE.txt`.
-
-Publishing the code on GitHub does not by itself grant permission to market, resell, sublicense, redistribute, or commercially exploit the software, modified versions, or derivative products where such activities are prohibited by the applicable licence.
-
-Requests for permission must be made in writing and expressly accepted by the rights holder.
+The exact contents may differ between Windows and Linux packages.
 
 ---
 
-# 12. Help and issue reporting
+## Support, bug reports and contributions
 
-When reporting a problem, include:
+- Report bugs: https://github.com/nilose2014/PrintCostProfit/issues
+- Browse source code: https://github.com/nilose2014/PrintCostProfit
+- Browse Linux source: https://github.com/nilose2014/PrintCostProfit/tree/linux
+- Download releases: https://github.com/nilose2014/PrintCostProfit/releases
 
-- Print Cost & Profit version.
+When opening an issue, include:
 
-- Windows version.
+- Application version.
+- Operating system and version.
+- Windows or Linux package used.
+- Printer model and connection method, if relevant.
+- Steps to reproduce the issue.
+- Relevant error messages or sanitized logs.
+- Screenshots where they help explain the problem.
 
-- Slicer name and version (Snapmaker Orca, OrcaSlicer, Creality Print, or another slicer).
-
-- Printer used, if relevant.
-
-- Operation performed.
-
-- Full error message.
-
-- Steps to reproduce the problem.
-
-Do not include passwords, private keys, or unnecessary personal information.
+Never publish passwords, API tokens, private network credentials, customer personal information or database files containing private business data.
 
 ---
 
-**Print Cost & Profit v1.0** &#x20;
+## Important information
 
-Developed by Beatriz Toro Martin.
+Print Cost & Profit is a production-cost and business-management aid for 3D-printing workflows. Calculations depend on the accuracy of the entered data, slicer metadata, printer configuration, electricity rates, material prices and business settings. Always review calculations, stock assignments, quotes and invoices before relying on or issuing them.
 
-&#x20; Calculate your costs, track your jobs, and improve the financial management of your 3D printing work.   &#x20;
+Printer monitoring and slicer integration depend on compatible local network services and firmware/API behavior. Features can vary between platform packages and releases.
+
+---
+
+**Print Cost & Profit — understand your costs, price your prints and manage your 3D-printing workflow.**

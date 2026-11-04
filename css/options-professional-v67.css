@@ -1,0 +1,68 @@
+/* v5.20 · Opciones: panel profesional compacto, coherente con Inicio y acordeones funcionales. */
+#programOptionsView:not(.active){display:none!important}
+#programOptionsView.active{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-content:start;align-items:stretch;gap:16px!important;min-width:0}
+#programOptionsView>section.panel:first-child{display:contents!important}
+#programOptionsView>section.panel:first-child>h2,
+#programOptionsView>section.panel:first-child>p.section-note{grid-column:1/-1!important}
+#programOptionsView>section.panel:first-child>h2{display:flex;align-items:center;gap:13px;margin:0!important;padding:18px 22px!important;border:1px solid rgba(67,190,219,.34)!important;border-radius:17px!important;background:linear-gradient(105deg,rgba(17,42,75,.98),rgba(31,35,78,.96))!important;color:#f3f7ff!important;font-size:21px!important;box-shadow:0 8px 24px rgba(0,0,0,.16)!important}
+#programOptionsView>section.panel:first-child>h2:before{content:"⚙";display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border:1px solid rgba(67,210,226,.46);border-radius:13px;background:rgba(30,174,199,.13);color:#73e5f1;font-size:20px;box-shadow:0 0 14px rgba(37,183,210,.12)}
+#programOptionsView>section.panel:first-child>p.section-note{margin:0!important;padding:0 3px 3px!important;color:#a9bfdc!important;font-size:11px!important}
+#programOptionsView .pcp-opt-section,
+#programOptionsView>#machinesPanel,
+#programOptionsView>#pcpPrinterSettingsPanel,
+#programOptionsView>#pcpBackupSettingsPanel,
+#programOptionsView>#pcpVersionUpdatesPanel,
+#programOptionsView>#pcpDocumentationPanel,
+#programOptionsView>#pcpLogsPanel{box-sizing:border-box!important;min-width:0!important;width:100%!important;max-width:none!important;margin:0!important;padding:17px 18px 18px!important;border:1px solid rgba(80,139,198,.29)!important;border-radius:16px!important;background:linear-gradient(145deg,rgba(22,41,69,.97),rgba(13,27,49,.98))!important;box-shadow:0 9px 25px rgba(0,0,0,.16),inset 0 1px 0 rgba(190,218,255,.035)!important;grid-column:auto!important;align-self:stretch!important;transition:border-color .18s ease,box-shadow .18s ease}
+#programOptionsView .pcp-opt-section:hover,
+#programOptionsView>#machinesPanel:hover,
+#programOptionsView>#pcpPrinterSettingsPanel:hover,
+#programOptionsView>#pcpBackupSettingsPanel:hover,
+#programOptionsView>#pcpLogsPanel:hover{border-color:rgba(57,191,216,.48)!important;box-shadow:0 12px 28px rgba(0,0,0,.2)!important}
+#programOptionsView #sellerSettingsPanel,
+#programOptionsView #machinesPanel,
+#programOptionsView #pcpPrinterSettingsPanel,
+#programOptionsView #pcpBackupSettingsPanel,
+#programOptionsView #pcpLogsPanel{grid-column:1/-1!important}
+#programOptionsView .pcp-opt-section>h3,
+#programOptionsView .pcp-opt-section>.seller-modal-head{display:flex!important;align-items:center!important;gap:10px!important;min-height:34px!important;margin:0 0 12px!important;padding:0 0 12px!important;border-bottom:1px solid rgba(103,157,211,.2)!important}
+#programOptionsView .pcp-opt-section>h3:before,
+#programOptionsView .pcp-opt-section>.seller-modal-head:before{content:"";width:4px;height:22px;flex:0 0 4px;border-radius:5px;background:linear-gradient(180deg,#47d6e5,#8179ed);box-shadow:0 0 8px rgba(61,194,220,.13)}
+#programOptionsView .pcp-opt-section>h3,
+#programOptionsView .pcp-opt-section>.seller-modal-head h3{margin:0!important;color:#f0f6ff!important;font-size:15px!important;font-weight:820!important;letter-spacing:.01em}
+#programOptionsView .pcp-opt-section-tools{display:flex!important;align-items:center!important;gap:6px!important;flex-wrap:wrap!important;margin:0 0 13px!important;padding:6px 7px!important;border:1px solid rgba(92,139,190,.16)!important;border-radius:9px!important;background:rgba(5,16,32,.24)!important}
+#programOptionsView .pcp-opt-order-label{font-size:9px!important;font-weight:800!important;letter-spacing:.07em!important;color:#718aaa!important}
+#programOptionsView .pcp-opt-spacer{flex:1!important}
+#programOptionsView .pcp-opt-section-tools button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:28px!important;padding:5px 9px!important;border:1px solid rgba(103,147,195,.22)!important;border-radius:8px!important;background:rgba(54,78,111,.22)!important;color:#c9d9ed!important;font-size:10px!important;font-weight:700!important;cursor:pointer!important}
+#programOptionsView .pcp-opt-section-tools .pcp-opt-toggle{border-color:rgba(54,204,190,.3)!important;background:rgba(26,151,145,.1)!important;color:#a6e9e0!important}
+#programOptionsView .pcp-opt-section-tools button:hover{border-color:rgba(69,209,220,.48)!important;background:rgba(38,133,157,.18)!important}
+#programOptionsView .pcp-opt-section-tools button:disabled{opacity:.28!important;cursor:not-allowed!important}
+#programOptionsView .pcp-opt-content{display:block!important;min-width:0!important;width:100%!important;overflow:visible!important;box-sizing:border-box!important}
+#programOptionsView .pcp-opt-content[hidden],
+#programOptionsView .pcp-opt-section-collapsed>.pcp-opt-content{display:none!important}
+#programOptionsView .fields,
+#programOptionsView .pcp-opt-content>.fields{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px 16px!important;align-items:start!important;width:100%!important;max-width:none!important}
+#programOptionsView .field{min-width:0!important}
+#programOptionsView .field.wide{grid-column:1/-1!important}
+#programOptionsView .field label{display:block!important;margin:0 0 6px!important;color:#b4c9e5!important;font-size:10.5px!important;font-weight:730!important;line-height:1.4!important}
+#programOptionsView input:not([type=checkbox]):not([type=radio]):not([type=color]),
+#programOptionsView select,#programOptionsView textarea{box-sizing:border-box!important;width:100%!important;min-height:39px!important;padding:9px 11px!important;border:1px solid rgba(91,137,190,.32)!important;border-radius:9px!important;background:#0a172c!important;color:#edf5ff!important;box-shadow:inset 0 1px 3px rgba(0,0,0,.14)!important}
+#programOptionsView input:focus,#programOptionsView select:focus,#programOptionsView textarea:focus{outline:none!important;border-color:#39c9dd!important;box-shadow:0 0 0 3px rgba(44,194,220,.09)!important}
+#programOptionsView .section-note{color:#9eb4d1!important;font-size:10.5px!important;line-height:1.55!important;overflow-wrap:anywhere}
+#programOptionsView .actions{display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin:13px 0 7px!important}
+#programOptionsView .actions .btn{min-height:35px!important;padding:8px 13px!important;border-radius:9px!important;font-size:10.5px!important;font-weight:760!important}
+#programOptionsView #machinesPanel .machine-cards{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;width:100%!important;align-items:stretch!important}
+#programOptionsView #machinesPanel .machine-card{width:auto!important;min-width:0!important}
+#programOptionsView #pcpBackupMetrics{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;width:100%!important}
+#programOptionsView #pcpBackupMetrics .metric{min-width:0!important;padding:13px 15px!important;border:1px solid rgba(94,144,198,.22)!important;border-radius:11px!important;background:rgba(7,17,33,.36)!important}
+#programOptionsView #pcpLogsList{width:100%!important;max-width:none!important;max-height:420px!important;overflow:auto!important;margin-top:12px!important;border:1px solid rgba(92,137,190,.25)!important;border-radius:11px!important;background:rgba(5,14,29,.48)!important}
+#programOptionsView .pcp-logs-table{width:100%;min-width:650px;border-collapse:separate;border-spacing:0;font-size:11px!important}
+#programOptionsView .pcp-logs-table thead th{position:sticky;top:0;z-index:2;padding:11px 12px!important;background:#1a2d49!important;color:#b5cdeb!important;text-align:left;font-size:10px!important;font-weight:850!important;text-transform:uppercase;letter-spacing:.045em;border-bottom:1px solid rgba(103,155,207,.3)!important}
+#programOptionsView .pcp-logs-table td{padding:9px 12px!important;border-bottom:1px solid rgba(105,143,184,.12)!important;color:#d5e3f5!important;vertical-align:top;line-height:1.5}
+#programOptionsView .pcp-opt-section-collapsed{padding-bottom:13px!important}
+#programOptionsView .pcp-opt-section-collapsed .pcp-opt-section-tools{margin-bottom:0!important}
+@media(max-width:1100px){#programOptionsView.active{grid-template-columns:1fr!important}#programOptionsView #machinesPanel .machine-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:650px){#programOptionsView.active{gap:11px!important}#programOptionsView .pcp-opt-section{padding:13px!important}#programOptionsView .fields,#programOptionsView .pcp-opt-content>.fields,#programOptionsView #pcpBackupMetrics,#programOptionsView #machinesPanel .machine-cards{grid-template-columns:1fr!important}#programOptionsView .field.wide{grid-column:auto!important}#programOptionsView .pcp-opt-section-tools{gap:5px!important}#programOptionsView .pcp-opt-order-label{width:100%}#programOptionsView .pcp-opt-spacer{display:none!important}}
+html.pcp-rtl #programOptionsView .pcp-logs-table th,html.pcp-rtl #programOptionsView .pcp-logs-table td{text-align:right}
+#programOptionsView .pcp-opt-section>.seller-modal-head{justify-content:flex-start!important;text-align:left!important}
+#programOptionsView .pcp-opt-section>.seller-modal-head h3{margin:0!important;text-align:left!important}

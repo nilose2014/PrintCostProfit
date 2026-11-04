@@ -1,0 +1,11 @@
+/* v5.45 · Inicio: lista real de impresoras reconocidas y estados online/offline */
+.pcp-home-printers .pcp-home-printer-list{display:flex;flex-direction:column;gap:9px;max-height:330px;overflow:auto;padding:2px 3px 4px}
+.pcp-home-printers .home-printer-device{display:block;padding:11px 12px;border:1px solid rgba(100,157,213,.22);border-radius:12px;background:linear-gradient(135deg,rgba(24,48,79,.82),rgba(11,25,45,.9));}
+.pcp-home-printers .home-printer-top{display:flex;align-items:center;gap:9px;min-width:0}
+.pcp-home-printers .home-printer-top strong{font-size:13px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pcp-home-printers .home-printer-state{margin-left:auto;font-size:11px;font-weight:800;white-space:nowrap}
+.pcp-home-printers .home-printer-state.is-online{color:#42dda0}
+.pcp-home-printers .home-printer-state.is-offline{color:#ff8795}
+.pcp-home-printers .home-printer-file{margin:6px 0 0 18px;font-size:11px;color:#9db7d8;overflow-wrap:anywhere}
+.pcp-home-printers .home-status-dot.offline{background:#ff6478;box-shadow:0 0 9px rgba(255,100,120,.45)}
+.pcp-home-printers .home-printer-meta{font-size:10px;color:#9db7d8;padding:3px 5px}

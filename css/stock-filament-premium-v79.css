@@ -1,0 +1,5 @@
+/* v5.34 — 8 bobinas por página: 4 columnas x 2 filas */
+#spoolsView .spool-cards{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;align-items:stretch!important}
+@media(max-width:1180px){#spoolsView .spool-cards{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:900px){#spoolsView .spool-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:620px){#spoolsView .spool-cards{grid-template-columns:1fr!important}}

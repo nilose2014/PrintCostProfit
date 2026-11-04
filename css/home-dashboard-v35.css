@@ -1,0 +1,117 @@
+/* v3.5 · Ajuste de la cabecera de inicio y proporciones de la maqueta aprobada */
+@media (min-width:1051px){
+  /* Cabecera de inicio: texto a la izquierda, impresora a la derecha y acciones alineadas abajo */
+  #pcpHomeDashboard>.pcp-home-welcome{
+    position:relative!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:space-between!important;
+    align-items:stretch!important;
+    height:190px!important;
+    min-height:190px!important;
+    padding:18px 18px 13px!important;
+    overflow:hidden!important;
+  }
+  .pcp-home-welcome>div:first-child{
+    position:relative!important;
+    z-index:3!important;
+    max-width:56%!important;
+    margin:0!important;
+  }
+  .pcp-home-welcome .pcp-home-kicker{
+    display:block!important;
+    margin:2px 0 8px!important;
+    font-size:10px!important;
+    font-weight:900!important;
+    letter-spacing:.24em!important;
+    color:#00eaff!important;
+  }
+  .pcp-home-welcome h2{
+    margin:0 0 5px!important;
+    font-size:clamp(28px,2.35vw,36px)!important;
+    line-height:1.05!important;
+    font-weight:900!important;
+    color:#f7f9ff!important;
+    text-shadow:0 2px 12px #0009!important;
+  }
+  .pcp-home-welcome p{
+    margin:0!important;
+    font-size:12px!important;
+    line-height:1.35!important;
+    color:#c6d7f4!important;
+  }
+  .pcp-home-hero-art{
+    position:absolute!important;
+    z-index:2!important;
+    right:clamp(24px,8%,105px)!important;
+    top:2px!important;
+    bottom:35px!important;
+    width:clamp(155px,20%,235px)!important;
+    height:auto!important;
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:center!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    transform:none!important;
+    overflow:visible!important;
+    pointer-events:none!important;
+  }
+  .pcp-home-hero-art img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:contain!important;
+    object-position:center bottom!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    filter:drop-shadow(0 0 6px #00eaffcc) drop-shadow(0 0 16px #b34dffdd) drop-shadow(0 9px 12px #020817)!important;
+  }
+  .pcp-home-welcome-actions{
+    position:relative!important;
+    z-index:4!important;
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:10px!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+  }
+  .pcp-home-action{
+    min-width:0!important;
+    min-height:54px!important;
+    padding:10px 8px!important;
+    border-radius:13px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:8px!important;
+    font-size:clamp(10px,.82vw,13px)!important;
+    font-weight:850!important;
+    white-space:nowrap!important;
+    box-shadow:0 0 14px currentColor,inset 0 0 12px #ffffff10!important;
+  }
+  /* Evita que el arte invada el título o los botones */
+  .pcp-home-welcome>div:first-child{max-width:58%!important}
+  /* Indicadores con jerarquía visual uniforme */
+  .pcp-home-kpis{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:9px!important}
+  .pcp-home-kpi{min-width:0!important;display:flex!important;align-items:center!important}
+  /* La zona de gráficos y el historial mantienen la cuadrícula de la maqueta */
+  .pcp-home-main-grid{display:contents!important}
+  .pcp-home-trend,.pcp-home-costs,.pcp-home-margin-card,
+  .pcp-home-recent,.pcp-home-shortcuts{min-width:0!important}
+}
+@media (max-width:1450px) and (min-width:1051px){
+  .pcp-home-welcome>div:first-child{max-width:57%!important}
+  .pcp-home-hero-art{right:5%!important;width:19%!important}
+  .pcp-home-action{font-size:10px!important;padding:8px 5px!important}
+}
+@media (max-width:1050px){
+  .pcp-home-welcome{position:relative!important}
+  .pcp-home-welcome>div:first-child{position:relative!important;z-index:3!important}
+  .pcp-home-hero-art{z-index:2!important}
+  .pcp-home-welcome-actions{position:relative!important;z-index:4!important}
+}

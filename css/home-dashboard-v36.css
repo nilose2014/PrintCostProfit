@@ -1,0 +1,36 @@
+/* v3.6 · Iconografía más visible en acciones, KPI, navegación y accesos rápidos */
+.pcp-action-icon{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:0 0 30px!important;width:30px!important;height:30px!important;
+ margin:0 5px 0 0!important;font-size:25px!important;line-height:1!important;
+ font-weight:900!important;filter:drop-shadow(0 0 5px currentColor)!important;
+}
+.pcp-home-action{gap:7px!important}
+.pcp-home-action .pcp-action-icon{font-size:25px!important}
+.home-kpi-icon{
+ width:48px!important;height:48px!important;min-width:48px!important;
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ font-size:27px!important;line-height:1!important;font-weight:900!important;
+ filter:drop-shadow(0 0 7px currentColor)!important;
+}
+.pcp-nav-icon{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:25px!important;min-width:25px!important;margin-right:8px!important;
+ font-size:19px!important;line-height:1!important;vertical-align:middle!important;
+ filter:drop-shadow(0 0 4px currentColor)!important;
+}
+.tab-navigation .tab-button{display:flex!important;align-items:center!important}
+.pcp-shortcut-icon{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:34px!important;min-width:34px!important;height:34px!important;
+ margin-right:7px!important;font-size:25px!important;line-height:1!important;
+ filter:drop-shadow(0 0 6px currentColor)!important;
+}
+.pcp-home-shortcut-grid button{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:5px!important}
+.pcp-home-card header h3:before{font-size:1.18em!important}
+@media(max-width:1050px){
+ .pcp-action-icon{font-size:22px!important;width:27px!important;min-width:27px!important}
+ .home-kpi-icon{width:42px!important;height:42px!important;min-width:42px!important;font-size:24px!important}
+ .pcp-nav-icon{font-size:18px!important;width:23px!important;min-width:23px!important}
+ .pcp-shortcut-icon{font-size:22px!important;width:30px!important;min-width:30px!important}
+}

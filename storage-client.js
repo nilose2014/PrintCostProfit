@@ -22,17 +22,23 @@
     catch (e) {
       var failedMs = ((window.performance && performance.now) ? performance.now() : Date.now()) - startedAt;
       console.warn('[PCP storage] fallo', method, path, Math.round(failedMs) + ' ms', e.message);
-      throw new Error('No se pudo contactar con el almacenamiento del PC: ' + e.message);
+      window.PCP_LOG?.error('Almacenamiento', 'Fallo al contactar con SQLite', {method:method,path:path,durationMs:Math.round(failedMs),error:e.message});
+      throw new Error(window.PCP_I18N?.format('No se pudo contactar con el almacenamiento del PC: {message}', {message:e.message}) || ('No se pudo contactar con el almacenamiento del PC: ' + e.message));
     }
     var elapsedMs = ((window.performance && performance.now) ? performance.now() : Date.now()) - startedAt;
-    if (elapsedMs >= 100) console.warn('[PCP storage] operación lenta', method, path, Math.round(elapsedMs) + ' ms', 'HTTP', xhr.status);
+    if (elapsedMs >= 100) {
+      console.warn('[PCP storage] operación lenta', method, path, Math.round(elapsedMs) + ' ms', 'HTTP', xhr.status);
+      if (elapsedMs >= 1000) window.PCP_LOG?.warn('Almacenamiento', 'Operación SQLite lenta', {method:method,path:path,durationMs:Math.round(elapsedMs),status:xhr.status});
+    }
     var parsed = null; try { parsed = xhr.responseText ? JSON.parse(xhr.responseText) : {}; } catch (_) {}
     if (xhr.status < 200 || xhr.status >= 300) {
       if (xhr.status === 409) {
         if (!conflictShown) { conflictShown = true; window.alert(window.PCP_I18N ? window.PCP_I18N.t('Print Cost & Profit: otra ventana ha cambiado este dato. Para evitar perder información, este cambio no se ha sobrescrito. Copia lo que estabas editando si es necesario y recarga esta ventana antes de continuar.') : 'Print Cost & Profit: otra ventana ha cambiado este dato. Para evitar perder información, este cambio no se ha sobrescrito. Copia lo que estabas editando si es necesario y recarga esta ventana antes de continuar.'); }
-        throw new Error('Conflicto de almacenamiento: el dato ha cambiado en otra ventana.');
+        throw new Error(window.PCP_I18N?.t('Conflicto de almacenamiento: el dato ha cambiado en otra ventana.') || 'Conflicto de almacenamiento: el dato ha cambiado en otra ventana.');
       }
-      throw new Error((parsed && parsed.error) || (window.PCP_I18N ? window.PCP_I18N.format('Error de almacenamiento HTTP {status}', {status:xhr.status}) : ('Error de almacenamiento HTTP ' + xhr.status)));
+      const message=(parsed && parsed.error) || (window.PCP_I18N ? window.PCP_I18N.format('Error de almacenamiento HTTP {status}', {status:xhr.status}) : ('Error de almacenamiento HTTP ' + xhr.status));
+      window.PCP_LOG?.error('Almacenamiento', message, {method:method,path:path,status:xhr.status});
+      throw new Error(message);
     }
     return parsed || {};
   }

@@ -1,0 +1,89 @@
+/* v2.8 · Inicio renovado: panel de control del taller 3D */
+#pcpHomeDashboard{margin:0 0 22px;padding:0;border:0;background:transparent;box-shadow:none}
+.pcp-home-welcome{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:172px;padding:28px 30px;border:1px solid #344b78;border-radius:20px;background:radial-gradient(ellipse at 78% 0%,rgba(137,65,255,.28),transparent 38%),radial-gradient(ellipse at 100% 100%,rgba(0,208,220,.17),transparent 42%),linear-gradient(115deg,#101d38 0%,#15264a 55%,#171c42 100%);box-shadow:0 16px 38px #02081766}
+.pcp-home-welcome:after{content:"";position:absolute;right:25%;top:-110px;width:290px;height:290px;border:1px solid #8a78ff25;border-radius:50%;box-shadow:0 0 0 30px #8a78ff0a,0 0 0 60px #8a78ff08;pointer-events:none}
+.pcp-home-kicker{color:#58e6db;font-size:10px;font-weight:900;letter-spacing:.22em}.pcp-home-welcome h2{font-size:clamp(26px,3vw,36px);margin:7px 0 4px;letter-spacing:-1px}.pcp-home-welcome p{margin:0;color:#b7c9e8;font-size:13px}
+.pcp-home-welcome-actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px;max-width:780px}.pcp-home-action{min-height:48px;padding:11px 14px;border:1px solid #3c6399;border-radius:12px;background:linear-gradient(145deg,#1b345a,#14243f);color:#edf6ff;font-weight:750;cursor:pointer;box-shadow:0 6px 18px #0003;transition:.18s}.pcp-home-action:hover{transform:translateY(-2px);filter:brightness(1.18)}.pcp-home-action span{margin-left:5px}.action-calc{border-color:#00d6c5;background:linear-gradient(135deg,#087d80,#125c72);box-shadow:0 0 22px #00d6c533}.action-gcode{border-color:#3199ff}.action-quote{border-color:#a65aff}.action-invoice{border-color:#f5a623}.action-order{border-color:#20cf79}
+.pcp-home-kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin:14px 0}.pcp-home-kpi{display:flex;align-items:center;gap:12px;min-width:0;padding:16px 14px;border:1px solid #304c76;border-radius:15px;background:linear-gradient(145deg,#14243d,#0e192c);box-shadow:0 8px 20px #0002}.pcp-home-kpi .home-kpi-icon{display:grid;place-items:center;width:44px;height:44px;flex:0 0 44px;border-radius:13px;background:#168bff25;color:#54c4ff;font-size:24px;font-weight:900}.pcp-home-kpi>div{display:flex;flex-direction:column;min-width:0}.pcp-home-kpi small{color:#b7c9e8;font-size:11px}.pcp-home-kpi strong{font-size:clamp(18px,1.8vw,25px);letter-spacing:-.6px;white-space:nowrap;font-variant-numeric:tabular-nums}.pcp-home-kpi em{font-size:10px;color:#8499ba;font-style:normal;margin-top:2px}.home-kpi-revenue{border-color:#087e67}.home-kpi-revenue .home-kpi-icon{background:#00c98b24;color:#34e4a2}.home-kpi-cost .home-kpi-icon{background:#159df025;color:#4dbbff}.home-kpi-profit{border-color:#7544ad}.home-kpi-profit .home-kpi-icon{background:#a855f729;color:#d18aff}.home-kpi-margin{border-color:#9b681c}.home-kpi-margin .home-kpi-icon{background:#f59e0b28;color:#ffc45a}.home-kpi-collected .home-kpi-icon{background:#168bff25;color:#54c4ff}
+.pcp-home-main-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,1fr) minmax(260px,.9fr);gap:12px;align-items:stretch}.pcp-home-card{min-width:0;overflow:hidden;padding:0;border:1px solid #304a70;border-radius:16px;background:linear-gradient(155deg,#14243c,#0e192b);box-shadow:0 8px 22px #0002}.pcp-home-card>header{position:static;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px;border:0;border-bottom:1px solid #293d5b;background:#0c1729;box-shadow:none}.pcp-home-card>header h3{margin:0;font-size:14px}.pcp-home-card>header p{margin:4px 0 0;color:#91a8c9;font-size:10px}.home-legend{display:flex;align-items:center;gap:6px;color:#aebfda;font-size:9px;white-space:nowrap}.home-legend i{width:7px;height:7px;border-radius:50%;background:#20cf79}.home-legend i:nth-of-type(2){background:#ff5d72}.home-legend i:nth-of-type(3){background:#159df0}.pcp-home-trend{grid-column:span 2}.pcp-home-chart{height:220px;padding:12px 16px 8px}.pcp-home-chart svg{width:100%;height:100%;overflow:visible}.pcp-home-chart .home-gridline{stroke:#263a57;stroke-width:1}.pcp-home-chart .home-axis-label{fill:#8da4c5;font-size:10px}.pcp-home-chart .home-line{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.pcp-home-chart .home-line-revenue{stroke:#20cf79}.pcp-home-chart .home-line-cost{stroke:#ff5d72}.pcp-home-chart .home-line-profit{stroke:#159df0}.pcp-home-costs{grid-column:span 1}.pcp-home-cost-bars{display:grid;gap:13px;padding:19px 18px}.home-cost-row{display:grid;grid-template-columns:minmax(75px,1fr) minmax(80px,2fr) auto;align-items:center;gap:9px;font-size:10px}.home-cost-row>span{color:#c4d4ec;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.home-cost-row>div{height:8px;border-radius:20px;background:#2a3c58;overflow:hidden}.home-cost-row i{display:block;height:100%;border-radius:20px;background:var(--home-bar,#159df0)}.home-cost-row strong{font-size:10px;white-space:nowrap}
+.pcp-home-printers{grid-column:3;grid-row:1}.pcp-home-printer-list,.pcp-home-spools,#homeAlertsList{padding:8px 15px 14px}.home-printer-row,.home-spool-row,.home-alert-row{display:flex;align-items:center;gap:9px;padding:10px 2px;border-bottom:1px solid #263852;font-size:11px}.home-printer-row:last-child,.home-spool-row:last-child,.home-alert-row:last-child{border:0}.home-status-dot{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#71839e}.home-status-dot.online{background:#20d68a;box-shadow:0 0 10px #20d68a88}.home-row-main{flex:1;min-width:0}.home-row-main strong,.home-row-main small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.home-row-main small{color:#8fa4c3;font-size:10px;margin-top:2px}.home-row-value{font-weight:750;white-space:nowrap}.home-link{border:0;background:transparent;color:#63d9d2;font-size:10px;font-weight:750;cursor:pointer;white-space:nowrap}.home-link:hover{text-decoration:underline}.pcp-home-recent{grid-column:span 2}.pcp-home-recent-list{padding:5px 15px 12px}.home-job-row{display:grid;grid-template-columns:38px minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid #263852;font-size:11px}.home-job-row:last-child{border:0}.home-job-thumb{width:36px;height:36px;object-fit:cover;border-radius:9px;background:#0b1424;border:1px solid #344763}.home-job-placeholder{display:grid;place-items:center;color:#5cced0;font-size:20px}.home-job-name{font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.home-job-meta{color:#8fa4c3;font-size:10px;margin-top:2px}.home-job-money{font-weight:750;white-space:nowrap}.home-job-profit{color:#5de0a4}.pcp-home-stock{grid-column:3}.home-spool-meter{height:6px;background:#2a3c58;border-radius:20px;overflow:hidden;margin-top:5px}.home-spool-meter i{display:block;height:100%;background:#20cf79;border-radius:20px}.home-alert-count{display:grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:99px;background:#f04e62;color:white;font-size:11px;font-weight:800}.home-alert-row{color:#ffd48c}.home-alert-row:before{content:'!';display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#f59e0b25;color:#ffc35a;font-weight:900}.home-alert-row.critical{color:#ff9aa5}.home-alert-row.critical:before{background:#f04e6225;color:#ff7888}.pcp-home-shortcuts{grid-column:span 2}.pcp-home-shortcut-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;padding:15px}.pcp-home-shortcut-grid button{display:flex;align-items:center;gap:9px;min-height:54px;padding:10px;border:1px solid #435e89;border-radius:11px;background:linear-gradient(145deg,#1a3153,#12213a);color:#dceaff;text-align:left;font-weight:750;cursor:pointer}.pcp-home-shortcut-grid button:nth-child(1){border-color:#00a98b}.pcp-home-shortcut-grid button:nth-child(2){border-color:#9a55d7}.pcp-home-shortcut-grid button:nth-child(3){border-color:#168fce}.pcp-home-shortcut-grid button:nth-child(4){border-color:#d38a1d}.pcp-home-shortcut-grid button:hover{filter:brightness(1.2);transform:translateY(-1px)}.home-empty{padding:16px 8px;color:#8fa4c3;font-size:11px;text-align:center}.pcp-home-alerts{grid-column:3}.pcp-home-dashboard~.toolbar{margin-top:22px}
+@media(max-width:1250px){.pcp-home-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.pcp-home-main-grid{grid-template-columns:minmax(0,1.2fr) minmax(260px,1fr)}.pcp-home-printers,.pcp-home-stock,.pcp-home-alerts{grid-column:auto;grid-row:auto}.pcp-home-recent,.pcp-home-shortcuts{grid-column:span 2}}
+@media(max-width:780px){.pcp-home-welcome{align-items:flex-start;flex-direction:column;padding:22px}.pcp-home-welcome-actions{justify-content:flex-start}.pcp-home-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.pcp-home-main-grid{grid-template-columns:1fr}.pcp-home-trend,.pcp-home-recent,.pcp-home-shortcuts{grid-column:auto}.pcp-home-shortcut-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pcp-home-chart{height:190px}}
+@media(max-width:480px){.pcp-home-kpis{grid-template-columns:1fr}.pcp-home-action{flex:1 1 42%;justify-content:center}.home-job-row{grid-template-columns:34px minmax(0,1fr) auto}.home-job-row .home-job-meta{display:none}.home-job-row .home-job-money:nth-last-child(2){display:none}.home-legend{font-size:8px;gap:4px}}
+@media print{#pcpHomeDashboard{display:none!important}}
+/* Navegación lateral de escritorio inspirada en el panel aprobado */
+@media(min-width:1051px){.wrap{display:grid;grid-template-columns:190px minmax(0,1fr);gap:18px;align-items:start}.tab-navigation{grid-column:1;grid-row:1 / span 24;display:flex;flex-direction:column;align-items:stretch;flex-wrap:nowrap;position:sticky;top:112px;margin:0;padding:10px;border-radius:16px;min-width:0}.tab-navigation .tab-button{width:100%;min-height:43px;justify-content:flex-start;text-align:left;padding:10px 12px}.tab-navigation .tab-button.active{box-shadow:0 0 18px #00d6c533}.tab-page{grid-column:2;min-width:0}.tab-navigation .language-switch,.tab-navigation #pcpLanguage{width:100%;max-width:100%}}
+@media(max-width:1050px){.wrap{display:block}.tab-navigation{display:flex;flex-direction:row;flex-wrap:wrap;position:sticky;top:0}.tab-page{width:100%}}
+
+
+/* v2.9 · Acabado visual: ilustraciones de impresora y retícula equilibrada */
+@media(min-width:1051px){
+  .tab-navigation{padding:10px;gap:7px}
+  .pcp-sidebar-art{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;margin:0 0 9px;padding:5px 4px 10px;border-bottom:1px solid #2a4263;background:radial-gradient(ellipse at 50% 65%,#1c70912b,transparent 68%);border-radius:12px}
+  .pcp-sidebar-art svg{display:block;width:100%;max-width:158px;height:112px;filter:drop-shadow(0 9px 12px #0005)}
+  .pcp-sidebar-art span{font-size:8px;font-weight:900;letter-spacing:.25em;color:#64dcd8}
+}
+.pcp-home-welcome{isolation:isolate;min-height:190px;padding:28px 30px;gap:18px}
+.pcp-home-welcome>div:first-child{position:relative;z-index:2;max-width:460px}
+.pcp-home-hero-art{position:absolute;z-index:0;right:clamp(250px,30%,520px);top:50%;width:min(34%,440px);height:100%;max-height:205px;transform:translateY(-50%);opacity:.92;pointer-events:none}
+.pcp-home-hero-art svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 15px 20px #02081766)}
+.pcp-home-welcome-actions{z-index:3;max-width:690px;flex:0 1 690px}
+.pcp-home-action{min-width:138px}
+.pcp-home-kpis{grid-template-columns:repeat(5,minmax(0,1fr));align-items:stretch;gap:12px}
+.pcp-home-kpi{height:100%;min-height:106px;box-sizing:border-box}
+.pcp-home-kpi>div{flex:1}
+.pcp-home-main-grid{grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-flow:row;align-items:stretch;gap:14px}
+.pcp-home-card{height:100%;min-height:270px;box-sizing:border-box;display:flex;flex-direction:column}
+.pcp-home-card>header{min-height:72px;box-sizing:border-box;flex:0 0 auto}
+.pcp-home-trend{grid-column:span 8;grid-row:auto}
+.pcp-home-printers{grid-column:span 4;grid-row:auto}
+.pcp-home-costs{grid-column:span 5;grid-row:auto}
+.pcp-home-recent{grid-column:span 7;grid-row:auto}
+.pcp-home-stock{grid-column:span 4;grid-row:auto}
+.pcp-home-shortcuts{grid-column:span 5;grid-row:auto}
+.pcp-home-alerts{grid-column:span 3;grid-row:auto}
+.pcp-home-chart{height:230px;flex:1;min-height:210px}
+.pcp-home-cost-bars,.pcp-home-printer-list,.pcp-home-spools,.pcp-home-recent-list,.pcp-home-shortcut-grid,#homeAlertsList{flex:1}
+.pcp-home-printer-list,.pcp-home-spools,.pcp-home-recent-list{min-height:170px}
+.pcp-home-shortcut-grid{align-content:center}
+@media(max-width:1250px) and (min-width:1051px){
+ .pcp-home-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .pcp-home-trend{grid-column:span 8}.pcp-home-printers{grid-column:span 4}
+ .pcp-home-costs{grid-column:span 5}.pcp-home-recent{grid-column:span 7}
+ .pcp-home-stock{grid-column:span 4}.pcp-home-shortcuts{grid-column:span 5}.pcp-home-alerts{grid-column:span 3}
+ .pcp-home-hero-art{right:30%;width:28%;opacity:.65}
+}
+@media(max-width:1050px){
+ .pcp-sidebar-art{display:none}
+ .pcp-home-hero-art{right:4%;width:32%;opacity:.35}
+ .pcp-home-welcome-actions{max-width:100%}
+ .pcp-home-main-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .pcp-home-trend,.pcp-home-printers,.pcp-home-costs,.pcp-home-recent,.pcp-home-stock,.pcp-home-shortcuts,.pcp-home-alerts{grid-column:span 1}
+ .pcp-home-trend,.pcp-home-recent,.pcp-home-shortcuts{grid-column:span 2}
+}
+@media(max-width:780px){
+ .pcp-home-hero-art{display:none}
+ .pcp-home-main-grid{grid-template-columns:1fr}
+ .pcp-home-trend,.pcp-home-printers,.pcp-home-costs,.pcp-home-recent,.pcp-home-stock,.pcp-home-shortcuts,.pcp-home-alerts{grid-column:1}
+ .pcp-home-card{min-height:220px}
+}
+@media(max-width:480px){.pcp-home-kpi{min-height:88px}.pcp-home-welcome{min-height:0}}
+
+@media(min-width:1051px){
+ .pcp-home-trend{grid-column:1 / span 8;grid-row:1}
+ .pcp-home-printers{grid-column:9 / span 4;grid-row:1}
+ .pcp-home-costs{grid-column:1 / span 5;grid-row:2}
+ .pcp-home-recent{grid-column:6 / span 7;grid-row:2}
+ .pcp-home-stock{grid-column:1 / span 4;grid-row:3}
+ .pcp-home-shortcuts{grid-column:5 / span 5;grid-row:3}
+ .pcp-home-alerts{grid-column:10 / span 3;grid-row:3}
+}
+@media(max-width:1250px) and (min-width:1051px){
+ .pcp-home-trend{grid-column:1 / span 8;grid-row:1}
+ .pcp-home-printers{grid-column:9 / span 4;grid-row:1}
+ .pcp-home-costs{grid-column:1 / span 5;grid-row:2}
+ .pcp-home-recent{grid-column:6 / span 7;grid-row:2}
+ .pcp-home-stock{grid-column:1 / span 4;grid-row:3}
+ .pcp-home-shortcuts{grid-column:5 / span 5;grid-row:3}
+ .pcp-home-alerts{grid-column:10 / span 3;grid-row:3}
+}

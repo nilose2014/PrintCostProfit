@@ -1,4 +1,4 @@
-
+﻿
 (function(){
  const el=id=>document.getElementById(id); const ipInput=el('pcpU1PrinterIp'); const select=el('pcpU1PrinterSelect'); const status=el('pcpPrinterStatus');
  if(!ipInput||!select||!status)return;
@@ -27,15 +27,26 @@
  }
  const readSaved=()=>savedPrinters.slice();
  const saveDiscovered=list=>{
-  const map=new Map(savedPrinters.map(p=>[p.ip,p]));
-  (list||[]).forEach(p=>{if(p&&p.ip){const prev=map.get(p.ip)||{};map.set(p.ip,{...prev,...p,hostname:p.hostname||prev.hostname||'',softwareVersion:p.softwareVersion||prev.softwareVersion||'',lastSeen:new Date().toISOString()})}});
+  const map=new Map(savedPrinters.map(p=>[p.ip,p]));let changed=false;
+  (list||[]).forEach(p=>{
+   if(!p||!p.ip)return;
+   const prev=map.get(p.ip)||{};
+   const next={...prev,ip:p.ip,hostname:p.hostname||prev.hostname||'',softwareVersion:p.softwareVersion||prev.softwareVersion||'',online:p.online!==undefined?p.online:prev.online,state:p.state||prev.state||''};
+   const meaningful=!prev.ip||next.hostname!==prev.hostname||next.softwareVersion!==prev.softwareVersion||next.online!==prev.online||next.state!==prev.state;
+   if(meaningful){next.lastSeen=new Date().toISOString();changed=true;}
+   map.set(p.ip,next);
+  });
   savedPrinters=Array.from(map.values());
-  if(!storageReady)return;
+  if(!storageReady||!changed)return;
+  const serialized=JSON.stringify(savedPrinters);
   pendingSave=pendingSave.then(async()=>{
    const snap=await req(root()+'/api/storage/snapshot?t='+Date.now(),8000),sd=await snap.json();
    if(!snap.ok||!sd.ok)throw new Error(sd.error||tr('No se pudo leer SQLite'));
+   let stored=sd.values&&sd.values[DISCOVERED_KEY];
+   if(typeof stored!=='string')stored=JSON.stringify(stored??[]);
+   if(stored===serialized)return;
    const revision=Number(sd.revisions&&sd.revisions[DISCOVERED_KEY])||0;
-   const wr=await fetch(root()+'/api/storage/write',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:DISCOVERED_KEY,value:JSON.stringify(savedPrinters),expectedRevision:revision}),cache:'no-store'});
+   const wr=await fetch(root()+'/api/storage/write',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:DISCOVERED_KEY,value:serialized,expectedRevision:revision}),cache:'no-store'});
    const wd=await wr.json();if(!wr.ok||!wd.ok)throw new Error(wd.error||tr('No se pudo guardar la lista en SQLite'));
    sqliteRevision=Number(wd.revision)||revision+1;
   }).catch(e=>say(tr('No se pudo guardar la lista de impresoras en SQLite: {message}',{message:e.message})));
@@ -48,25 +59,44 @@
  const list=Array.from(merged.values());saveDiscovered(list);select.innerHTML='';
  if(!list.length){select.add(new Option(tr('No se han encontrado impresoras'),''));return}
  select.add(new Option(tr('Selecciona una impresora…'),''));
- list.forEach(p=>{const label=p.ip+(p.hostname?' · '+p.hostname:'')+(p.softwareVersion?' · '+p.softwareVersion:'');const o=new Option(label,p.ip);o.dataset.hostname=p.hostname||'';o.dataset.softwareVersion=p.softwareVersion||'';select.add(o)});
+ list.forEach(p=>{const offline=p.online===false||String(p.state||'').toLowerCase()==='offline';const label=p.ip+(p.hostname?' · '+p.hostname:'')+(p.softwareVersion?' · '+p.softwareVersion:'')+(offline?' · '+tr('SIN CONEXIÓN'):'');const o=new Option(label,p.ip);o.dataset.hostname=p.hostname||'';o.dataset.softwareVersion=p.softwareVersion||'';select.add(o)});
  if(selected&&list.some(p=>p.ip===selected))select.value=selected;syncQuickSelect();
 }
-async function useIp(ip){if(!ip)return;ipInput.value=ip;try{localStorage.setItem('pcp_u1_manual_ip_v180',ip);localStorage.setItem('pcp_u1_manual_ip_v178',ip);localStorage.setItem('pcp_u1_manual_ip_v177',ip);localStorage.setItem('pcp_u1_manual_ip_v176',ip)}catch(_){}const r=await req(root()+'/api/u1/config?ip='+encodeURIComponent(ip)+'&t='+Date.now(),7000);let d={};try{d=await r.json()}catch(_){}if(!r.ok||!d.ok)throw new Error(d.error||('HTTP '+r.status));say(tr('Impresora seleccionada y conectada: {ip}.',{ip}));window.dispatchEvent(new CustomEvent('pcp-u1-printer-changed',{detail:{ip}}));}
- select.addEventListener('change',async()=>{if(!select.value)return;select.disabled=true;say(tr('Conectando con {ip}…',{ip:select.value}));try{await useIp(select.value);const r=await req(root()+'/api/u1/printer?t='+Date.now(),6000);const d=await r.json();if(d.ok)say(tr('IMPRESORA CONECTADA · {name} · IP {ip} · Estado: {state} · Archivo: {file}{software}.',{name:d.name||'Snapmaker U1',ip:d.ip,state:d.state||tr('desconocido'),file:d.filename||tr('ninguno'),software:d.softwareVersion?' · Software: '+d.softwareVersion:''}));}catch(e){say(tr('No se pudo seleccionar la impresora: {message}',{message:e.message}))}finally{select.disabled=false;syncQuickSelect()}});
+async function useIp(ip){if(!ip)return;ipInput.value=ip;try{localStorage.setItem('pcp_u1_manual_ip_v180',ip)}catch(_){}const r=await req(root()+'/api/u1/config?ip='+encodeURIComponent(ip)+'&t='+Date.now(),7000);let d={};try{d=await r.json()}catch(_){}if(!r.ok||!d.ok)throw new Error(d.error||('HTTP '+r.status));say(d.online===false?tr('Impresora seleccionada, pero está sin conexión: {ip}. La configuración se ha conservado.',{ip}):tr('Impresora seleccionada y conectada: {ip}.',{ip}));window.dispatchEvent(new CustomEvent('pcp-u1-printer-changed',{detail:{ip,online:d.online!==false}}));}
+ select.addEventListener('change',async()=>{if(!select.value)return;select.disabled=true;say(tr('Conectando con {ip}…',{ip:select.value}));try{await useIp(select.value);const r=await req(root()+'/api/u1/printer?t='+Date.now(),6000);const d=await r.json();if(d.online===false)say(tr('IMPRESORA SIN CONEXIÓN · {ip}. Se conserva seleccionada y aparecerá conectada cuando vuelva a responder.',{ip:d.ip||select.value}));else if(d.ok)say(tr('IMPRESORA CONECTADA · {name} · IP {ip} · Estado: {state} · Archivo: {file}{software}.',{name:d.name||'Snapmaker U1',ip:d.ip,state:d.state||tr('desconocido'),file:d.filename||tr('ninguno'),software:d.softwareVersion?' · Software: '+d.softwareVersion:''}));}catch(e){say(tr('No se pudo seleccionar la impresora: {message}',{message:e.message}))}finally{select.disabled=false;syncQuickSelect()}});
  async function autoDetect(){
   await loadPrinterStore();
   const saved=localStorage.getItem('pcp_u1_manual_ip_v180')||localStorage.getItem('pcp_u1_manual_ip_v178')||localStorage.getItem('pcp_u1_manual_ip_v177')||localStorage.getItem('pcp_u1_manual_ip_v176')||'';
   const known=readSaved();
-  let current=saved;
-  try{
-   const r=await req(root()+'/api/u1/printer?t='+Date.now(),6000),d=await r.json();
-   if(r.ok&&d.ok&&d.ip){current=d.ip;ipInput.value=d.ip;saveDiscovered([{ip:d.ip,hostname:d.name||'',softwareVersion:d.softwareVersion||''}]);}
-  }catch(_){}
+  let current=saved, verified=null, configSynced=!saved, configError='';
+  // Al reiniciar el puente, su IP activa puede no coincidir con la última selección
+  // guardada por la interfaz. Restauramos primero esa selección en el servidor.
+  if(saved){
+   ipInput.value=saved;
+   say(tr('Conectando con {ip}…',{ip:saved}));
+   try{
+    const cr=await req(root()+'/api/u1/config?ip='+encodeURIComponent(saved)+'&t='+Date.now(),7000),cd=await cr.json();
+    if(!cr.ok||!cd.ok)throw new Error(cd.error||('HTTP '+cr.status));
+    configSynced=true;
+   }catch(e){configError=e.message||String(e);say(tr('No se pudo seleccionar la impresora: {message}',{message:configError}));}
+  }
+  if(configSynced){
+   try{
+    const r=await req(root()+'/api/u1/printer?t='+Date.now(),6000),d=await r.json();
+    if(r.ok&&d.ok&&d.ip){
+     current=d.ip;verified=d;ipInput.value=d.ip;
+     saveDiscovered([{ip:d.ip,hostname:d.name||'',softwareVersion:d.softwareVersion||'',online:d.online!==false,state:d.online===false?'offline':'ready'}]);
+    }
+   }catch(_){}
+  }
   if(current&&!known.some(p=>p.ip===current))known.push({ip:current,hostname:tr('Impresora configurada')});
   render(known,current);
-  if(known.length)say(tr('Se han cargado {count} impresora(s) guardadas. Puedes seleccionar y conectar cualquiera sin volver a buscar. Para descubrir impresoras nuevas, pulsa «Buscar automáticamente».',{count:known.length}));
+  if(verified&&verified.online!==false)say(tr('IMPRESORA CONECTADA · {name} · IP {ip} · Estado: {state} · Archivo: {file}{software}.',{name:verified.name||'Snapmaker U1',ip:verified.ip,state:verified.state||tr('desconocido'),file:verified.filename||tr('ninguno'),software:verified.softwareVersion?' · Software: '+verified.softwareVersion:''}));
+  else if(verified&&verified.online===false)say(tr('IMPRESORA SIN CONEXIÓN · {ip}. Se conserva seleccionada y aparecerá conectada cuando vuelva a responder.',{ip:verified.ip||current}));
+  else if(!configSynced)say(tr('No se pudo seleccionar la impresora: {message}',{message:configError||window.PCP_I18N?.t('Error de conexión')||'Error de conexión'}));
+  else if(known.length)say(tr('Se han cargado {count} impresora(s) guardadas. Puedes seleccionar y conectar cualquiera sin volver a buscar. Para descubrir impresoras nuevas, pulsa «Buscar automáticamente».',{count:known.length}));
   else say(tr('No hay impresoras guardadas todavía. Pulsa «Buscar automáticamente» para descubrir las impresoras de la red.'));
  }
- const discover=el('pcpDiscoverU1');if(discover){const clone=discover.cloneNode(true);discover.parentNode.replaceChild(clone,discover);clone.addEventListener('click',async()=>{clone.disabled=true;say(tr('Buscando todas las impresoras compatibles en la red local…'));try{const r=await req(root()+'/api/u1/discover?t='+Date.now(),25000);const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.error||('HTTP '+r.status));const list=Array.isArray(d.printers)?d.printers:[];const configured=ipInput.value.trim();if(configured&&!list.some(p=>p.ip===configured)){list.unshift({ip:configured,hostname:tr('Impresora configurada')});}render(list,d.ip||configured||'');if(list.length===1){ipInput.value=list[0].ip;await useIp(list[0].ip);say(tr('Impresora encontrada y configurada: {ip}.',{ip:list[0].ip}))}else if(list.length>1){say(tr('Se encontraron {count} impresoras. Selecciona la que quieres usar en el desplegable.',{count:list.length}))}else say(d.message||tr('No se encontraron impresoras'))}catch(e){say(tr('Error durante la búsqueda: {message}',{message:e.message}))}finally{clone.disabled=false}})}
+ const discover=el('pcpDiscoverU1');if(discover){const clone=discover.cloneNode(true);discover.parentNode.replaceChild(clone,discover);clone.addEventListener('click',async()=>{clone.disabled=true;say(tr('Buscando todas las impresoras compatibles en la red local…'));try{const r=await req(root()+'/api/u1/discover?t='+Date.now(),25000);const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.error||('HTTP '+r.status));const list=Array.isArray(d.printers)?d.printers:[];const configured=ipInput.value.trim();if(configured&&!list.some(p=>p.ip===configured)){list.unshift({ip:configured,hostname:tr('Impresora configurada'),online:false,state:'offline'});}render(list,d.ip||configured||'');if(list.length===1){ipInput.value=list[0].ip;await useIp(list[0].ip);if(list[0].online===false||list[0].state==='offline')say(tr('Impresora encontrada pero está sin conexión: {ip}. Se conserva en la lista.',{ip:list[0].ip}));else say(tr('Impresora encontrada y configurada: {ip}.',{ip:list[0].ip}))}else if(list.length>1){say(tr('Se encontraron {count} impresoras. Selecciona la que quieres usar en el desplegable.',{count:list.length}))}else say(d.message||tr('No se encontraron impresoras'))}catch(e){say(tr('Error durante la búsqueda: {message}',{message:e.message}))}finally{clone.disabled=false}})}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',autoDetect,{once:true});else setTimeout(autoDetect,250);
 })();

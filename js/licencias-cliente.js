@@ -1,4 +1,4 @@
-/* Print Cost & Profit v1.554 — sesión persistente de Firebase y consulta de licencia.
+/* Print Cost & Profit v1.3.52 — sesión persistente de Firebase y consulta de licencia.
  * Usa Firebase Authentication y la callable getMyLicense del proyecto privado.
  * No necesita una API REST propia. No incluir secretos ni claves privadas aquí.
  */
@@ -19,6 +19,11 @@
   function t(s) { return global.PCP_I18N && typeof global.PCP_I18N.t === 'function' ? global.PCP_I18N.t(s) : s; }
   function readCache() { try { return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null'); } catch (_) { return null; } }
   function writeCache(value) { try { localStorage.setItem(SESSION_KEY, JSON.stringify(value)); } catch (_) {} }
+  function firebaseConfigured() {
+    return ['apiKey','authDomain','projectId','appId'].every(key =>
+      typeof FIREBASE_CONFIG[key] === 'string' && FIREBASE_CONFIG[key].trim().length > 0
+    );
+  }
   function statusLabel(license) {
     const status = String(license && license.status || 'inactive').toLowerCase();
     const plan = String(license && license.plan || 'free').toLowerCase();
@@ -27,6 +32,8 @@
     return planText + ' · ' + statusText;
   }
   async function initFirebase() {
+    if (!getConfig().enabled) throw new Error(t('El sistema de licencias está desactivado.'));
+    if (!firebaseConfigured()) throw new Error(t('El sistema de licencias todavía no está configurado.'));
     if (firebaseReady) return firebaseReady;
     firebaseReady = (async () => {
       const [appMod, authMod, fnMod] = await Promise.all([
@@ -57,10 +64,20 @@
       const functions = fnMod.getFunctions(app, 'europe-southwest1');
       getLicenseCallable = fnMod.httpsCallable(functions, 'getMyLicense');
       return {authMod, fnMod, app};
-    })();
+    })().catch(error => {
+      // Una carga fallida no debe dejar una promesa rechazada permanentemente:
+      // permite reintentar cuando vuelva la conexión o se corrija la configuración.
+      firebaseReady = null;
+      auth = null;
+      getLicenseCallable = null;
+      authStateReady = null;
+      throw error;
+    });
     return firebaseReady;
   }
   async function login(email, password) {
+    if (!getConfig().enabled) return {ok:false,status:'licensing_disabled',message:t('El sistema de licencias está desactivado.')};
+    if (!firebaseConfigured()) return {ok:false,status:'licensing_unconfigured',message:t('El sistema de licencias todavía no está configurado.')};
     if (!email || !password) return {ok:false,status:'missing_credentials',message:t('Introduce tu correo electrónico y contraseña.')};
     try {
       const mods = await initFirebase();
@@ -99,6 +116,8 @@
     return license;
   }
   async function refresh() {
+    if (!getConfig().enabled) return {ok:false,status:'licensing_disabled',message:t('El sistema de licencias está desactivado.')};
+    if (!firebaseConfigured()) return {ok:false,status:'licensing_unconfigured',message:t('El sistema de licencias todavía no está configurado.')};
     try {
       await initFirebase();
       if (authStateReady) await authStateReady;
@@ -111,6 +130,8 @@
     }
   }
   async function getStatus() {
+    if (!getConfig().enabled) return {ok:false,status:'licensing_disabled',message:t('El sistema de licencias está desactivado.')};
+    if (!firebaseConfigured()) return {ok:false,status:'licensing_unconfigured',message:t('El sistema de licencias todavía no está configurado.')};
     const result = await refresh();
     if (result.ok) return result;
     const cached = readCache();
@@ -132,7 +153,8 @@
       offlineGraceHours: Number(cfg.offlineGraceHours) || 72
     };
   }
-  global.PCP_LICENSES = Object.freeze({version:'1.560',getConfig,login,logout,getStatus,refresh,isSignedIn:()=>!!(auth && auth.currentUser && auth.currentUser.emailVerified),isConfigured:()=>true,initFirebase});
-  // Inicializar pronto para que Firebase restaure la sesión persistente al arrancar.
-  initFirebase().catch(() => {});
+  global.PCP_LICENSES = Object.freeze({version:'1.560',getConfig,login,logout,getStatus,refresh,isSignedIn:()=>!!(auth && auth.currentUser && auth.currentUser.emailVerified),isConfigured:()=>getConfig().enabled && firebaseConfigured(),initFirebase});
+  // No iniciar Firebase mientras el sistema de licencias esté desactivado o sin configurar.
+  // Así el modo gratuito no realiza peticiones externas ni intenta usar credenciales vacías.
+  if (getConfig().enabled && firebaseConfigured()) initFirebase().catch(() => {});
 })(window);

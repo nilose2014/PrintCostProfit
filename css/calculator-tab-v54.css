@@ -1,0 +1,20 @@
+/* v5.4 · Reduce el resplandor de los iconos de los bloques de la calculadora.
+   Se conserva el tamaño, el color neón y el contraste del trazo. */
+.pcp-calculator-page .pcp-calculator-heading:before,
+.pcp-calculator-page>.grid>main>section h2:before,
+.pcp-calculator-page>.grid>aside>section h2:before,
+.pcp-calculator-page #dashboardPanel h2:before,
+.pcp-calculator-page #failureSimPanel h2:before,
+.pcp-calculator-page #comparePanel h2:before {
+  box-shadow: 0 0 5px rgba(37,202,255,.09), inset 0 0 5px rgba(118,91,255,.07) !important;
+}
+.pcp-calculator-page>.grid>main>section h2:after,
+.pcp-calculator-page>.grid>aside>section h2:after,
+.pcp-calculator-page #dashboardPanel h2:after,
+.pcp-calculator-page #failureSimPanel h2:after,
+.pcp-calculator-page #comparePanel h2:after {
+  filter: drop-shadow(0 0 1px rgba(58,220,255,.38)) drop-shadow(0 0 2px rgba(160,94,255,.20)) !important;
+}
+.pcp-calculator-page .pcp-calculator-heading:before {
+  filter: drop-shadow(0 0 2px rgba(54,220,255,.28)) !important;
+}

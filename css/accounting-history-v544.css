@@ -1,0 +1,101 @@
+/* v5.44 · Historial contable: columnas equilibradas y lectura compacta */
+#accountingRows{width:100%;max-width:100%;min-width:0;overflow:visible}
+#accountingRows .accounting-table-wrap{
+  width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;
+  border:1px solid rgba(86,151,207,.28);border-radius:16px;
+  background:linear-gradient(145deg,rgba(14,29,51,.96),rgba(8,19,36,.98));
+  box-shadow:0 12px 30px rgba(0,0,0,.16),inset 0 1px rgba(255,255,255,.035)
+}
+#accountingRows table.accounting-history{
+  width:100%;min-width:1280px;table-layout:fixed;border-collapse:separate;border-spacing:0;
+  font-size:14px
+}
+/* Reparto exacto de las nueve columnas: se da espacio al concepto y a la referencia,
+   mientras Cobrado y Beneficio quedan deliberadamente más estrechas. */
+#accountingRows .accounting-history th:nth-child(1),
+#accountingRows .accounting-history td:nth-child(1){width:8%;min-width:0}
+#accountingRows .accounting-history th:nth-child(2),
+#accountingRows .accounting-history td:nth-child(2){width:9%;min-width:0}
+#accountingRows .accounting-history th:nth-child(3),
+#accountingRows .accounting-history td:nth-child(3){width:9%;min-width:0}
+#accountingRows .accounting-history th:nth-child(4),
+#accountingRows .accounting-history td:nth-child(4){width:19.5%;min-width:0}
+#accountingRows .accounting-history th:nth-child(5),
+#accountingRows .accounting-history td:nth-child(5){width:13%;min-width:0}
+#accountingRows .accounting-history th:nth-child(6),
+#accountingRows .accounting-history td:nth-child(6){width:8.5%;min-width:0}
+#accountingRows .accounting-history th:nth-child(7),
+#accountingRows .accounting-history td:nth-child(7){width:8%;min-width:0}
+#accountingRows .accounting-history th:nth-child(8),
+#accountingRows .accounting-history td:nth-child(8){width:8%;min-width:0}
+#accountingRows .accounting-history th:nth-child(9),
+#accountingRows .accounting-history td:nth-child(9){width:17%;min-width:0}
+#accountingRows .accounting-history thead th{
+  padding:13px 10px;background:linear-gradient(180deg,#1a3151,#142743);
+  color:#b9d7fb;border-bottom:1px solid rgba(102,164,218,.3);
+  font-size:12px;font-weight:850;letter-spacing:.045em;text-transform:uppercase;
+  white-space:normal;line-height:1.35
+}
+#accountingRows .accounting-history tbody td{
+  padding:12px 10px;vertical-align:middle;line-height:1.45;
+  color:#e6efff;border-bottom:1px solid rgba(100,145,192,.14);
+  overflow-wrap:anywhere;word-break:normal
+}
+#accountingRows .accounting-history tbody tr{background:rgba(16,33,57,.72);transition:background .16s ease}
+#accountingRows .accounting-history tbody tr:nth-child(even){background:rgba(23,43,70,.62)}
+#accountingRows .accounting-history tbody tr:hover{background:rgba(36,75,111,.48)}
+#accountingRows .accounting-history tbody tr:last-child td{border-bottom:0}
+#accountingRows .accounting-history .acc-date{white-space:nowrap;color:#a9c9ef;font-weight:750}
+#accountingRows .accounting-history .acc-type-pill{display:inline-flex;max-width:100%;white-space:normal;line-height:1.25}
+#accountingRows .accounting-history .acc-printer-name{font-weight:800;color:#f0f5ff}
+#accountingRows .accounting-history .acc-concept{font-weight:650;color:#e4edfc}
+#accountingRows .accounting-history .acc-reference-cell{text-align:center}
+#accountingRows .accounting-history .acc-reference-details{display:inline-block;max-width:100%}
+#accountingRows .accounting-history .acc-reference-details summary{
+  display:inline-flex;justify-content:center;align-items:center;max-width:100%;
+  padding:8px 10px;border:1px solid rgba(89,151,207,.32);border-radius:9px;
+  background:rgba(43,79,117,.42);color:#8fe9dc;font-size:12px;font-weight:800;
+  cursor:pointer;list-style:none;white-space:nowrap
+}
+#accountingRows .accounting-history .acc-reference-details summary::-webkit-details-marker{display:none}
+#accountingRows .accounting-history .acc-reference-details[open] summary{border-color:rgba(55,220,202,.58);background:rgba(24,119,116,.22)}
+#accountingRows .accounting-history .acc-reference-details>div{
+  position:relative;z-index:2;min-width:190px;max-width:min(360px,70vw);
+  margin:7px 0 0;padding:10px 12px;border:1px solid rgba(82,164,208,.35);
+  border-radius:10px;background:#10243e;color:#eaf3ff;text-align:left;
+  white-space:normal;overflow-wrap:anywhere;box-shadow:0 10px 24px rgba(0,0,0,.28)
+}
+#accountingRows .accounting-history .acc-money{
+  white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:800;
+  padding-left:7px;padding-right:7px
+}
+#accountingRows .accounting-history th:nth-child(7),
+#accountingRows .accounting-history th:nth-child(8){text-align:center}
+#accountingRows .accounting-history td:nth-child(7),
+#accountingRows .accounting-history td:nth-child(8){text-align:center}
+#accountingRows .accounting-history .acc-profit-value{color:#49e0b7}
+#accountingRows .accounting-history td.acc-actions{
+  display:table-cell!important;text-align:center;white-space:nowrap
+}
+#accountingRows .accounting-history .acc-actions button{
+  flex:0 1 auto;min-width:0;padding:8px 9px;border-radius:9px;
+  font-size:12px;white-space:nowrap
+}
+@media(max-width:1350px){
+  #accountingRows table.accounting-history{min-width:1180px}
+  #accountingRows .accounting-history th,#accountingRows .accounting-history td{padding-left:8px;padding-right:8px}
+}
+@media(max-width:760px){
+  #accountingRows .accounting-table-wrap{border-radius:12px}
+  #accountingRows table.accounting-history{min-width:1120px;font-size:13px}
+}
+body.pcp-light-theme #accountingRows .accounting-table-wrap{background:#f8fbff;border-color:#c6d6e8}
+body.pcp-light-theme #accountingRows .accounting-history thead th{background:#e4edf8;color:#294765;border-color:#c5d7e9}
+body.pcp-light-theme #accountingRows .accounting-history tbody td{color:#33465e;border-color:#e0e8f1}
+body.pcp-light-theme #accountingRows .accounting-history tbody tr,
+body.pcp-light-theme #accountingRows .accounting-history tbody tr:nth-child(even){background:#fff}
+body.pcp-light-theme #accountingRows .accounting-history tbody tr:hover{background:#edf5fc}
+body.pcp-light-theme #accountingRows .accounting-history .acc-printer-name,
+body.pcp-light-theme #accountingRows .accounting-history .acc-concept{color:#26364c}
+body.pcp-light-theme #accountingRows .accounting-history .acc-reference-details summary{background:#e8f2fb;color:#176d75;border-color:#b8d2e8}
+body.pcp-light-theme #accountingRows .accounting-history .acc-reference-details>div{background:#fff;color:#26364c}

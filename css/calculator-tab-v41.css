@@ -1,0 +1,9 @@
+/* v4.1 · Calculadora y comparador en su propia pestaña */
+.pcp-calculator-page{padding:18px 20px 28px!important}
+.pcp-calculator-heading{display:flex;align-items:center;justify-content:space-between;margin:0 0 14px;padding:0 2px 12px;border-bottom:1px solid rgba(75,137,205,.35)}
+.pcp-calculator-heading h2{margin:0;font-size:clamp(21px,2vw,28px);font-weight:800;letter-spacing:.01em}
+.pcp-calculator-page>.toolbar{margin-bottom:12px}
+.pcp-calculator-page>.grid{margin-top:12px}
+.pcp-calculator-page #comparePanel{scroll-margin-top:18px}
+.pcp-calculator-page #comparePanel .actions{display:flex;flex-wrap:wrap;gap:9px}
+@media(max-width:900px){.pcp-calculator-page{padding:12px 10px 22px!important}}

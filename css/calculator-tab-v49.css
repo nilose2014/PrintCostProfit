@@ -1,0 +1,33 @@
+/* v4.9 · Distribución de los datos de impresión entre pieza y desglose fiscal */
+/* La tarjeta de pieza conserva identidad y fotografía; los parámetros de fabricación
+   se agrupan en el panel de desglose para evitar una columna desproporcionada. */
+.pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings{
+  margin-top:18px!important;padding-top:15px!important;
+  border-top:1px solid rgba(91,150,255,.28);
+}
+.pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings h3{
+  display:flex;align-items:center;gap:10px;margin:0 0 12px!important;
+  color:#e9f4ff;font-size:14px;font-weight:800;letter-spacing:.02em;
+}
+.pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings h3:before{
+  content:"";display:inline-block;width:28px;height:28px;flex:0 0 28px;border-radius:9px;
+  border:1px solid rgba(91,224,255,.72);
+  background:linear-gradient(145deg,rgba(34,211,238,.2),rgba(139,92,246,.2));
+  box-shadow:0 0 9px rgba(34,211,238,.25),inset 0 0 9px rgba(139,92,246,.18);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M12 7v5l3 2M8 2h8M8 22h8'/%3E%3C/svg%3E") center/19px no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M12 7v5l3 2M8 2h8M8 22h8'/%3E%3C/svg%3E") center/19px no-repeat;
+  filter:drop-shadow(0 0 5px rgba(54,220,255,.7));
+}
+.pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings .fields{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;align-items:start;
+}
+.pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings .field{min-width:0!important;}
+.pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings .field.wide{grid-column:1/-1!important;}
+.pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings input,
+.pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings select{width:100%;min-width:0;}
+.pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings .section-note{line-height:1.45;}
+@media(max-width:600px){
+ .pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings .fields{grid-template-columns:1fr!important;}
+ .pcp-calculator-page #taxPreviewPanel .pcp-piece-print-settings .field.wide{grid-column:1!important;}
+}

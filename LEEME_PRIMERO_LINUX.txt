@@ -1,0 +1,26 @@
+PRINT COST & PROFIT LINUX v1.4
+================================
+
+Esta es la adaptación Linux de la aplicación Windows v1.4. La versión Windows original no se modifica. Linux utiliza un servidor Python y una base SQLite independientes.
+
+REQUISITOS
+- Ubuntu/Linux o WSL2 con Ubuntu.
+- Python 3.10 o posterior con sqlite3.
+
+INICIO (desde la terminal Linux/WSL, no desde PowerShell):
+  cd /ruta/al/proyecto
+  chmod +x linux/iniciar_linux.sh
+  ./linux/iniciar_linux.sh
+
+Abre http://127.0.0.1:8700/ en el navegador. Mantén abierta la terminal. Para detener el servidor pulsa Ctrl+C.
+
+DATOS:
+  ~/.local/share/PrintCostProfit/data/printcostprofit.db
+  (o $XDG_DATA_HOME/PrintCostProfit/data/printcostprofit.db si está definido).
+
+Las bases de Windows y Linux son independientes. No sobrescribas ni copies directamente la base de Windows.
+
+El inicio comprueba Python/SQLite, compila los módulos y ejecuta pruebas automáticas. Consulta linux/README_LINUX.md para API, copias de seguridad, pruebas y limitaciones de validación.
+
+Postprocesado de Orca (prueba manual): python3 linux/integracion_orca.py "/ruta/al/archivo.gcode". Genera Print_Cost_Profit_Integrado.html.
+Pendiente de validar con Orca real y una impresora física: conectividad Moonraker en WSL2 y flujo completo de posprocesado. No se afirma que estas pruebas físicas se hayan realizado.

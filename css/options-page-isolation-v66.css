@@ -1,0 +1,10 @@
+/* v5.19 · Aislamiento de la pestaña Opciones.
+   La regla anterior #programOptionsView { display:flex!important }
+   tenía más especificidad que .tab-page { display:none!important } y
+   mantenía Opciones visible al cambiar a cualquier otra pestaña. */
+#programOptionsView:not(.active) {
+  display: none !important;
+}
+#programOptionsView.active {
+  display: flex !important;
+}

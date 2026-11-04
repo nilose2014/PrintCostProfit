@@ -1,0 +1,166 @@
+/* Print Cost & Profit v5.28 — Pedidos: panel de gestión premium */
+#ordersView>section.orders-modern{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:clamp(20px,2.1vw,34px)!important;border-radius:22px!important;
+  border:1px solid rgba(75,157,214,.4)!important;
+  background:
+    radial-gradient(ellipse at 92% 0%,rgba(104,78,214,.2),transparent 34%),
+    radial-gradient(ellipse at 0% 15%,rgba(20,184,205,.12),transparent 30%),
+    linear-gradient(145deg,#142744 0%,#101f39 52%,#0d1a32 100%)!important;
+  box-shadow:0 22px 52px rgba(2,8,23,.28),inset 0 1px 0 rgba(255,255,255,.05)!important;
+}
+#ordersView>section.orders-modern:before{
+  content:"";position:absolute;z-index:-1;inset:0 0 auto;height:4px;
+  background:linear-gradient(90deg,#35d7e3,#6689ff 52%,#a56bff);
+}
+#ordersView>.orders-modern>.seller-modal-head{
+  min-height:94px!important;margin:0 0 14px!important;padding:15px 20px!important;
+  border:1px solid rgba(81,166,218,.32)!important;border-radius:18px!important;
+  background:radial-gradient(ellipse at 85% 0%,rgba(111,83,221,.25),transparent 42%),
+    linear-gradient(105deg,rgba(12,145,172,.19),rgba(31,48,91,.64))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 25px rgba(2,8,23,.13)!important;
+}
+#ordersView>.orders-modern>.seller-modal-head h2{
+  display:flex;align-items:center;gap:14px;font-size:clamp(25px,2.2vw,32px)!important;
+  letter-spacing:-.04em!important;
+}
+#ordersView>.orders-modern>.seller-modal-head h2:before{
+  content:"📦";display:grid;place-items:center;width:54px;height:54px;flex:0 0 54px;
+  border:1px solid rgba(62,211,232,.48);border-radius:17px;
+  background:linear-gradient(145deg,rgba(18,190,211,.24),rgba(91,94,219,.28));
+  box-shadow:0 0 25px rgba(38,196,221,.16);font-size:25px;
+}
+#ordersView>.orders-modern>p.section-note{
+  margin:0 0 20px!important;color:#b7cbe6!important;font-size:13px;line-height:1.7;
+}
+#ordersView #ordersPanel{
+  padding:clamp(16px,1.8vw,26px)!important;margin:0!important;
+  border:1px solid rgba(83,151,205,.3)!important;border-radius:20px!important;
+  background:linear-gradient(145deg,rgba(13,31,56,.9),rgba(9,22,42,.94))!important;
+  box-shadow:0 14px 34px rgba(1,8,22,.19),inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+#ordersView #ordersPanel>h3{
+  display:flex;align-items:center;gap:10px;margin:0 0 8px!important;padding:0 0 14px!important;
+  border-bottom:1px solid rgba(105,161,211,.22)!important;font-size:20px!important;
+}
+#ordersView #ordersPanel>h3:before{
+  content:"＋";display:grid;place-items:center;width:34px;height:34px;border-radius:11px;
+  color:#7ce9e7;background:rgba(20,164,182,.16);border:1px solid rgba(70,204,218,.28);
+  font-size:20px;
+}
+#ordersView #ordersPanel>.section-note{
+  margin:0 0 15px!important;color:#9fb8d8!important;font-size:12px;
+}
+#ordersView #ordersPanel>.fields{
+  gap:18px 20px!important;padding:21px!important;margin:0 0 17px!important;
+  border:1px solid rgba(88,151,204,.28)!important;border-radius:17px!important;
+  background:linear-gradient(135deg,rgba(18,39,67,.88),rgba(8,23,44,.92))!important;
+}
+#ordersView #ordersPanel .field label{
+  color:#c7daf4!important;font-size:11px!important;font-weight:800!important;
+  letter-spacing:.025em;
+}
+#ordersView #ordersPanel input:not([type=checkbox]),
+#ordersView #ordersPanel select{
+  min-height:47px!important;padding:11px 14px!important;border-radius:11px!important;
+  border:1px solid rgba(102,154,204,.34)!important;
+  background:linear-gradient(180deg,#0c1b32,#09172b)!important;
+  color:#eff6ff!important;transition:border-color .18s,box-shadow .18s;
+}
+#ordersView #ordersPanel input:focus,
+#ordersView #ordersPanel select:focus{
+  outline:none;border-color:#42d2df!important;box-shadow:0 0 0 3px rgba(58,204,220,.13)!important;
+}
+#ordersView #orderClientSelect{min-width:0!important;flex:1 1 230px!important;}
+#ordersView #orderNewClientBtn{
+  min-height:45px!important;color:#e3fbff!important;
+  border:1px solid rgba(66,203,222,.4)!important;
+  background:linear-gradient(135deg,rgba(13,131,157,.38),rgba(55,79,151,.42))!important;
+}
+#ordersView #orderClientHint{color:#8faed1!important;font-size:11px!important;}
+#ordersView #ordersPanel>.actions{margin:16px 0 18px!important;}
+#ordersView #addOrderBtn{
+  min-height:44px!important;padding:11px 20px!important;border-radius:12px!important;
+  color:#062633!important;background:linear-gradient(110deg,#55dfc4,#48cce0)!important;
+  box-shadow:0 8px 20px rgba(43,199,194,.18)!important;
+}
+#ordersView #exportOrdersBtn{
+  min-height:44px!important;border-radius:12px!important;
+  background:linear-gradient(145deg,rgba(55,83,124,.55),rgba(30,48,79,.82))!important;
+  border:1px solid rgba(115,154,201,.34)!important;
+}
+#ordersView .list-search-bar{
+  margin:20px 0 13px!important;padding:16px 17px!important;border-radius:16px!important;
+  border:1px solid rgba(87,154,205,.28)!important;
+  background:linear-gradient(110deg,rgba(13,39,65,.82),rgba(9,24,46,.84))!important;
+}
+#ordersView .list-search-bar>label{
+  display:flex;align-items:center;gap:9px;margin-bottom:11px!important;
+  color:#eaf5ff!important;font-weight:850!important;font-size:13px!important;
+}
+#ordersView .list-search-bar>label:before{
+  content:"⌕";display:grid;place-items:center;width:29px;height:29px;border-radius:9px;
+  color:#76e8e8;background:rgba(22,166,184,.17);font-size:22px;
+}
+#ordersView .list-search-controls{gap:9px!important;}
+#ordersView .list-search-controls input{min-height:44px!important;border-radius:10px!important;}
+#ordersView .list-search-controls .btn{min-height:43px!important;border-radius:10px!important;}
+#ordersView #ordersList{
+  overflow-x:auto;margin-top:13px;padding:8px;border-radius:17px;
+  border:1px solid rgba(86,146,197,.27);background:rgba(6,17,34,.43);
+}
+#ordersView #ordersList table{
+  width:100%;min-width:900px;border-collapse:separate!important;border-spacing:0 7px!important;
+}
+#ordersView #ordersList thead th{
+  padding:13px 12px!important;border:0!important;background:linear-gradient(100deg,#1b3556,#172b49)!important;
+  color:#9fc9f6!important;font-size:10px!important;font-weight:900!important;
+  text-transform:uppercase;letter-spacing:.075em;white-space:nowrap;
+}
+#ordersView #ordersList thead th:first-child{border-radius:10px 0 0 10px;}
+#ordersView #ordersList thead th:last-child{border-radius:0 10px 10px 0;}
+#ordersView #ordersList tbody tr{background:linear-gradient(100deg,rgba(25,43,69,.96),rgba(15,30,52,.98));}
+#ordersView #ordersList tbody td{
+  padding:12px 11px!important;border-top:1px solid rgba(105,151,201,.19)!important;
+  border-bottom:1px solid rgba(105,151,201,.19)!important;color:#dce9fa!important;
+  font-size:11px!important;vertical-align:middle;
+}
+#ordersView #ordersList tbody td:first-child{
+  border-left:1px solid rgba(105,151,201,.19)!important;border-radius:11px 0 0 11px;
+}
+#ordersView #ordersList tbody td:last-child{
+  border-right:1px solid rgba(105,151,201,.19)!important;border-radius:0 11px 11px 0;
+}
+#ordersView #ordersList tbody tr:hover td{
+  border-color:rgba(65,194,219,.45)!important;background:rgba(30,74,103,.18);
+}
+#ordersView #ordersList tbody td strong{color:#f1f6ff;font-size:12px;}
+#ordersView #ordersList tbody td small{color:#91aaca!important;line-height:1.5;}
+#ordersView #ordersList tbody td select{
+  min-width:150px;min-height:37px!important;padding:7px 9px!important;border-radius:9px!important;
+  font-size:11px!important;
+}
+#ordersView #ordersList .quote-actions{display:flex;gap:6px;flex-wrap:wrap;}
+#ordersView #ordersList .btn{
+  min-height:34px!important;padding:7px 10px!important;border-radius:9px!important;
+  font-size:10px!important;white-space:nowrap;
+}
+#ordersView #ordersList [data-order-quote],
+#ordersView #ordersList [data-order-invoice]{
+  background:rgba(48,79,116,.52)!important;border:1px solid rgba(113,158,203,.3)!important;
+}
+#ordersView #ordersList [data-order-invoice]{
+  border-color:rgba(71,197,174,.35)!important;color:#8cebd5!important;
+}
+#ordersView #ordersList [data-order-delete]{
+  color:#ffc1cb!important;background:rgba(126,38,62,.2)!important;
+  border:1px solid rgba(226,91,119,.35)!important;
+}
+#ordersView #ordersList .pagination,
+#ordersView #ordersList .list-pagination{padding:10px 2px 2px;}
+@media(max-width:760px){
+  #ordersView>section.orders-modern{padding:14px!important;}
+  #ordersView #ordersPanel>.fields{grid-template-columns:minmax(0,1fr)!important;padding:14px!important;}
+  #ordersView #ordersPanel .field{grid-column:1/-1;}
+  #ordersView #ordersList{padding:5px;}
+}

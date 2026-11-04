@@ -1,0 +1,9 @@
+/* v5.3 · Pestaña Tasaciones e icono neón de navegación */
+.pcp-nav-icon-neon{width:25px!important;height:25px!important;min-width:25px!important;margin-right:8px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.pcp-nav-icon-neon svg{display:block;width:23px;height:23px;fill:none;stroke:#72e9ff;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px rgba(65,220,255,.62)) drop-shadow(0 0 4px rgba(112,91,255,.34))}
+.pcp-estimates-page{min-width:0}
+.pcp-estimates-page>.pcp-calculator-heading{margin:8px 0 16px;padding:8px 2px 12px;border-bottom:1px solid rgba(75,190,255,.24)}
+.pcp-estimates-page>.pcp-calculator-heading h2{margin:0 0 5px}
+.pcp-estimates-page>.pcp-calculator-heading p{margin:0;color:var(--muted,#9fb4d0);font-size:13px}
+.pcp-estimates-page #historyPanel{margin-top:0}
+@media(max-width:1050px){.pcp-nav-icon-neon{width:23px!important;height:23px!important;min-width:23px!important}.pcp-nav-icon-neon svg{width:21px;height:21px}}

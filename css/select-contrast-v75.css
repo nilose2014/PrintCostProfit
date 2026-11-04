@@ -1,0 +1,41 @@
+/* v5.30 — Contraste legible en menús desplegables nativos (Windows / Edge) */
+:root { color-scheme: dark; }
+select,
+select:focus,
+select:hover {
+  color-scheme: dark !important;
+  color: #f1f6ff !important;
+  background-color: #0b1a30 !important;
+}
+select option,
+select optgroup {
+  color: #edf4ff !important;
+  background-color: #142844 !important;
+  -webkit-text-fill-color: #edf4ff !important;
+}
+select option:checked {
+  color: #ffffff !important;
+  background-color: #176b83 !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+select option:disabled {
+  color: #9aacc3 !important;
+  background-color: #17263c !important;
+  -webkit-text-fill-color: #9aacc3 !important;
+}
+select option:hover {
+  color: #ffffff !important;
+  background-color: #245276 !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+/* Asegura contraste también en los select compactos de paneles flotantes y tablas. */
+#calculatorView select,
+#invoicesView select,
+#quotesView select,
+#ordersView select,
+#spoolsView select,
+#accountingView select,
+#optionsView select,
+#monitorPanel select {
+  color-scheme: dark !important;
+}

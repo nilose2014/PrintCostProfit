@@ -1,0 +1,19 @@
+/* v5.8 · Reduce de forma notable el resplandor de los iconos de la calculadora.
+   Se conservan tamaño, trazos y colores; se elimina el halo intenso. */
+.pcp-calculator-page .pcp-calculator-heading:before,
+.pcp-calculator-page>.grid>main>section h2:before,
+.pcp-calculator-page>.grid>aside>section h2:before,
+.pcp-calculator-page #dashboardPanel h2:before,
+.pcp-calculator-page #failureSimPanel h2:before,
+.pcp-calculator-page #comparePanel h2:before {
+  box-shadow: 0 0 1px rgba(37,202,255,.025), inset 0 0 1px rgba(118,91,255,.02) !important;
+  filter: none !important;
+}
+.pcp-calculator-page>.grid>main>section h2:after,
+.pcp-calculator-page>.grid>aside>section h2:after,
+.pcp-calculator-page #dashboardPanel h2:after,
+.pcp-calculator-page #failureSimPanel h2:after,
+.pcp-calculator-page #comparePanel h2:after,
+.pcp-calculator-page .pcp-calculator-heading:before {
+  filter: none !important;
+}

@@ -1,60 +1,64 @@
-# Print Cost & Profit — Linux
+# Print Cost & Profit Linux v1.4
 
-Esta carpeta contiene el servidor local para Linux. No modifica ni reemplaza los scripts de Windows.
-
-## Estado de la versión 1.0 emparejada con Windows
-
-- Servidor HTTP local: `127.0.0.1:8700`.
-- Persistencia SQLite mediante `pcp_sqlite_store.py`.
-- Datos en `~/.local/share/PrintCostProfit/data/printcostprofit.db`, o en `$XDG_DATA_HOME/PrintCostProfit/data/printcostprofit.db` cuando `XDG_DATA_HOME` está definido.
-- Copias de seguridad en la subcarpeta `backups`.
-- API de almacenamiento: `snapshot`, `health`, `write`, `remove`, `import`, listado, creación, validación, configuración y restauración de copias de seguridad.
-- Endpoints U1 implementados parcialmente: configuración de IP, descubrimiento de impresoras en las redes IPv4 privadas locales, información de impresora, estado, lectura de filamentos desde G-code y consulta del progreso de lectura.
-- Según las pruebas manuales comunicadas por el usuario, el monitor de la Snapmaker U1 y el procesamiento de G-code funcionan correctamente.
-- La integración específica de posprocesamiento del laminador debe distinguirse del procesamiento de G-code desde el servidor; no se debe asumir que son el mismo flujo.
+Adaptación Linux de la aplicación Windows v1.4. La interfaz, los módulos JavaScript, CSS, imágenes y el archivo central `js/traducciones.js` se conservan desde la versión de referencia. Linux utiliza un servidor Python nativo y una base de datos SQLite independiente.
 
 ## Requisitos
 
-Ubuntu/Linux con Python 3 y SQLite3 para Python. En Ubuntu estándar:
+- Linux, Ubuntu o WSL2 con distribución Linux instalada.
+- Python 3.10 o posterior (biblioteca estándar; incluye `sqlite3`).
+- Navegador moderno.
+- Para Snapmaker U1: acceso de red desde el entorno Linux/WSL al equipo y al puerto Moonraker TCP 7125.
+
+En Ubuntu/WSL:
 
 ```bash
 sudo apt update
-sudo apt install python3
+sudo apt install -y python3
 ```
 
-## Iniciar
+## Inicio
 
-Desde la carpeta del proyecto:
+Desde la raíz del proyecto:
 
 ```bash
 chmod +x linux/iniciar_linux.sh
 ./linux/iniciar_linux.sh
 ```
 
-Después abre `http://127.0.0.1:8700/` en el navegador. Mantén abierta la terminal mientras uses la aplicación. Para cerrar el servidor, pulsa `Ctrl+C`.
+El script comprueba Python y SQLite, compila los módulos Python, ejecuta las pruebas automáticas y arranca el servidor. Abre `http://127.0.0.1:8700/` en el navegador. Mantén abierta la terminal mientras uses la aplicación. Detén el servidor con `Ctrl+C`.
 
-## Pruebas automáticas
+En WSL2, ejecuta los comandos en la terminal de Ubuntu/WSL, no en Windows PowerShell. Si el navegador Windows no puede abrir el localhost de WSL, comprueba la configuración de red/localhost de WSL2 y el cortafuegos.
 
-Desde la raíz del repositorio:
+## Datos y copias
+
+- Base SQLite: `~/.local/share/PrintCostProfit/data/printcostprofit.db`.
+- Configuración U1: `~/.local/share/PrintCostProfit/data/u1-config.json`.
+- Trabajos de lectura G-code: `~/.local/share/PrintCostProfit/data/u1-read-jobs/`.
+- Copias SQLite: `~/.local/share/PrintCostProfit/data/backups/`.
+- Logs: `~/.local/share/PrintCostProfit/data/printcostprofit.log`.
+
+Si `XDG_DATA_HOME` está definido, se utiliza esa ubicación como raíz de datos. Windows y Linux mantienen bases independientes. No copies ni sobrescribas la base Windows para iniciar Linux. Antes de migrar datos, exporta una copia desde la aplicación y utiliza el mecanismo de importación en una base Linux vacía.
+
+## API incluida
+
+- Almacenamiento: snapshot, health, import, write, remove.
+- Copias: listado, creación, configuración, validación y restauración con copia de seguridad preventiva.
+- Registros: GET, POST y DELETE `/api/logs`.
+- Versión: `/api/version`.
+- Snapmaker U1/Moonraker: configuración de IP, descubrimiento en subredes locales, consulta de impresora, estado con caché y lectura asíncrona de G-code con progreso y miniatura embebida si existe en el archivo.
+- Postprocesado local de Orca: `python3 linux/integracion_orca.py "/ruta/al/archivo.gcode"` crea `Print_Cost_Profit_Integrado.html` con nombre de pieza, tiempo, filamentos, colores, precios y miniatura detectados. El servidor sirve esa página integrada cuando existe.
+
+El servidor escucha exclusivamente en `127.0.0.1`. No envía comandos para iniciar, pausar o cancelar impresiones.
+
+## Pruebas
 
 ```bash
-python3 -m py_compile pcp_sqlite_store.py linux/pcp_linux_server.py
+python3 -m py_compile pcp_sqlite_store.py linux/pcp_linux_server.py linux/integracion_orca.py
 python3 -m unittest discover -s linux/tests -v
 ```
 
-Las pruebas crean una carpeta temporal independiente y no usan ni modifican la base de datos real del usuario. También se ejecutan automáticamente en GitHub Actions en cada push o pull request a la rama `linux`.
+Las pruebas usan un directorio temporal aislado y no acceden a los datos reales del usuario.
 
-## Comprobaciones manuales recomendadas para futuras regresiones
+## Validación pendiente
 
-1. Iniciar y cerrar el servidor varias veces.
-2. Crear y editar una tasación, cerrar el navegador, volver a abrirlo y comprobar que persiste.
-3. Probar exportaciones y PDFs que se utilicen habitualmente.
-4. Crear, editar, buscar y eliminar registros en clientes, bobinas, presupuestos, pedidos, facturas y contabilidad.
-5. Crear una copia de seguridad, validarla y restaurarla en una base de pruebas.
-6. Conectar una Snapmaker U1 real: guardar IP, redescubrirla, consultar estados, probar una impresión en curso, una impresión finalizada y la lectura de datos del G-code.
-7. Comprobar los seis idiomas: español, inglés, francés, alemán, italiano y polaco.
-8. Verificar que todas las funciones siguen siendo gratuitas y que no aparece inicio de sesión ni bloqueo de licencia.
-
-## Importante
-
-La numeración Linux se alinea con Windows v1.0; la implementación Linux mantiene componentes propios y una base de datos independiente. Las pruebas automáticas y las comprobaciones manuales comunicadas respaldan los flujos probados. No copies la base de datos real de Windows: Linux y Windows mantienen sus bases de datos independientes. Conserva copias de seguridad y usa una base de datos de prueba para validar restauraciones futuras.
+Esta entrega establece la base Linux y cubre la API de almacenamiento, logs y los endpoints U1 equivalentes identificados en el servidor Windows v1.4. Aún deben completarse pruebas de extremo a extremo con impresora física, validación de conectividad Moonraker en WSL2, pruebas de posprocesado de Orca desde el propio Snapmaker Orca en Linux/WSL2 y regresión funcional de todas las secciones (presupuestos, facturas, contabilidad, mantenimiento y licencias). No se debe considerar una validación física de U1 realizada hasta probarla en el equipo.
