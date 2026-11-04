@@ -3,11 +3,8 @@
 from __future__ import annotations
 import json, os, socket, subprocess, sys, tempfile, time
 from pathlib import Path
-from urllib.request import urlopen, Request, build_opener, ProxyHandler, install_opener
+import http.client
 
-# CI runners may define HTTP proxies; loopback checks must bypass them.
-install_opener(build_opener(ProxyHandler({})))
-from urllib.error import URLError, HTTPError
 
 ROOT = Path(__file__).resolve().parents[2]
 SERVER = ROOT / "linux" / "pcp_linux_server.py"
@@ -22,39 +19,58 @@ def main():
         env["PCP_LINUX_PORT"] = str(port)
         log = Path(tmp) / "server.log"
         with log.open("w+") as output:
-            proc = subprocess.Popen([sys.executable, str(SERVER)], cwd=ROOT, env=env,
+            proc = subprocess.Popen([sys.executable, "-u", str(SERVER)], cwd=ROOT, env=env,
                                     stdout=output, stderr=subprocess.STDOUT)
             try:
-                base = f"http://127.0.0.1:{port}"
                 deadline = time.monotonic() + 30
                 last_error = None
+                version = None
                 while time.monotonic() < deadline:
                     if proc.poll() is not None:
                         break
                     try:
-                        with urlopen(base + "/api/version", timeout=1) as response:
-                            version = json.loads(response.read().decode("utf-8"))
+                        conn = http.client.HTTPConnection("127.0.0.1", port, timeout=2)
+                        conn.request("GET", "/api/version", headers={"Connection":"close"})
+                        response = conn.getresponse()
+                        raw = response.read()
+                        if response.status != 200:
+                            raise RuntimeError("HTTP " + str(response.status) + ": " + raw.decode("utf-8", "replace"))
+                        version = json.loads(raw.decode("utf-8"))
+                        conn.close()
                         break
-                    except (URLError, TimeoutError, OSError, ValueError) as exc:
+                    except (OSError, TimeoutError, ValueError, RuntimeError) as exc:
                         last_error = repr(exc)
+                        try: conn.close()
+                        except Exception: pass
                         time.sleep(.25)
-                else:
-                    raise RuntimeError("El servidor no respondió en 30 segundos: " + str(last_error))
+                if version is None:
+                    raise RuntimeError("El servidor no respondió en 30 segundos; proceso=" + str(proc.poll()) + "; último error=" + str(last_error))
                 if proc.poll() is not None:
                     raise RuntimeError("El servidor terminó con código " + str(proc.returncode))
                 expected = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
                 assert version.get("version") == expected, version
-                with urlopen(base + "/api/storage/health", timeout=5) as response:
-                    health = json.loads(response.read().decode("utf-8"))
+                def get_json(path):
+                    conn = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
+                    conn.request("GET", path, headers={"Connection":"close"})
+                    response = conn.getresponse()
+                    raw = response.read()
+                    conn.close()
+                    if response.status != 200: raise RuntimeError("GET "+path+" HTTP "+str(response.status)+": "+raw.decode("utf-8","replace"))
+                    return json.loads(raw.decode("utf-8"))
+                def post_json(path, obj):
+                    body = json.dumps(obj).encode("utf-8")
+                    conn = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
+                    conn.request("POST", path, body=body, headers={"Content-Type":"application/json","Connection":"close"})
+                    response = conn.getresponse()
+                    raw = response.read()
+                    conn.close()
+                    if response.status != 200: raise RuntimeError("POST "+path+" HTTP "+str(response.status)+": "+raw.decode("utf-8","replace"))
+                    return json.loads(raw.decode("utf-8"))
+                health = get_json("/api/storage/health")
                 assert health.get("ok") and health.get("databaseExists"), health
-                payload = json.dumps({"key":"macos.smoke","value":"ok","expectedRevision":0}).encode()
-                request = Request(base + "/api/storage/write", data=payload, method="POST",
-                                  headers={"Content-Type":"application/json"})
-                with urlopen(request, timeout=5) as response:
-                    saved = json.loads(response.read().decode("utf-8"))
+                saved = post_json("/api/storage/write", {"key":"macos.smoke","value":"ok","expectedRevision":0})
                 assert saved.get("ok") and saved.get("revision") == 1, saved
-                with urlopen(base + "/api/storage/snapshot", timeout=5) as response:
-                    snapshot = json.loads(response.read().decode("utf-8"))
+                snapshot = get_json("/api/storage/snapshot")
                 assert snapshot.get("values", {}).get("macos.smoke") == "ok", snapshot
                 print("macOS server, HTTP API, SQLite persistence and version checks: OK")
             except Exception:
