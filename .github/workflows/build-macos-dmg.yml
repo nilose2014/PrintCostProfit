@@ -1,0 +1,112 @@
+name: Build macOS experimental DMG
+
+on:
+  push:
+    branches: [macos-experimental]
+    paths:
+      - '.github/workflows/build-macos-dmg.yml'
+      - 'macos/**'
+      - 'linux/**'
+      - 'pcp_sqlite_store.py'
+      - 'VERSION'
+      - 'Print_Cost_Profit.html'
+      - 'js/**'
+      - 'css/**'
+      - 'assets/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-dmg:
+    name: Build macOS DMG (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: arm64
+            runner: macos-14
+          - arch: x86_64
+            runner: macos-13
+    steps:
+      - name: Checkout experimental macOS branch
+        uses: actions/checkout@v4
+        with:
+          ref: macos-experimental
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate Python server and SQLite tests
+        run: |
+          python -m py_compile pcp_sqlite_store.py linux/pcp_linux_server.py
+          python -m unittest discover -s linux/tests -v
+      - name: Build experimental application bundle and DMG
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(tr -d '[:space:]' < VERSION)"
+          test "$VERSION" = "1.4"
+          APP="Print Cost & Profit.app"
+          CONTENTS="$RUNNER_TEMP/$APP/Contents"
+          RES="$CONTENTS/Resources/PrintCostProfit"
+          mkdir -p "$CONTENTS/MacOS" "$RES"
+          rsync -a --exclude='.git' --exclude='.github' --exclude='installer' --exclude='*.bat' --exclude='*.cmd' --exclude='*.ps1' --exclude='*.exe' "$PWD/" "$RES/"
+          cat > "$CONTENTS/Info.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+          <key>CFBundleName</key><string>Print Cost &amp; Profit</string>
+          <key>CFBundleDisplayName</key><string>Print Cost &amp; Profit</string>
+          <key>CFBundleIdentifier</key><string>com.printcostprofit.desktop.experimental</string>
+          <key>CFBundleVersion</key><string>$VERSION</string>
+          <key>CFBundleShortVersionString</key><string>$VERSION</string>
+          <key>CFBundlePackageType</key><string>APPL</string>
+          <key>LSMinimumSystemVersion</key><string>12.0</string>
+          <key>NSHighResolutionCapable</key><true/>
+          </dict></plist>
+          PLIST
+          cat > "$CONTENTS/MacOS/PrintCostProfit" <<'LAUNCHER'
+          #!/bin/bash
+          set -euo pipefail
+          APP_ROOT="$(cd "$(dirname "$0")/../Resources/PrintCostProfit" && pwd)"
+          DATA_HOME="$HOME/Library/Application Support"
+          DATA_DIR="$DATA_HOME/PrintCostProfit/data"
+          LOG_FILE="$DATA_DIR/printcostprofit-macos.log"
+          PID_FILE="$DATA_DIR/printcostprofit-macos.pid"
+          URL="http://127.0.0.1:8700/"
+          mkdir -p "$DATA_DIR"
+          if ! command -v python3 >/dev/null 2>&1; then
+            osascript -e 'display alert "Python 3 is required" message "Install Python 3.10 or later, then open Print Cost & Profit again." as critical'
+            exit 1
+          fi
+          export XDG_DATA_HOME="$DATA_HOME"
+          if [[ -f "$PID_FILE" ]] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+            :
+          else
+            (cd "$APP_ROOT" && nohup python3 "$APP_ROOT/linux/pcp_linux_server.py" >>"$LOG_FILE" 2>&1 </dev/null & echo $! > "$PID_FILE")
+          fi
+          for _ in $(seq 1 60); do
+            if python3 -c "import urllib.request; urllib.request.urlopen('$URL', timeout=.5)" >/dev/null 2>&1; then
+              open "$URL"
+              exit 0
+            fi
+            sleep .25
+          done
+          osascript -e 'display alert "Print Cost & Profit could not start" message "Check the application log in ~/Library/Application Support/PrintCostProfit/data/." as critical'
+          exit 1
+          LAUNCHER
+          chmod 0755 "$CONTENTS/MacOS/PrintCostProfit"
+          DMG="$RUNNER_TEMP/PrintCostProfit-macOS-$VERSION-${{ matrix.arch }}-EXPERIMENTAL.dmg"
+          hdiutil create -volname "Print Cost & Profit" -srcfolder "$RUNNER_TEMP/$APP" -ov -format UDZO "$DMG"
+          hdiutil verify "$DMG"
+      - name: Upload experimental DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: PrintCostProfit-macOS-v1.4-${{ matrix.arch }}-EXPERIMENTAL
+          path: ${{ runner.temp }}/PrintCostProfit-macOS-*-EXPERIMENTAL.dmg
+          if-no-files-found: error
+          retention-days: 30
