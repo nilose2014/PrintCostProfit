@@ -350,7 +350,7 @@ class Handler(SimpleHTTPRequestHandler):
                 self.path='/Print_Cost_Profit_Integrado.html' if integrated.is_file() else '/Print_Cost_Profit.html'
             return super().do_GET()
         except Exception as e:
-            status=502 if path.startswith('/api/u1/') else 500
+            status=400 if path=='/api/u1/config' and ('IP inválida' in str(e) or 'octets' in str(e)) else (502 if path.startswith('/api/u1/') else 500)
             return self.send_json({'ok':False,'error':str(e)},status)
     def do_POST(self):
         path=urlparse(self.path).path
