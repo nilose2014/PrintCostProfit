@@ -18,6 +18,11 @@ Start here. Only download Print Cost & Profit from the official GitHub repositor
 |---|---|---|---|
 | **Windows** | **v1.4** | [Download Windows Installer ZIP](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.4/PrintCostProfit-Windows-Installer-v1.4.zip) | [Windows v1.4 Release](https://github.com/nilose2014/PrintCostProfit/releases/tag/v1.4) |
 | **Linux (64-bit)** | **v1.4** | [Download Debian Package (.deb)](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb) | [Linux v1.4 Release](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4) |
+| **macOS (experimental)** | **v1.4.1** | Build artifacts only — no public release yet | [Experimental macOS branch](https://github.com/nilose2014/PrintCostProfit/tree/macos-experimental) |
+
+### macOS experimental build
+
+A macOS build is being prepared for Apple Silicon and Intel. It is **not tested on a real Mac**, is unsigned and not notarized, and may require Python 3.10+. Do not consider it a stable release. DMG files will be provided as GitHub Actions artifacts after the automated builds complete. See [the macOS experimental notes](https://github.com/nilose2014/PrintCostProfit/blob/macos-experimental/macos/README_MACOS_EXPERIMENTAL.md).
 
 ### Official Project Links
 
