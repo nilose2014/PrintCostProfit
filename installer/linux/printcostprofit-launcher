@@ -14,7 +14,7 @@ fi
 if [[ -f "$PID_FILE" ]] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
   :
 else
-  (cd "$APP_DIR" && nohup python3 "$APP_DIR/linux/pcp_linux_server.py" >>"$LOG_FILE" 2>&1 & echo $! > "$PID_FILE")
+  (cd "$APP_DIR" && nohup python3 "$APP_DIR/linux/pcp_linux_server.py" >>"$LOG_FILE" 2>&1 </dev/null & echo $! > "$PID_FILE")
 fi
 for _ in $(seq 1 40); do
   if python3 -c "import urllib.request; urllib.request.urlopen('$URL', timeout=.5)" >/dev/null 2>&1; then
