@@ -83,3 +83,8 @@
 ### v1.1 — First public release and history of earlier features
 - Initial public version: cost calculator, estimates, Orca/G-code integration, U1 monitor, inventory, accounting, clients, quotes, orders, invoices, SQLite and six languages.
 - Earlier improvements published before v1.2 are grouped here to maintain consistent commercial version numbering, without displaying internal development numbers.
+
+### v1.4.1 — Linux DEB installer
+- Added an installable `.deb` package for 64-bit Ubuntu and Debian.
+- Includes an applications-menu entry and local server launcher.
+- Uninstallation preserves the user's database, backups and configuration.
