@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Print Cost & Profit
+Comment=Calculadora de costes y beneficios de impresión 3D
+Exec=/usr/bin/printcostprofit
+Icon=printcostprofit
+Terminal=false
+Categories=Office;Utility;
+StartupNotify=true
