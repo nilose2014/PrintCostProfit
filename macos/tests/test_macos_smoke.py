@@ -3,7 +3,10 @@
 from __future__ import annotations
 import json, os, socket, subprocess, sys, tempfile, time
 from pathlib import Path
-from urllib.request import urlopen, Request
+from urllib.request import urlopen, Request, build_opener, ProxyHandler, install_opener
+
+# CI runners may define HTTP proxies; loopback checks must bypass them.
+install_opener(build_opener(ProxyHandler({})))
 from urllib.error import URLError, HTTPError
 
 ROOT = Path(__file__).resolve().parents[2]
