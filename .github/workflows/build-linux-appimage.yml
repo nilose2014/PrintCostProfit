@@ -1,0 +1,117 @@
+name: Build Linux AppImage
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [linux]
+    paths:
+      - '.github/workflows/build-linux-appimage.yml'
+      - 'linux/**'
+      - 'pcp_sqlite_store.py'
+      - 'VERSION'
+      - 'Print_Cost_Profit.html'
+      - 'js/**'
+      - 'css/**'
+      - 'assets/**'
+
+permissions:
+  contents: read
+
+jobs:
+  build-appimage:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout Linux branch
+        uses: actions/checkout@v4
+        with:
+          ref: linux
+
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y rsync file wget
+
+      - name: Build AppImage
+        shell: bash
+        run: |
+          set -euo pipefail
+          APP_VERSION="$(tr -d '[:space:]' < VERSION)"
+          test "$APP_VERSION" = "1.4"
+          APPDIR="$RUNNER_TEMP/PrintCostProfit.AppDir"
+          mkdir -p "$APPDIR/usr/share/printcostprofit" "$APPDIR/usr/bin" "$APPDIR/usr/share/applications" "$APPDIR/usr/share/icons/hicolor/256x256/apps"
+
+          rsync -a \
+            --exclude='.git' --exclude='.github' --exclude='installer' \
+            --exclude='*.bat' --exclude='*.cmd' --exclude='*.ps1' --exclude='*.exe' \
+            "$PWD/" "$APPDIR/usr/share/printcostprofit/"
+
+          cat > "$APPDIR/AppRun" <<'APPRUN'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          APP_ROOT="$APPDIR/usr/share/printcostprofit"
+          DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/PrintCostProfit/data"
+          RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp}"
+          PID_FILE="$RUNTIME_DIR/printcostprofit-appimage-$UID.pid"
+          LOG_FILE="$DATA_DIR/printcostprofit-appimage.log"
+          URL="http://127.0.0.1:8700/"
+          mkdir -p "$DATA_DIR"
+          if ! command -v python3 >/dev/null 2>&1; then
+            if command -v zenity >/dev/null 2>&1; then
+              zenity --error --text="Print Cost & Profit necesita Python 3. Instálalo con el gestor de paquetes de tu distribución."
+            else
+              echo "Print Cost & Profit necesita Python 3 instalado en el sistema." >&2
+            fi
+            exit 1
+          fi
+          if [[ -f "$PID_FILE" ]] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+            :
+          else
+            (cd "$APP_ROOT" && nohup python3 "$APP_ROOT/linux/pcp_linux_server.py" >>"$LOG_FILE" 2>&1 </dev/null & echo $! > "$PID_FILE")
+          fi
+          for _ in $(seq 1 40); do
+            if python3 -c "import urllib.request; urllib.request.urlopen('$URL', timeout=.5)" >/dev/null 2>&1; then
+              if command -v xdg-open >/dev/null 2>&1; then xdg-open "$URL" >/dev/null 2>&1 || true; fi
+              exit 0
+            fi
+            sleep .25
+          done
+          echo "No se pudo iniciar Print Cost & Profit. Consulta $LOG_FILE" >&2
+          exit 1
+          APPRUN
+          chmod 0755 "$APPDIR/AppRun"
+
+          cat > "$APPDIR/printcostprofit.desktop" <<'DESKTOP'
+          [Desktop Entry]
+          Version=1.0
+          Type=Application
+          Name=Print Cost & Profit
+          Comment=Calculadora de costes y beneficios de impresión 3D
+          Exec=AppRun
+          Icon=printcostprofit
+          Terminal=false
+          Categories=Office;Utility;
+          StartupNotify=true
+          DESKTOP
+          install -m 0644 "$APPDIR/printcostprofit.desktop" "$APPDIR/usr/share/applications/printcostprofit.desktop"
+          ICON_SOURCE="$APPDIR/usr/share/printcostprofit/assets/home-printer-cutout.png"
+          test -s "$ICON_SOURCE"
+          install -m 0644 "$ICON_SOURCE" "$APPDIR/printcostprofit.png"
+          install -m 0644 "$ICON_SOURCE" "$APPDIR/.DirIcon"
+          install -m 0644 "$ICON_SOURCE" "$APPDIR/usr/share/icons/hicolor/256x256/apps/printcostprofit.png"
+
+          chmod 0755 "$APPDIR/usr/share/printcostprofit/linux/iniciar_linux.sh"
+          python3 -m py_compile "$APPDIR/usr/share/printcostprofit/pcp_sqlite_store.py" "$APPDIR/usr/share/printcostprofit/linux/pcp_linux_server.py"
+          python3 -m unittest discover -s "$APPDIR/usr/share/printcostprofit/linux/tests" -v
+
+          wget -q https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O "$RUNNER_TEMP/appimagetool.AppImage"
+          chmod 0755 "$RUNNER_TEMP/appimagetool.AppImage"
+          APPIMAGE_EXTRACT_AND_RUN=1 ARCH=x86_64 "$RUNNER_TEMP/appimagetool.AppImage" "$APPDIR" "$RUNNER_TEMP/PrintCostProfit-Linux-x86_64.AppImage"
+          file "$RUNNER_TEMP/PrintCostProfit-Linux-x86_64.AppImage"
+          test -s "$RUNNER_TEMP/PrintCostProfit-Linux-x86_64.AppImage"
+
+      - name: Upload AppImage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PrintCostProfit-Linux-AppImage
+          path: ${{ runner.temp }}/PrintCostProfit-Linux-x86_64.AppImage
+          if-no-files-found: error
+          retention-days: 30
