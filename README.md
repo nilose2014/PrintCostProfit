@@ -53,36 +53,54 @@ Start here. Only download Print Cost & Profit from the official GitHub repositor
 
 ### Linux Installation (Ubuntu, Debian and Compatible Distributions)
 
-Print Cost & Profit v1.4 for Linux is distributed as a native Debian package for 64-bit (`amd64`) systems.
+Print Cost & Profit v1.4 for Linux is available in two installation formats for 64-bit (`amd64` / `x86_64`) systems: a native Debian package (`.deb`) and a portable AppImage.
 
-1. Open the [Linux v1.4 release](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4).
-2. Download the [Print Cost & Profit Debian package](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb).
-3. Open a terminal in the folder where the file was downloaded.
-4. Install the package:
+1. Open the [Print Cost & Profit v1.4 for Linux release](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4).
+
+2. Choose one of the following installation options:
+
+   **Option A – Debian package (.deb)**
+
+   Download the [Print Cost & Profit Debian package](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb).
+
+   Open a terminal in the folder where the file was downloaded and run:
 
    ```bash
    sudo apt install ./printcostprofit_1.4.1_amd64.deb
    ```
 
-5. Launch **Print Cost & Profit** from your applications menu or run:
+   **Option B – AppImage**
+
+   Download [Print Cost & Profit Linux AppImage](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/PrintCostProfit-Linux-x86_64.AppImage).
+
+   Open a terminal in the download folder and run:
 
    ```bash
-   printcostprofit
+   chmod +x PrintCostProfit-Linux-x86_64.AppImage
+   ./PrintCostProfit-Linux-x86_64.AppImage
    ```
 
-6. If your browser does not open automatically, visit:
+   **Note:** AppImage requires FUSE 2 support. On Ubuntu, if you see a `libfuse.so.2` error, install it with:
+
+   ```bash
+   sudo apt install libfuse2
+   ```
+
+3. Start **Print Cost & Profit** from your applications menu (for the Debian package) or by running the AppImage.
+
+4. If your browser does not open automatically, visit:
 
    `http://127.0.0.1:8700/`
 
 **Linux Notes**
 
 - The application version is **v1.4**.
-- The package is intended for 64-bit Linux systems (`amd64`).
-- The installer declares the required dependencies so that `apt` can resolve them.
-- Application data is stored separately from program files in the user's application data directory.
-- To update, install the newer `.deb` package over the existing installation.
-- Back up your data before updating. Do not remove the application data directory if you want to keep your information.
-
+- Both installers are intended for 64-bit Linux systems (`amd64` / `x86_64`).
+- The `.deb` package declares the required dependencies so that `apt` can resolve them during installation.
+- The AppImage requires FUSE 2 support on systems where it is not already available.
+- Application data is stored separately from the program files, in the user's application data directory.
+- To update, install the newer `.deb` package over the existing installation, or replace the previous AppImage with the new one.
+- Back up your data before updating. Do not delete the application's data directory if you want to preserve your information.
 ---
 
 ## Integrating Print Cost & Profit with Snapmaker Orca
