@@ -1,0 +1,84 @@
+/* v4.5 · Rediseño profesional de la calculadora: mismo lenguaje visual que Inicio */
+.pcp-calculator-page{padding:20px 22px 34px!important;background:radial-gradient(ellipse at 48% 0%,rgba(86,48,190,.16),transparent 48%)}
+.pcp-calculator-heading{align-items:center;gap:16px;margin:0 0 16px;padding:0 2px 14px;border-bottom:1px solid rgba(86,139,255,.34);position:relative}
+.pcp-calculator-heading:before{content:"▦";display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;border:1px solid rgba(43,224,255,.65);border-radius:15px;background:linear-gradient(145deg,rgba(18,207,226,.2),rgba(119,64,255,.2));color:#55edff;font-size:27px;text-shadow:0 0 15px #19cfff;box-shadow:0 0 22px rgba(29,188,255,.22),inset 0 0 16px rgba(80,150,255,.12)}
+.pcp-calculator-heading h2{font-size:clamp(23px,2vw,30px);font-weight:850;letter-spacing:-.4px;text-shadow:0 0 18px rgba(100,120,255,.16)}
+.pcp-calculator-heading:after{content:"Calcula el coste real de impresión, define tu precio y controla la rentabilidad.";position:absolute;left:64px;bottom:-1px;transform:translateY(100%);font-size:12px;color:#9fb9dc;pointer-events:none}
+.pcp-calculator-page>.toolbar{margin:20px 0 12px;padding:12px 14px;border:1px solid rgba(75,137,205,.28);border-radius:14px;background:linear-gradient(110deg,rgba(17,31,57,.96),rgba(18,25,49,.94));box-shadow:0 8px 24px rgba(0,0,0,.16)}
+.pcp-calculator-page>.toolbar .btn,.pcp-calculator-page>.toolbar .filelabel{min-height:42px;border-radius:10px;font-weight:750;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.pcp-calculator-page>.toolbar .filelabel{background:linear-gradient(110deg,#21d7c0,#65e6c6);border-color:#35ead3;color:#041b25;box-shadow:0 0 18px rgba(39,221,200,.22)}
+.pcp-calculator-page>.toolbar .btn{background:linear-gradient(145deg,#1b3154,#17243d);border-color:#3b5b8c;color:#eaf4ff}
+.pcp-calculator-page>.toolbar .btn:hover,.pcp-calculator-page>.toolbar .filelabel:hover{transform:translateY(-2px);box-shadow:0 0 18px rgba(42,177,255,.22)}
+.pcp-calculator-page>#draftStatus{margin:0 0 12px;padding:7px 12px;border-left:2px solid #20d9c1;color:#a8c7e9;background:rgba(17,39,65,.42);border-radius:0 8px 8px 0}
+.pcp-calculator-page>section.panel.no-print{padding:14px 16px;margin:0 0 14px;border:1px solid rgba(71,134,208,.36);border-radius:14px;background:linear-gradient(115deg,rgba(18,37,66,.95),rgba(19,27,53,.95));box-shadow:0 9px 25px rgba(0,0,0,.16)}
+.pcp-calculator-page>section.panel.no-print .fields{grid-template-columns:1fr 1fr;gap:14px}
+.pcp-calculator-page>.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;align-items:stretch;margin-top:14px}
+.pcp-calculator-page>.grid>main,.pcp-calculator-page>.grid>aside{display:contents}
+.pcp-calculator-page>.grid>main>section,.pcp-calculator-page>.grid>aside>section{min-width:0;margin:0!important;padding:16px 16px 15px;border-radius:15px;border:1px solid rgba(83,128,205,.46);background:linear-gradient(155deg,rgba(24,43,78,.97),rgba(15,27,52,.98) 68%,rgba(14,24,45,.98));box-shadow:0 10px 26px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.035);position:relative;overflow:hidden}
+.pcp-calculator-page>.grid>main>section:before,.pcp-calculator-page>.grid>aside>section:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,rgba(50,221,255,.72),rgba(162,88,255,.62),transparent);opacity:.8}
+.pcp-calculator-page>.grid>main>section h2,.pcp-calculator-page>.grid>aside>section h2{display:flex;align-items:center;gap:10px;margin:0 0 13px;padding:0 0 11px;border-bottom:1px solid rgba(91,133,201,.3);font-size:15px;font-weight:850;letter-spacing:.05px;color:#f3f7ff}
+.pcp-calculator-page>.grid>main>section h2:before,.pcp-calculator-page>.grid>aside>section h2:before{display:grid;place-items:center;width:30px;height:30px;flex:0 0 30px;border:1px solid rgba(141,104,255,.52);border-radius:9px;background:linear-gradient(145deg,rgba(131,82,255,.22),rgba(39,194,255,.12));color:#c8b7ff;font-size:17px;text-shadow:0 0 12px rgba(155,107,255,.75)}
+.pcp-calculator-page>.grid>main>section:nth-of-type(1){grid-column:span 3;order:1}
+.pcp-calculator-page>.grid>main>section:nth-of-type(1) h2:before{content:"⬡"}
+.pcp-calculator-page>.grid>main>section:nth-of-type(2){grid-column:span 3;order:2}
+.pcp-calculator-page>.grid>main>section:nth-of-type(2) h2:before{content:"▤"}
+.pcp-calculator-page>.grid>main>section:nth-of-type(3){grid-column:span 3;order:3}
+.pcp-calculator-page>.grid>main>section:nth-of-type(3) h2:before{content:"ϟ"}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(1){grid-column:span 3;order:4}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(1) h2:before{content:"◇"}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(2){grid-column:span 4;order:5}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(2) h2:before{content:"▥"}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3){grid-column:span 8;order:6}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) h2:before{content:"✧"}
+.pcp-calculator-page .filemeta{background:rgba(7,18,39,.62);border:1px dashed rgba(64,170,220,.5);border-radius:11px;color:#b7d2f4;padding:12px 13px}
+.pcp-calculator-page .filemeta strong{color:#f5f8ff}
+.pcp-calculator-page .section-note{color:#9fb8db;line-height:1.5}
+.pcp-calculator-page .fields{gap:11px 12px}
+.pcp-calculator-page .field label{font-size:11px;font-weight:650;color:#a9c2e7;letter-spacing:.08px}
+.pcp-calculator-page .field input,.pcp-calculator-page .field select,.pcp-calculator-page .field textarea,.pcp-calculator-page .filament-row input{background:linear-gradient(180deg,#0c1930,#0a1428);border:1px solid #345078;border-radius:8px;color:#f3f7ff;min-height:38px;box-shadow:inset 0 1px 4px rgba(0,0,0,.2);transition:border-color .16s ease,box-shadow .16s ease}
+.pcp-calculator-page .field input:focus,.pcp-calculator-page .field select:focus,.pcp-calculator-page .field textarea:focus,.pcp-calculator-page .filament-row input:focus{border-color:#29d9ed;box-shadow:0 0 0 2px rgba(41,217,237,.13),0 0 14px rgba(41,217,237,.12);outline:none}
+.pcp-calculator-page .smallhead{color:#9eb8df;border-bottom:1px solid rgba(92,139,205,.25);font-weight:750}
+.pcp-calculator-page .filament-row{padding:8px 0;border-bottom:1px solid rgba(88,127,184,.2)}
+.pcp-calculator-page .filament-row:last-child{border-bottom:0}
+.pcp-calculator-page .filament-row .f-name{color:#e8f2ff;font-weight:650}
+.pcp-calculator-page .actions .btn,.pcp-calculator-page .calculate-dock .btn,.pcp-calculator-page #comparePanel .btn{background:linear-gradient(145deg,#1d3458,#182743);border:1px solid #41628f;color:#edf5ff;border-radius:9px;min-height:39px;font-weight:750}
+.pcp-calculator-page .actions .btn:hover,.pcp-calculator-page .calculate-dock .btn:hover,.pcp-calculator-page #comparePanel .btn:hover{border-color:#38d7ec;box-shadow:0 0 16px rgba(39,196,255,.17)}
+.pcp-calculator-page .calculate-dock{grid-column:1/-1;order:7;position:relative;bottom:auto;margin:0!important;padding:15px 17px;display:grid;grid-template-columns:minmax(180px,.75fr) minmax(210px,.95fr) minmax(380px,1.6fr);align-items:center;gap:14px;border:1px solid rgba(43,213,201,.5);border-radius:15px;background:linear-gradient(110deg,rgba(13,49,60,.96),rgba(15,34,59,.97) 60%,rgba(29,29,67,.97));box-shadow:0 0 24px rgba(22,201,206,.09),0 12px 28px rgba(0,0,0,.22);z-index:2}
+.pcp-calculator-page .calculate-dock-note{max-width:none;color:#a9c5e3;font-size:11px;line-height:1.55}
+.pcp-calculator-page .estimate-accounting-option{padding:10px 12px;border:1px solid rgba(92,137,197,.35);border-radius:10px;background:rgba(9,21,42,.48)}
+.pcp-calculator-page .estimate-accounting-option label{color:#e4edff;font-size:12px;font-weight:750;display:flex;align-items:flex-start;gap:8px}
+.pcp-calculator-page .estimate-accounting-option input{accent-color:#32dfc6;margin-top:3px}
+.pcp-calculator-page .estimate-accounting-option .section-note{margin:5px 0 0;font-size:10px}
+.pcp-calculator-page .calculate-dock-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0;flex:initial}
+.pcp-calculator-page .calculate-dock-actions .btn{min-height:42px;justify-content:center;white-space:normal;padding:9px 10px;font-size:12px}
+.pcp-calculator-page .calculate-dock-actions #applySuggested{background:linear-gradient(110deg,#13c9a7,#62e8bd);border-color:#45edcf;color:#03251f;box-shadow:0 0 17px rgba(40,226,185,.22)}
+.pcp-calculator-page #dashboardPanel,.pcp-calculator-page #failureSimPanel,.pcp-calculator-page #comparePanel{margin-top:15px;padding:17px 18px;border-radius:15px;border:1px solid rgba(81,131,205,.44);background:linear-gradient(150deg,rgba(22,39,70,.98),rgba(13,25,48,.98));box-shadow:0 10px 26px rgba(0,0,0,.18)}
+.pcp-calculator-page #dashboardPanel h2:before,.pcp-calculator-page #failureSimPanel h2:before,.pcp-calculator-page #comparePanel h2:before{display:inline-grid;place-items:center;width:30px;height:30px;margin-right:9px;border:1px solid rgba(152,105,255,.5);border-radius:9px;background:rgba(126,82,255,.16);color:#d6c2ff;font-size:18px}
+.pcp-calculator-page #dashboardPanel h2:before{content:"▥"}.pcp-calculator-page #failureSimPanel h2:before{content:"⚙"}.pcp-calculator-page #comparePanel h2:before{content:"⚖"}
+.pcp-calculator-page #dashboardPanel h2,.pcp-calculator-page #failureSimPanel h2,.pcp-calculator-page #comparePanel h2{display:flex;align-items:center;font-size:16px;padding-bottom:10px;border-bottom:1px solid rgba(87,131,198,.3)}
+.pcp-calculator-page #comparePanel .fields{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pcp-calculator-page #comparePanel .field{padding:10px 12px;border:1px solid rgba(72,121,190,.28);border-radius:10px;background:rgba(7,19,40,.38)}
+.pcp-calculator-page #comparePanel .field input{text-align:center;font-weight:800;font-size:15px}
+.pcp-calculator-page #compareResults{border:1px solid rgba(74,137,211,.45);border-radius:12px;background:rgba(7,18,38,.62);padding:10px 12px;color:#d8e9ff}
+.pcp-calculator-page #compareResults table{width:100%;border-collapse:collapse;min-width:760px;font-size:12px}
+.pcp-calculator-page #compareResults th{color:#a9c7ef;font-weight:800;border-bottom:1px solid rgba(89,143,207,.45);padding:10px 8px;white-space:nowrap}
+.pcp-calculator-page #compareResults td{padding:10px 8px;border-bottom:1px solid rgba(77,117,173,.22);white-space:nowrap}
+.pcp-calculator-page #compareResults tr:last-child td{border-bottom:0}
+.pcp-calculator-page #compareResults tr:has(td) td{color:#dceaff}
+.pcp-calculator-page #compareResults tr[style*="background"] td{background:rgba(11,178,125,.12)!important;color:#8df4c3}
+.pcp-calculator-page #comparePanel .actions{margin-top:12px}
+.pcp-calculator-page #comparePanel .actions .btn{background:linear-gradient(145deg,#203a63,#172b49)}
+.pcp-calculator-page .cards{gap:9px}
+.pcp-calculator-page .metric{background:linear-gradient(145deg,rgba(8,23,47,.92),rgba(12,26,50,.95));border:1px solid rgba(73,125,194,.38);border-radius:11px;padding:12px}
+.pcp-calculator-page .metric .label{font-size:11px;color:#a8c4e9}
+.pcp-calculator-page .metric .value{font-size:clamp(18px,1.7vw,25px);font-weight:850;color:#f2f7ff}
+.pcp-calculator-page .metric.highlight{border-color:rgba(30,224,174,.65);background:linear-gradient(145deg,rgba(8,68,63,.68),rgba(11,36,55,.94));box-shadow:inset 0 0 18px rgba(31,218,173,.07)}
+.pcp-calculator-page .metric.highlight .value{color:#55eac4;text-shadow:0 0 14px rgba(55,234,194,.28)}
+.pcp-calculator-page .total-order-box{border:2px solid #27d9c0;background:radial-gradient(ellipse at 25% 15%,rgba(27,211,171,.18),transparent 55%),linear-gradient(115deg,#0d3a3b,#102a43 65%,#19234b);box-shadow:0 0 22px rgba(33,220,192,.17),inset 0 0 20px rgba(43,203,220,.06)}
+.pcp-calculator-page .total-order-box .total-value{color:#5cebd0;text-shadow:0 0 22px rgba(64,238,206,.32)}
+.pcp-calculator-page .resultline{border-bottom-color:rgba(86,130,191,.23)}
+.pcp-calculator-page .resultline strong{color:#f1f6ff}
+@media(max-width:1450px){.pcp-calculator-page>.grid>main>section:nth-of-type(1){grid-column:span 4}.pcp-calculator-page>.grid>main>section:nth-of-type(2){grid-column:span 4}.pcp-calculator-page>.grid>main>section:nth-of-type(3){grid-column:span 4}.pcp-calculator-page>.grid>aside>section:nth-of-type(1){grid-column:span 4}.pcp-calculator-page>.grid>aside>section:nth-of-type(2){grid-column:span 5}.pcp-calculator-page>.grid>aside>section:nth-of-type(3){grid-column:span 7}.pcp-calculator-page .calculate-dock{grid-template-columns:1fr 1fr}.pcp-calculator-page .calculate-dock-actions{grid-column:1/-1}}
+@media(max-width:1050px){.pcp-calculator-page>.grid{grid-template-columns:repeat(6,minmax(0,1fr))}.pcp-calculator-page>.grid>main>section:nth-of-type(1),.pcp-calculator-page>.grid>main>section:nth-of-type(2),.pcp-calculator-page>.grid>main>section:nth-of-type(3),.pcp-calculator-page>.grid>aside>section:nth-of-type(1){grid-column:span 3}.pcp-calculator-page>.grid>aside>section:nth-of-type(2),.pcp-calculator-page>.grid>aside>section:nth-of-type(3){grid-column:1/-1}.pcp-calculator-page .calculate-dock{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.pcp-calculator-page{padding:13px 10px 24px!important}.pcp-calculator-heading{padding-bottom:14px}.pcp-calculator-heading:after{font-size:10px;left:60px}.pcp-calculator-page>.grid{grid-template-columns:1fr;gap:11px}.pcp-calculator-page>.grid>main>section:nth-of-type(n),.pcp-calculator-page>.grid>aside>section:nth-of-type(n){grid-column:1/-1}.pcp-calculator-page>.grid>main>section,.pcp-calculator-page>.grid>aside>section{padding:13px}.pcp-calculator-page .calculate-dock{grid-template-columns:1fr;padding:13px}.pcp-calculator-page .calculate-dock-actions{grid-column:auto}.pcp-calculator-page #comparePanel .fields{grid-template-columns:1fr}.pcp-calculator-page>section.panel.no-print .fields{grid-template-columns:1fr}.pcp-calculator-page .filament-row,.pcp-calculator-page .smallhead{grid-template-columns:minmax(0,1fr) minmax(58px,.6fr) minmax(72px,.7fr)}.pcp-calculator-page .filament-row .f-color-wrap{grid-column:1/-1}}
+@media print{.pcp-calculator-page{background:white!important}.pcp-calculator-page>.grid{display:grid;grid-template-columns:1fr 1fr}.pcp-calculator-page>.grid>main,.pcp-calculator-page>.grid>aside{display:block}.pcp-calculator-page>.grid>main>section,.pcp-calculator-page>.grid>aside>section{grid-column:auto!important;order:initial!important;background:white!important;color:#111!important;box-shadow:none!important}.pcp-calculator-page .calculate-dock{display:none!important}}

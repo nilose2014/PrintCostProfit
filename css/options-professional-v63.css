@@ -1,0 +1,72 @@
+/* v5.16 · Rediseño profesional de Opciones, alineado con el panel de Inicio */
+#programOptionsView{--opt-cyan:#36d8e8;--opt-violet:#8c79ff;--opt-line:rgba(91,139,194,.34);}
+#programOptionsView>.panel{
+  padding:22px!important;border:1px solid rgba(70,125,185,.42)!important;border-radius:20px!important;
+  background:linear-gradient(145deg,rgba(20,37,66,.98),rgba(12,23,43,.98) 58%,rgba(17,25,53,.98))!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.22),inset 0 1px 0 rgba(143,190,255,.07)!important;
+}
+#programOptionsView>.panel>h2{
+  display:flex;align-items:center;gap:12px;margin:0 0 8px!important;padding:3px 0 16px!important;
+  border-bottom:1px solid rgba(105,151,204,.25)!important;font-size:21px!important;font-weight:850!important;letter-spacing:.01em;
+}
+#programOptionsView>.panel>h2:before{content:"⚙";display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:13px;
+  color:#7de8f2;background:linear-gradient(145deg,rgba(21,177,204,.22),rgba(83,89,190,.2));border:1px solid rgba(72,205,225,.52);font-size:21px;box-shadow:0 0 13px rgba(44,194,220,.12)}
+#programOptionsView>.panel>.section-note{max-width:920px;margin:12px 0 20px!important;color:#a9bdd8!important;font-size:12px!important}
+#programOptionsView .pcp-opt-section{
+  position:relative;margin:16px 0!important;padding:17px 18px 18px!important;overflow:hidden;
+  border:1px solid rgba(82,133,190,.34)!important;border-radius:16px!important;
+  background:linear-gradient(135deg,rgba(24,43,73,.92),rgba(15,27,49,.96))!important;
+  box-shadow:0 9px 24px rgba(0,0,0,.13),inset 0 1px 0 rgba(180,211,255,.035)!important;
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+#programOptionsView .pcp-opt-section:hover{border-color:rgba(65,190,218,.48)!important;box-shadow:0 12px 28px rgba(0,0,0,.17),0 0 0 1px rgba(48,185,211,.06)!important}
+#programOptionsView .pcp-opt-section>h3,
+#programOptionsView .pcp-opt-section>.seller-modal-head{display:flex;align-items:center;min-height:34px;margin:0 0 10px!important;padding:0 0 12px!important;border-bottom:1px solid rgba(104,151,205,.22)!important}
+#programOptionsView .pcp-opt-section>h3{font-size:15px!important;font-weight:800!important;color:#f0f6ff!important}
+#programOptionsView .pcp-opt-section>.seller-modal-head h3{margin:0!important;font-size:15px!important;font-weight:800!important;color:#f0f6ff!important}
+#programOptionsView .pcp-opt-section-tools{display:flex!important;align-items:center;gap:8px!important;margin:0 0 14px!important;padding:8px 10px!important;
+  border:1px solid rgba(92,137,190,.22)!important;border-radius:11px!important;background:rgba(7,17,34,.38)!important}
+#programOptionsView .pcp-opt-order-label{font-size:10px!important;font-weight:800!important;letter-spacing:.06em;color:#8299b9!important}
+#programOptionsView .pcp-opt-section-tools button{min-height:31px!important;padding:6px 10px!important;border-radius:9px!important;
+  border:1px solid rgba(102,145,193,.32)!important;background:rgba(55,78,112,.34)!important;color:#dceaff!important;font-size:11px!important;font-weight:700!important}
+#programOptionsView .pcp-opt-section-tools .pcp-opt-toggle{border-color:rgba(54,204,190,.38)!important;background:rgba(26,151,145,.13)!important;color:#a9f4e8!important}
+#programOptionsView .pcp-opt-section-tools button:hover{border-color:rgba(69,209,220,.62)!important;background:rgba(38,133,157,.25)!important}
+#programOptionsView .pcp-opt-content{overflow:visible!important}
+#programOptionsView .pcp-opt-content>.section-note{color:#a9bdd8!important;line-height:1.6!important}
+#programOptionsView .fields{gap:14px 16px!important}
+#programOptionsView .field label{display:block;margin:0 0 7px!important;color:#a9c3e4!important;font-size:11px!important;font-weight:700!important;line-height:1.4}
+#programOptionsView input:not([type=checkbox]):not([type=radio]):not([type=color]),
+#programOptionsView select,#programOptionsView textarea{
+  min-height:40px!important;padding:9px 12px!important;border:1px solid rgba(91,133,184,.4)!important;border-radius:10px!important;
+  background:rgba(7,17,33,.78)!important;color:#edf5ff!important;box-shadow:inset 0 1px 3px rgba(0,0,0,.18)!important;
+}
+#programOptionsView input:focus,#programOptionsView select:focus,#programOptionsView textarea:focus{outline:none!important;border-color:#39c9dd!important;box-shadow:0 0 0 3px rgba(44,194,220,.12)!important}
+#programOptionsView .actions{display:flex;flex-wrap:wrap;gap:9px!important;margin:14px 0 8px!important}
+#programOptionsView .actions .btn,#programOptionsView .pcp-opt-section-tools button{transition:filter .15s ease,transform .15s ease,border-color .15s ease}
+#programOptionsView .actions .btn{min-height:38px!important;padding:9px 14px!important;border-radius:10px!important;font-weight:750!important}
+#programOptionsView .actions .btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+#programOptionsView .section-note,#programOptionsView .pcp-options-note{color:#9fb3cf!important;font-size:11px!important;line-height:1.55!important;overflow-wrap:anywhere}
+#programOptionsView #pcpLogsPanel{border-color:rgba(63,174,208,.48)!important;background:linear-gradient(145deg,rgba(20,43,70,.97),rgba(13,27,47,.98))!important}
+#programOptionsView #pcpLogsList{max-height:520px!important;overflow:auto!important;margin-top:12px;border:1px solid rgba(92,137,190,.3);border-radius:12px;background:rgba(5,14,29,.55)}
+#programOptionsView .pcp-logs-table{width:100%;min-width:650px;border-collapse:separate;border-spacing:0;font-size:11px!important}
+#programOptionsView .pcp-logs-table thead th{position:sticky;top:0;z-index:2;padding:12px 13px!important;background:#192d4a!important;color:#a9c9ed!important;text-align:left;font-size:10px!important;font-weight:850!important;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid rgba(103,155,207,.35)!important}
+#programOptionsView .pcp-logs-table tbody tr{background:rgba(18,34,56,.68)}
+#programOptionsView .pcp-logs-table tbody tr:nth-child(4n+1),#programOptionsView .pcp-logs-table tbody tr:nth-child(4n+2){background:rgba(28,47,73,.48)}
+#programOptionsView .pcp-logs-table td{padding:10px 13px!important;border-bottom:1px solid rgba(105,143,184,.13)!important;color:#d5e3f5!important;vertical-align:top;line-height:1.5}
+#programOptionsView .pcp-logs-table td[data-level=error]{color:#ff929b!important;font-weight:800}
+#programOptionsView .pcp-logs-table td[data-level=warn]{color:#ffd080!important;font-weight:800}
+#programOptionsView .pcp-logs-table td[data-level=info]{color:#82d9ee!important;font-weight:700}
+#programOptionsView .pcp-logs-table .pcp-log-details{color:#91a8c6!important;font-size:10px!important;overflow-wrap:anywhere;background:rgba(5,13,26,.28)}
+#programOptionsView .pcp-printer-status{padding:11px 13px!important;border:1px solid rgba(66,193,188,.3)!important;border-radius:10px!important;background:rgba(9,42,51,.24)!important}
+#programOptionsView .pcp-opt-section-collapsed{padding-bottom:12px!important}
+#programOptionsView .pcp-opt-section-collapsed .pcp-opt-section-tools{margin-bottom:0!important}
+@media(max-width:760px){
+ #programOptionsView>.panel{padding:13px!important;border-radius:14px!important}
+ #programOptionsView .pcp-opt-section{padding:13px!important;margin:12px 0!important}
+ #programOptionsView .pcp-opt-section-tools{gap:5px!important;flex-wrap:wrap}
+ #programOptionsView .pcp-opt-order-label{width:100%}
+ #programOptionsView .pcp-opt-section-tools .pcp-opt-spacer{display:none}
+ #programOptionsView .pcp-opt-section-tools button{font-size:10px!important;padding:6px 8px!important}
+ #programOptionsView .fields{grid-template-columns:1fr!important}
+}
+html.pcp-rtl #programOptionsView .pcp-logs-table th,html.pcp-rtl #programOptionsView .pcp-logs-table td{text-align:right}

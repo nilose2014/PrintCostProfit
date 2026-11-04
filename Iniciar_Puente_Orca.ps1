@@ -6,6 +6,7 @@ $Stderr = Join-Path $Root 'Puente_U1_inicio_stderr.log'
 $Server = Join-Path $Root 'Servidor_Panel_U1.ps1'
 $Runner = Join-Path $Root 'Iniciar_Puente_Orca_Independiente.cmd'
 $Uri = 'http://127.0.0.1:8700/api/version'
+$LogsUri = 'http://127.0.0.1:8700/api/logs'
 function Write-BridgeLog([string]$Message) {
   try { Add-Content -LiteralPath $Log -Encoding UTF8 -Value ("[{0}] {1}" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $Message) } catch {}
 }
@@ -17,13 +18,37 @@ function Get-BridgeVersion {
   return 'desconocida'
 }
 function Test-Bridge {
-  try { $r = Invoke-WebRequest -UseBasicParsing -Uri $Uri -TimeoutSec 2; return ($r.StatusCode -eq 200) } catch { return $false }
+  try {
+    $v = Invoke-RestMethod -Uri $Uri -Method Get -TimeoutSec 2
+    if (-not $v.ok) { return $false }
+    $logs = Invoke-RestMethod -Uri $LogsUri -Method Get -TimeoutSec 2
+    return [bool]($logs.ok -and $null -ne $logs.entries)
+  } catch { return $false }
+}
+function Stop-StaleOwnBridge {
+  try {
+    $listener = Get-NetTCPConnection -LocalPort 8700 -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
+    if (-not $listener) { return $true }
+    $process = Get-CimInstance Win32_Process -Filter ("ProcessId=" + [int]$listener.OwningProcess) -ErrorAction Stop
+    if ($process.CommandLine -and $process.CommandLine.IndexOf($Server,[StringComparison]::OrdinalIgnoreCase) -ge 0) {
+      Write-BridgeLog ("Se detectó un puente antiguo sin /api/logs. Reiniciando únicamente el proceso del servidor del proyecto. PID=" + $process.ProcessId)
+      Stop-Process -Id ([int]$process.ProcessId) -Force -ErrorAction Stop
+      Start-Sleep -Seconds 2
+      return $true
+    }
+    Write-BridgeLog ("ERROR: el puerto 8700 está ocupado por otro proceso; no se detiene por seguridad. PID=" + $listener.OwningProcess)
+    return $false
+  } catch {
+    Write-BridgeLog ("ERROR al comprobar/reiniciar el puente antiguo: " + $_.Exception.Message)
+    return $false
+  }
 }
 if (Test-Bridge) {
   $bridgeVersion = Get-BridgeVersion
-  Write-BridgeLog ('Puente local ya activo; versión informada por /api/version: ' + $bridgeVersion + '. No se inicia otra instancia.')
+  Write-BridgeLog ('Puente local activo y API de logs disponible; versión: ' + $bridgeVersion + '.')
   exit 0
 }
+if (-not (Stop-StaleOwnBridge)) { exit 16 }
 if (-not (Test-Path -LiteralPath $Server -PathType Leaf)) { Write-BridgeLog ("ERROR: no existe el servidor: " + $Server); exit 11 }
 if (-not (Test-Path -LiteralPath $Runner -PathType Leaf)) { Write-BridgeLog ("ERROR: no existe el lanzador independiente: " + $Runner); exit 12 }
 # El CMD redirige la salida y se crea mediante Win32_Process para evitar que Orca
@@ -42,7 +67,7 @@ try {
 }
 for ($i = 1; $i -le 25; $i++) {
   Start-Sleep -Seconds 1
-  if (Test-Bridge) { $bridgeVersion = Get-BridgeVersion; Write-BridgeLog ("Puente local responde en /api/version tras {0} s; versión informada: {1}." -f $i,$bridgeVersion); exit 0 }
+  if (Test-Bridge) { $bridgeVersion = Get-BridgeVersion; Write-BridgeLog ("Puente local y /api/logs responden tras {0} s; versión: {1}." -f $i,$bridgeVersion); exit 0 }
 }
 Write-BridgeLog 'ERROR: el puente no respondió en 25 segundos. Revisar Puente_U1_inicio_stdout.log y Puente_U1_inicio_stderr.log.'
 if (Test-Path -LiteralPath $Stdout) { try { Write-BridgeLog ('Última salida stdout: ' + ((Get-Content -LiteralPath $Stdout -Tail 8 -ErrorAction SilentlyContinue) -join ' | ')) } catch {} }

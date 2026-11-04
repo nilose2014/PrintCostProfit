@@ -1,0 +1,13 @@
+/* v5.48 · Igualar la altura de las tarjetas de la primera fila */
+@media(min-width:1451px){
+  .pcp-calculator-page>.grid>main>section:nth-of-type(1),
+  .pcp-calculator-page>.grid>main>section:nth-of-type(2),
+  .pcp-calculator-page>.grid>main>section:nth-of-type(3),
+  .pcp-calculator-page>.grid>main>section.pcp-extra-costs{
+    grid-row:1!important;
+    align-self:stretch!important;
+    height:100%!important;
+    min-height:100%!important;
+    box-sizing:border-box!important;
+  }
+}

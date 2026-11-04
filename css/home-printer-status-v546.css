@@ -1,0 +1,6 @@
+/* v5.46 · Mantener estable el tamaño del panel y facilitar el acceso a búsqueda */
+.pcp-home-printers .pcp-home-printer-list{max-height:218px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(89,205,221,.7) rgba(9,22,40,.45);padding-right:5px}
+.pcp-home-printers .pcp-home-printer-list::-webkit-scrollbar{width:7px}
+.pcp-home-printers .pcp-home-printer-list::-webkit-scrollbar-track{background:rgba(9,22,40,.45);border-radius:8px}
+.pcp-home-printers .pcp-home-printer-list::-webkit-scrollbar-thumb{background:rgba(89,205,221,.65);border-radius:8px}
+#pcpDiscoverU1.pcp-home-find-printers-focus{outline:2px solid #35d7ca;outline-offset:3px;box-shadow:0 0 0 5px rgba(53,215,202,.16)}

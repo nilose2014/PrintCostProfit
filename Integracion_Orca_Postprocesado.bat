@@ -1,4 +1,4 @@
-@echo off
+﻿@echo off
 setlocal EnableExtensions
 cd /d "%~dp0"
 set "LOG=%~dp0Integracion_Print_Cost_Profit.log"
@@ -13,28 +13,19 @@ REM Print_Cost_Profit_Integrado.html cuando ejecute el BAT con un G-code.
 if exist "%~dp0Print_Cost_Profit_Integrado.html" del /q "%~dp0Print_Cost_Profit_Integrado.html" >nul 2>&1
 REM Asegurar que el servidor local esta activo y abrir la interfaz.
 set "URL=http://127.0.0.1:8700/"
-set "API=http://127.0.0.1:8700/api/version"
-set "SERVER=%~dp0Servidor_Panel_U1.ps1"
-powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "try { $r=Invoke-WebRequest -UseBasicParsing -Uri '%API%' -TimeoutSec 2; if($r.StatusCode -eq 200){exit 0}else{exit 1} } catch { exit 1 }"
-if not errorlevel 1 goto open_ui
-if not exist "%SERVER%" (
-  echo ERROR: No se encuentra Servidor_Panel_U1.ps1
+set "LAUNCHER=%~dp0Iniciar_Puente_Orca.ps1"
+if not exist "%LAUNCHER%" (
+  echo ERROR: No se encuentra Iniciar_Puente_Orca.ps1
   pause
   exit /b 1
 )
-start "Snapmaker U1 - Puente local" /min powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%SERVER%"
-set "READY="
-for /L %%i in (1,1,25) do (
-  powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "try { $r=Invoke-WebRequest -UseBasicParsing -Uri '%API%' -TimeoutSec 1; if($r.StatusCode -eq 200){exit 0}else{exit 1} } catch { exit 1 }"
-  if not errorlevel 1 set "READY=1"
-  if defined READY goto open_ui
-  timeout /t 1 /nobreak >nul
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%LAUNCHER%"
+if errorlevel 1 (
+  echo ERROR: El puente local no esta actualizado o no se pudo reiniciar.
+  echo Comprueba la ventana del servidor y el archivo Integracion_Print_Cost_Profit.log.
+  pause
+  exit /b 1
 )
-echo ERROR: El puente local no responde en el puerto 8700.
-echo Revisa los registros del puente.
-pause
-exit /b 1
-
 :open_ui
 start "" "%URL%"
 exit /b 0

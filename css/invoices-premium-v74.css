@@ -1,0 +1,179 @@
+/* Print Cost & Profit v5.29 — Facturas: archivo y emisión premium */
+#invoicesView>section.panel{
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:clamp(20px,2.1vw,34px)!important;border-radius:22px!important;
+  border:1px solid rgba(78,157,213,.4)!important;
+  background:
+    radial-gradient(ellipse at 92% 0%,rgba(105,77,218,.2),transparent 35%),
+    radial-gradient(ellipse at 0% 12%,rgba(20,184,205,.12),transparent 30%),
+    linear-gradient(145deg,#142744 0%,#101f39 52%,#0d1a32 100%)!important;
+  box-shadow:0 22px 52px rgba(2,8,23,.28),inset 0 1px 0 rgba(255,255,255,.05)!important;
+}
+#invoicesView>section.panel:before{
+  content:"";position:absolute;z-index:-1;inset:0 0 auto;height:4px;
+  background:linear-gradient(90deg,#35d7e3,#6689ff 52%,#a56bff);
+}
+#invoicesView>.panel>.seller-modal-head{
+  min-height:94px!important;margin:0 0 13px!important;padding:15px 20px!important;
+  border:1px solid rgba(81,166,218,.34)!important;border-radius:18px!important;
+  background:radial-gradient(ellipse at 85% 0%,rgba(111,83,221,.25),transparent 42%),
+    linear-gradient(105deg,rgba(12,145,172,.19),rgba(31,48,91,.64))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 25px rgba(2,8,23,.13)!important;
+}
+#invoicesView .seller-modal-head h2{
+  display:flex;align-items:center;gap:14px;font-size:clamp(25px,2.2vw,32px)!important;
+  letter-spacing:-.04em!important;
+}
+#invoicesView .seller-modal-head h2:before{
+  content:"🧾";display:grid;place-items:center;width:54px;height:54px;flex:0 0 54px;
+  border:1px solid rgba(62,211,232,.48);border-radius:17px;
+  background:linear-gradient(145deg,rgba(18,190,211,.24),rgba(91,94,219,.28));
+  box-shadow:0 0 25px rgba(38,196,221,.16);font-size:25px;
+}
+#invoicesView>section.panel>p.section-note{
+  margin:0 0 20px!important;color:#b7cbe6!important;font-size:13px;line-height:1.7;
+}
+#invoicesView>section.panel>.fields{
+  gap:18px 20px!important;padding:22px!important;margin:0 0 16px!important;
+  border:1px solid rgba(88,151,204,.3)!important;border-radius:18px!important;
+  background:linear-gradient(135deg,rgba(18,39,67,.9),rgba(8,23,44,.94))!important;
+  box-shadow:0 12px 30px rgba(2,8,22,.15),inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+#invoicesView .field{min-width:0}
+#invoicesView .field label{
+  display:block;margin:0 0 7px!important;color:#c7daf4!important;
+  font-size:11px!important;font-weight:800!important;letter-spacing:.025em;
+}
+#invoicesView input:not([type=checkbox]),#invoicesView select,#invoicesView textarea{
+  width:100%;min-width:0;min-height:46px!important;box-sizing:border-box;
+  padding:11px 14px!important;border-radius:11px!important;
+  border:1px solid rgba(102,154,204,.34)!important;
+  background:linear-gradient(180deg,#0c1b32,#09172b)!important;
+  color:#eff6ff!important;transition:border-color .18s,box-shadow .18s;
+}
+#invoicesView input:focus,#invoicesView select:focus,#invoicesView textarea:focus{
+  outline:none;border-color:#42d2df!important;box-shadow:0 0 0 3px rgba(58,204,220,.13)!important;
+}
+#invoicesView .field small{display:block;margin-top:7px;color:#8faed1!important;font-size:10px;line-height:1.5}
+#invoicesView>.panel>.actions{
+  display:flex;flex-wrap:wrap;gap:10px!important;margin:16px 0 17px!important;
+}
+#invoicesView>.panel>.actions .btn{
+  min-height:45px!important;padding:11px 18px!important;border-radius:12px!important;
+  font-weight:800!important;transition:transform .16s,filter .16s;
+}
+#invoicesView #invoiceFromCalcBtn{
+  color:#062633!important;background:linear-gradient(110deg,#55dfc4,#48cce0)!important;
+  box-shadow:0 8px 20px rgba(43,199,194,.18)!important;
+}
+#invoicesView #invoiceFromQuoteBtn{
+  color:#eaf3ff!important;background:linear-gradient(145deg,rgba(55,83,124,.58),rgba(30,48,79,.86))!important;
+  border:1px solid rgba(115,154,201,.36)!important;
+}
+#invoicesView .btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+#invoicesView #invoiceClientChooser{
+  margin:18px 0!important;padding:22px!important;border-radius:18px!important;
+  border:1px solid rgba(65,202,218,.4)!important;
+  background:linear-gradient(140deg,rgba(18,53,78,.96),rgba(18,31,61,.98))!important;
+  box-shadow:0 15px 34px rgba(2,8,23,.22)!important;
+}
+#invoicesView #invoiceClientChooser h3{
+  margin:0 0 8px!important;color:#f0f7ff!important;font-size:18px!important;
+}
+#invoicesView #invoiceClientChooser .fields{
+  padding:17px!important;border-radius:14px!important;background:rgba(5,17,34,.36)!important;
+}
+#invoicesView #invoiceStatus{
+  padding:13px 16px!important;border:1px solid rgba(80,157,204,.24);
+  border-radius:12px;background:rgba(7,20,39,.48);color:#a9c3e2!important;
+}
+#invoicesView>section.panel>h3{
+  display:flex;align-items:center;gap:10px;margin:28px 0 13px!important;
+  padding:0 0 13px!important;border-bottom:1px solid rgba(105,161,211,.22)!important;
+  color:#f0f6ff!important;font-size:20px!important;font-weight:850!important;
+}
+#invoicesView>section.panel>h3:before{
+  content:"▤";display:grid;place-items:center;width:34px;height:34px;border-radius:11px;
+  color:#7ce9e7;background:rgba(20,164,182,.16);border:1px solid rgba(70,204,218,.28);
+}
+#invoicesView .list-search-bar{
+  margin:15px 0 13px!important;padding:16px 17px!important;border-radius:16px!important;
+  border:1px solid rgba(87,154,205,.28)!important;
+  background:linear-gradient(110deg,rgba(13,39,65,.82),rgba(9,24,46,.84))!important;
+}
+#invoicesView .list-search-bar>label{
+  display:flex;align-items:center;gap:9px;margin-bottom:11px!important;
+  color:#eaf5ff!important;font-weight:850!important;font-size:13px!important;
+}
+#invoicesView .list-search-bar>label:before{
+  content:"⌕";display:grid;place-items:center;width:29px;height:29px;border-radius:9px;
+  color:#76e8e8;background:rgba(22,166,184,.17);font-size:22px;
+}
+#invoicesView .list-search-controls{gap:9px!important}
+#invoicesView .list-search-controls input{flex:1 1 300px;min-height:44px!important}
+#invoicesView .list-search-controls .btn{min-height:43px!important;border-radius:10px!important}
+#invoicesView #savedInvoicesList{
+  overflow-x:auto;margin-top:13px;padding:8px;border-radius:17px;
+  border:1px solid rgba(86,146,197,.27);background:rgba(6,17,34,.43);
+}
+#invoicesView #savedInvoicesList table{
+  width:100%;min-width:920px;border-collapse:separate!important;border-spacing:0 8px!important;
+}
+#invoicesView #savedInvoicesList thead th{
+  padding:13px 12px!important;border:0!important;background:linear-gradient(100deg,#1b3556,#172b49)!important;
+  color:#9fc9f6!important;font-size:10px!important;font-weight:900!important;
+  text-transform:uppercase;letter-spacing:.075em;white-space:nowrap;
+}
+#invoicesView #savedInvoicesList thead th:first-child{border-radius:10px 0 0 10px}
+#invoicesView #savedInvoicesList thead th:last-child{border-radius:0 10px 10px 0}
+#invoicesView #savedInvoicesList tbody tr{background:linear-gradient(100deg,rgba(25,43,69,.96),rgba(15,30,52,.98))}
+#invoicesView #savedInvoicesList tbody td{
+  padding:12px 11px!important;border-top:1px solid rgba(105,151,201,.19)!important;
+  border-bottom:1px solid rgba(105,151,201,.19)!important;color:#dce9fa!important;
+  font-size:11px!important;vertical-align:middle;
+}
+#invoicesView #savedInvoicesList tbody td:first-child{
+  border-left:2px solid #43d6cb!important;border-radius:11px 0 0 11px;
+}
+#invoicesView #savedInvoicesList tbody td:last-child{
+  border-right:1px solid rgba(105,151,201,.19)!important;border-radius:0 11px 11px 0;
+}
+#invoicesView #savedInvoicesList tbody tr:hover td{
+  border-color:rgba(65,194,219,.45)!important;background:rgba(30,74,103,.18);
+}
+#invoicesView #savedInvoicesList input[data-inv-number]{
+  min-height:39px!important;min-width:155px;max-width:190px;padding:8px 11px!important;
+  border-radius:9px!important;background:#0a192f!important;font-weight:800;color:#eff7ff!important;
+}
+#invoicesView .invoice-date-chip{
+  display:inline-flex;align-items:center;padding:7px 9px;border-radius:8px;
+  background:rgba(74,112,157,.2);border:1px solid rgba(119,160,205,.18);
+  color:#b9d9fa;font-size:10px;white-space:nowrap;
+}
+#invoicesView .invoice-client-sub{
+  display:block;margin-top:5px;color:#91aaca!important;font-size:10px;line-height:1.5;
+}
+#invoicesView .invoice-total{color:#6be4d2!important;font-size:14px;font-weight:900}
+#invoicesView #savedInvoicesList .quote-actions{display:flex;gap:6px;flex-wrap:wrap}
+#invoicesView #savedInvoicesList .btn{
+  min-height:34px!important;padding:7px 10px!important;border-radius:9px!important;
+  font-size:10px!important;white-space:nowrap;
+}
+#invoicesView #savedInvoicesList [data-inv-print]{
+  color:#8cebd5!important;border:1px solid rgba(71,197,174,.35)!important;
+}
+#invoicesView #savedInvoicesList [data-inv-delete]{
+  color:#ffc1cb!important;background:rgba(126,38,62,.2)!important;
+  border:1px solid rgba(226,91,119,.35)!important;
+}
+#invoicesView .invoice-empty{
+  padding:30px!important;text-align:center;border:1px dashed rgba(100,165,210,.35);
+  border-radius:15px;background:rgba(10,27,49,.55);color:#dceaff;
+}
+#invoicesView .invoice-empty p{color:#9fb8d8}
+@media(max-width:760px){
+  #invoicesView>section.panel{padding:14px!important}
+  #invoicesView>section.panel>.fields{grid-template-columns:minmax(0,1fr)!important;padding:14px!important}
+  #invoicesView .field{grid-column:1/-1}
+  #invoicesView #savedInvoicesList{padding:5px}
+}

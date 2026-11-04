@@ -1,0 +1,47 @@
+/* v4.8 · Compactación de los datos G-code e iconografía neón de la calculadora */
+/* El informe de materiales/inventario queda dentro de una zona desplazable:
+   la tarjeta conserva su altura aunque el G-code incluya muchos colores. */
+.pcp-calculator-page #fileMeta{
+  max-height:clamp(230px,34vh,360px)!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(72,213,255,.72) rgba(7,17,37,.55);
+  padding-right:12px!important;
+  border-color:rgba(53,190,255,.38)!important;
+  background:linear-gradient(145deg,rgba(8,24,48,.94),rgba(10,19,39,.94))!important;
+  box-shadow:inset 0 0 18px rgba(20,125,255,.07);
+}
+.pcp-calculator-page #fileMeta::-webkit-scrollbar{width:8px}
+.pcp-calculator-page #fileMeta::-webkit-scrollbar-track{background:rgba(7,17,37,.55);border-radius:10px}
+.pcp-calculator-page #fileMeta::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#39eaff,#7d5cff);border:2px solid #101b34;border-radius:10px;box-shadow:0 0 10px rgba(42,211,255,.55)}
+.pcp-calculator-page>.grid>main>section:nth-of-type(1){min-height:0!important;align-self:start!important}
+/* Iconos grandes con halo luminoso, coordinados con el panel de Inicio. */
+.pcp-calculator-page>.grid>main>section>h2,
+.pcp-calculator-page>.grid>aside>section>h2{
+  display:flex!important;align-items:center!important;gap:11px!important;
+  min-height:40px;padding-bottom:10px!important;
+  border-bottom:1px solid rgba(99,145,255,.22);
+}
+.pcp-calculator-page>.grid>main>section>h2:before,
+.pcp-calculator-page>.grid>aside>section>h2:before{
+  content:"";display:inline-grid;place-items:center;flex:0 0 36px;width:36px;height:36px;
+  border:1px solid rgba(117,111,255,.82);border-radius:11px;
+  background:linear-gradient(145deg,rgba(91,80,255,.28),rgba(25,205,255,.12));
+  color:#c9a7ff;background-color:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M12 2 21 7v10l-9 5-9-5V7z%27/%3E%3Cpath d=%27m12 6 5 3v6l-5 3-5-3V9z%27/%3E%3C/svg%3E") center/23px 23px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M12 2 21 7v10l-9 5-9-5V7z%27/%3E%3Cpath d=%27m12 6 5 3v6l-5 3-5-3V9z%27/%3E%3C/svg%3E") center/23px 23px no-repeat;filter:drop-shadow(0 0 5px currentColor) drop-shadow(0 0 10px currentColor);
+  box-shadow:0 0 9px rgba(122,91,255,.38),0 0 20px rgba(47,176,255,.16),inset 0 0 12px rgba(111,87,255,.16);
+}
+/* Máscaras SVG lineales: iconografía nítida, sin depender de fuentes de símbolos. */
+.pcp-calculator-page>.grid>main>section:nth-of-type(1)>h2:before{color:#6cecff;border-color:rgba(54,224,255,.8);-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27%3E%3Cpath d=%27M12 2 21 7v10l-9 5-9-5V7z%27/%3E%3Cpath d=%27m12 6 5 3v6l-5 3-5-3V9z%27/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27%3E%3Cpath d=%27M12 2 21 7v10l-9 5-9-5V7z%27/%3E%3Cpath d=%27m12 6 5 3v6l-5 3-5-3V9z%27/%3E%3C/svg%3E");}
+.pcp-calculator-page>.grid>main>section:nth-of-type(2)>h2:before{color:#c7a2ff;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M4 5h16M4 10h16M4 15h16M4 20h16M7 3v4m10-4v4M7 8v4m10-4v4M7 13v4m10-4v4M7 18v3m10-3v3%27/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M4 5h16M4 10h16M4 15h16M4 20h16M7 3v4m10-4v4M7 8v4m10-4v4M7 13v4m10-4v4M7 18v3m10-3v3%27/%3E%3C/svg%3E");}
+.pcp-calculator-page>.grid>main>section:nth-of-type(3)>h2:before{color:#d2a4ff;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m13 2-9 12h7l-1 8 10-13h-7z%27/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m13 2-9 12h7l-1 8 10-13h-7z%27/%3E%3C/svg%3E");}
+.pcp-calculator-page>.grid>main>section.pcp-extra-costs>h2:before{color:#8cecff;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M12 2v20M2 12h20M4.9 4.9l14.2 14.2m0-14.2L4.9 19.1%27/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M12 2v20M2 12h20M4.9 4.9l14.2 14.2m0-14.2L4.9 19.1%27/%3E%3C/svg%3E");}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(1)>h2:before{color:#67edff;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M12 3v18M5 7h14M7 7l-4 8h8L7 7zm10 0-4 8h8l-4-8zM8 21h8%27/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M12 3v18M5 7h14M7 7l-4 8h8L7 7zm10 0-4 8h8l-4-8zM8 21h8%27/%3E%3C/svg%3E");}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(2)>h2:before{color:#c7a2ff;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M4 19V5m0 14h17M8 16v-5m4 5V7m4 9V3m4 13v-8%27/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27M4 19V5m0 14h17M8 16v-5m4 5V7m4 9V3m4 13v-8%27/%3E%3C/svg%3E");}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3)>h2:before{color:#72ffe0;border-color:rgba(59,255,207,.8);-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z%27/%3E%3Cpath d=%27M19 2v4m-2-2h4M4 17v5m-2.5-2.5h5%27/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2z%27/%3E%3Cpath d=%27M19 2v4m-2-2h4M4 17v5m-2.5-2.5h5%27/%3E%3C/svg%3E");}
+.pcp-calculator-page #comparePanel>h2:before{color:#d4a4ff;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M12 3v18M5 6h14M7 6l-4 8h8L7 6zm10 0-4 8h8l-4-8zM8 21h8%27/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27black%27 stroke-width=%271.8%27 stroke-linecap=%27round%27%3E%3Cpath d=%27M12 3v18M5 6h14M7 6l-4 8h8L7 6zm10 0-4 8h8l-4-8zM8 21h8%27/%3E%3C/svg%3E");}
+.pcp-calculator-page .calculate-dock:before{content:"✦";display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:12px;color:#6fffe0;font-size:25px;text-shadow:0 0 7px #22eacb,0 0 18px #22eacb;background:rgba(22,220,192,.12);border:1px solid rgba(44,232,213,.55);box-shadow:0 0 15px rgba(27,224,208,.2)}
+@media(max-width:1450px){.pcp-calculator-page #fileMeta{max-height:320px!important}}
+@media(max-width:850px){.pcp-calculator-page #fileMeta{max-height:300px!important}.pcp-calculator-page>.grid>main>section>h2:before,.pcp-calculator-page>.grid>aside>section>h2:before{width:33px;height:33px;flex-basis:33px;font-size:21px}}

@@ -1,0 +1,79 @@
+/* v5.11 · Rediseño visual de Tasaciones alineado con el dashboard */
+.pcp-estimates-page{--est-line:rgba(91,167,255,.24);--est-cyan:#36d9ef;--est-violet:#9a7cff;min-width:0}
+.pcp-estimates-page>.pcp-calculator-heading{
+ position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px;
+ margin:8px 0 16px!important;padding:18px 22px!important;min-height:78px;
+ border:1px solid rgba(65,190,255,.32)!important;border-radius:18px;
+ background:radial-gradient(ellipse at 18% 0%,rgba(40,191,235,.18),transparent 45%),linear-gradient(115deg,#142b4b 0%,#172449 58%,#211b4b 100%);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 8px 24px rgba(0,0,0,.18)
+}
+.pcp-estimates-page>.pcp-calculator-heading:before{
+ content:"▤";display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;
+ color:#72e9ff;font-size:25px;border:1px solid rgba(65,218,255,.55);
+ background:linear-gradient(145deg,rgba(24,206,230,.2),rgba(91,92,220,.18));
+ box-shadow:0 0 10px rgba(46,207,239,.18),inset 0 0 10px rgba(46,207,239,.08)
+}
+.pcp-estimates-page>.pcp-calculator-heading h2{flex:1;margin:0!important;font-size:clamp(23px,2vw,30px)!important;letter-spacing:-.4px}
+.pcp-estimates-page>.pcp-calculator-heading p{max-width:360px;text-align:right;line-height:1.5}
+.pcp-estimates-page #historyPanel{
+ margin:0!important;padding:22px!important;border:1px solid rgba(75,158,238,.32)!important;border-radius:18px!important;
+ background:linear-gradient(145deg,rgba(24,43,75,.98),rgba(13,26,49,.98))!important;
+ box-shadow:0 12px 30px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.045)!important
+}
+.pcp-estimates-page #historyPanel>h2{display:flex;align-items:center;gap:11px;margin:0 0 9px!important;padding:0 0 14px!important;
+ border-bottom:1px solid var(--est-line);font-size:19px!important}
+.pcp-estimates-page #historyPanel>h2:before{content:"";width:4px;height:23px;border-radius:8px;background:linear-gradient(#35dff0,#8c70ff);box-shadow:0 0 8px rgba(53,223,240,.28)}
+.pcp-estimates-page #historyPanel>.section-note{font-size:13px;line-height:1.6;margin:0 0 18px!important;color:#a9c4e7!important}
+.pcp-estimates-page #historyPanel>.fields{display:grid!important;grid-template-columns:minmax(240px,1.2fr) minmax(220px,1fr)!important;gap:14px!important;
+ padding:15px!important;margin:0 0 16px!important;border:1px solid rgba(81,154,230,.2);border-radius:14px;
+ background:rgba(7,18,37,.42)}
+.pcp-estimates-page #historyPanel .field label{display:block;margin:0 0 7px!important;color:#a9c9ef!important;font-size:12px!important;font-weight:700}
+.pcp-estimates-page #historyPanel input[type="search"],.pcp-estimates-page #historyPanel select{
+ width:100%;min-height:43px;padding:10px 13px!important;border-radius:10px!important;
+ border:1px solid #35557f!important;background:#0b1930!important;color:#eef6ff!important;
+ box-shadow:inset 0 1px 4px rgba(0,0,0,.22);outline:none
+}
+.pcp-estimates-page #historyPanel input[type="search"]:focus,.pcp-estimates-page #historyPanel select:focus{
+ border-color:#42d7ec!important;box-shadow:0 0 0 3px rgba(48,208,232,.12),0 0 12px rgba(48,208,232,.1)
+}
+.pcp-estimates-page #historyContent{min-width:0}
+.pcp-estimates-page #historyContent table.history{
+ width:100%;min-width:1050px;border-collapse:separate!important;border-spacing:0 8px!important;
+ table-layout:auto;font-size:12px
+}
+.pcp-estimates-page #historyContent table.history thead th{
+ padding:12px 10px!important;text-align:left;white-space:nowrap;color:#a9c9ef!important;
+ background:#101f3a!important;border-top:1px solid rgba(76,154,226,.22);border-bottom:1px solid rgba(76,154,226,.22);
+ font-size:11px!important;font-weight:800;letter-spacing:.25px
+}
+.pcp-estimates-page #historyContent table.history thead th:first-child{border-radius:10px 0 0 10px}
+.pcp-estimates-page #historyContent table.history thead th:last-child{border-radius:0 10px 10px 0}
+.pcp-estimates-page #historyContent table.history tbody tr{background:linear-gradient(100deg,#172b4b,#13223d)!important;transition:transform .16s ease,box-shadow .16s ease}
+.pcp-estimates-page #historyContent table.history tbody tr:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.2),0 0 0 1px rgba(56,204,235,.18)}
+.pcp-estimates-page #historyContent table.history tbody td{
+ padding:13px 10px!important;border-top:1px solid rgba(88,151,217,.17)!important;border-bottom:1px solid rgba(88,151,217,.17)!important;
+ color:#e1edff!important;vertical-align:middle;white-space:nowrap
+}
+.pcp-estimates-page #historyContent table.history tbody td:first-child{border-left:1px solid rgba(88,151,217,.17)!important;border-radius:11px 0 0 11px}
+.pcp-estimates-page #historyContent table.history tbody td:last-child{border-right:1px solid rgba(88,151,217,.17)!important;border-radius:0 11px 11px 0}
+.pcp-estimates-page #historyContent table.history tbody td:nth-child(2){color:#a9c9ef!important}
+.pcp-estimates-page #historyContent table.history tbody td:nth-child(8),
+.pcp-estimates-page #historyContent table.history tbody td:nth-child(9){font-weight:700}
+.pcp-estimates-page #historyContent table.history tbody td:nth-child(10){color:#52e5c1!important;font-weight:800}
+.pcp-estimates-page #historyContent table.history img{width:46px!important;height:46px!important;padding:3px;background:#0a172b;border:1px solid rgba(94,170,231,.24);border-radius:10px!important}
+.pcp-estimates-page #historyContent input[type="checkbox"]{width:16px;height:16px;accent-color:#35d9e8;cursor:pointer}
+.pcp-estimates-page #historyContent .btn{min-height:32px;padding:6px 11px!important;border-radius:9px!important;font-size:11px!important;font-weight:750;
+ border:1px solid rgba(92,166,235,.36)!important;background:linear-gradient(135deg,#203c64,#182b4b)!important;color:#eaf5ff!important}
+.pcp-estimates-page #historyContent .btn:hover{border-color:#42d8ed!important;box-shadow:0 0 10px rgba(48,205,232,.16)}
+.pcp-estimates-page #historyContent .history-delete{color:#ffb6c0!important;border-color:rgba(255,119,143,.25)!important}
+.pcp-estimates-page #historyPanel>.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px!important;padding-top:15px;border-top:1px solid var(--est-line)}
+.pcp-estimates-page #historyPanel>.actions .btn{border-radius:10px!important}
+.pcp-estimates-page #historyCompare{border:1px solid rgba(60,211,230,.3);border-radius:12px;background:rgba(13,43,64,.55);padding:12px!important}
+@media(max-width:900px){
+ .pcp-estimates-page>.pcp-calculator-heading{flex-wrap:wrap;padding:15px!important}
+ .pcp-estimates-page>.pcp-calculator-heading p{max-width:none;text-align:left;width:100%;margin-left:59px}
+ .pcp-estimates-page #historyPanel{padding:14px!important}
+ .pcp-estimates-page #historyPanel>.fields{grid-template-columns:1fr!important}
+ .pcp-estimates-page #historyContent{overflow-x:auto;padding-bottom:6px}
+}
+@media(prefers-reduced-motion:reduce){.pcp-estimates-page #historyContent table.history tbody tr{transition:none}}

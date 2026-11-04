@@ -1,0 +1,124 @@
+/* v5.22 — Rediseño profesional de la agenda de clientes */
+#clientsView .clients-modern{
+  position:relative; overflow:hidden; padding:clamp(18px,2.2vw,30px);
+  border:1px solid rgba(69,190,226,.28); border-radius:20px;
+  background:linear-gradient(145deg,rgba(18,35,62,.98),rgba(10,20,39,.99) 72%);
+  box-shadow:0 18px 44px rgba(2,8,23,.22),inset 0 1px 0 rgba(255,255,255,.035);
+}
+#clientsView .clients-modern:before{
+  content:""; position:absolute; inset:0 0 auto; height:3px;
+  background:linear-gradient(90deg,#39d7e8 0%,#6478ff 48%,#a66cff 100%); opacity:.9;
+}
+#clientsView .clients-modern .seller-modal-head{
+  display:flex; align-items:center; min-height:68px; margin:0 0 10px; padding:4px 0 18px;
+  border-bottom:1px solid rgba(105,151,205,.22);
+}
+#clientsView .clients-modern .seller-modal-head h2{
+  display:flex; align-items:center; gap:13px; margin:0; color:#f4f8ff;
+  font-size:clamp(21px,2vw,27px); font-weight:800; letter-spacing:-.035em;
+}
+#clientsView .clients-modern .seller-modal-head h2:before{
+  content:"♙"; display:grid; place-items:center; width:42px; height:42px; flex:0 0 42px;
+  border:1px solid rgba(61,211,231,.42); border-radius:13px; color:#63e5f0;
+  background:linear-gradient(145deg,rgba(18,190,211,.2),rgba(91,94,219,.18));
+  box-shadow:0 0 22px rgba(38,196,221,.12); font-size:20px;
+}
+#clientsView .clients-modern > .section-note:first-of-type{
+  max-width:900px; margin:0 0 22px; color:#a9bfdc; font-size:13px; line-height:1.65;
+}
+#clientsView .clients-modern .fields{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px 18px;
+  align-items:start; margin:0;
+}
+#clientsView .clients-modern .field{min-width:0; gap:7px;}
+#clientsView .clients-modern .field.wide{grid-column:1/-1;}
+#clientsView .clients-modern .field label{
+  color:#b9d2f2; font-size:12px; font-weight:700; letter-spacing:.015em;
+}
+#clientsView .clients-modern input,
+#clientsView .clients-modern select,
+#clientsView .clients-modern textarea{
+  box-sizing:border-box; width:100%; min-width:0; min-height:43px; padding:11px 13px;
+  color:#edf5ff !important; background:#0a172b !important;
+  border:1px solid #2a4164 !important; border-radius:10px !important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.18),0 1px 0 rgba(255,255,255,.025);
+  font:inherit; font-size:13px; line-height:1.4; transition:border-color .18s,box-shadow .18s,background .18s;
+}
+#clientsView .clients-modern input::placeholder,
+#clientsView .clients-modern textarea::placeholder{color:#7188a8 !important; opacity:1;}
+#clientsView .clients-modern input:focus,
+#clientsView .clients-modern select:focus,
+#clientsView .clients-modern textarea:focus{
+  outline:none; border-color:#35c9df !important; background:#0c1c34 !important;
+  box-shadow:0 0 0 3px rgba(53,201,223,.13),0 0 20px rgba(53,201,223,.07);
+}
+#clientsView #clientManagerSearch{min-height:46px;}
+#clientsView #clientManagerSelect{min-height:46px;}
+#clientsView #clientManagerNotes{
+  min-height:112px !important; resize:vertical; padding:13px 14px;
+  color:#edf5ff !important; background:#0a172b !important;
+  font-family:inherit; white-space:pre-wrap;
+}
+#clientsView .clients-modern .field:has(#clientManagerSearch) > div{
+  display:grid !important; grid-template-columns:minmax(0,1fr) auto auto; gap:9px !important;
+}
+#clientsView .clients-modern .field:has(#clientManagerSearch) button{min-width:92px;}
+#clientsView .clients-modern .actions{
+  display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:19px 0 12px;
+  padding:14px 0 0; border-top:1px solid rgba(105,151,205,.16);
+}
+#clientsView .clients-modern .actions .btn{
+  min-height:42px; padding:10px 17px; border-radius:10px; font-size:12px; font-weight:750;
+  transition:transform .16s ease,filter .16s ease,box-shadow .16s ease;
+}
+#clientsView .clients-modern .actions .btn:hover{transform:translateY(-1px);filter:brightness(1.08);}
+#clientsView .clients-modern .actions .btn.primary{
+  color:#061b2b; background:linear-gradient(135deg,#65e2ca,#42c9df);
+  border:1px solid rgba(111,239,220,.7); box-shadow:0 7px 18px rgba(39,194,195,.14);
+}
+#clientsView .clients-modern #clientManagerDeleteBtn{
+  color:#ffc0ca; border-color:rgba(238,91,119,.42); background:rgba(133,35,58,.18);
+}
+#clientsView #clientManagerStatus{
+  display:block; margin:12px 0 25px; padding:11px 14px; border:1px solid rgba(76,128,181,.18);
+  border-radius:10px; color:#9fb8d8; background:rgba(7,18,35,.48); font-size:11px;
+}
+#clientsView .clients-modern > h3{
+  display:flex; align-items:center; gap:10px; margin:25px 0 13px; padding-top:20px;
+  border-top:1px solid rgba(105,151,205,.2); color:#eef5ff; font-size:17px; font-weight:800;
+}
+#clientsView .client-manager-list{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,255px),1fr));
+  align-items:start; gap:13px; margin-top:14px;
+}
+#clientsView .client-manager-card{
+  display:flex; flex-direction:column; align-items:stretch; gap:8px; min-width:0; min-height:0;
+  padding:17px; border:1px solid rgba(73,119,174,.3); border-radius:15px;
+  color:#c4d5eb; background:linear-gradient(150deg,rgba(20,37,64,.96),rgba(11,23,42,.98));
+  box-shadow:0 8px 22px rgba(2,8,23,.15); transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+#clientsView .client-manager-card:hover{
+  transform:translateY(-2px); border-color:rgba(55,207,225,.58);
+  box-shadow:0 12px 26px rgba(2,8,23,.24),0 0 18px rgba(47,190,219,.07);
+}
+#clientsView .client-manager-card strong{
+  display:block; margin:0 0 3px; color:#f1f6ff; font-size:15px; font-weight:800;
+  overflow-wrap:anywhere;
+}
+#clientsView .client-manager-card span{
+  display:block; color:#9fb5d2; font-size:11px; line-height:1.5; overflow-wrap:anywhere;
+}
+#clientsView .client-manager-card .actions{margin:7px 0 0; padding:10px 0 0; border-top:1px solid rgba(105,151,205,.15);}
+#clientsView .client-manager-card .actions .btn{align-self:flex-start; min-height:35px; padding:7px 14px;}
+#clientsView .client-manager-list .empty{
+  grid-column:1/-1; padding:24px; border:1px dashed rgba(100,151,205,.35); border-radius:13px;
+  color:#9fb5d2; background:rgba(7,18,35,.35); text-align:center;
+}
+@media(max-width:760px){
+  #clientsView .clients-modern{padding:17px;}
+  #clientsView .clients-modern .fields{grid-template-columns:minmax(0,1fr);}
+  #clientsView .clients-modern .field.wide{grid-column:auto;}
+  #clientsView .clients-modern .field:has(#clientManagerSearch) > div{grid-template-columns:minmax(0,1fr) auto;}
+  #clientsView .clients-modern .field:has(#clientManagerSearch) > div input{grid-column:1/-1;}
+  #clientsView .clients-modern .field:has(#clientManagerSearch) button{min-width:0;}
+}

@@ -1,414 +1,223 @@
-# Installation rapide
+# Print Cost & Profit
 
-Choisissez le paquet correspondant à votre système d’exploitation :
+**Une solution complète pour calculer les coûts, surveiller la production et gérer une activité d’impression 3D.**
 
-### Windows 10 / 11 — version stable v1.2
+Print Cost & Profit aide les créateurs et les petites entreprises à connaître le coût réel de chaque impression, définir des prix viables, surveiller les imprimantes compatibles, gérer le filament et organiser les opérations quotidiennes.
 
-- **[Télécharger l’installateur Windows v1.2](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip)**.
-- Extrayez le fichier ZIP et exécutez `PrintCostProfit-Setup-1.2.exe`.
-- Suivez les étapes de l’installation. Lancez ensuite Print Cost & Profit à l’aide du raccourci créé.
-- L’installateur comprend les composants nécessaires au stockage local SQLite ; vous n’avez pas besoin d’installer Python manuellement.
+> **Version stable Windows : v1.4**  
+> **Paquet Linux : v1.4**  
+> Consultez [GitHub Releases](https://github.com/nilose2014/PrintCostProfit/releases) pour les versions publiées et les téléchargements disponibles.
 
-**Dépôt Windows :** [PrintCostProfit — branche principale](https://github.com/nilose2014/PrintCostProfit). Si vous préférez installer le programme à partir du code source, ouvrez **Code → Download ZIP**, extrayez tous les fichiers dans un dossier permanent et exécutez `Integracion_Orca_Postprocesado.bat`.
+## Téléchargements, dépôts et installation
 
-### Linux / Ubuntu — version stable
+| Plateforme | Téléchargement | Installation |
+|---|---|---|
+| **Windows** | [Dernières versions](https://github.com/nilose2014/PrintCostProfit/releases/latest) : téléchargez l’installateur `.exe` ou le paquet Windows disponible. | Exécutez l’installateur et suivez l’assistant. |
+| **Linux** | [Branche Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux) ou [Releases](https://github.com/nilose2014/PrintCostProfit/releases/latest) : téléchargez le paquet Linux v1.4 lorsqu’il est publié. | Extrayez le paquet et exécutez le script de démarrage. |
 
-- **[Télécharger la version stable pour Linux](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1)**.
-- Extrayez le fichier ZIP téléchargé.
-- Suivez les instructions d’installation et de démarrage incluses dans le paquet.
+### Liens officiels
+- **Dépôt principal :** https://github.com/nilose2014/PrintCostProfit
+- **Code Linux :** https://github.com/nilose2014/PrintCostProfit/tree/linux
+- **Toutes les versions :** https://github.com/nilose2014/PrintCostProfit/releases
+- **Dernière version :** https://github.com/nilose2014/PrintCostProfit/releases/latest
+- **Problèmes :** https://github.com/nilose2014/PrintCostProfit/issues
 
-**Dépôt / version Linux :** [PrintCostPrint — Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux).
+La page Releases est la référence officielle pour les installateurs et paquets disponibles. Les fichiers peuvent changer ; n’utilisez pas d’anciens liens directs.
 
----
+### Installation Windows
+1. Ouvrez [Releases](https://github.com/nilose2014/PrintCostProfit/releases).
+2. Téléchargez l’installateur `.exe` le plus récent ou le ZIP disponible.
+3. Exécutez l’installateur ou extrayez le ZIP complet dans un dossier accessible en écriture.
+4. Lancez l’application depuis le raccourci ou le script fourni.
+5. Si le navigateur ne s’ouvre pas, visitez `http://127.0.0.1:8700/`.
+6. Conservez ensemble les fichiers HTML, JavaScript, CSS et serveur.
 
-# Print Cost & Profit v1.2
+**Notes :** le serveur local doit rester actif. Après une mise à jour, arrêtez l’ancien serveur, démarrez celui du dossier mis à jour et rechargez avec `Ctrl + F5`. Sauvegardez les données avant de remplacer les fichiers. Ne supprimez pas le dossier de données.
 
-## Calculateur de coûts, de production et de gestion pour l’impression 3D
+### Installation Linux (Ubuntu, Debian et dérivées)
+1. Téléchargez le paquet depuis la [branche Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux) ou [Releases](https://github.com/nilose2014/PrintCostProfit/releases).
+2. Extrayez le paquet complet et ouvrez un terminal à sa racine.
+3. Exécutez :
+   ```bash
+   chmod +x linux/iniciar_linux.sh
+   ./linux/iniciar_linux.sh
+   ```
+4. Ouvrez `http://127.0.0.1:8700/`.
 
-Print Cost & Profit est une application conçue pour aider les utilisateurs de l’impression 3D à calculer les coûts réels de fabrication, à suivre la consommation de filament, à gérer les matériaux et à organiser l’activité commerciale liée à leurs impressions.
+**Notes :** exécutez ces commandes dans Linux ou dans le terminal Ubuntu de WSL, jamais dans PowerShell. Python 3 et SQLite sont requis. Conservez la structure des dossiers. Les données sont stockées dans le répertoire utilisateur, séparément du programme. En cas d’échec d’un test de démarrage, conservez le résultat et ne l’ignorez pas.
 
-L’application associe un calculateur de coûts à des outils de gestion, à un stockage local et à une intégration avec les trancheurs basés sur OrcaSlicer, notamment Snapmaker Orca, OrcaSlicer et Creality Print. Elle comprend également un moniteur pour les imprimantes compatibles, avec différents niveaux de compatibilité selon le modèle et la connexion disponible.
-
-## Captures d’écran de l’application
-
-Les images suivantes présentent quelques écrans de Print Cost & Profit. Elles illustrent différentes parties de l’interface ; les fonctions disponibles dépendent de la version et de la configuration installées.
-
-![Calculateur de coûts](galeria/es/01-calculadora-de-costes.jpg)
-
-![Résultat et bénéfice](galeria/es/02-resultado-y-beneficio.jpg)
-
-![Panneau flottant d’impression](galeria/es/03-panel-flotante-de-impresion.jpg)
-
-**Auteur :** Beatriz Toro Martin
-
-**Version publiée :** v1.2
-
-**Système d’exploitation de référence :** Windows 10 et Windows 11
-
-**Dépôt officiel :** https://github.com/nilose2014/PrintCostProfit
-
----
-
-# 1. Fonctionnalités principales
-
-## 1.1. Calculateur des coûts d’impression 3D
-
-Le calculateur permet d’estimer le coût de fabrication d’une pièce à partir des paramètres d’impression et des coûts associés.
-
-Selon la configuration disponible, les postes de coût utilisables comprennent :
-
-- La consommation de filament.
-- Le prix du matériau utilisé.
-- Le temps d’impression.
-- Les coûts de fonctionnement et d’usure de l’imprimante.
-- L’amortissement de l’équipement.
-- Les autres dépenses liées à la fabrication.
-- La marge bénéficiaire souhaitée.
-- Les taxes et la devise sélectionnées.
-
-L’objectif est de connaître le coût de fabrication d’une pièce avant de décider de son prix de vente.
-
-## 1.2. Prix de vente, bénéfice et marge
-
-Le calculateur permet d’étudier le résultat économique estimé d’une impression.
-
-Les calculs aident à distinguer :
-
-- **Coût de fabrication :** montant estimé des ressources utilisées.
-- **Prix de vente :** montant que vous envisagez de facturer pour la pièce.
-- **Bénéfice estimé :** différence calculée entre les recettes et les coûts pris en compte.
-- **Marge :** rapport entre le bénéfice et le prix de vente, selon la définition utilisée par le calcul.
-- **Prix recommandé :** prix proposé à partir des paramètres configurés.
-
-Les résultats dépendent des prix, pourcentages, durées et autres valeurs saisies. Pour obtenir des estimations utiles, maintenez à jour les coûts du filament, de l’imprimante et les dépenses supplémentaires.
-
-![Inventaire des produits](galeria/es/04-inventario-de-productos.jpg)
-
-## 1.3. Profils d’imprimante
-
-Les profils permettent de configurer les paramètres économiques associés aux équipements utilisés.
-
-Ils peuvent prendre en compte des données telles que le coût d’achat, la durée de vie estimée et les coûts de fonctionnement, lorsque ces éléments sont prévus dans le profil.
-
-Si vous utilisez plusieurs imprimantes, sélectionnez le profil approprié afin que les estimations reflètent les différences entre les machines.
-
-![Profils et moniteur des imprimantes](galeria/es/06-perfiles-y-monitor-de-impresoras.jpg)
-
-## 1.4. Compatibilité avec les trancheurs
-
-L’intégration est conçue pour les trancheurs basés sur OrcaSlicer, notamment **Snapmaker Orca, OrcaSlicer et Creality Print**. La compatibilité avec ces trancheurs est d’environ **90 %** ; le comportement peut encore varier selon la version et la configuration. Il ne faut donc pas la présenter comme une compatibilité à 100 %.
-
-L’intégration au moyen de scripts de post-traitement permet de traiter les fichiers G-code générés par le trancheur et d’utiliser les données disponibles dans le flux de travail de Print Cost & Profit. Les informations récupérables dépendent du fichier, de la configuration et de la version du trancheur.
-
-![Devis](galeria/es/08-presupuestos.jpg)
-
-## 1.5. Moniteur et compatibilité des imprimantes
-
-L’imprimante dont la compatibilité est confirmée à **100 %** est la **Snapmaker U1**. Le moniteur fonctionne également avec d’autres imprimantes accessibles via **Fluidd** ou **Mainsail/Moonraker** (selon la configuration), mais la compatibilité de ces modèles est encore en cours d’ajustement. Certaines fonctions peuvent être indisponibles ou fonctionner différemment pendant la poursuite des tests.
-
-## 1.6. Stockage local SQLite
-
-L’application comprend des composants de stockage local basés sur SQLite.
-
-L’objectif est de conserver les données dans une base de données sur l’ordinateur plutôt que de les répartir entre le PC et le navigateur.
-
-Si le stockage local ne peut pas démarrer, l’application doit afficher l’erreur correspondante au lieu de basculer silencieusement vers un autre système de stockage.
-
-## 1.7. Outils de diagnostic
-
-Le projet comprend des scripts permettant de vérifier le démarrage de l’application, le fonctionnement du pont local et certains problèmes d’intégration.
-
-Ces outils fournissent des informations utiles lorsqu’un composant ne démarre pas ou qu’une opération ne se termine pas correctement.
+### Premier démarrage et connexion de l’imprimante
+Démarrez le serveur avant d’ouvrir le site. L’ordinateur et l’imprimante doivent être accessibles sur le réseau local. Configurez Moonraker avec l’adresse IP LAN et le port de l’imprimante. Les paramètres peuvent être enregistrés lorsque l’imprimante est éteinte, mais le suivi en direct nécessite une connexion. L’intégration Snapmaker Orca utilise le flux local et le script de post-traitement du paquet correspondant.
 
 ---
 
-# 2. Prérequis
+## Qu’est-ce que Print Cost & Profit ?
 
-Avant de lancer le programme, il est recommandé de disposer des éléments suivants :
+L’application réunit les aspects techniques et commerciaux de l’impression 3D. Un trancheur estime la matière et le temps, mais une activité doit aussi prendre en compte l’électricité, l’usure de la machine, la maintenance, la main-d’œuvre, les finitions, les échecs, le stock et le prix final.
 
-- Un ordinateur sous Windows 10, Windows 11 ou Linux.
-- Un dossier local permanent pour installer le projet.
-- Un trancheur basé sur OrcaSlicer — notamment Snapmaker Orca, OrcaSlicer ou Creality Print — si vous souhaitez utiliser l’intégration.
-- Tous les fichiers de la distribution téléchargée.
-- Les composants de stockage et de configuration inclus dans le paquet de distribution.
+Flux de travail :
+1. Importer les données depuis un G-code compatible ou les saisir manuellement.
+2. Calculer le coût réel de production.
+3. Définir un objectif de bénéfice et obtenir un prix recommandé.
+4. Vérifier les matériaux disponibles et les informations de l’imprimante.
+5. Enregistrer les estimations et les documents commerciaux.
+6. Suivre la production, le stock, la maintenance et les finances.
 
-La distribution doit inclure l’exécutable SQLite préparé pour Windows afin que l’utilisateur final n’ait pas à installer Python manuellement.
+## Fonctionnalités principales
 
-Ne lancez pas l’application directement depuis le fichier ZIP. Extrayez d’abord tous les fichiers.
+### 1. Calculatrice des coûts
+Calcule les coûts et les prix à partir de la consommation de filament en grammes, du prix au kilogramme, de la durée, de l’électricité, de l’amortissement, de la maintenance, de la main-d’œuvre, de la préparation, des frais supplémentaires, de la peinture et des finitions par unité, ainsi que d’une réserve pour les impressions ratées. Elle fournit le bénéfice cible, le prix recommandé, le coût et le bénéfice par unité et la marge.
 
----
+Elle distingue **coût de production**, **prix de vente**, **bénéfice** et **marge** : le filament n’est pas le seul coût.
 
-# 3. Télécharger et installer Print Cost & Profit
+#### G-code et trancheur
+L’intégration Orca compatible peut importer le nom du fichier, les matériaux, les couleurs et codes HEX, la consommation estimée, la durée et les miniatures disponibles. Vérifiez les données avant le calcul et confirmez les correspondances, notamment pour les travaux multicolores ou multimatériaux.
 
-## Étape 1. Télécharger le programme
+#### Comparaison et estimations enregistrées
+Comparez plusieurs scénarios de prix et l’effet d’un objectif de bénéfice différent ou d’un supplément. Les estimations peuvent être enregistrées.
 
-1. Ouvrez le dépôt officiel :
+### 2. Tableau de bord
+Vue d’ensemble des ventes, coûts, bénéfices, graphiques financiers, stock, état des imprimantes, production et activité récente. Les détails se trouvent dans les sections correspondantes.
 
-   https://github.com/nilose2014/PrintCostProfit pour Windows et https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1 pour Linux
+### 3. Moniteur d’imprimantes — Snapmaker U1 / Moonraker
+Connexion aux imprimantes compatibles sur le réseau local via Moonraker. Fonctions : découverte et IP manuelle, sauvegarde de la connexion, état en ligne/hors ligne, état et progression d’impression, informations sur le travail actif, nom de fichier et consommation disponibles, liste de fichiers, miniatures G-code, sélection entre plusieurs imprimantes et transfert du travail actif vers la calculatrice.
 
-2. Cliquez sur **Code**.
-3. Sélectionnez **Download ZIP**.
-4. Attendez la fin du téléchargement.
-5. Extrayez le contenu du ZIP.
+L’ordinateur doit accéder à l’imprimante sur le réseau local. Pare-feu, isolation réseau, IP incorrecte ou Moonraker indisponible peuvent empêcher la connexion. Vérifiez les données importées avant un devis.
 
-## Étape 2. Choisir le dossier
+### 4. Inventaire de filaments
+Enregistre marque, matériau (PLA, PETG et autres), nom et code HEX de couleur, poids initial et restant, prix au kilogramme et stock. Compare les matériaux/couleurs du G-code aux bobines enregistrées. Les correspondances incertaines doivent être vérifiées. Les alertes de stock dépendent de la mise à jour des poids.
 
-Vous pouvez utiliser un dossier tel que :
+### 5. Imprimantes et profils
+Configure les imprimantes et connexions, permet leur découverte réseau lorsqu’elle est disponible, conserve leurs données, affiche leur état et associe les informations de production et de comptabilité. Le flux est orienté Snapmaker U1 ; d’autres appareils et firmwares peuvent nécessiter des API Moonraker compatibles et ne sont pas nécessairement validés.
 
-`C:\PrintCostProfit`
+### 6. Centre de maintenance
+Organise les tâches préventives et correctives : nettoyage, lubrification des axes, contrôle des courroies et guides, hotend, buses, extrudeur, alimentation du filament, ventilateurs, refroidissement, plateau, câbles et connecteurs. Les actions et leur état peuvent être enregistrés. Suivez toujours le manuel et les consignes de sécurité du fabricant.
 
-Vous pouvez également choisir un autre emplacement permanent. Évitez les dossiers temporaires et ne déplacez pas le programme après avoir configuré les chemins dans OrcaSlicer, sauf si vous mettez également ces chemins à jour.
+### 7. Devis, commandes et factures
+Crée et enregistre des devis, gère les commandes et les factures, associe les clients, affiche les détails et totaux, génère des PDF et convertit un devis en facture lorsque le flux le permet. Vérifiez numérotation, taxes, devise, client et PDF avant l’envoi.
 
-## Étape 3. Démarrer le programme
+### 8. Clients
+Enregistre les clients et les associe aux documents commerciaux afin d’éviter les saisies répétées et d’organiser devis, commandes et factures.
 
-Ouvrez le dossier dans lequel vous avez extrait les fichiers et double-cliquez sur :
+### 9. Comptabilité
+Enregistre les mouvements et permet d’examiner revenus, coûts et bénéfices, avec une ventilation par imprimante si configurée. Vérifiez les données avec votre comptabilité officielle et vos obligations fiscales. L’application ne fournit pas de conseil comptable ou fiscal.
 
-**`Integracion_Orca_Postprocesado.bat`**
+### 10. Catalogue de produits
+Organise les produits fabriqués ou vendus. Lorsque disponibles, la présentation des produits et les fonctions QR relient le produit physique aux informations du catalogue.
 
-Ce fichier sert à la fois au démarrage manuel et à l’intégration avec OrcaSlicer.
+### 11. Journal et diagnostic
+Le journal local aide à diagnostiquer les problèmes du serveur, de connexion, d’API, d’importation, d’intégration, de sauvegarde et de stockage. Pour signaler un problème, indiquez la version, le système, les étapes et des journaux expurgés des données privées.
 
-Lorsqu’il est exécuté manuellement, il vérifie si le service local est disponible. S’il ne répond pas, il tente de le démarrer et attend qu’il soit prêt avant d’ouvrir l’interface dans le navigateur.
+### 12. Sauvegarde et restauration
+Stockage local avec sauvegarde et restauration dans les versions compatibles. Le serveur Linux propose via API les snapshots, le contrôle des révisions, les sauvegardes et les journaux. Windows dispose de son propre serveur et stockage. Sauvegardez avant une mise à jour, conservez les copies hors du dossier du programme et ne modifiez pas la base pendant l’exécution.
 
-Il n’est pas nécessaire d’ouvrir d’abord le fichier HTML ni de démarrer séparément le pont local lorsque le lanceur peut s’en charger.
+### 13. Options et interface
+Regroupe la configuration. Selon la version, permet d’organiser les sections, masquer des champs et modifier l’ordre des panneaux.
 
-**Important :** pour utiliser les fonctions qui nécessitent le stockage local, démarrez l’application à l’aide de ce fichier plutôt qu’en ouvrant directement `Print_Cost_Profit.html`.
-
----
-
-# 4. Configurer un trancheur basé sur OrcaSlicer
-
-L’intégration est destinée aux trancheurs basés sur OrcaSlicer, notamment Snapmaker Orca, OrcaSlicer et Creality Print. Les noms des menus et certains détails peuvent varier. La compatibilité globale est d’environ 90 % ; il est donc recommandé d’effectuer un essai avec la version installée.
-
-L’intégration utilise le script de post-traitement pour traiter le G-code lorsque le trancheur a terminé le tranchage.
-
-## Étape 1. Repérer le fichier d’intégration
-
-Dans le dossier du programme, repérez :
-
-`Integracion_Orca_Postprocesado.bat`
-
-Copiez son chemin complet. Si vous avez utilisé le dossier d’exemple, il sera :
-
-`C:\PrintCostProfit\Integracion_Orca_Postprocesado.bat`
-
-Si le programme est installé ailleurs, utilisez le chemin réel.
-
-## Étape 2. Ouvrir les paramètres d’impression
-
-1. Ouvrez OrcaSlicer.
-2. Sélectionnez le profil d’imprimante souhaité.
-3. Ouvrez les paramètres d’impression.
-4. Activez le mode avancé ou expert si nécessaire.
-5. Ouvrez la section **Autres**.
-6. Repérez **Scripts de post-traitement**.
-
-Les noms et la disposition des menus peuvent varier selon le trancheur, sa version et la langue sélectionnée.
-
-## Étape 3. Ajouter le script
-
-Saisissez le chemin complet de :
-
-`Integracion_Orca_Postprocesado.bat`
-
-Enregistrez les paramètres du profil.
-
-Si votre trancheur exige une syntaxe particulière pour les chemins ou les arguments, utilisez le format correspondant à cette version.
-
-## Étape 4. Effectuer un essai
-
-1. Chargez un modèle simple.
-2. Sélectionnez l’imprimante et le profil d’impression.
-3. Configurez le matériau.
-4. Tranchez le modèle.
-5. Exportez le G-code.
-6. Vérifiez que le post-traitement s’exécute sans erreur.
-
-Le script traite le fichier G-code lorsque OrcaSlicer l’appelle avec le chemin du fichier. Dans ce cas, son comportement diffère du démarrage manuel : il traite le fichier puis se termine sans ouvrir une deuxième fenêtre de l’application.
+### 14. Huit langues
+Les textes sont centralisés dans `js/traducciones.js` : espagnol, anglais, français, allemand, italien, polonais, arabe avec prise en charge RTL et chinois simplifié. Tout nouveau champ, dialogue, bouton, avertissement ou message d’erreur doit être centralisé et traduit.
 
 ---
 
-# 5. Traitement des fichiers G-code
+## Captures d’écran
 
-Le G-code contient les instructions générées par le trancheur pour l’imprimante 3D.
+Les images sont incluses dans `assets/screenshots/`.
 
-L’intégration de Print Cost & Profit peut traiter ces fichiers afin de récupérer les données disponibles utiles aux calculs et à l’enregistrement des travaux.
+### Tableau de bord
+![Tableau de bord](assets/screenshots/screenshot-02.jpg)
 
-Selon les informations présentes dans le fichier et les fonctions disponibles, les données pertinentes peuvent inclure :
+### Calculatrice et données d’impression
+![Calculatrice](assets/screenshots/screenshot-03.jpg)
+![Données d’impression](assets/screenshots/screenshot-01.jpg)
 
-- Le nom ou le chemin du fichier.
-- Les informations d’impression générées par le trancheur.
-- Le temps estimé et la consommation de matériau.
-- Les informations sur les filaments, lorsqu’elles sont disponibles.
+### Production et gestion commerciale
+![Gestion commerciale](assets/screenshots/screenshot-05.jpg)
+![Coûts et prix](assets/screenshots/screenshot-06.jpg)
+![Configuration et documents](assets/screenshots/screenshot-07.jpg)
 
-Les valeurs provenant du G-code sont des estimations issues du tranchage. Elles ne doivent pas être automatiquement considérées comme une consommation réelle confirmée par l’imprimante.
+### Paramètres et mises à jour
+![Configuration](assets/screenshots/screenshot-08.jpg)
+![Options](assets/screenshots/screenshot-09.jpg)
+![Version et mises à jour](assets/screenshots/screenshot-10.jpg)
 
-## Essai manuel avec un fichier G-code
+### Clients, commandes et factures
+![Clients](assets/screenshots/screenshot-12.jpg)
+![Clients et documents](assets/screenshots/screenshot-13.jpg)
+![Documents](assets/screenshots/screenshot-14.jpg)
+![Commandes et devis](assets/screenshots/screenshot-15.jpg)
+![Factures](assets/screenshots/screenshot-16.jpg)
+![Ventes](assets/screenshots/screenshot-17.jpg)
 
-Le projet comprend :
+### Filaments et imprimantes
+![Stock de filaments](assets/screenshots/screenshot-18.jpg)
+![Inventaire](assets/screenshots/screenshot-19.jpg)
+![Imprimante et matériaux](assets/screenshots/screenshot-20.jpg)
 
-`Probar_Integracion_con_Gcode.bat`
+### Rentabilité et rapports
+![Rentabilité](assets/screenshots/screenshot-21.jpg)
+![Synthèse financière](assets/screenshots/screenshot-22.jpg)
+![Facture PDF](assets/screenshots/screenshot-23.jpg)
 
-Pour effectuer un essai :
+### Maintenance
+![Centre de maintenance](assets/screenshots/screenshot-24.jpg)
+![Tâches de maintenance](assets/screenshots/screenshot-25.jpg)
 
-1. Repérez un fichier G-code généré par le trancheur compatible utilisé.
-2. Faites glisser le fichier sur `Probar_Integracion_con_Gcode.bat`.
-3. Attendez la fin du processus.
-4. Vérifiez le résultat et les éventuels messages d’erreur.
-
-Cet essai permet de distinguer un problème de traitement du fichier d’un problème du service local.
-
----
-
-# 6. Gestion des coûts et de la rentabilité ![Résumé des coûts](galeria/es/14-resumen-de-costes.jpg)
-
-Pour obtenir des résultats utiles, configurez les données financières avant de calculer le prix d’une pièce.
-
-## Filament
-
-Maintenez à jour le prix de chaque matériau utilisé. Une variation du prix au kilogramme peut modifier considérablement le coût des pièces fabriquées.
-
-## Imprimante
-
-Utilisez le profil de la machine qui fabriquera la pièce. Les paramètres d’amortissement et d’usure doivent reposer sur des estimations raisonnables du coût et de la durée de vie.
-
-## Temps de fabrication
-
-Le temps estimé par le trancheur permet d’évaluer le coût lié à l’utilisation de la machine. Le résultat réel peut varier en raison des pauses, des changements de matériau, des échecs ou des différences entre le temps estimé et le temps effectif.
-
-## Dépenses supplémentaires
-
-Incluez les dépenses applicables au travail et prévues dans la configuration du calculateur.
-
-## Prix de vente
-
-Examinez le prix recommandé avec le coût, le bénéfice et la marge. La fiabilité d’un prix calculé dépend de la qualité des données saisies.
+### Autres écrans
+![Écran supplémentaire](assets/screenshots/screenshot-04.jpg)
+![Écran supplémentaire](assets/screenshots/screenshot-11.jpg)
+![Écran supplémentaire](assets/screenshots/screenshot-26.jpg)
 
 ---
 
-# 7. Stockage et conservation des données
+## Flux de travail type
+1. Préparez le travail dans le trancheur et générez le G-code.
+2. Importez les données via Orca ou saisissez-les manuellement.
+3. Vérifiez les matériaux et couleurs et associez-les à l’inventaire.
+4. Vérifiez l’imprimante et le filament disponible.
+5. Calculez matière, temps, électricité, machine, main-d’œuvre et finitions.
+6. Définissez le prix et vérifiez la marge.
+7. Enregistrez le devis et associez le client.
+8. Surveillez l’impression.
+9. Enregistrez la vente ou la facture et vérifiez l’activité financière.
+10. Mettez à jour stock et maintenance.
 
-Print Cost & Profit utilise un service local et une base de données SQLite pour les fonctions qui dépendent de ce stockage.
+## Configuration requise
+**Windows :** Windows 64 bits compatible, droits d’exécution et d’écriture dans les données, accès réseau local à l’imprimante et Internet pour GitHub.
 
-L’emplacement utilisé par l’installation peut se trouver dans le profil utilisateur local de Windows.
+**Linux :** Ubuntu, Debian ou dérivées compatibles, Python 3, SQLite, droit d’exécution du script et accès réseau local.
 
-## Recommandations
+**Imprimante :** connexion compatible, API Moonraker locale accessible, IP correcte et intégration Orca configurée selon le paquet.
 
-- Ne supprimez pas la base de données lorsque le service fonctionne.
-- Ne déplacez pas manuellement le dossier de données.
-- Effectuez une sauvegarde de vos données avant de mettre le programme à jour.
-- Vérifiez que le service local démarre correctement après une mise à jour.
-- Vérifiez que les données sont conservées après la fermeture et la réouverture de l’application.
+## Versions et mises à jour
+La version stable Windows et le paquet Linux décrits sont **v1.4**. Avant toute mise à jour, sauvegardez les données, téléchargez le bon paquet, arrêtez le serveur, mettez à jour les fichiers, démarrez le serveur depuis le nouveau dossier et vérifiez la version. Ne lancez pas deux serveurs sur le même port. Adresse par défaut : `127.0.0.1:8700`.
 
-## En cas d’erreur de stockage
+## Dépannage
+- **L’application ne s’ouvre pas :** vérifiez le serveur, le terminal/PowerShell, ouvrez `http://127.0.0.1:8700/` et vérifiez le port 8700.
+- **Version incorrecte :** arrêtez l’ancien serveur, démarrez celui du bon dossier, consultez `http://127.0.0.1:8700/api/version`, vérifiez `VERSION` et rechargez avec `Ctrl + F5`.
+- **Imprimante hors ligne :** vérifiez alimentation, réseau, IP, Moonraker et pare-feu ; essayez l’IP manuelle.
+- **Métadonnées ou miniatures absentes :** vérifiez le G-code et les données exportées par le trancheur ; contrôlez matière, couleur, poids et durée.
+- **Tests Linux en échec :** lancez le script à la racine, vérifiez Python 3 et SQLite et conservez l’erreur complète.
 
-Si l’application indique qu’elle ne peut pas démarrer le stockage du PC, ne continuez pas à saisir des données comme si elles étaient correctement enregistrées.
+## Structure du projet
+- `Print_Cost_Profit.html` — interface.
+- `js/` — modules, intégrations et traductions.
+- `css/` — styles.
+- `VERSION` — version lue par le serveur.
+- `Servidor_Panel_U1.ps1` — serveur Windows.
+- `linux/` — serveur Linux, démarrage et tests.
+- Données locales — base, journaux et sauvegardes séparés des fichiers du programme selon la plateforme.
 
-Vérifiez le service local et utilisez les outils de diagnostic. Ne supprimez pas la base de données pour tenter de résoudre le problème.
+Le contenu peut varier entre les paquets Windows et Linux.
 
-La protection contre le basculement silencieux vers le stockage du navigateur vise à éviter que les données soient réparties entre deux emplacements différents.
+## Assistance et contributions
+- Bugs : https://github.com/nilose2014/PrintCostProfit/issues
+- Code source : https://github.com/nilose2014/PrintCostProfit
+- Code Linux : https://github.com/nilose2014/PrintCostProfit/tree/linux
+- Versions : https://github.com/nilose2014/PrintCostProfit/releases
 
----
+Incluez la version, le système, le paquet, l’imprimante et sa connexion, les étapes de reproduction, les erreurs/journaux expurgés et des captures. Ne publiez jamais de mots de passe, jetons, identifiants privés, données clients ou bases privées.
 
-# 8. Scripts et outils inclus ![Documentation et aide](galeria/es/19-documentacion-y-ayuda.jpg)
+## Informations importantes
+Print Cost & Profit aide à calculer les coûts de production et gérer une activité d’impression 3D. Les résultats dépendent des données, métadonnées du trancheur, configuration, tarifs électriques, prix des matériaux et paramètres. Vérifiez calculs, stock, devis et factures. Le suivi dépend de services réseau locaux compatibles et du firmware/API ; les fonctions peuvent varier selon la plateforme et la version.
 
-Le dépôt contient différents fichiers auxiliaires. Ils ne doivent pas tous être exécutés manuellement lors d’une utilisation normale.
-
-| Fichier | Fonction |
-|---|---|
-| `Integracion_Orca_Postprocesado.bat` | Démarrage manuel de l’application et point d’entrée du post-traitement pour les trancheurs compatibles basés sur OrcaSlicer. |
-| `Iniciar_Puente_Orca.ps1` | Démarrage ou vérification du pont d’intégration. |
-| `Iniciar_Puente_Orca_Independiente.cmd` | Lanceur autonome du pont local. |
-| `Integracion_Print_Cost_Profit.ps1` | Traitement de l’intégration avec le fichier G-code. |
-| `Probar_Integracion_con_Gcode.bat` | Essai manuel du traitement d’un G-code. |
-| `Comprobar_Puente_U1.bat` | Vérification du pont lié à la Snapmaker U1. |
-| `Diagnostico_Arranque.bat` | Aide à l’analyse des problèmes de démarrage. |
-| `Diagnostico_Print_Cost_Profit.bat` | Outil de diagnostic de l’application. |
-| `Diagnostico_Version.bat` | Vérification des informations de version. |
-| `pcp_sqlite_api.py` | Code du service de stockage SQLite. |
-| `pcp_sqlite_store.py` | Composant d’accès et de gestion du stockage SQLite. |
-| `storage-client.js` | Client utilisé par l’interface pour communiquer avec le stockage. |
-| `VERSION` | Informations sur la version du projet. |
-| `LICENSE.txt` | Conditions d’utilisation et avis de droits d’auteur. |
-
-La disponibilité et le comportement exact de chaque fonction dépendent des fichiers inclus dans la distribution et de leur configuration.
-
----
-
-# 9. Dépannage
-
-## L’application ne s’ouvre pas
-
-1. Vérifiez que tous les fichiers ont été extraits.
-2. Exécutez `Integracion_Orca_Postprocesado.bat`.
-3. Attendez que le service local réponde.
-4. S’il ne s’ouvre pas, exécutez `Diagnostico_Arranque.bat`.
-5. Conservez le message d’erreur complet.
-
-## Le stockage du PC ne démarre pas
-
-Vérifiez que le paquet comprend l’exécutable SQLite pour Windows et qu’il se trouve à l’emplacement attendu par le serveur.
-
-Si une erreur HTTP 500 apparaît, vérifiez l’état du service et les messages de diagnostic avant de tenter de modifier les données.
-
-Ne basculez pas vers le stockage du navigateur et ne supprimez pas la base de données comme solution improvisée.
-
-## Le trancheur n’exécute pas l’intégration
-
-1. Vérifiez le chemin du fichier `.bat`.
-2. Assurez-vous que le fichier existe.
-3. Vérifiez la configuration du profil d’impression.
-4. Faites un essai avec `Probar_Integracion_con_Gcode.bat`.
-5. Conservez l’erreur et le chemin du G-code utilisé.
-
-## Les données ne sont pas conservées
-
-Vérifiez que vous avez démarré l’application à l’aide du lanceur et que le service local fonctionne.
-
-Effectuez ensuite un essai avec une donnée non critique et vérifiez qu’elle est conservée après le redémarrage de l’application.
-
-Ne supprimez pas les données existantes pour tenter de réparer le stockage.
-
----
-
-# 10. Sécurité et bonnes pratiques
-
-- Téléchargez le programme depuis le dépôt officiel.
-- Ne partagez pas de mots de passe, de clés privées ou d’identifiants.
-- N’exécutez pas de scripts provenant de sources inconnues.
-- N’exposez pas le service local à Internet sans configuration de sécurité appropriée.
-- Conservez des sauvegardes des données importantes.
-- Vérifiez les dépendances et le fonctionnement du programme avant de remplacer des fichiers lors d’une mise à jour.
-
----
-
-# 11. Droits d’auteur et conditions d’utilisation
-
-Print Cost & Profit est soumis aux conditions indiquées dans `LICENSE.txt`.
-
-La publication du code sur GitHub n’accorde pas, à elle seule, l’autorisation de commercialiser, revendre, concéder en sous-licence, redistribuer ou exploiter commercialement le logiciel, ses versions modifiées ou ses produits dérivés lorsque ces activités sont interdites par la licence applicable.
-
-Toute demande d’autorisation doit être formulée par écrit et acceptée expressément par le titulaire des droits.
-
----
-
-# 12. Aide et signalement de problèmes
-
-Lorsque vous signalez un problème, indiquez :
-
-- La version de Print Cost & Profit.
-- La version de Windows.
-- Le nom et la version du trancheur (Snapmaker Orca, OrcaSlicer, Creality Print ou autre).
-- L’imprimante utilisée, le cas échéant.
-- L’opération effectuée.
-- Le message d’erreur complet.
-- Les étapes permettant de reproduire le problème.
-
-N’incluez pas de mots de passe, de clés privées ni de données personnelles inutiles.
-
----
-
-**Print Cost & Profit v1.2**
-
-Développé par Beatriz Toro Martin.
-
-Calculez vos coûts, suivez vos travaux et améliorez votre gestion financière.
+**Print Cost & Profit — maîtrisez vos coûts, fixez le prix de vos impressions et gérez votre flux 3D.**

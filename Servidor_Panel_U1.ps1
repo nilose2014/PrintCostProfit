@@ -54,8 +54,34 @@ function Get-StorageSnapshot($store) {
 
 $DatabasePath = Join-Path $StorageDir 'printcostprofit.db'
 $TimingLog = Join-Path $StorageDir 'diagnostico_tiempos_v1.254.log'
+$AppLogPath = Join-Path $StorageDir 'printcostprofit_app.log'
 $env:PCP_SQLITE_TIMING_LOG = $TimingLog
 function Write-TimingLog([string]$Message) { try { Add-Content -LiteralPath $TimingLog -Value ((Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff') + ' [Puente] ' + $Message) -Encoding UTF8 } catch {} }
+function Write-AppLog($Entry) {
+  try {
+    $moduleText = [string]$Entry.module
+    $messageText = [string]$Entry.message
+    $detailsText = if ($null -eq $Entry.details) { '' } elseif ($Entry.details -is [string]) { [string]$Entry.details } else { $Entry.details | ConvertTo-Json -Compress -Depth 4 }
+    $safe = @{
+      timestamp = if ($Entry.timestamp) { [string]$Entry.timestamp } else { (Get-Date).ToString('o') }
+      level = if (@('error','warn','info') -contains [string]$Entry.level) { [string]$Entry.level } else { 'info' }
+      module = $moduleText.Replace("`r",' ').Replace("`n",' ').Substring(0,[Math]::Min(80,$moduleText.Length))
+      message = $messageText.Replace("`r",' ').Replace("`n",' ').Substring(0,[Math]::Min(1200,$messageText.Length))
+      details = $detailsText.Substring(0,[Math]::Min(1800,$detailsText.Length))
+    }
+    if ((Test-Path -LiteralPath $AppLogPath) -and (Get-Item -LiteralPath $AppLogPath).Length -gt 4MB) {
+      $rotated = $AppLogPath + '.1'
+      if (Test-Path -LiteralPath $rotated) { Remove-Item -LiteralPath $rotated -Force -ErrorAction SilentlyContinue }
+      Move-Item -LiteralPath $AppLogPath -Destination $rotated -Force
+    }
+    $line = ($safe | ConvertTo-Json -Compress -Depth 4) + [Environment]::NewLine
+    [System.IO.File]::AppendAllText($AppLogPath, $line, (New-Object System.Text.UTF8Encoding($false)))
+  } catch {
+    $logError = 'No se pudo escribir el registro de actividad en ' + $AppLogPath + ': ' + $_.Exception.Message
+    Write-TimingLog $logError
+    Write-Host $logError -ForegroundColor Red
+  }
+}
 $SQLiteApi = Join-Path $Root 'pcp_sqlite_api.py'
 $SQLiteExe = Join-Path $Root 'pcp_sqlite_api.exe'
 function Invoke-SqliteCli([string[]]$Arguments) {
@@ -84,8 +110,14 @@ function Invoke-SqliteOperation([string]$Operation, $Body = $null) {
     $exitCode = $cli.exitCode
     $line = ($output | Out-String).Trim()
     try { $result = $line | ConvertFrom-Json } catch { throw ('El adaptador SQLite no devolvió JSON válido: ' + $line) }
-    if ($exitCode -eq 3 -or $result.conflict) { return @{ __status = 409; body = $result } }
-    if ($exitCode -ne 0 -or -not $result.ok) { return @{ __status = 500; body = $result } }
+    if ($exitCode -eq 3 -or $result.conflict) {
+      Write-AppLog @{level='warn';module='Almacenamiento';message='Conflicto de revisión SQLite';details=@{operation=$Operation}}
+      return @{ __status = 409; body = $result }
+    }
+    if ($exitCode -ne 0 -or -not $result.ok) {
+      Write-AppLog @{level='error';module='Almacenamiento';message=([string]$result.error);details=@{operation=$Operation;exitCode=$exitCode}}
+      return @{ __status = 500; body = $result }
+    }
     return @{ __status = 200; body = $result }
   } finally { $total.Stop(); Write-TimingLog ('request op=' + $Operation + ' total_ms=' + [math]::Round($total.Elapsed.TotalMilliseconds,1)); Remove-Item -LiteralPath $requestFile -Force -ErrorAction SilentlyContinue }
 }
@@ -129,7 +161,7 @@ Write-Host 'EN: Local server connecting Print Cost & Profit with Snapmaker Orca.
 Write-Host 'FR: Serveur local reliant Print Cost & Profit a Snapmaker Orca.' -ForegroundColor White
 Write-Host 'DE: Lokaler Server zur Verbindung von Print Cost & Profit mit Snapmaker Orca.' -ForegroundColor White
 Write-Host 'IT: Server locale che collega Print Cost & Profit a Snapmaker Orca.' -ForegroundColor White
-Write-Host 'PL: Serwer lokalny łączący Print Cost & Profit z programem Snapmaker Orca.' -ForegroundColor White
+Write-Host ('PL: Serwer lokalny łączący Print Cost ' + [char]38 + ' Profit z programem Snapmaker Orca.') -ForegroundColor White
 Write-Host ''
 Write-Host 'Estado / Status / État / Status / Stato / Stan: EN EJECUCIÓN / RUNNING / EN COURS / LÄUFT / IN ESECUZIONE / URUCHOMIONY' -ForegroundColor Green
 Write-Host "Direccion local: $Prefix"
@@ -137,6 +169,10 @@ Write-Host "Impresora configurada: $Printer"
 Write-Host 'Funciones: atender solicitudes locales, comunicar datos y registrar actividad/errores.'
 Write-Host 'Seguridad: escucha solo en 127.0.0.1; no envia comandos de impresion.' -ForegroundColor Gray
 Write-Host 'Cierra esta ventana solo cuando hayas terminado de usar la integracion.' -ForegroundColor Yellow
+try {
+  if (-not (Test-Path -LiteralPath $AppLogPath)) { [System.IO.File]::WriteAllText($AppLogPath, '', (New-Object System.Text.UTF8Encoding($false))) }
+} catch { Write-Host ('No se pudo crear el archivo de logs: ' + $_.Exception.Message) -ForegroundColor Red }
+Write-AppLog @{level='info';module='Servidor local';message='Servidor local iniciado';details=@{version=$AppVersion;address=$Prefix;logPath=$AppLogPath}}
 Write-Host ''
 Write-Host '--- REGISTRO DE ACTIVIDAD / ACTIVITY LOG / JOURNAL / AKTIVITÄT / ATTIVITÀ / DZIENNIK AKTYWNOŚCI ---' -ForegroundColor Cyan
 while ($Listener.IsListening) {
@@ -183,6 +219,44 @@ while ($Listener.IsListening) {
       $bytes = [Text.Encoding]::UTF8.GetBytes($json)
       $ctx.Response.ContentType = 'application/json; charset=utf-8'
       $ctx.Response.Headers.Add('Cache-Control','no-store')
+    } elseif ($reqPath -eq '/api/logs') {
+      try {
+        if ($ctx.Request.HttpMethod -eq 'POST') {
+          $bodyText = (New-Object IO.StreamReader($ctx.Request.InputStream, $ctx.Request.ContentEncoding)).ReadToEnd()
+          $entry = $bodyText | ConvertFrom-Json
+          if (-not $entry.message) { throw 'El mensaje del registro está vacío.' }
+          Write-AppLog $entry
+          $json = @{ ok = $true } | ConvertTo-Json -Compress
+          $ctx.Response.StatusCode = 200
+        } elseif ($ctx.Request.HttpMethod -eq 'GET') {
+          $entries = @()
+          if (Test-Path -LiteralPath $AppLogPath) {
+            $lines = @(Get-Content -LiteralPath $AppLogPath -Encoding UTF8 -ErrorAction Stop)
+            foreach ($line in ($lines | Select-Object -Last 500)) {
+              if (-not [string]::IsNullOrWhiteSpace($line)) {
+                try { $entries += ($line | ConvertFrom-Json) } catch {}
+              }
+            }
+          }
+          $json = @{ ok = $true; entries = @($entries); path = $AppLogPath; exists = (Test-Path -LiteralPath $AppLogPath) } | ConvertTo-Json -Depth 6 -Compress
+          $ctx.Response.StatusCode = 200
+        } elseif ($ctx.Request.HttpMethod -eq 'DELETE') {
+          if (Test-Path -LiteralPath $AppLogPath) { Set-Content -LiteralPath $AppLogPath -Value '' -Encoding UTF8 }
+          if (Test-Path -LiteralPath ($AppLogPath + '.1')) { Remove-Item -LiteralPath ($AppLogPath + '.1') -Force -ErrorAction SilentlyContinue }
+          $json = @{ ok = $true } | ConvertTo-Json -Compress
+          $ctx.Response.StatusCode = 200
+        } else {
+          $json = @{ ok = $false; error = 'Método no permitido.' } | ConvertTo-Json -Compress
+          $ctx.Response.StatusCode = 405
+        }
+      } catch {
+        $json = @{ ok = $false; error = $_.Exception.Message } | ConvertTo-Json -Compress
+        $ctx.Response.StatusCode = 500
+        Write-TimingLog ('Error endpoint logs: ' + $_.Exception.Message)
+      }
+      $bytes = [Text.Encoding]::UTF8.GetBytes($json)
+      $ctx.Response.ContentType = 'application/json; charset=utf-8'
+      $ctx.Response.Headers.Add('Cache-Control','no-store')
     } elseif ($reqPath -eq '/api/storage/import') {
       try {
         $bodyText = (New-Object IO.StreamReader($ctx.Request.InputStream, $ctx.Request.ContentEncoding)).ReadToEnd()
@@ -221,7 +295,7 @@ while ($Listener.IsListening) {
       } catch { $json = @{ok=$false;error=$_.Exception.Message}|ConvertTo-Json -Compress; $ctx.Response.StatusCode=500 }
       $bytes = [Text.Encoding]::UTF8.GetBytes($json); $ctx.Response.ContentType = 'application/json; charset=utf-8'; $ctx.Response.Headers.Add('Cache-Control','no-store')
     } elseif ($reqPath -eq '/api/version') {
-      $json = @{ ok = $true; version = $AppVersion; build = ('v' + $AppVersion) } | ConvertTo-Json -Compress
+      $json = @{ ok = $true; version = $AppVersion; build = ('v' + $AppVersion); logsApi = $true } | ConvertTo-Json -Compress
       $bytes = [Text.Encoding]::UTF8.GetBytes($json)
       $ctx.Response.StatusCode = 200
       $ctx.Response.ContentType = 'application/json; charset=utf-8'
@@ -320,7 +394,8 @@ while ($Listener.IsListening) {
       $ip = ($Printer -replace '^http://','' -replace ':7125/?$','')
       try {
         $info = Invoke-RestMethod -Uri "$Printer/printer/info" -Method Get -TimeoutSec 2
-        $state = Invoke-RestMethod -Uri "$Printer/printer/objects/query?print_stats&webhooks" -Method Get -TimeoutSec 2
+        $queryUri = $Printer + '/printer/objects/query?print_stats' + [char]38 + 'webhooks'
+        $state = Invoke-RestMethod -Uri $queryUri -Method Get -TimeoutSec 2
         $json = @{ ok = $true; online=$true; printerOffline=$false; ip = $ip; baseUrl = $Printer; name = $info.result.hostname; softwareVersion = $info.result.software_version; state = $state.result.status.print_stats.state; filename = $state.result.status.print_stats.filename; message = 'Impresora conectada y verificada.' } | ConvertTo-Json -Depth 8 -Compress
       } catch {
         $json = @{ ok = $true; online=$false; printerOffline=$true; ip = $ip; error = $_.Exception.Message; message = 'La impresora configurada está fuera de línea. La IP se conserva.' } | ConvertTo-Json -Compress
@@ -422,7 +497,8 @@ while ($Listener.IsListening) {
             $U1StatusJob = Start-Job -ArgumentList $statusPrinterTarget,$statusCacheTarget -ScriptBlock {
               param($baseUrl,$cachePath)
               try {
-                $data = Invoke-RestMethod -Uri "$baseUrl/printer/objects/query?print_stats&virtual_sdcard&webhooks" -Method Get -TimeoutSec 2
+                $queryUri = $baseUrl + '/printer/objects/query?print_stats' + [char]38 + 'virtual_sdcard' + [char]38 + 'webhooks'
+                $data = Invoke-RestMethod -Uri $queryUri -Method Get -TimeoutSec 8
                 $payload = @{ ok=$true; status=$data.result.status; updatedAt=(Get-Date).ToString('o') } | ConvertTo-Json -Depth 20 -Compress
               } catch {
                 $payload = @{ ok=$false; error=$_.Exception.Message; updatedAt=(Get-Date).ToString('o') } | ConvertTo-Json -Compress
@@ -482,6 +558,6 @@ while ($Listener.IsListening) {
     $ctx.Response.ContentLength64 = $bytes.Length
     $ctx.Response.OutputStream.Write($bytes,0,$bytes.Length)
     $ctx.Response.OutputStream.Close()
-  } catch { if ($ctx -and $ctx.Response) { try {$ctx.Response.StatusCode=500;$ctx.Response.Close()} catch {} } }
+  } catch { Write-AppLog @{level='error';module='Servidor local';message=$_.Exception.Message;details=@{endpoint=$reqPath}}; if ($ctx -and $ctx.Response) { try {$ctx.Response.StatusCode=500;$ctx.Response.Close()} catch {} } }
 }
 $Listener.Stop(); $Listener.Close()

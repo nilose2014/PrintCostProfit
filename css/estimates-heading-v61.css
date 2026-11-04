@@ -1,0 +1,2 @@
+/* v5.13 · Oculta el subtítulo duplicado en la cabecera de Tasaciones */
+.pcp-estimates-page .pcp-calculator-heading:after{content:none!important;display:none!important}

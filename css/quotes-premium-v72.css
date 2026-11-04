@@ -1,0 +1,296 @@
+/* Print Cost & Profit v5.25 — Presupuestos: experiencia premium alineada con Inicio */
+#quotesView #quotePanel{
+  position:relative; isolation:isolate; overflow:hidden;
+  padding:clamp(20px,2.1vw,34px);
+  border:1px solid rgba(76,166,218,.34); border-radius:22px;
+  background:
+    radial-gradient(ellipse at 86% 0%,rgba(104,76,194,.18),transparent 34%),
+    radial-gradient(ellipse at 0% 8%,rgba(23,185,203,.12),transparent 30%),
+    linear-gradient(145deg,#142746 0%,#101f3a 52%,#101a35 100%);
+  box-shadow:0 20px 48px rgba(2,8,23,.27),inset 0 1px 0 rgba(255,255,255,.055);
+}
+#quotesView #quotePanel:before{
+  content:"";position:absolute;z-index:-1;inset:0 0 auto;height:4px;
+  background:linear-gradient(90deg,#38d8e5 0%,#5b8dff 48%,#a66cff 100%);
+}
+#quotesView #quotePanel .seller-modal-head{
+  display:flex;align-items:center;justify-content:space-between;min-height:82px;
+  margin:0 0 24px;padding:8px 18px 18px;
+  border:1px solid rgba(69,190,220,.27);border-radius:17px;
+  background:linear-gradient(105deg,rgba(13,141,170,.22),rgba(83,71,168,.25));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+#quotesView #quotePanel .seller-modal-head h2{
+  display:flex;align-items:center;gap:14px;margin:0;color:#f4f8ff;
+  font-size:clamp(22px,2vw,29px);font-weight:900;letter-spacing:-.035em;
+}
+#quotesView #quotePanel .seller-modal-head h2:before{
+  content:"▤";display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;
+  border:1px solid rgba(65,211,230,.48);border-radius:15px;color:#6ce7ef;
+  background:linear-gradient(145deg,rgba(20,190,211,.24),rgba(91,94,219,.26));
+  box-shadow:0 0 25px rgba(38,196,221,.15);font-size:24px;
+}
+#quotesView #quotePanel>h3{
+  display:flex;align-items:center;gap:11px;margin:26px 0 13px;padding:0 0 12px;
+  border-bottom:1px solid rgba(111,161,213,.22);color:#f0f6ff;
+  font-size:18px;font-weight:850;letter-spacing:-.02em;
+}
+#quotesView #quotePanel>h3:before{
+  content:"";width:4px;height:20px;border-radius:9px;
+  background:linear-gradient(180deg,#43d8e2,#7b83ff);box-shadow:0 0 13px rgba(67,216,226,.3);
+}
+#quotesView #quotePanel>.section-note{
+  max-width:1100px;margin:0 0 20px;color:#b4c8e4;font-size:12px;line-height:1.75;
+}
+#quotesView #quotePanel>.fields{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 20px;
+  margin:0 0 18px;padding:20px;
+  border:1px solid rgba(91,151,205,.27);border-radius:17px;
+  background:linear-gradient(145deg,rgba(7,19,39,.48),rgba(11,24,47,.65));
+}
+#quotesView #quotePanel .fields .field{display:flex;flex-direction:column;gap:8px;min-width:0;}
+#quotesView #quotePanel .field label{color:#c6daf6;font-size:12px;font-weight:800;letter-spacing:.015em;}
+#quotesView #quotePanel input,
+#quotesView #quotePanel select,
+#quotesView #quotePanel textarea{
+  box-sizing:border-box;width:100%;min-width:0;min-height:44px;padding:11px 13px;
+  color:#f0f6ff!important;background:linear-gradient(180deg,#0b1930,#0a162b)!important;
+  border:1px solid rgba(105,151,201,.34)!important;border-radius:11px!important;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.15),0 1px 0 rgba(255,255,255,.025);
+  font:inherit;font-size:13px;transition:border-color .18s,box-shadow .18s,background .18s;
+}
+#quotesView #quotePanel input::placeholder{color:#7890b1!important;opacity:1;}
+#quotesView #quotePanel input:focus,
+#quotesView #quotePanel select:focus,
+#quotesView #quotePanel textarea:focus{
+  outline:none;border-color:#43d2e1!important;background:#0d203b!important;
+  box-shadow:0 0 0 3px rgba(53,201,223,.14),0 0 22px rgba(53,201,223,.08);
+}
+#quotesView #quoteClientSelect{flex:1;min-width:240px;min-height:47px;}
+#quotesView #quoteNewClientBtn{min-height:47px;white-space:nowrap;}
+#quotesView #quotePanel .multi-line-editor{
+  margin:18px 0!important;padding:20px!important;
+  border:1px solid rgba(63,190,218,.32)!important;border-radius:18px!important;
+  background:
+    radial-gradient(ellipse at 100% 0%,rgba(58,95,178,.13),transparent 45%),
+    linear-gradient(145deg,rgba(12,32,57,.92),rgba(10,23,43,.96))!important;
+  box-shadow:0 12px 28px rgba(2,8,23,.16),inset 0 1px 0 rgba(255,255,255,.035);
+}
+#quotesView #quotePanel .multi-line-editor h3{
+  margin:0;color:#f0f6ff;font-size:17px;font-weight:850;
+}
+#quotesView #quotePanel .multi-line-editor .section-note{color:#a9bfdc;font-size:11px;line-height:1.6;}
+#quotesView #quotePanel #quoteLinesEditor{
+  gap:10px!important;margin-top:18px!important;
+}
+#quotesView #quotePanel #quoteLinesTotal{
+  margin-top:16px!important;padding:13px 15px;border:1px solid rgba(54,203,205,.23);
+  border-radius:12px;color:#67e5d5!important;
+  background:linear-gradient(90deg,rgba(12,119,125,.17),rgba(15,39,62,.28));
+  font-size:15px!important;font-weight:850!important;
+}
+#quotesView #quotePanel>.fields:has(#quoteValidity){
+  margin-top:18px;padding:20px;
+}
+#quotesView #quotePanel .actions.no-print{
+  display:flex;flex-wrap:wrap;align-items:center;gap:11px;
+  margin:18px 0 26px;padding:17px 2px 0;border-top:1px solid rgba(111,161,213,.2);
+}
+#quotesView #quotePanel .btn{
+  min-height:38px;padding:9px 14px;border-radius:10px;font-size:12px;font-weight:800;
+  transition:transform .18s,filter .18s,box-shadow .18s;
+}
+#quotesView #quotePanel .btn:hover{transform:translateY(-2px);filter:brightness(1.08);}
+#quotesView #quotePanel .btn.primary{
+  color:#062331;background:linear-gradient(115deg,#52dfc5,#43c9e0);
+  border:1px solid rgba(117,245,225,.62);box-shadow:0 8px 20px rgba(39,194,195,.17);
+}
+#quotesView #quotePanel .list-search-bar{
+  max-width:100%;margin:16px 0 18px;padding:17px 18px;
+  border:1px solid rgba(91,151,205,.29);border-radius:16px;
+  background:linear-gradient(145deg,rgba(13,31,55,.92),rgba(10,23,43,.95));
+  box-shadow:0 10px 24px rgba(2,8,23,.14);
+}
+#quotesView #quotePanel .list-search-bar>label{
+  display:block;margin:0 0 10px;color:#d5e5fa;font-size:13px;font-weight:850;
+}
+#quotesView #quotePanel .list-search-controls{
+  display:flex;flex-wrap:wrap;align-items:center;gap:9px;
+}
+#quotesView #quotePanel .list-search-controls input{flex:1 1 280px;}
+#quotesView #quotePanel .list-search-controls select{flex:0 1 190px;}
+#quotesView #quotePanel .search-sort-label{margin-left:8px;color:#a9bfdc;font-size:11px;font-weight:750;}
+#quotesView #quotePanel #savedQuotesList{
+  overflow-x:auto;margin-top:18px;padding:14px;
+  border:1px solid rgba(91,151,205,.27);border-radius:17px;
+  background:linear-gradient(145deg,rgba(10,24,45,.8),rgba(8,19,37,.92));
+}
+#quotesView #quotePanel #savedQuotesList table{
+  width:100%;min-width:920px;border-collapse:separate;border-spacing:0 7px;
+}
+#quotesView #quotePanel #savedQuotesList thead th{
+  padding:12px 11px;color:#9fc9f7;background:rgba(24,47,78,.9);
+  border:0;font-size:10px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;
+  white-space:nowrap;
+}
+#quotesView #quotePanel #savedQuotesList tbody tr{
+  background:rgba(25,41,66,.88);box-shadow:inset 0 0 0 1px rgba(102,146,194,.2);
+}
+#quotesView #quotePanel #savedQuotesList tbody td{
+  padding:11px 10px;color:#d7e5f8;border-top:1px solid rgba(104,149,198,.18);
+  border-bottom:1px solid rgba(104,149,198,.18);font-size:11px;vertical-align:middle;
+}
+#quotesView #quotePanel #savedQuotesList tbody td:first-child{
+  border-left:1px solid rgba(104,149,198,.2);border-radius:10px 0 0 10px;
+}
+#quotesView #quotePanel #savedQuotesList tbody td:last-child{
+  border-right:1px solid rgba(104,149,198,.2);border-radius:0 10px 10px 0;
+}
+#quotesView #quotePanel #savedQuotesList tbody tr:hover{background:rgba(35,60,94,.94);}
+#quotesView #quotePanel #savedQuotesList button{
+  min-height:30px;margin:2px 2px;padding:6px 9px;border-radius:8px;
+  color:#e5f1ff;background:linear-gradient(145deg,rgba(54,83,124,.62),rgba(27,46,76,.88));
+  border:1px solid rgba(119,162,207,.3);font-size:10px;font-weight:800;white-space:nowrap;
+}
+#quotesView #quotePanel #savedQuotesList button:hover{border-color:rgba(66,207,225,.6);filter:brightness(1.1);}
+#quotesView #quotePanel #savedQuotesList button[onclick*="delete"],
+#quotesView #quotePanel #savedQuotesList button.danger{color:#ffc2ca;border-color:rgba(238,91,119,.38);}
+#quotesView #quotePanel #quotePreview{
+  margin-top:16px;padding:15px;border:1px solid rgba(91,151,205,.22);
+  border-radius:14px;background:rgba(7,18,35,.42);
+}
+@media(max-width:850px){
+  #quotesView #quotePanel>.fields{grid-template-columns:minmax(0,1fr);}
+  #quotesView #quotePanel .fields .field.wide{grid-column:auto;}
+}
+@media(max-width:620px){
+  #quotesView #quotePanel{padding:15px;border-radius:16px;}
+  #quotesView #quotePanel .seller-modal-head{padding:12px;min-height:68px;}
+  #quotesView #quotePanel .seller-modal-head h2{font-size:20px;}
+  #quotesView #quotePanel .seller-modal-head h2:before{width:40px;height:40px;flex-basis:40px;}
+  #quotesView #quotePanel .fields{padding:14px;}
+  #quotesView #quoteClientSelect{min-width:100%;}
+  #quotesView #quoteNewClientBtn{width:100%;}
+  #quotesView #quotePanel .actions.no-print .btn{flex:1 1 100%;}
+  #quotesView #quotePanel .list-search-controls>*{flex:1 1 100%!important;}
+}
+
+/* v5.26 — tabla de presupuestos: filas premium y acciones ordenadas */
+#quotesView #quotePanel #savedQuotesList{
+  padding:18px!important;border-radius:20px!important;
+  background:
+    radial-gradient(ellipse at 0% 0%,rgba(38,116,174,.12),transparent 38%),
+    linear-gradient(145deg,#0d1d35,#0a172c)!important;
+  border:1px solid rgba(78,151,207,.34)!important;
+  box-shadow:0 18px 38px rgba(1,8,22,.22),inset 0 1px 0 rgba(255,255,255,.035);
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table{
+  width:100%;min-width:1120px;table-layout:fixed;
+  border-collapse:separate!important;border-spacing:0 9px!important;
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table th{
+  height:40px;padding:0 13px!important;
+  color:#9ec9f5!important;background:linear-gradient(90deg,rgba(28,57,91,.96),rgba(26,47,79,.96))!important;
+  border:0!important;font-size:10px!important;letter-spacing:.09em!important;
+  text-align:left;white-space:nowrap;
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table th:first-child{border-radius:10px 0 0 10px;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table th:last-child{border-radius:0 10px 10px 0;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table th:nth-child(1){width:8%;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table th:nth-child(2){width:9%;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table th:nth-child(3){width:12%;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table th:nth-child(4){width:14%;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table th:nth-child(5){width:8%;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table th:nth-child(6){width:49%;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody tr{
+  background:linear-gradient(105deg,rgba(26,43,68,.98),rgba(22,38,62,.98))!important;
+  box-shadow:0 5px 13px rgba(0,0,0,.12),inset 0 0 0 1px rgba(107,153,198,.2)!important;
+  transition:transform .16s,box-shadow .16s,background .16s;
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody tr:hover{
+  transform:translateY(-1px);
+  background:linear-gradient(105deg,rgba(32,57,87,.99),rgba(25,48,78,.99))!important;
+  box-shadow:0 9px 20px rgba(0,0,0,.19),inset 0 0 0 1px rgba(68,206,224,.42)!important;
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody td{
+  padding:12px 13px!important;min-height:62px;
+  color:#dce9fa!important;border-top:1px solid rgba(116,158,199,.16)!important;
+  border-bottom:1px solid rgba(116,158,199,.16)!important;
+  font-size:11px!important;line-height:1.55;vertical-align:middle;
+  overflow-wrap:anywhere;
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody td:first-child{
+  border-left:1px solid rgba(116,158,199,.2)!important;border-radius:11px 0 0 11px;
+  color:#a9c9ed!important;font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody td:nth-child(2){white-space:nowrap;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table .quote-number{
+  display:inline-flex;align-items:center;justify-content:center;min-height:27px;
+  padding:3px 9px;border:1px solid rgba(92,166,226,.38);border-radius:8px;
+  color:#d6eaff;background:rgba(12,35,62,.78);
+  font-size:11px;font-weight:850;font-variant-numeric:tabular-nums;
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody td:nth-child(3) strong{
+  color:#f1f6ff;font-size:12px;font-weight:850;
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody td:nth-child(4){color:#b8cce5!important;}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody td:nth-child(5){
+  color:#61e2d1!important;font-size:13px!important;font-weight:900;white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody td:last-child{
+  border-right:1px solid rgba(116,158,199,.2)!important;border-radius:0 11px 11px 0;
+  padding:9px 10px!important;
+}
+#quotesView #quotePanel #savedQuotesList .quote-actions{
+  display:flex!important;flex-wrap:wrap;align-items:center;gap:6px;
+  max-width:100%;min-width:0;
+}
+#quotesView #quotePanel #savedQuotesList .quote-actions .btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:31px;margin:0!important;padding:6px 10px!important;
+  border:1px solid rgba(112,158,205,.3)!important;border-radius:8px!important;
+  color:#e5f0ff!important;
+  background:linear-gradient(145deg,rgba(52,81,119,.82),rgba(31,52,83,.95))!important;
+  box-shadow:0 2px 5px rgba(0,0,0,.12);
+  font-size:10px!important;font-weight:800!important;line-height:1.15;
+  white-space:normal;max-width:180px;
+}
+#quotesView #quotePanel #savedQuotesList .quote-actions .btn:hover{
+  transform:translateY(-1px);border-color:rgba(77,213,226,.65)!important;
+  box-shadow:0 4px 12px rgba(28,174,198,.13);
+}
+#quotesView #quotePanel #savedQuotesList .quote-actions [data-q-load],
+#quotesView #quotePanel #savedQuotesList .quote-actions [data-q-view]{
+  background:linear-gradient(145deg,rgba(45,100,144,.9),rgba(30,66,105,.98))!important;
+}
+#quotesView #quotePanel #savedQuotesList .quote-actions [data-q-invoice]{
+  color:#8cf0dc!important;border-color:rgba(54,204,174,.4)!important;
+  background:linear-gradient(145deg,rgba(13,105,100,.48),rgba(15,66,75,.78))!important;
+}
+#quotesView #quotePanel #savedQuotesList .quote-actions [data-q-delete]{
+  color:#ffc1ca!important;border-color:rgba(239,103,128,.38)!important;
+  background:linear-gradient(145deg,rgba(112,43,66,.5),rgba(67,31,52,.78))!important;
+}
+#quotesView #quotePanel #savedQuotesList .quote-actions [data-q-print],
+#quotesView #quotePanel #savedQuotesList .quote-actions [data-q-whatsapp],
+#quotesView #quotePanel #savedQuotesList .quote-actions [data-q-email]{
+  background:linear-gradient(145deg,rgba(44,68,103,.8),rgba(26,45,74,.95))!important;
+}
+#quotesView #quotePanel #savedQuotesList .pagination,
+#quotesView #quotePanel #savedQuotesList .pagination-controls{
+  display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:12px;
+}
+#quotesView #quotePanel #savedQuotesList .btn,
+#quotesView #quotePanel #savedQuotesList button{
+  cursor:pointer;
+}
+@media(max-width:1100px){
+  #quotesView #quotePanel #savedQuotesList .saved-quotes-table{min-width:1050px;}
+  #quotesView #quotePanel #savedQuotesList .quote-actions{gap:5px;}
+}
+@media(max-width:640px){
+  #quotesView #quotePanel #savedQuotesList{padding:10px!important;}
+  #quotesView #quotePanel #savedQuotesList .saved-quotes-table{min-width:1040px;}
+  #quotesView #quotePanel #savedQuotesList .saved-quotes-table tbody td{padding:9px!important;}
+}

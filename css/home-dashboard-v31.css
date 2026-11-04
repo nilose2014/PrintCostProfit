@@ -1,0 +1,14 @@
+/* v3.1 · Fotografía real aportada de Snapmaker U1 con iluminación neón */
+.pcp-home-welcome{position:relative;overflow:hidden;background:radial-gradient(ellipse at 78% 52%,#40216e88 0,transparent 42%),linear-gradient(110deg,#0d1936 0%,#101c3b 52%,#11112f 100%)!important}
+.pcp-home-welcome:before{inset:0!important;background:radial-gradient(ellipse at 78% 65%,#00cfff22 0,transparent 38%),linear-gradient(90deg,#101d3d 0%,#101d3d22 56%,#101d3d00 100%)!important;opacity:1!important}
+.pcp-home-welcome:after{right:18%!important;top:-155px!important;width:390px!important;height:390px!important;border-color:#b14cff55!important;box-shadow:0 0 0 28px #a64dff12,0 0 0 65px #00dfff0a,0 0 45px #9c4dff22!important}
+.pcp-home-hero-art{display:flex!important;position:absolute!important;z-index:1!important;right:clamp(14px,5%,76px)!important;top:45%!important;width:clamp(150px,21%,260px)!important;height:205px!important;max-height:92%!important;transform:translateY(-50%)!important;align-items:center!important;justify-content:center!important;opacity:1!important;pointer-events:none!important;padding:5px!important;border:1px solid #a64dff88!important;border-radius:17px!important;background:linear-gradient(145deg,#f8f8f8,#e9edf4)!important;box-shadow:0 0 12px #00d9ff99,0 0 27px #a34dffb0,0 13px 18px #020817aa!important}
+.pcp-home-hero-art img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;border-radius:12px!important;filter:contrast(1.04) saturate(1.05)!important}
+.pcp-home-welcome>div:first-child{max-width:min(47%,470px)!important;z-index:2!important}
+.pcp-home-welcome-actions{position:relative;z-index:3!important}
+.pcp-sidebar-art{background:radial-gradient(ellipse at 50% 75%,#7434d866 0,transparent 68%)!important}
+.pcp-sidebar-art img{object-fit:contain!important;object-position:center bottom!important;padding:4px!important;border:1px solid #a64dff88!important;border-radius:12px!important;background:linear-gradient(145deg,#f8f8f8,#e9edf4)!important;filter:drop-shadow(0 0 6px #00dfff88) drop-shadow(0 0 15px #a64dffbb) drop-shadow(0 8px 14px #050816)!important}
+.pcp-sidebar-art span{color:#9ceeff!important;text-shadow:0 0 8px #a64dff,0 1px 5px #000!important}
+@media(max-width:1050px){.pcp-home-hero-art{right:3%!important;width:30%!important;opacity:.9!important}.pcp-home-welcome>div:first-child{max-width:60%!important}}
+@media(max-width:700px){.pcp-home-hero-art{right:0!important;top:27%!important;width:42%!important;height:155px!important;opacity:.88!important}.pcp-home-welcome>div:first-child{max-width:72%!important}.pcp-home-welcome:before{background:linear-gradient(90deg,#101d3d 0%,#101d3d55 68%,#101d3d22 100%)!important}}
+@media(max-width:430px){.pcp-home-hero-art{top:23%!important;width:38%!important;height:125px!important}.pcp-home-welcome>div:first-child{max-width:75%!important}}

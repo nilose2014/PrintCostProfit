@@ -1,0 +1,50 @@
+/* v5.21 · Opciones: todos los apartados alineados a ancho completo, sin columnas vacías. */
+#programOptionsView.active{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  align-content:start!important;
+  align-items:stretch!important;
+  gap:16px!important;
+  min-width:0!important;
+}
+#programOptionsView>section.panel:first-child>h2,
+#programOptionsView>section.panel:first-child>p.section-note,
+#programOptionsView .pcp-opt-section,
+#programOptionsView>#machinesPanel,
+#programOptionsView>#pcpPrinterSettingsPanel,
+#programOptionsView>#pcpBackupSettingsPanel,
+#programOptionsView>#pcpVersionUpdatesPanel,
+#programOptionsView>#pcpDocumentationPanel,
+#programOptionsView>#pcpLogsPanel{
+  grid-column:1/-1!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+#programOptionsView .pcp-opt-section{
+  margin:0!important;
+}
+/* Los formularios mantienen dos columnas; los campos marcados como wide abarcan ambas. */
+#programOptionsView .fields,
+#programOptionsView .pcp-opt-content>.fields{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  width:100%!important;
+  max-width:none!important;
+}
+#programOptionsView .field{min-width:0!important}
+#programOptionsView .field.wide{grid-column:1/-1!important}
+#programOptionsView .pcp-opt-content,
+#programOptionsView .pcp-opt-content[hidden],
+#programOptionsView .pcp-opt-section-collapsed>.pcp-opt-content{
+  box-sizing:border-box!important;
+  min-width:0!important;
+}
+#programOptionsView #pcpBackupMetrics{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media(max-width:760px){
+  #programOptionsView.active{gap:12px!important}
+  #programOptionsView .fields,
+  #programOptionsView .pcp-opt-content>.fields,
+  #programOptionsView #pcpBackupMetrics{grid-template-columns:minmax(0,1fr)!important}
+  #programOptionsView .field.wide{grid-column:auto!important}
+}

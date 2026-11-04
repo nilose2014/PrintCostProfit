@@ -1,0 +1,5 @@
+/* v5.14 · Banderas SVG para Windows: no dependen de fuentes emoji */
+.pcp-language-top{gap:8px!important}
+.pcp-language-top #pcpLanguageFlag{display:inline-flex!important;flex:0 0 28px!important;align-items:center!important;justify-content:center!important;width:28px!important;height:20px!important;font-size:0!important;line-height:0!important;filter:none!important;text-shadow:none!important}
+.pcp-language-top #pcpLanguageFlag img{width:24px!important;height:16px!important;display:block!important;object-fit:cover!important}
+.pcp-language-top select{min-width:112px}

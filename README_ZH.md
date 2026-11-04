@@ -1,414 +1,215 @@
-# 快速安装
+# Print Cost & Profit
 
-请选择与您的操作系统对应的软件包：
+**面向 3D 打印的成本计算、生产监控与业务管理完整工具。**
 
-### Windows 10 / 11 — 稳定版本 v1.2
+Print Cost & Profit 帮助创客和小型 3D 打印企业了解每次打印的真实成本、制定合理售价、监控兼容打印机、管理耗材库存并组织日常业务。
 
-- **[下载 Windows v1.2 安装程序](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip)**。
-- 解压 ZIP 文件并运行 `PrintCostProfit-Setup-1.2.exe`。
-- 按照安装程序中的步骤操作。然后使用创建的快捷方式启动 Print Cost & Profit。
-- 安装程序包含本地 SQLite 存储所需的组件；无需手动安装 Python。
+> **Windows 稳定版本：v1.4**  
+> **Linux 软件包：v1.4**  
+> 请通过 [GitHub Releases](https://github.com/nilose2014/PrintCostProfit/releases) 查看已发布版本和可用下载。
 
-**Windows 仓库：** [PrintCostProfit — 主分支](https://github.com/nilose2014/PrintCostProfit)。如果您希望从源代码安装，请进入 **Code → Download ZIP**，将所有文件解压到一个固定文件夹，然后运行 `Integracion_Orca_Postprocesado.bat`。
+## 下载、仓库与安装
 
-### Linux / Ubuntu — 稳定版本
+| 平台 | 下载 | 安装 |
+|---|---|---|
+| **Windows** | [最新发布版本](https://github.com/nilose2014/PrintCostProfit/releases/latest)：下载 `.exe` 安装程序或可用的 Windows 软件包。 | 运行安装程序并按向导操作。 |
+| **Linux** | [Linux 分支](https://github.com/nilose2014/PrintCostProfit/tree/linux) 或 [Releases](https://github.com/nilose2014/PrintCostProfit/releases/latest)：发布后下载 Linux v1.4 软件包。 | 解压软件包并运行启动脚本。 |
 
-- **[下载 Linux 稳定版本](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1)**。
-- 解压下载的 ZIP 文件。
-- 按照软件包中提供的安装和启动说明操作。
+### 官方链接
+- 主仓库：https://github.com/nilose2014/PrintCostProfit
+- Linux 源码：https://github.com/nilose2014/PrintCostProfit/tree/linux
+- 全部发布版本：https://github.com/nilose2014/PrintCostProfit/releases
+- 最新版本：https://github.com/nilose2014/PrintCostProfit/releases/latest
+- 问题反馈：https://github.com/nilose2014/PrintCostProfit/issues
 
-**Linux 仓库 / 版本：** [PrintCostProfit — Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux)。
+Releases 页面是安装程序和软件包的官方来源。文件可能随版本变化，请勿使用旧的直链。
 
----
+### Windows 安装
+1. 打开 [Releases](https://github.com/nilose2014/PrintCostProfit/releases)。
+2. 下载最新 `.exe` 安装程序或可用 ZIP。
+3. 运行安装程序，或将完整 ZIP 解压到具有写入权限的目录。
+4. 通过快捷方式或附带的启动脚本运行应用。
+5. 如果浏览器没有自动打开，请访问 `http://127.0.0.1:8700/`。
+6. 请将 HTML、JavaScript、CSS 和服务器文件保持在原有目录结构中。
 
-# Print Cost & Profit v1.2
+本地服务器必须保持运行。更新后，先停止旧服务器，从更新后的目录启动服务器，并按 `Ctrl + F5` 强制刷新。替换文件前备份数据，不要删除数据目录。
 
-## 3D 打印成本、生产与管理计算器
+### Linux 安装（Ubuntu、Debian 及衍生版本）
+1. 从 [Linux 分支](https://github.com/nilose2014/PrintCostProfit/tree/linux) 或 [Releases](https://github.com/nilose2014/PrintCostProfit/releases) 下载软件包。
+2. 解压完整软件包，并在项目根目录打开终端。
+3. 执行：
+   ```bash
+   chmod +x linux/iniciar_linux.sh
+   ./linux/iniciar_linux.sh
+   ```
+4. 打开 `http://127.0.0.1:8700/`。
 
-Print Cost & Profit 是一款应用程序，旨在帮助 3D 打印用户计算实际制造成本、监控耗材使用量、管理材料，并组织与打印业务相关的商业活动。
+请在 Linux 终端执行命令；WSL 用户应使用 Ubuntu 终端，而不是 PowerShell。需要 Python 3 和 SQLite。保持目录结构不变。用户数据与程序文件分开保存。启动测试失败时不要忽略错误。
 
-该应用将成本计算器与管理工具、本地存储以及基于 OrcaSlicer 的切片软件集成在一起，尤其支持 Snapmaker Orca、OrcaSlicer 和 Creality Print。此外，它还包含兼容打印机的监控器，具体兼容程度取决于打印机型号和可用连接方式。
-
-## 应用程序截图
-
-以下图片展示了 Print Cost & Profit 的部分界面。这些图片说明了不同的界面区域；可用功能取决于已安装的版本和配置。
-
-![成本计算器](galeria/es/01-calculadora-de-costes.jpg)
-
-![结果和利润](galeria/es/02-resultado-y-beneficio.jpg)
-
-![浮动打印面板](galeria/es/03-panel-flotante-de-impresion.jpg)
-
-**作者：** Beatriz Toro Martin
-
-**已发布版本：** v1.2
-
-**参考操作系统：** Windows 10 和 Windows 11
-
-**官方仓库：** https://github.com/nilose2014/PrintCostProfit
-
----
-
-# 1. 主要功能
-
-## 1.1. 3D 打印成本计算器
-
-计算器可根据打印参数及相关成本估算零件的制造成本。
-
-根据可用配置，可以使用以下成本项目：
-
-- 耗材用量。
-- 所用材料的价格。
-- 打印时间。
-- 打印机运行和损耗成本。
-- 设备折旧。
-- 其他制造相关费用。
-- 期望利润率。
-- 所选税费和货币。
-
-其目的是在确定零件售价之前，了解制造该零件需要多少成本。
-
-## 1.2. 售价、利润和利润率
-
-计算器可用于分析一次打印任务的预计经济结果。
-
-计算结果有助于区分以下概念：
-
-- **制造成本：** 所用资源的估算价值。
-- **售价：** 计划向客户收取的零件金额。
-- **预计利润：** 收入与所考虑成本之间的计算差额。
-- **利润率：** 根据计算所采用的定义，利润与售价之间的比例。
-- **建议价格：** 根据已配置参数计算出的建议售价。
-
-结果取决于输入的价格、百分比、时间和其他数值。为了获得有用的估算，请及时更新耗材、打印机和额外费用的成本。
-
-![产品库存](galeria/es/04-inventario-de-productos.jpg)
-
-## 1.3. 打印机配置文件
-
-配置文件可用于设置所用设备相关的经济参数。
-
-如果配置文件中包含这些项目，则可以考虑设备购置成本、预计使用寿命和运行成本等数据。
-
-如果使用多台打印机，请选择相应的配置文件，以便估算结果反映不同设备之间的差异。
-
-![打印机配置文件和监控器](galeria/es/06-perfiles-y-monitor-de-impresoras.jpg)
-
-## 1.4. 与切片软件的兼容性
-
-该集成面向基于 OrcaSlicer 的切片软件，尤其是 **Snapmaker Orca、OrcaSlicer 和 Creality Print**。与这些软件的兼容程度约为 **90%**；具体行为仍可能因版本和配置而异。因此，不应将其描述为 100% 兼容。
-
-通过后处理脚本，可以处理切片软件生成的 G-code 文件，并在 Print Cost & Profit 工作流程中使用可获取的数据。能够读取的信息取决于文件、配置和切片软件版本。
-
-![报价](galeria/es/08-presupuestos.jpg)
-
-## 1.5. 打印机监控与兼容性
-
-已确认达到 **100%** 兼容的打印机是 **Snapmaker U1**。监控器也可与其他能够通过 **Fluidd** 或 **Mainsail/Moonraker** 访问的打印机配合使用（具体取决于配置），但这些型号的支持仍在完善中。测试继续进行期间，部分功能可能不可用或表现不同。
-
-## 1.6. SQLite 本地存储
-
-应用包含基于 SQLite 的本地存储组件。
-
-其目标是在计算机上的数据库中保存数据，而不是将数据分散在电脑和浏览器之间。
-
-如果本地存储无法启动，应用应显示相应错误，而不是在不提示用户的情况下切换到其他存储系统。
-
-## 1.7. 诊断工具
-
-项目包含一些脚本，可帮助检查应用启动、本地桥接服务运行情况以及某些集成问题。
-
-当某个组件无法启动或某项操作未能正确完成时，这些工具可以提供有用的信息。
+### 首次启动与打印机连接
+打开网页前先启动本地服务器。电脑和打印机必须能通过局域网互相访问。使用打印机 LAN 地址和端口配置 Moonraker。打印机关闭时也可以保存连接设置，但实时监控需要打印机在线。Snapmaker Orca 集成依赖受支持的本地工作流程和软件包中的后处理脚本。
 
 ---
 
-# 2. 前置要求
+## 什么是 Print Cost & Profit？
 
-启动程序之前，建议准备：
+它将 3D 打印的技术和商业流程整合在一起。除材料和打印时间外，还考虑电费、设备损耗、维护、人工、后处理、失败打印、库存和最终售价。
 
-- 一台运行 Windows 10、Windows 11 或 Linux 的计算机。
-- 一个用于安装项目的固定本地文件夹。
-- 如果需要使用集成功能，请准备基于 OrcaSlicer 的切片软件，尤其是 Snapmaker Orca、OrcaSlicer 或 Creality Print。
-- 下载的软件包中的全部文件。
-- 软件包中包含的存储和配置组件。
+工作流程包括：从兼容 G-code 导入数据或手动输入；计算实际生产成本；设置目标利润和建议售价；检查材料与打印机；保存估价和业务文档；跟踪生产、库存、维护和财务活动。
 
-软件包应包含为 Windows 准备的 SQLite 可执行文件，以免最终用户必须手动安装 Python。
+## 主要功能
 
-不要直接从 ZIP 文件中运行应用。请先解压所有文件。
+### 1. 打印成本计算器
+计算项目包括耗材克数、材料每公斤价格、打印时长、电力消耗和电费、设备折旧、机器成本、维护、人工和准备时间、额外费用、每件喷涂和后处理费用，以及失败打印预留成本。显示目标利润、建议售价、单件成本、单件利润和利润率。明确区分**生产成本**、**销售价格**、**利润**和**利润率**。
 
----
+#### G-code 与切片软件数据
+Orca 集成可导入文件名、材料、颜色及 HEX 代码、预计耗材用量、打印时间和可用缩略图。计算前请检查数据和材料匹配，尤其是多材料或多颜色项目。
 
-# 3. 下载并安装 Print Cost & Profit
+#### 价格比较与已保存估价
+比较不同售价方案，查看利润目标变化或附加金额对最终价格的影响，并保存估价。
 
-## 步骤 1. 下载程序
+### 2. 仪表盘
+集中查看销售、成本、利润、财务图表、库存、打印机状态、生产情况和最近活动。详细信息位于对应功能区域。
 
-1. 打开官方仓库：
+### 3. 打印机监控 — Snapmaker U1 / Moonraker
+通过局域网和 Moonraker 连接兼容打印机。功能包括打印机发现和手动 IP 设置、保存连接、在线/离线状态、打印状态与进度、当前任务、文件名和可用耗材数据、文件列表、G-code 缩略图、多打印机选择，以及将当前打印任务发送到计算器。
 
-   Windows：https://github.com/nilose2014/PrintCostProfit；Linux：https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1
+电脑必须能够访问局域网中的打印机。防火墙、网络隔离、错误 IP 或 Moonraker 不可用可能导致监控失败。
 
-2. 点击 **Code**。
-3. 选择 **Download ZIP**。
-4. 等待下载完成。
-5. 解压 ZIP 文件内容。
+### 4. 耗材库存
+记录品牌、材料（PLA、PETG 等）、颜色名称和 HEX 值、初始重量与剩余重量、每公斤价格和库存数量。将 G-code 材料和颜色与已登记耗材卷匹配。不确定的匹配必须检查。库存警告取决于重量数据是否及时更新。
 
-## 步骤 2. 选择文件夹
+### 5. 打印机与设备配置
+配置打印机和连接信息，在支持时进行网络发现，保存设备数据、查看状态，并将生产和财务信息关联到对应打印机。当前流程主要面向 Snapmaker U1；其他设备和固件可能需要兼容的 Moonraker 接口，且不一定经过验证。
 
-您可以使用以下文件夹：
+### 6. 维护中心
+组织清洁、轴润滑、皮带和导轨检查、热端、喷嘴、挤出机、耗材进料、风扇、冷却、打印平台、电缆和连接器检查。可记录维护操作及状态。始终遵循制造商手册和安全说明。
 
-`C:\PrintCostProfit`
+### 7. 报价、订单和发票
+创建并保存报价、管理订单和发票、关联客户、查看文档详情与总额、生成 PDF，并在工作流程支持时将报价转换为发票。发送前检查编号、税费、货币、客户信息和 PDF。
 
-也可以选择其他固定位置。请避免使用临时文件夹。配置 OrcaSlicer 路径后，不要移动程序，除非同时更新这些路径。
+### 8. 客户管理
+保存客户资料并关联业务文档，减少重复输入，按客户组织报价、订单和发票。
 
-## 步骤 3. 启动程序
+### 9. 财务与会计
+记录业务收支并查看收入、成本和利润；如已配置，也可按打印机查看。请与正式账目及税务义务核对。应用不提供会计或税务建议。
 
-打开解压文件的文件夹，然后双击：
+### 10. 产品目录
+管理生产或销售的产品。在启用相关功能的版本中，产品展示和 QR 功能可将实体产品关联到目录信息。
 
-**`Integracion_Orca_Postprocesado.bat`**
+### 11. 活动日志与诊断
+本地日志用于排查服务器启动、打印机连接、API、导入、集成、备份和存储问题。报告问题时请提供版本、操作系统、复现步骤及已清除私人信息的日志。
 
-此文件既可用于手动启动，也可用于与 OrcaSlicer 集成。
+### 12. 备份与恢复
+受支持版本提供本地存储、备份和恢复功能。Linux 服务器通过 API 支持快照、修订控制、备份和日志；Windows 使用独立的本地服务器和存储流程。更新前备份，将副本保存在程序目录之外，应用运行时不要手动修改数据库。
 
-手动运行时，它会检查本地服务是否可用。如果服务没有响应，脚本会尝试启动服务，并等待服务就绪后再在浏览器中打开界面。
+### 13. 设置与界面
+集中管理应用配置。根据版本可整理区域、隐藏字段和调整面板顺序。
 
-如果启动器能够完成这些操作，则无需先打开 HTML 文件，也无需单独启动本地桥接服务。
-
-**重要提示：** 要使用需要本地存储的功能，请通过此文件启动应用，而不要直接打开 `Print_Cost_Profit.html`。
-
----
-
-# 4. 配置基于 OrcaSlicer 的切片软件
-
-该集成适用于基于 OrcaSlicer 的切片软件，尤其是 Snapmaker Orca、OrcaSlicer 和 Creality Print。菜单名称和部分细节可能有所不同。总体兼容程度约为 90%，因此建议使用已安装的版本进行测试。
-
-切片软件完成切片后，集成会使用后处理脚本处理 G-code。
-
-## 步骤 1. 找到集成文件
-
-在程序文件夹中找到：
-
-`Integracion_Orca_Postprocesado.bat`
-
-复制完整路径。如果使用示例文件夹，路径为：
-
-`C:\PrintCostProfit\Integracion_Orca_Postprocesado.bat`
-
-如果程序安装在其他位置，请使用实际路径。
-
-## 步骤 2. 打开打印设置
-
-1. 打开 OrcaSlicer。
-2. 选择要使用的打印机配置文件。
-3. 打开打印设置。
-4. 如有需要，启用高级或专家模式。
-5. 打开 **其他** 部分。
-6. 找到 **后处理脚本**。
-
-菜单名称和布局可能因切片软件、版本和所选语言而异。
-
-## 步骤 3. 添加脚本
-
-输入以下文件的完整路径：
-
-`Integracion_Orca_Postprocesado.bat`
-
-保存配置文件设置。
-
-如果切片软件要求路径或参数使用特定语法，请使用该版本对应的格式。
-
-## 步骤 4. 执行测试
-
-1. 加载一个简单模型。
-2. 选择打印机和打印配置文件。
-3. 配置材料。
-4. 对模型进行切片。
-5. 导出 G-code。
-6. 检查后处理是否在没有错误的情况下执行。
-
-当 OrcaSlicer 使用文件路径调用脚本时，脚本会处理 G-code 文件。在这种情况下，其行为与手动启动不同：脚本处理文件后结束，不会再打开第二个应用程序窗口。
+### 14. 八种语言
+界面文本集中在 `js/traducciones.js`：西班牙语、英语、法语、德语、意大利语、波兰语、支持 RTL 的阿拉伯语和简体中文。新增字段、对话框、按钮、警告和错误消息都必须集中管理并完成翻译。
 
 ---
 
-# 5. G-code 文件处理
+## 软件截图
 
-G-code 包含切片软件为 3D 打印机生成的指令。
+图片位于 `assets/screenshots/`。
 
-Print Cost & Profit 集成可以处理这些文件，以获取可用于计算和任务记录的数据。
+### 仪表盘
+![仪表盘](assets/screenshots/screenshot-02.jpg)
 
-根据文件中包含的信息和可用功能，相关数据可能包括：
+### 计算器与打印数据
+![成本计算器](assets/screenshots/screenshot-03.jpg)
+![打印数据](assets/screenshots/screenshot-01.jpg)
 
-- 文件名或路径。
-- 切片软件生成的打印信息。
-- 预计时间和材料消耗。
-- 可用时的耗材信息。
+### 生产与业务管理
+![业务管理](assets/screenshots/screenshot-05.jpg)
+![成本与价格](assets/screenshots/screenshot-06.jpg)
+![配置与业务文档](assets/screenshots/screenshot-07.jpg)
 
-从 G-code 获取的数值是切片估算值。不得自动将其视为打印机确认的实际消耗量。
+### 设置与更新
+![应用配置](assets/screenshots/screenshot-08.jpg)
+![应用选项](assets/screenshots/screenshot-09.jpg)
+![版本与更新](assets/screenshots/screenshot-10.jpg)
 
-## 使用 G-code 文件进行手动测试
+### 客户、订单与发票
+![客户管理](assets/screenshots/screenshot-12.jpg)
+![客户与文档](assets/screenshots/screenshot-13.jpg)
+![文档管理](assets/screenshots/screenshot-14.jpg)
+![订单与报价](assets/screenshots/screenshot-15.jpg)
+![发票](assets/screenshots/screenshot-16.jpg)
+![销售](assets/screenshots/screenshot-17.jpg)
 
-项目包含：
+### 耗材与打印机
+![耗材库存](assets/screenshots/screenshot-18.jpg)
+![库存卡片](assets/screenshots/screenshot-19.jpg)
+![打印机与材料](assets/screenshots/screenshot-20.jpg)
 
-`Probar_Integracion_con_Gcode.bat`
+### 盈利与报告
+![盈利能力](assets/screenshots/screenshot-21.jpg)
+![财务摘要](assets/screenshots/screenshot-22.jpg)
+![发票 PDF](assets/screenshots/screenshot-23.jpg)
 
-执行测试的步骤：
+### 维护
+![维护中心](assets/screenshots/screenshot-24.jpg)
+![维护任务](assets/screenshots/screenshot-25.jpg)
 
-1. 找到由您正在使用的兼容切片软件生成的 G-code 文件。
-2. 将文件拖放到 `Probar_Integracion_con_Gcode.bat` 上。
-3. 等待处理完成。
-4. 检查结果和任何错误消息。
-
-此测试有助于区分文件处理问题和本地服务问题。
-
----
-
-# 6. 成本与盈利能力管理 ![成本汇总](galeria/es/14-resumen-de-costes.jpg)
-
-为了获得有用的结果，请在计算零件价格之前配置财务数据。
-
-## 耗材
-
-及时更新每种材料的价格。每公斤价格的变化可能会显著影响所制造零件的成本。
-
-## 打印机
-
-使用实际制造零件的设备配置文件。折旧和损耗参数应基于合理的成本和使用寿命估算。
-
-## 制造时间
-
-切片软件估算的时间可用于估算机器使用成本。由于暂停、材料更换、故障或预计时间与实际时间之间的差异，实际结果可能有所不同。
-
-## 额外费用
-
-加入适用于该任务且已包含在计算器配置中的费用。
-
-## 售价
-
-结合成本、利润和利润率检查建议价格。计算价格的可靠性取决于输入数据的质量。
+### 其他界面
+![其他界面](assets/screenshots/screenshot-04.jpg)
+![其他界面](assets/screenshots/screenshot-11.jpg)
+![其他界面](assets/screenshots/screenshot-26.jpg)
 
 ---
 
-# 7. 数据存储与保留
+## 典型工作流程
+1. 在切片软件中准备任务并生成 G-code。
+2. 通过 Orca 导入数据或手动输入。
+3. 检查材料和颜色并关联库存。
+4. 检查打印机和可用耗材。
+5. 计算材料、时间、电力、设备、人工和后处理成本。
+6. 设置售价并检查利润率。
+7. 保存报价并关联客户。
+8. 监控打印。
+9. 记录销售或发票并检查财务活动。
+10. 更新库存和维护记录。
 
-Print Cost & Profit 使用本地服务和 SQLite 数据库，为依赖此存储方式的功能提供支持。
+## 系统要求
+**Windows：**兼容的 64 位 Windows、运行应用和写入数据的权限、访问打印机局域网的能力，以及访问 GitHub 的互联网连接。
 
-安装程序使用的存储位置可能位于 Windows 本地用户配置文件中。
+**Linux：**Ubuntu、Debian 或兼容衍生版本、Python 3、SQLite、启动脚本执行权限和局域网访问。
 
-## 建议
+**打印机集成：**兼容的连接方式、可访问的本地 Moonraker API、正确 IP，以及按平台软件包配置的 Orca 集成。
 
-- 服务运行时不要删除数据库。
-- 不要手动移动数据文件夹。
-- 更新程序之前，请备份数据。
-- 更新后检查本地服务是否正常启动。
-- 关闭并重新打开应用后，检查数据是否仍然保留。
+## 版本与更新
+本文所述 Windows 稳定版和 Linux 软件包为 **v1.4**。更新前备份数据，下载正确的软件包，停止服务器，更新文件，从新目录启动服务器并确认版本。不要在同一端口运行两个服务器。默认地址：`127.0.0.1:8700`。
 
-## 如果出现存储错误
+## 故障排除
+- **应用无法打开：**检查服务器和终端/PowerShell，打开 `http://127.0.0.1:8700/`，检查 8700 端口。
+- **版本错误：**停止旧服务器，从正确目录启动，检查 `http://127.0.0.1:8700/api/version` 和 `VERSION`，再按 `Ctrl + F5` 刷新。
+- **打印机离线：**检查电源、网络、IP、Moonraker 和防火墙；尝试手动 IP。
+- **缺少 G-code 数据或缩略图：**检查 G-code 和切片软件导出内容，确认材料、颜色、重量和时间。
+- **Linux 测试失败：**从项目根目录运行脚本，检查 Python 3 和 SQLite，并保留完整错误信息。
 
-如果应用提示无法启动 PC 存储，请不要继续输入数据并假定数据已正确保存。
+## 项目结构
+- `Print_Cost_Profit.html` — 应用界面。
+- `js/` — 模块、集成和集中式翻译。
+- `css/` — 样式。
+- `VERSION` — 服务器读取的版本。
+- `Servidor_Panel_U1.ps1` — Windows 服务器。
+- `linux/` — Linux 服务器、启动脚本和测试。
+- 本地数据 — 数据库、日志和备份按平台配置与程序文件分开保存。
 
-检查本地服务并使用诊断工具。不要通过删除数据库来尝试解决问题。
+Windows 和 Linux 软件包的具体内容可能不同。
 
-防止静默切换到浏览器存储的保护机制，旨在避免数据被分散到两个不同的位置。
+## 支持与贡献
+- 问题反馈：https://github.com/nilose2014/PrintCostProfit/issues
+- 源代码：https://github.com/nilose2014/PrintCostProfit
+- Linux 源码：https://github.com/nilose2014/PrintCostProfit/tree/linux
+- 发布版本：https://github.com/nilose2014/PrintCostProfit/releases
 
----
+报告问题时请提供版本、操作系统、软件包、打印机及连接方式、复现步骤、已清理敏感信息的日志和截图。不要公开密码、令牌、私人凭据、客户数据或私人数据库。
 
-# 8. 附带的脚本和工具 ![文档与帮助](galeria/es/19-documentacion-y-ayuda.jpg)
+## 重要信息
+Print Cost & Profit 是 3D 打印成本计算和业务管理辅助工具。结果取决于输入数据、切片元数据、打印机配置、电价、材料价格和业务设置。请检查计算、库存、报价和发票。监控依赖兼容的本地服务及固件/API；不同平台和版本的功能可能不同。
 
-仓库包含多个辅助文件。正常使用时，并非所有文件都需要手动运行。
-
-| 文件 | 功能 |
-|---|---|
-| `Integracion_Orca_Postprocesado.bat` | 手动启动应用，并作为兼容的 OrcaSlicer 系切片软件后处理入口。 |
-| `Iniciar_Puente_Orca.ps1` | 启动或检查集成桥接服务。 |
-| `Iniciar_Puente_Orca_Independiente.cmd` | 本地桥接服务的独立启动程序。 |
-| `Integracion_Print_Cost_Profit.ps1` | 处理与 G-code 文件的集成。 |
-| `Probar_Integracion_con_Gcode.bat` | 手动测试 G-code 处理。 |
-| `Comprobar_Puente_U1.bat` | 检查与 Snapmaker U1 相关的桥接服务。 |
-| `Diagnostico_Arranque.bat` | 帮助排查启动问题。 |
-| `Diagnostico_Print_Cost_Profit.bat` | 应用诊断工具。 |
-| `Diagnostico_Version.bat` | 检查版本信息。 |
-| `pcp_sqlite_api.py` | SQLite 存储服务代码。 |
-| `pcp_sqlite_store.py` | SQLite 存储访问和管理组件。 |
-| `storage-client.js` | 界面用于与存储服务通信的客户端。 |
-| `VERSION` | 项目版本信息。 |
-| `LICENSE.txt` | 使用条款和版权声明。 |
-
-每项功能是否可用以及具体行为，取决于软件包中包含的文件及其配置。
-
----
-
-# 9. 故障排除
-
-## 应用无法打开
-
-1. 检查是否已解压所有文件。
-2. 运行 `Integracion_Orca_Postprocesado.bat`。
-3. 等待本地服务响应。
-4. 如果应用没有打开，请运行 `Diagnostico_Arranque.bat`。
-5. 保存完整的错误消息。
-
-## PC 存储无法启动
-
-检查软件包是否包含适用于 Windows 的 SQLite 可执行文件，以及该文件是否位于服务器预期的位置。
-
-如果出现 HTTP 500 错误，请先检查服务状态和诊断消息，再尝试修改数据。
-
-不要切换到浏览器存储，也不要将删除数据库作为临时解决办法。
-
-## 切片软件没有执行集成
-
-1. 检查 `.bat` 文件的路径。
-2. 确认文件存在。
-3. 检查打印配置文件设置。
-4. 使用 `Probar_Integracion_con_Gcode.bat` 进行测试。
-5. 保存错误消息和所用 G-code 文件的路径。
-
-## 数据没有保留
-
-检查是否通过启动器运行应用，以及本地服务是否正在运行。
-
-然后使用非关键数据进行测试，并检查应用重新启动后数据是否仍然保留。
-
-不要通过删除现有数据来尝试修复存储。
-
----
-
-# 10. 安全与最佳实践
-
-- 从官方仓库下载程序。
-- 不要分享密码、私钥或登录凭据。
-- 不要运行来源不明的脚本。
-- 未进行适当的安全配置时，不要将本地服务暴露到互联网。
-- 保留重要数据的备份。
-- 更新时替换文件之前，请检查依赖项和程序运行情况。
-
----
-
-# 11. 版权与使用条款
-
-Print Cost & Profit 受 `LICENSE.txt` 中所列条款约束。
-
-仅仅将代码发布到 GitHub，并不意味着获得了营销、转售、再许可、重新分发或商业利用该软件、修改版本或衍生产品的授权；如果适用许可证禁止这些活动，则不得进行这些活动。
-
-授权申请必须以书面形式提出，并由权利持有人明确接受。
-
----
-
-# 12. 帮助与问题报告
-
-报告问题时，请提供：
-
-- Print Cost & Profit 版本。
-- Windows 版本。
-- 切片软件名称和版本（Snapmaker Orca、OrcaSlicer、Creality Print 或其他软件）。
-- 使用的打印机（如相关）。
-- 执行的操作。
-- 完整的错误消息。
-- 重现问题的步骤。
-
-请勿提供密码、私钥或不必要的个人数据。
-
----
-
-**Print Cost & Profit v1.2**
-
-由 Beatriz Toro Martin 开发。
-
-计算成本、跟踪任务并改善财务管理。
+**Print Cost & Profit — 了解成本、合理定价并管理 3D 打印工作流程。**

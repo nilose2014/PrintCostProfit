@@ -1,7 +1,16 @@
-/* v1.3 — Traducciones del sistema de licencias e idiomas del instalador. */
+﻿/* v5.58 — Mantenimiento ampliado, navegación y traducciones de ocho idiomas. */
 
 (()=>{
 const D={
+  "Limpieza rutinaria": ["Routine cleaning", "Nettoyage courant", "Routinemäßige Reinigung", "Pulizia ordinaria", "Rutynowe czyszczenie", "التنظيف الروتيني", "日常清洁"],
+  "Limpieza de cama y superficie": ["Build plate and surface cleaning", "Nettoyage du plateau et de la surface", "Reinigung von Druckbett und Oberfläche", "Pulizia del piano e della superficie", "Czyszczenie stołu i powierzchni", "تنظيف منصة الطباعة والسطح", "打印板和表面清洁"],
+  "Consejos de cuidado": ["Care tips", "Conseils d’entretien", "Pflegetipps", "Consigli per la cura", "Wskazówki dotyczące pielęgnacji", "نصائح للعناية", "保养建议"],
+  "Recomendaciones útiles que no generan tareas ni avisos": ["Useful recommendations that do not create tasks or alerts", "Conseils utiles qui ne génèrent ni tâches ni alertes", "Nützliche Empfehlungen, die keine Aufgaben oder Warnungen erzeugen", "Suggerimenti utili che non generano attività o avvisi", "Przydatne zalecenia, które nie tworzą zadań ani alertów", "توصيات مفيدة لا تنشئ مهام أو تنبيهات", "不会生成任务或提醒的实用建议"],
+  "Antes de cada impresión, retira restos sueltos del interior y limpia los residuos de filamento o adhesivo de la plataforma siguiendo las indicaciones del fabricante.": ["Before each print, remove loose debris from inside the machine and clean filament or adhesive residue from the build plate according to the manufacturer’s instructions.", "Avant chaque impression, retirez les débris à l’intérieur et nettoyez les résidus de filament ou d’adhésif du plateau selon les instructions du fabricant.", "Entfernen Sie vor jedem Druck lose Rückstände im Innenraum und reinigen Sie Filament- oder Klebereste von der Druckplatte gemäß den Herstellerangaben.", "Prima di ogni stampa, rimuovi i residui all’interno e pulisci filamento o adesivo dal piano seguendo le istruzioni del produttore.", "Przed każdym wydrukiem usuń luźne zanieczyszczenia z wnętrza i oczyść płytę z resztek filamentu lub kleju zgodnie z instrukcjami producenta.", "قبل كل عملية طباعة، أزل البقايا السائبة من الداخل ونظّف بقايا الخيوط أو المادة اللاصقة من المنصة وفق تعليمات الشركة المصنّعة.", "每次打印前，清除机器内部的松散残留物，并按照制造商说明清洁打印板上的耗材或胶水残留。"],
+  "Mantén limpia la placa y retira restos de filamento antes de imprimir. Utiliza únicamente productos compatibles con el tipo de superficie.": ["Keep the build plate clean and remove filament residue before printing. Use only products compatible with the surface type.", "Gardez le plateau propre et retirez les résidus de filament avant l’impression. Utilisez uniquement des produits compatibles avec la surface.", "Halten Sie die Druckplatte sauber und entfernen Sie vor dem Drucken Filamentreste. Verwenden Sie nur für die Oberfläche geeignete Reinigungsmittel.", "Mantieni pulito il piano e rimuovi i residui di filamento prima di stampare. Usa solo prodotti compatibili con la superficie.", "Utrzymuj płytę w czystości i usuwaj resztki filamentu przed drukowaniem. Używaj wyłącznie środków zgodnych z rodzajem powierzchni.", "حافظ على نظافة لوحة الطباعة وأزل بقايا الخيوط قبل الطباعة. استخدم فقط المنتجات المتوافقة مع نوع السطح.", "保持打印板清洁，并在打印前清除耗材残留。仅使用与表面类型兼容的清洁产品。"],
+  "Retira restos sueltos y mantén limpia la superficie de impresión con el procedimiento recomendado para el material de la placa.": ["Remove loose debris and keep the print surface clean using the method recommended for the plate material.", "Retirez les débris et gardez la surface d’impression propre en suivant la méthode recommandée pour le matériau du plateau.", "Entfernen Sie lose Rückstände und reinigen Sie die Druckfläche nach der für das Plattenmaterial empfohlenen Methode.", "Rimuovi i residui e mantieni pulita la superficie di stampa usando il metodo consigliato per il materiale del piano.", "Usuwaj luźne zanieczyszczenia i czyść powierzchnię zgodnie z zaleceniami dla materiału płyty.", "أزل البقايا السائبة وحافظ على نظافة سطح الطباعة باستخدام الطريقة الموصى بها لمادة اللوحة.", "清除松散残留物，并按照打印板材质的建议方法保持打印表面清洁。"],
+  "Retira los residuos sueltos de filamento del interior cuando sea necesario, con la impresora apagada y siguiendo las instrucciones del fabricante.": ["When needed, remove loose filament debris from inside the chamber with the printer switched off and following the manufacturer’s instructions.", "Si nécessaire, retirez les résidus de filament à l’intérieur de la chambre, imprimante éteinte et conformément aux instructions du fabricant.", "Entfernen Sie bei Bedarf lose Filamentreste aus dem Innenraum, während der Drucker ausgeschaltet ist und gemäß den Herstellerangaben.", "Quando necessario, rimuovi i residui di filamento dall’interno a stampante spenta e seguendo le istruzioni del produttore.", "W razie potrzeby usuń luźne resztki filamentu z komory przy wyłączonej drukarce, zgodnie z instrukcjami producenta.", "عند الحاجة، أزل بقايا الخيوط السائبة من الداخل والطابعة مطفأة ووفق تعليمات الشركة المصنّعة.", "必要时，在关闭打印机后按照制造商说明清除腔体内松散的耗材残留。"],
+  "Retira polvo y restos sueltos y limpia la superficie de impresión con productos compatibles con el recubrimiento de tu placa.": ["Remove dust and loose debris, and clean the print surface with products compatible with your plate coating.", "Retirez la poussière et les débris, puis nettoyez la surface avec des produits compatibles avec le revêtement du plateau.", "Entfernen Sie Staub und lose Rückstände und reinigen Sie die Druckfläche mit für die Plattenbeschichtung geeigneten Mitteln.", "Rimuovi polvere e residui e pulisci la superficie con prodotti compatibili con il rivestimento del piano.", "Usuń kurz i luźne zanieczyszczenia, a powierzchnię czyść środkami zgodnymi z powłoką płyty.", "أزل الغبار والبقايا السائبة ونظّف سطح الطباعة بمنتجات متوافقة مع طبقة اللوحة.", "清除灰尘和松散残留物，并使用与打印板涂层兼容的产品清洁打印表面。"],
   "Desgaste de impresora": [
     "Printer wear",
     "Usure de l’imprimante",
@@ -263,13 +272,23 @@ const D={
     "Waluta i podatki zostały zapisane.",
     "تم حفظ إعدادات العملة والضرائب.", "货币和税务设置已保存。"
     ],
-  "Cálculo guardado en este navegador.": [
-    "Calculation saved in this browser.",
-    "Calcul enregistré dans ce navigateur.",
-    "Berechnung in diesem Browser gespeichert.",
-    "Calcolo salvato in questo browser.",
-    "Obliczenie zapisano w tej przeglądarce.",
-    "تم حفظ الحساب في هذا المتصفح.", "计算结果已保存在此浏览器中。"
+  "Tasación guardada correctamente en la base de datos SQLite de este equipo.": [
+    "Estimate successfully saved to this computer's SQLite database.",
+    "Estimation enregistrée avec succès dans la base de données SQLite de cet ordinateur.",
+    "Kalkulation erfolgreich in der SQLite-Datenbank dieses Computers gespeichert.",
+    "Stima salvata correttamente nel database SQLite di questo computer.",
+    "Wycena została pomyślnie zapisana w bazie danych SQLite tego komputera.",
+    "تم حفظ التقدير بنجاح في قاعدة بيانات SQLite على هذا الكمبيوتر.",
+    "估价已成功保存到此电脑的 SQLite 数据库。"
+    ],
+  "¿Borrar todo el historial de tasaciones guardado en SQLite en este PC?": [
+    "Delete the entire estimate history saved in this PC's SQLite database?",
+    "Supprimer tout l’historique des estimations enregistré dans la base SQLite de ce PC ?",
+    "Den gesamten in der SQLite-Datenbank dieses PCs gespeicherten Kalkulationsverlauf löschen?",
+    "Eliminare tutta la cronologia delle stime salvata nel database SQLite di questo PC?",
+    "Czy usunąć całą historię wycen zapisaną w bazie SQLite tego komputera?",
+    "هل تريد حذف سجل التقديرات بالكامل من قاعدة بيانات SQLite على هذا الكمبيوتر؟",
+    "要删除保存在此电脑 SQLite 数据库中的全部估价历史记录吗？"
     ],
   "Añadir movimiento manual": [
     "Add manual entry",
@@ -633,6 +652,15 @@ const D={
     "02 · Filamento per colore/materiale",
     "02 · Filament według koloru/materiału",
     "02 · الخيط حسب اللون/المادة", "02 · 按颜色/材料分类的耗材"
+  ],
+  "Costes adicionales": [
+    "Additional costs",
+    "Coûts supplémentaires",
+    "Zusätzliche Kosten",
+    "Costi aggiuntivi",
+    "Koszty dodatkowe",
+    "تكاليف إضافية",
+    "额外费用"
   ],
   "03 · Otros costes": [
     "03 · Other costs",
@@ -1877,6 +1905,14 @@ const D={
     "Confronto prezzi",
     "Cena comparison",
     "مقارن الأسعار", "价格比较器"
+    ],
+  "Tasaciones": [
+    "Estimates",
+    "Estimations",
+    "Kalkulationen",
+    "Stime",
+    "Wyceny",
+    "التقديرات", "估价"
     ],
   "Tasaciones guardadas": [
     "Saved estimates",
@@ -11700,7 +11736,7 @@ const D={
 
 };
 
-const langs={es:'Español',en:'English',fr:'Français',de:'Deutsch',it:'Italiano',pl:'Polski',ar:'العربية', 'zh-CN':'简体中文'};const locales={es:'es-ES',en:'en-GB',fr:'fr-FR',de:'de-DE',it:'it-IT',pl:'pl-PL',ar:'ar', 'zh-CN':'zh-CN'};
+const langs={es:'🇪🇸 Español',en:'🇬🇧 English',fr:'🇫🇷 Français',de:'🇩🇪 Deutsch',it:'🇮🇹 Italiano',pl:'🇵🇱 Polski',ar:'🇸🇦 العربية','zh-CN':'🇨🇳 简体中文'};const locales={es:'es-ES',en:'en-GB',fr:'fr-FR',de:'de-DE',it:'it-IT',pl:'pl-PL',ar:'ar', 'zh-CN':'zh-CN'};
 
 
 // v1.414: nombres actualizados de las pestañas y textos relacionados, en los cinco idiomas.
@@ -11888,8 +11924,24 @@ D["Leyendo datos del G-code… {progress}%"]=["Reading G-code data… {progress}
 D["Analizando los metadatos de los filamentos…"]=["Analyzing filament metadata…", "Analyse des métadonnées des filaments…", "Filament-Metadaten werden analysiert…", "Analisi dei metadati dei filamenti…", "Analizowanie metadanych filamentu…", "جارٍ تحليل البيانات الوصفية للخيوط…", "正在分析耗材元数据……"];
 D["Fuente: {message} · {file}"]=["Source: {message} · {file}", "Source : {message} · {file}", "Quelle: {message} · {file}", "Fonte: {message} · {file}", "Źródło: {message} · {file}", "المصدر: {message} · {file}", "来源：{message} · {file}"];
 
+
+// v3.0 · textos nuevos del panel de inicio y rentabilidad global.
+// v3.2 · portada neón con fotografía real recortada; no añade cadenas nuevas.
+D["Cálculo, gestión y rentabilidad 3D"]=["3D printing calculation, management and profitability", "Calcul, gestion et rentabilité de l’impression 3D", "3D-Druck: Kalkulation, Verwaltung und Rentabilität", "Calcolo, gestione e redditività della stampa 3D", "Kalkulacja, zarządzanie i rentowność druku 3D", "حساب وإدارة وربحية الطباعة ثلاثية الأبعاد", "3D 打印计算、管理与盈利能力"];
+D["Calculadora"]=["Calculator", "Calculatrice", "Rechner", "Calcolatrice", "Kalkulator", "الحاسبة", "计算器"];
+D["Informes"]=["Reports", "Rapports", "Berichte", "Report", "Raporty", "التقارير", "报表"];
+D["Rentabilidad global"]=["Overall profitability", "Rentabilité globale", "Gesamtrentabilität", "Redditività complessiva", "Rentowność ogólna", "الربحية الإجمالية", "整体盈利能力"];
+D["Margen de beneficio"]=["Profit margin", "Marge bénéficiaire", "Gewinnspanne", "Margine di profitto", "Marża zysku", "هامش الربح", "利润率"];
+D["Rentabilidad pendiente"]=["Profitability pending", "Rentabilité en attente", "Rentabilität ausstehend", "Redditività in attesa", "Rentowność oczekuje na dane", "الربحية بانتظار البيانات", "盈利能力待计算"];
+D["Registra ventas y costes para consultar tu margen."]=["Record sales and costs to view your margin.", "Enregistrez les ventes et les coûts pour consulter votre marge.", "Erfasse Verkäufe und Kosten, um deine Marge anzuzeigen.", "Registra vendite e costi per visualizzare il margine.", "Zapisz sprzedaż i koszty, aby sprawdzić marżę.", "سجّل المبيعات والتكاليف لعرض هامش الربح.", "记录销售额和成本以查看利润率。"];
+D["Muy rentable"]=["Highly profitable", "Très rentable", "Sehr rentabel", "Molto redditizio", "Bardzo rentowne", "ربحية مرتفعة جدًا", "盈利能力很高"];
+D["Margen mejorable"]=["Margin could improve", "Marge à améliorer", "Marge verbesserungsfähig", "Margine migliorabile", "Marżę można poprawić", "يمكن تحسين هامش الربح", "利润率有提升空间"];
+D["El margen supera el 50 %."]=["The margin is above 50%.", "La marge dépasse 50 %.", "Die Marge liegt über 50 %.", "Il margine supera il 50%.", "Marża przekracza 50%.", "هامش الربح يتجاوز 50٪.", "利润率超过 50%。"];
+D["Revisa los precios y costes."]=["Review prices and costs.", "Vérifiez les prix et les coûts.", "Überprüfe Preise und Kosten.", "Controlla prezzi e costi.", "Sprawdź ceny i koszty.", "راجع الأسعار والتكاليف.", "请检查价格和成本。"];
+
+D["Cobrado"]=["Collected","Encaissé","Eingenommen","Incassato","Otrzymano","المحصّل","已收款"];
 window.PCP_I18N={dictionary:D,refresh(){for(const [key,values] of Object.entries(D)){if(!Array.isArray(values))continue;if(typeof values[4]!=='string'||!values[4].trim())values[4]=String(values[0]||key);if(typeof values[5]!=='string'||!values[5].trim())values[5]=String(values[0]||key);if(typeof values[6]!=='string'||!values[6].trim())values[6]=String(values[0]||key);}apply()},completePolish(){let added=0;for(const [key,values] of Object.entries(D)){if(!Array.isArray(values))continue;if(typeof values[4]!=='string'||!values[4].trim()){values[4]=String(values[0]||key);added++}if(typeof values[5]!=='string'||!values[5].trim())values[5]=String(values[0]||key);if(typeof values[6]!=='string'||!values[6].trim())values[6]=String(values[0]||key)}return added},t:key=>translate(key),colorSource:value=>COLOR_ALIAS.get(norm(value).toLocaleLowerCase())||value,colorDisplay:value=>translateColorTokens(value),format(key,values={}){return String(translate(key)).replace(/\{(\w+)\}/g,(_,k)=>values[k]??'')},get language(){return lang},setLanguage(code){if(!Object.prototype.hasOwnProperty.call(idx,code)||code===lang)return;lang=code;try{localStorage.setItem('pcp_language',code)}catch(e){}apply();requestAnimationFrame(()=>apply());window.dispatchEvent(new Event('pcp-language-changed'))}};const nativeAlert=window.alert.bind(window),nativeConfirm=window.confirm.bind(window);window.alert=msg=>nativeAlert(window.PCP_I18N.t(String(msg)));window.confirm=msg=>nativeConfirm(window.PCP_I18N.t(String(msg)));
-const init=()=>{const nav=document.querySelector('.tab-navigation');if(nav&&!document.getElementById('pcpLanguage')){const wrap=document.createElement('label');wrap.className='language-switch';wrap.style.cssText='margin-left:auto;display:flex;align-items:center;gap:6px;padding:4px 8px;color:var(--muted);font-size:12px';wrap.innerHTML='<span>🌐</span><select id="pcpLanguage" aria-label="Language" style="background:#0c1424;color:var(--txt);border:1px solid #30415e;border-radius:7px;padding:7px">'+Object.entries(langs).map(([k,v])=>'<option value="'+k+'">'+v+'</option>').join('')+'</select>';nav.appendChild(wrap);wrap.querySelector('select').addEventListener('change',e=>window.PCP_I18N.setLanguage(e.target.value))}apply();let pendingNodes=new Set(),translationFrame=0;const obs=new MutationObserver(ms=>{for(const m of ms){if(m.type==='characterData'&&m.target)pendingNodes.add(m.target);for(const n of m.addedNodes)if(n.nodeType===Node.ELEMENT_NODE||n.nodeType===Node.TEXT_NODE)pendingNodes.add(n)}if(translationFrame||!pendingNodes.size)return;translationFrame=requestAnimationFrame(()=>{translationFrame=0;const list=[...pendingNodes];pendingNodes.clear();const roots=list.filter(n=>!list.some(p=>p!==n&&p.nodeType===Node.ELEMENT_NODE&&p.contains(n)));for(const n of roots){if(n.nodeType===Node.ELEMENT_NODE)walk(n);else{const v=translate(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}}})});obs.observe(document.body,{subtree:true,childList:true,characterData:true});if(window.PCP_INTEGRATION_DATA&&typeof loadIntegrationData==='function')loadIntegrationData()};
+const init=()=>{const nav=document.querySelector('.tab-navigation');const languageHost=document.querySelector('.pcp-topbar-tools')||nav;if(languageHost&&!document.getElementById('pcpLanguage')){const wrap=document.createElement('label');wrap.className='language-switch pcp-language-top';wrap.style.cssText='margin-left:auto;display:flex;align-items:center;gap:6px;padding:4px 8px;color:var(--muted);font-size:12px';wrap.innerHTML='<span id="pcpLanguageFlag" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;width:23px;min-width:23px;height:20px;font-size:17px;line-height:1">🇪🇸</span><select id="pcpLanguage" aria-label="Language" style="background:#0c1424;color:var(--txt);border:1px solid #30415e;border-radius:7px;padding:7px">'+Object.entries(langs).map(([k,v])=>'<option value="'+k+'">'+v.replace(/^\p{Extended_Pictographic}\s*/u,'')+'</option>').join('')+'</select>';languageHost.appendChild(wrap);const flagSvg={es:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20"><rect width="30" height="20" fill="#AA151B"/><rect y="5" width="30" height="10" fill="#F1BF00"/></svg>',en:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><rect width="60" height="30" fill="#012169"/><path d="M0 0L60 30M60 0L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0L60 30M60 0L0 30" stroke="#C8102E" stroke-width="2.5"/><path d="M30 0V30M0 15H60" stroke="#fff" stroke-width="10"/><path d="M30 0V30M0 15H60" stroke="#C8102E" stroke-width="5"/></svg>',fr:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg>',de:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20"><rect width="30" height="6.67"/><rect y="6.67" width="30" height="6.66" fill="#DD0000"/><rect y="13.33" width="30" height="6.67" fill="#FFCE00"/></svg>',it:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE2B37"/></svg>',pl:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#DC143C"/></svg>',ar:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20"><rect width="30" height="6.67" fill="#006C35"/><rect y="6.67" width="30" height="6.66" fill="#fff"/><rect y="13.33" width="30" height="6.67"/><path d="M6 10h18" stroke="#fff" stroke-width="1.2"/></svg>','zh-CN':'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20"><rect width="30" height="20" fill="#DE2910"/><path d="M6 3l1.1 3.2 3.4 0-2.7 2 1 3.2L6 9.5l-2.8 1.9 1-3.2-2.7-2h3.4z" fill="#FFDE00"/></svg>'};const updateLanguageFlag=()=>{const flag=wrap.querySelector('#pcpLanguageFlag');if(flag){const svg=flagSvg[lang]||flagSvg.es;flag.innerHTML='<img alt="" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)+'" style="display:block;width:24px;height:16px;object-fit:cover;border-radius:2px;border:1px solid rgba(160,190,230,.45);box-shadow:0 1px 3px rgba(0,0,0,.35)"/>'; }const select=wrap.querySelector('select');if(select)select.value=lang};wrap.querySelector('select').addEventListener('change',e=>window.PCP_I18N.setLanguage(e.target.value));window.addEventListener('pcp-language-changed',updateLanguageFlag);updateLanguageFlag()}apply();let pendingNodes=new Set(),translationFrame=0;const obs=new MutationObserver(ms=>{for(const m of ms){if(m.type==='characterData'&&m.target)pendingNodes.add(m.target);for(const n of m.addedNodes)if(n.nodeType===Node.ELEMENT_NODE||n.nodeType===Node.TEXT_NODE)pendingNodes.add(n)}if(translationFrame||!pendingNodes.size)return;translationFrame=requestAnimationFrame(()=>{translationFrame=0;const list=[...pendingNodes];pendingNodes.clear();const roots=list.filter(n=>!list.some(p=>p!==n&&p.nodeType===Node.ELEMENT_NODE&&p.contains(n)));for(const n of roots){if(n.nodeType===Node.ELEMENT_NODE)walk(n);else{const v=translate(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}}})});obs.observe(document.body,{subtree:true,childList:true,characterData:true});if(window.PCP_INTEGRATION_DATA&&typeof loadIntegrationData==='function')loadIntegrationData()};
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
@@ -12470,6 +12522,8 @@ if(window.PCP_I18N){if(typeof window.PCP_I18N.completePolish==='function')window
 ;(function(){
  const d=window.PCP_I18N&&window.PCP_I18N.dictionary;if(!d)return;
  const entries={
+'Cálculo · Producción · Rentabilidad':['Calculation · Production · Profitability', 'Calcul · Production · Rentabilité', 'Kalkulation · Produktion · Rentabilität', 'Calcolo · Produzione · Redditività', 'Kalkulacja · Produkcja · Rentowność', 'الحساب · الإنتاج · الربحية', '计算 · 生产 · 盈利能力'],
+
   'No hay una bobina exacta asignada.':['No exact spool is assigned.','Aucune bobine exacte n’est affectée.','Keine exakte Spule ist zugeordnet.','Nessuna bobina esatta assegnata.','Nie przypisano dokładnej szpuli.',
     "لم يتم تعيين بكرة مطابقة تمامًا.",
     "尚未分配完全匹配的线轴。"
@@ -13825,3 +13879,567 @@ if(window.PCP_I18N){if(typeof window.PCP_I18N.completePolish==='function')window
   ]
 };for(const [k,v] of Object.entries(entries)){if(!Object.prototype.hasOwnProperty.call(d,k))d[k]=v;}if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();})();
 
+
+
+/* v1.4 — textos del apartado de versión y comprobación manual de actualizaciones. */
+;(()=>{
+ const d=window.PCP_I18N&&window.PCP_I18N.dictionary;if(!d)return;
+ const entries={
+  'Versión y actualizaciones':['Version and updates','Version et mises à jour','Version und Updates','Versione e aggiornamenti','Wersja i aktualizacje','الإصدار والتحديثات','版本与更新'],
+  'Descargar versión disponible':['Download available version','Télécharger la version disponible','Verfügbare Version herunterladen','Scarica la versione disponibile','Pobierz dostępną wersję','تنزيل الإصدار المتاح','下载可用版本'],
+  'Comprobar actualizaciones':['Check for updates','Rechercher des mises à jour','Nach Updates suchen','Controlla aggiornamenti','Sprawdź aktualizacje','التحقق من وجود تحديثات','检查更新'],
+  'Comprobando actualizaciones…':['Checking for updates…','Recherche des mises à jour…','Suche nach Updates…','Verifica degli aggiornamenti…','Sprawdzanie aktualizacji…','جارٍ التحقق من وجود تحديثات…','正在检查更新……'],
+  'No hay una versión más reciente publicada en GitHub.':['No newer version has been published on GitHub.','Aucune version plus récente n’a été publiée sur GitHub.','Auf GitHub wurde keine neuere Version veröffentlicht.','Non è stata pubblicata una versione più recente su GitHub.','Na GitHubie nie opublikowano nowszej wersji.','لم يتم نشر إصدار أحدث على GitHub.','GitHub 尚未发布更新的版本。'],
+  'Hay una actualización disponible: v{latest}.':['An update is available: v{latest}.','Une mise à jour est disponible : v{latest}.','Ein Update ist verfügbar: v{latest}.','È disponibile un aggiornamento: v{latest}.','Dostępna jest aktualizacja: v{latest}.','يتوفر تحديث: v{latest}.','有可用更新：v{latest}。'],
+  'Descargar versión {latest}':['Download version {latest}','Télécharger la version {latest}','Version {latest} herunterladen','Scarica la versione {latest}','Pobierz wersję {latest}','تنزيل الإصدار {latest}','下载版本 {latest}'],
+  'No se pudo comprobar si hay actualizaciones. Comprueba tu conexión a Internet.':['Could not check for updates. Check your internet connection.','Impossible de vérifier les mises à jour. Vérifiez votre connexion Internet.','Updates konnten nicht geprüft werden. Überprüfen Sie Ihre Internetverbindung.','Impossibile verificare gli aggiornamenti. Controlla la connessione Internet.','Nie udało się sprawdzić aktualizacji. Sprawdź połączenie z Internetem.','تعذّر التحقق من وجود تحديثات. تحقق من اتصالك بالإنترنت.','无法检查更新。请检查网络连接。'],
+ };
+ for(const [k,v] of Object.entries(entries)){if(!Object.prototype.hasOwnProperty.call(d,k))d[k]=v;}
+ if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();
+})();
+
+
+/* v1.5 — apartado de documentación con README según el idioma activo. */
+;(()=>{
+ const d=window.PCP_I18N&&window.PCP_I18N.dictionary;if(!d)return;
+ const entries={
+  'Documentación':['Documentation','Documentation','Dokumentation','Documentazione','Dokumentacja','التوثيق','文档'],
+  'Consulta el manual de la aplicación en el idioma seleccionado.':['Read the application manual in the selected language.','Consultez le manuel de l’application dans la langue sélectionnée.','Lesen Sie das Anwendungshandbuch in der ausgewählten Sprache.','Consulta il manuale dell’applicazione nella lingua selezionata.','Przeczytaj instrukcję aplikacji w wybranym języku.','اطّلع على دليل التطبيق باللغة المحددة.','请阅读所选语言的应用程序手册。'],
+  'Abrir documentación':['Open documentation','Ouvrir la documentation','Dokumentation öffnen','Apri documentazione','Otwórz dokumentację','فتح الوثائق','打开文档'],
+  'Manual en español':['Manual in English','Manuel en français','Handbuch auf Deutsch','Manuale in italiano','Instrukcja po polsku','الدليل باللغة العربية','简体中文手册']
+ };
+ for(const [k,v] of Object.entries(entries)){if(!Object.prototype.hasOwnProperty.call(d,k))d[k]=v;}
+ if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();
+})();
+
+
+/* v1.7 — registro centralizado de actividad, errores y operaciones. */
+;(()=>{
+ const d=window.PCP_I18N&&window.PCP_I18N.dictionary;if(!d)return;
+ const entries={
+  'Registro de actividad':['Activity log','Journal d’activité','Aktivitätsprotokoll','Registro attività','Dziennik aktywności','سجل النشاط','活动日志'],
+  'Consulta errores, avisos y operaciones de la aplicación.':['Review application errors, warnings and operations.','Consultez les erreurs, avertissements et opérations de l’application.','Fehler, Warnungen und Vorgänge der Anwendung anzeigen.','Consulta errori, avvisi e operazioni dell’applicazione.','Przeglądaj błędy, ostrzeżenia i operacje aplikacji.','راجع أخطاء التطبيق وتحذيراته وعملياته.','查看应用程序错误、警告和操作记录。'],
+  'Filtrar por nivel':['Filter by level','Filtrer par niveau','Nach Ebene filtern','Filtra per livello','Filtruj według poziomu','تصفية حسب المستوى','按级别筛选'],
+  'Todos':['All','Tous','Alle','Tutti','Wszystkie','الكل','全部'],
+  'Errores':['Errors','Erreurs','Fehler','Errori','Błędy','الأخطاء','错误'],
+  'Advertencias':['Warnings','Avertissements','Warnungen','Avvisi','Ostrzeżenia','تحذيرات','警告'],
+  'Información':['Information','Informations','Informationen','Informazioni','Informacje','معلومات','信息'],
+  'Buscar en los registros':['Search logs','Rechercher dans les journaux','Protokolle durchsuchen','Cerca nei registri','Szukaj w dzienniku','البحث في السجلات','搜索日志'],
+  'Buscar por módulo o mensaje…':['Search by module or message…','Rechercher par module ou message…','Nach Modul oder Nachricht suchen…','Cerca per modulo o messaggio…','Szukaj według modułu lub komunikatu…','ابحث حسب الوحدة أو الرسالة…','按模块或消息搜索…'],
+  'Actualizar registros':['Refresh logs','Actualiser les journaux','Protokolle aktualisieren','Aggiorna registri','Odśwież dziennik','تحديث السجلات','刷新日志'],
+  'Exportar registros':['Export logs','Exporter les journaux','Protokolle exportieren','Esporta registri','Eksportuj dziennik','تصدير السجلات','导出日志'],
+  'Vaciar registros':['Clear logs','Effacer les journaux','Protokolle leeren','Svuota registri','Wyczyść dziennik','مسح السجلات','清空日志'],
+  'Los registros se guardan en este PC.':['Logs are stored on this PC.','Les journaux sont enregistrés sur ce PC.','Protokolle werden auf diesem PC gespeichert.','I registri vengono salvati su questo PC.','Dzienniki są zapisywane na tym komputerze.','يتم حفظ السجلات على هذا الكمبيوتر.','日志保存在此电脑上。'],
+  'Cargando registros…':['Loading logs…','Chargement des journaux…','Protokolle werden geladen…','Caricamento registri…','Wczytywanie dziennika…','جارٍ تحميل السجلات…','正在加载日志…'],
+  'No hay registros para mostrar.':['No logs to display.','Aucun journal à afficher.','Keine Protokolle vorhanden.','Nessun registro da visualizzare.','Brak wpisów do wyświetlenia.','لا توجد سجلات لعرضها.','没有可显示的日志。'],
+  'Registros cargados: {count}':['Logs loaded: {count}','Journaux chargés : {count}','Geladene Protokolle: {count}','Registri caricati: {count}','Wczytane wpisy: {count}','السجلات المحمّلة: {count}','已加载日志：{count}'],
+  'No se pudieron cargar los registros: {message}':['Could not load logs: {message}','Impossible de charger les journaux : {message}','Protokolle konnten nicht geladen werden: {message}','Impossibile caricare i registri: {message}','Nie można wczytać dziennika: {message}','تعذر تحميل السجلات: {message}','无法加载日志：{message}'],
+  '¿Quieres borrar todos los registros de actividad?':['Do you want to delete all activity logs?','Voulez-vous supprimer tous les journaux d’activité ?','Möchten Sie alle Aktivitätsprotokolle löschen?','Vuoi eliminare tutti i registri attività?','Czy chcesz usunąć cały dziennik aktywności?','هل تريد حذف جميع سجلات النشاط؟','确定要删除所有活动日志吗？'],
+  'Registros eliminados.':['Logs deleted.','Journaux supprimés.','Protokolle gelöscht.','Registri eliminati.','Dziennik wyczyszczony.','تم حذف السجلات.','日志已清除。'],
+  'No se pudieron guardar los registros.':['Logs could not be saved.','Les journaux n’ont pas pu être enregistrés.','Protokolle konnten nicht gespeichert werden.','Impossibile salvare i registri.','Nie udało się zapisać dziennika.','تعذر حفظ السجلات.','无法保存日志。'],
+  'Fecha y hora':['Date and time','Date et heure','Datum und Uhrzeit','Data e ora','Data i godzina','التاريخ والوقت','日期和时间'],
+  'Nivel':['Level','Niveau','Ebene','Livello','Poziom','المستوى','级别'],
+  'Módulo':['Module','Module','Modul','Modulo','Moduł','الوحدة','模块'],
+  'Mensaje':['Message','Message','Nachricht','Messaggio','Komunikat','الرسالة','消息'],
+  'Aplicación iniciada':['Application started','Application démarrée','Anwendung gestartet','Applicazione avviata','Uruchomiono aplikację','تم تشغيل التطبيق','应用程序已启动'],
+  'Error de JavaScript':['JavaScript error','Erreur JavaScript','JavaScript-Fehler','Errore JavaScript','Błąd JavaScript','خطأ JavaScript','JavaScript 错误'],
+  'Promesa rechazada sin gestionar':['Unhandled promise rejection','Promesse rejetée non gérée','Nicht behandelte Promise-Ablehnung','Promise rifiutata non gestita','Nieobsłużone odrzucenie Promise','رفض Promise غير معالج','未处理的 Promise 拒绝'],
+  'Acción de interfaz':['Interface action','Action de l’interface','Oberflächenaktion','Azione interfaccia','Działanie interfejsu','إجراء الواجهة','界面操作'],
+  'Almacenamiento':['Storage','Stockage','Speicher','Archiviazione','Pamięć masowa','التخزين','存储'],
+  'Servidor local':['Local server','Serveur local','Lokaler Server','Server locale','Serwer lokalny','الخادم المحلي','本地服务器'],
+  'Servidor local iniciado':['Local server started','Serveur local démarré','Lokaler Server gestartet','Server locale avviato','Uruchomiono serwer lokalny','تم تشغيل الخادم المحلي','本地服务器已启动'],
+  'Aplicación':['Application','Application','Anwendung','Applicazione','Aplikacja','التطبيق','应用程序'],
+  'Aplicación iniciada':['Application started','Application démarrée','Anwendung gestartet','Applicazione avviata','Uruchomiono aplikację','تم تشغيل التطبيق','应用程序已启动'],
+  'Error registrado en consola':['Error logged in console','Erreur enregistrée dans la console','In der Konsole protokollierter Fehler','Errore registrato nella console','Błąd zapisany w konsoli','تم تسجيل خطأ في وحدة التحكم','控制台中记录的错误'],
+  'Advertencia registrada en consola':['Warning logged in console','Avertissement enregistré dans la console','In der Konsole protokollierte Warnung','Avviso registrato nella console','Ostrzeżenie zapisane w konsoli','تم تسجيل تحذير في وحدة التحكم','控制台中记录的警告'],
+  'Consola':['Console','Console','Konsole','Console','Konsola','وحدة التحكم','控制台'],
+  'JavaScript':['JavaScript','JavaScript','JavaScript','JavaScript','JavaScript','JavaScript','JavaScript'],
+  'Interfaz':['Interface','Interface','Oberfläche','Interfaccia','Interfejs','الواجهة','界面'],
+  'Información':['Information','Information','Information','Informazione','Informacja','معلومات','信息'],
+  'Advertencia':['Warning','Avertissement','Warnung','Avviso','Ostrzeżenie','تحذير','警告'],
+  'Error':['Error','Erreur','Fehler','Errore','Błąd','خطأ','错误'],
+  'Versión':['Version','Version','Version','Versione','Wersja','الإصدار','版本'],
+  'Dirección':['Address','Adresse','Adresse','Indirizzo','Adres','العنوان','地址'],
+  'Archivo de registro':['Log file','Fichier journal','Protokolldatei','File di registro','Plik dziennika','ملف السجل','日志文件'],
+  'Motivo':['Reason','Motif','Grund','Motivo','Przyczyna','السبب','原因'],
+  'Archivo':['File','Fichier','Datei','File','Plik','الملف','文件'],
+  'Línea':['Line','Ligne','Zeile','Riga','Wiersz','السطر','行'],
+  'Columna':['Column','Colonne','Spalte','Colonna','Kolumna','العمود','列'],
+  'Ruta':['Path','Chemin','Pfad','Percorso','Ścieżka','المسار','路径'],
+  'Operación':['Operation','Opération','Vorgang','Operazione','Operacja','العملية','操作'],
+  'Código de salida':['Exit code','Code de sortie','Exitcode','Codice di uscita','Kod wyjścia','رمز الخروج','退出代码'],
+  'Control':['Control','Contrôle','Steuerelement','Controllo','Element sterujący','عنصر التحكم','控件'],
+  'El nombre de rojo especificado ya no está disponible':['The specified red name is no longer available','Le nom rouge spécifié n’est plus disponible','Der angegebene Rotname ist nicht mehr verfügbar','Il nome rosso specificato non è più disponibile','Podana nazwa koloru czerwonego nie jest już dostępna','اسم اللون الأحمر المحدد لم يعد متاحًا','指定的红色名称已不可用']
+ };
+ for(const [k,v] of Object.entries(entries)){if(!Object.prototype.hasOwnProperty.call(d,k))d[k]=v;}
+ if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();
+})();
+
+;(()=>{const d=window.PCP_I18N?.dictionary||{};const entries={
+  "Rentabilidad avanzada": [
+    "Advanced profitability",
+    "Rentabilité avancée",
+    "Erweiterte Rentabilität",
+    "Redditività avanzata",
+    "Zaawansowana rentowność",
+    "الربحية المتقدمة",
+    "高级盈利能力"
+  ],
+  "Análisis de ingresos, costes y beneficios a partir de los movimientos contables y las tasaciones incluidas. Los importes previstos se identifican como estimaciones; no se consideran cobros confirmados.": [
+    "Analysis of revenue, costs and profit based on accounting entries and included estimates. Forecast amounts are identified as estimates and are not treated as confirmed payments.",
+    "Analyse des revenus, des coûts et des bénéfices à partir des écritures comptables et des estimations incluses. Les montants prévisionnels sont identifiés comme des estimations et ne sont pas considérés comme des encaissements confirmés.",
+    "Analyse von Einnahmen, Kosten und Gewinn anhand der Buchungen und enthaltenen Kalkulationen. Prognosebeträge sind als Schätzungen gekennzeichnet und gelten nicht als bestätigte Zahlungseingänge.",
+    "Analisi di ricavi, costi e profitti basata sui movimenti contabili e sulle stime incluse. Gli importi previsti sono identificati come stime e non sono considerati incassi confermati.",
+    "Analiza przychodów, kosztów i zysków na podstawie zapisów księgowych i uwzględnionych wycen. Kwoty prognozowane są oznaczone jako szacunkowe i nie są traktowane jako potwierdzone płatności.",
+    "تحليل الإيرادات والتكاليف والأرباح استنادًا إلى القيود المحاسبية والتقديرات المدرجة. تُحدد المبالغ المتوقعة على أنها تقديرية ولا تُعد مدفوعات مؤكدة.",
+    "根据会计记录和已纳入的估算分析收入、成本和利润。预计金额会标记为估算值，不视为已确认收款。"
+  ],
+  "Periodo": [
+    "Period",
+    "Période",
+    "Zeitraum",
+    "Periodo",
+    "Okres",
+    "الفترة",
+    "期间"
+  ],
+  "Mes actual": [
+    "Current month",
+    "Mois en cours",
+    "Aktueller Monat",
+    "Mese corrente",
+    "Bieżący miesiąc",
+    "الشهر الحالي",
+    "本月"
+  ],
+  "Últimos 3 meses": [
+    "Last 3 months",
+    "3 derniers mois",
+    "Letzte 3 Monate",
+    "Ultimi 3 mesi",
+    "Ostatnie 3 miesiące",
+    "آخر 3 أشهر",
+    "最近3个月"
+  ],
+  "Año actual": [
+    "Current year",
+    "Année en cours",
+    "Aktuelles Jahr",
+    "Anno corrente",
+    "Bieżący rok",
+    "السنة الحالية",
+    "今年"
+  ],
+  "Todo el historial": [
+    "All history",
+    "Tout l’historique",
+    "Gesamter Verlauf",
+    "Tutta la cronologia",
+    "Cała historia",
+    "كل السجل",
+    "全部历史"
+  ],
+  "Todas las impresoras": [
+    "All printers",
+    "Toutes les imprimantes",
+    "Alle Drucker",
+    "Tutte le stampanti",
+    "Wszystkie drukarki",
+    "كل الطابعات",
+    "所有打印机"
+  ],
+  "Ingresos estimados": [
+    "Estimated revenue",
+    "Revenus estimés",
+    "Geschätzte Einnahmen",
+    "Ricavi stimati",
+    "Szacowane przychody",
+    "الإيرادات المقدرة",
+    "预计收入"
+  ],
+  "Costes totales": [
+    "Total costs",
+    "Coûts totaux",
+    "Gesamtkosten",
+    "Costi totali",
+    "Koszty całkowite",
+    "إجمالي التكاليف",
+    "总成本"
+  ],
+  "Margen sobre ventas": [
+    "Sales margin",
+    "Marge sur ventes",
+    "Vertriebsmarge",
+    "Margine sulle vendite",
+    "Marża sprzedaży",
+    "هامش المبيعات",
+    "销售利润率"
+  ],
+  "Importe cobrado registrado": [
+    "Recorded amount collected",
+    "Montant encaissé enregistré",
+    "Erfasster Zahlungseingang",
+    "Importo incassato registrato",
+    "Zarejestrowana otrzymana kwota",
+    "المبلغ المحصل المسجل",
+    "已记录收款金额"
+  ],
+  "Rentabilidad por impresora": [
+    "Profitability by printer",
+    "Rentabilité par imprimante",
+    "Rentabilität nach Drucker",
+    "Redditività per stampante",
+    "Rentowność według drukarki",
+    "الربحية حسب الطابعة",
+    "按打印机划分的盈利能力"
+  ],
+  "Desglose de costes": [
+    "Cost breakdown",
+    "Répartition des coûts",
+    "Kostenaufschlüsselung",
+    "Ripartizione dei costi",
+    "Podział kosztów",
+    "تفصيل التكاليف",
+    "成本明细"
+  ],
+  "Los importes previstos se identifican como estimaciones; no se consideran cobros confirmados.": [
+    "Forecast amounts are identified as estimates; they are not considered confirmed payments.",
+    "Les montants prévisionnels sont identifiés comme des estimations ; ils ne sont pas considérés comme des encaissements confirmés.",
+    "Prognosebeträge sind als Schätzungen gekennzeichnet und gelten nicht als bestätigte Zahlungseingänge.",
+    "Gli importi previsti sono identificati come stime e non sono considerati incassi confermati.",
+    "Kwoty prognozowane są oznaczone jako szacunkowe i nie są traktowane jako potwierdzone płatności.",
+    "تُحدد المبالغ المتوقعة على أنها تقديرية ولا تُعد مدفوعات مؤكدة.",
+    "预计金额标记为估算值，不视为已确认收款。"
+  ],
+  "Costes": [
+    "Costs",
+    "Coûts",
+    "Kosten",
+    "Costi",
+    "Koszty",
+    "التكاليف",
+    "成本"
+  ],
+  "Beneficio": [
+    "Profit",
+    "Bénéfice",
+    "Gewinn",
+    "Profitto",
+    "Zysk",
+    "الربح",
+    "利润"
+  ],
+  "Todavía no hay datos suficientes.": [
+    "There is not enough data yet.",
+    "Il n’y a pas encore assez de données.",
+    "Noch liegen nicht genügend Daten vor.",
+    "Non ci sono ancora dati sufficienti.",
+    "Brak jeszcze wystarczających danych.",
+    "لا توجد بيانات كافية حتى الآن.",
+    "目前还没有足够的数据。"
+  ],
+  "Otros costes / sin desglose": [
+    "Other costs / not itemized",
+    "Autres coûts / non détaillés",
+    "Sonstige Kosten / ohne Aufschlüsselung",
+    "Altri costi / non dettagliati",
+    "Inne koszty / bez podziału",
+    "تكاليف أخرى / دون تفصيل",
+    "其他成本/未细分"
+  ],
+  "El beneficio se calcula con los importes guardados en Contabilidad. Las tasaciones y ventas estimadas no equivalen a ingresos cobrados. Los movimientos manuales se contabilizan según su tipo y fecha.": [
+    "Profit is calculated from the amounts saved in Accounting. Estimates and estimated sales are not the same as collected revenue. Manual entries are counted according to their type and date.",
+    "Le bénéfice est calculé à partir des montants enregistrés dans la comptabilité. Les estimations et ventes estimées ne correspondent pas à des revenus encaissés. Les mouvements manuels sont comptabilisés selon leur type et leur date.",
+    "Der Gewinn wird anhand der in der Buchhaltung gespeicherten Beträge berechnet. Kalkulationen und geschätzte Verkäufe sind keine Zahlungseingänge. Manuelle Buchungen werden entsprechend Typ und Datum berücksichtigt.",
+    "Il profitto è calcolato sugli importi salvati in Contabilità. Le stime e le vendite stimate non equivalgono a ricavi incassati. I movimenti manuali sono conteggiati in base al tipo e alla data.",
+    "Zysk jest obliczany na podstawie kwot zapisanych w księgowości. Wyceny i szacowana sprzedaż nie są równoznaczne z otrzymanymi płatnościami. Ręczne wpisy są uwzględniane według rodzaju i daty.",
+    "يُحسب الربح من المبالغ المحفوظة في المحاسبة. لا تعادل التقديرات والمبيعات المقدرة الإيرادات المحصلة. تُحتسب القيود اليدوية وفقًا لنوعها وتاريخها.",
+    "利润根据会计中保存的金额计算。估算和预计销售额不等于已收款收入。手动记录按其类型和日期计入。"
+  ]
+};for(const [k,v] of Object.entries(entries)){if(!Object.prototype.hasOwnProperty.call(d,k))d[k]=v;}if(typeof window.PCP_I18N?.refresh==='function')window.PCP_I18N.refresh();})();
+
+;(()=>{const d=window.PCP_I18N?.dictionary||{};const entries={
+"Evolución de ingresos, costes y beneficio":["Revenue, costs and profit trend","Évolution des revenus, des coûts et du bénéfice","Entwicklung von Einnahmen, Kosten und Gewinn","Andamento di ricavi, costi e profitto","Trend przychodów, kosztów i zysku","اتجاه الإيرادات والتكاليف والأرباح","收入、成本和利润趋势"],
+"Últimos seis meses · según los movimientos registrados":["Last six months · based on recorded entries","Six derniers mois · selon les écritures enregistrées","Letzte sechs Monate · basierend auf erfassten Buchungen","Ultimi sei mesi · in base ai movimenti registrati","Ostatnie sześć miesięcy · na podstawie zapisów","آخر ستة أشهر · وفقًا للقيود المسجلة","最近六个月 · 根据已记录的交易"],
+"Distribución de costes":["Cost distribution","Répartition des coûts","Kostenverteilung","Distribuzione dei costi","Struktura kosztów","توزيع التكاليف","成本分布"],
+"En qué se está gastando":["Where money is being spent","Répartition des dépenses","Wofür Geld ausgegeben wird","Dove vengono spesi i soldi","Na co są wydawane pieniądze","أين يتم إنفاق الأموال","支出分布"],
+"Rentabilidad global":["Overall profitability","Rentabilité globale","Gesamtrentabilität","Redditività complessiva","Rentowność ogółem","الربحية الإجمالية","整体盈利能力"],
+"Margen del periodo seleccionado":["Margin for the selected period","Marge de la période sélectionnée","Marge des ausgewählten Zeitraums","Margine del periodo selezionato","Marża wybranego okresu","هامش الفترة المحددة","所选期间的利润率"],
+"Ingresos por impresora":["Revenue by printer","Revenus par imprimante","Einnahmen nach Drucker","Ricavi per stampante","Przychody według drukarki","الإيرادات حسب الطابعة","按打印机划分的收入"],
+"Participación sobre el total":["Share of total","Part du total","Anteil am Gesamtbetrag","Quota sul totale","Udział w całości","الحصة من الإجمالي","占总额比例"],
+"Costes por categoría":["Costs by category","Coûts par catégorie","Kosten nach Kategorie","Costi per categoria","Koszty według kategorii","التكاليف حسب الفئة","按类别划分的成本"],
+"Importe acumulado en el periodo":["Total amount for the period","Montant cumulé sur la période","Gesamtbetrag im Zeitraum","Importo totale nel periodo","Łączna kwota w okresie","إجمالي المبلغ خلال الفترة","期间累计金额"],
+"Conclusiones del periodo":["Period insights","Conclusions de la période","Erkenntnisse zum Zeitraum","Conclusioni del periodo","Wnioski za okres","استنتاجات الفترة","期间总结"],
+"Impresora más rentable":["Most profitable printer","Imprimante la plus rentable","Rentabelster Drucker","Stampante più redditizia","Najbardziej rentowna drukarka","الطابعة الأكثر ربحية","盈利能力最高的打印机"],
+"Coste principal":["Largest cost","Coût principal","Größter Kostenpunkt","Costo principale","Największy koszt","التكلفة الرئيسية","主要成本"],
+"Mejor margen":["Best margin","Meilleure marge","Beste Marge","Margine migliore","Najlepsza marża","أفضل هامش","最高利润率"],
+"Periodo analizado":["Period analyzed","Période analysée","Analysierter Zeitraum","Periodo analizzato","Analizowany okres","الفترة التي تم تحليلها","分析期间"],
+"Margen de beneficio":["Profit margin","Marge bénéficiaire","Gewinnspanne","Margine di profitto","Marża zysku","هامش الربح","利润率"],
+"Rentabilidad moderada":["Moderate profitability","Rentabilité modérée","Mäßige Rentabilität","Redditività moderata","Umiarkowana rentowność","ربحية متوسطة","盈利能力一般"],
+"Margen por mejorar":["Margin needs improvement","Marge à améliorer","Marge verbesserungswürdig","Margine da migliorare","Marża do poprawy","الهامش يحتاج إلى تحسين","利润率有待提高"],
+"El margen supera el 50 %.":["The margin is above 50%.","La marge dépasse 50 %.","Die Marge liegt über 50 %.","Il margine supera il 50%.","Marża przekracza 50%.","الهامش يتجاوز 50٪.","利润率超过 50%。"],
+"El margen es positivo, pero puede mejorar.":["The margin is positive but could improve.","La marge est positive, mais peut être améliorée.","Die Marge ist positiv, kann aber verbessert werden.","Il margine è positivo, ma può migliorare.","Marża jest dodatnia, ale można ją poprawić.","الهامش إيجابي، لكن يمكن تحسينه.","利润率为正，但仍有提升空间。"],
+"Todavía no hay margen positivo registrado.":["No positive margin has been recorded yet.","Aucune marge positive n’a encore été enregistrée.","Es wurde noch keine positive Marge erfasst.","Non è ancora stato registrato un margine positivo.","Nie zarejestrowano jeszcze dodatniej marży.","لم يتم تسجيل هامش إيجابي بعد.","尚未记录正利润率。"],
+"Costes contabilizados":["Accounted costs","Coûts comptabilisés","Verbuchte Kosten","Costi contabilizzati","Ujęte koszty","التكاليف المسجلة","已入账成本"],
+"Ingresos registrados":["Recorded revenue","Revenus enregistrés","Erfasste Einnahmen","Ricavi registrati","Zarejestrowane przychody","الإيرادات المسجلة","已记录收入"],
+"Según movimientos guardados":["Based on saved entries","Selon les écritures enregistrées","Basierend auf gespeicherten Buchungen","In base ai movimenti salvati","Na podstawie zapisanych wpisów","وفقًا للقيود المحفوظة","根据已保存的记录"],
+"Cobros registrados":["Recorded payments","Paiements enregistrés","Erfasste Zahlungseingänge","Incassi registrati","Zarejestrowane płatności","المدفوعات المسجلة","已记录收款"],
+"Actualizar":["Refresh","Actualiser","Aktualisieren","Aggiorna","Odśwież","تحديث","刷新"],
+"Ingresos": ["Revenue","Revenus","Einnahmen","Ricavi","Przychody","الإيرادات","收入"],
+"Margen": ["Margin","Marge","Marge","Margine","Marża","الهامش","利润率"]
+};for(const [k,v] of Object.entries(entries)){if(!Object.prototype.hasOwnProperty.call(d,k))d[k]=v;}if(typeof window.PCP_I18N?.refresh==='function')window.PCP_I18N.refresh();})();
+
+;(()=>{const d=window.PCP_I18N?.dictionary||{};const entries={
+'CONTABILIDAD':['ACCOUNTING', 'COMPTABILITÉ', 'BUCHHALTUNG', 'CONTABILITÀ', 'KSIĘGOWOŚĆ', 'المحاسبة', '会计'],
+'Análisis visual de ingresos, costes, beneficios y rendimiento de tus impresoras.':['Visual analysis of revenue, costs, profit and printer performance.', 'Analyse visuelle des revenus, des coûts, des bénéfices et des performances de vos imprimantes.', 'Visuelle Analyse von Einnahmen, Kosten, Gewinnen und Druckerleistung.', 'Analisi visiva di ricavi, costi, profitti e prestazioni delle stampanti.', 'Wizualna analiza przychodów, kosztów, zysków i wydajności drukarek.', 'تحليل مرئي للإيرادات والتكاليف والأرباح وأداء الطابعات.', '收入、成本、利润和打印机性能的可视化分析。'],
+'Costes contabilizados':['Accounted costs', 'Coûts comptabilisés', 'Verbuchte Kosten', 'Costi contabilizzati', 'Ujęte koszty', 'التكاليف المسجلة', '已入账成本'],
+'Según movimientos guardados':['Based on saved entries', 'Selon les écritures enregistrées', 'Basierend auf gespeicherten Buchungen', 'In base ai movimenti salvati', 'Na podstawie zapisanych wpisów', 'وفقًا للقيود المحفوظة', '根据已保存的记录'],
+'Beneficio / ingresos':['Profit / revenue', 'Bénéfice / revenus', 'Gewinn / Einnahmen', 'Profitto / ricavi', 'Zysk / przychody', 'الربح / الإيرادات', '利润 / 收入'],
+'Cobros registrados':['Recorded payments', 'Paiements enregistrés', 'Erfasste Zahlungseingänge', 'Incassi registrati', 'Zarejestrowane płatności', 'المدفوعات المسجلة', '已记录收款'],
+'Últimos seis meses · según los movimientos registrados':['Last six months · based on recorded entries', 'Six derniers mois · selon les écritures enregistrées', 'Letzte sechs Monate · basierend auf erfassten Buchungen', 'Ultimi sei mesi · in base ai movimenti registrati', 'Ostatnie sześć miesięcy · na podstawie zapisów', 'آخر ستة أشهر · وفقًا للقيود المسجلة', '最近六个月 · 根据已记录的交易'],
+'En qué se está gastando':['Where money is being spent', 'Où va l’argent dépensé', 'Wofür Geld ausgegeben wird', 'Dove vengono spesi i soldi', 'Na co są wydawane pieniądze', 'أين يتم إنفاق الأموال', '支出分布'],
+'Margen del periodo seleccionado':['Margin for the selected period', 'Marge de la période sélectionnée', 'Marge des ausgewählten Zeitraums', 'Margine del periodo selezionato', 'Marża wybranego okresu', 'هامش الفترة المحددة', '所选期间的利润率'],
+'Comparación de resultados por máquina':['Performance comparison by machine', 'Comparaison des résultats par machine', 'Leistungsvergleich nach Maschine', 'Confronto dei risultati per macchina', 'Porównanie wyników według maszyny', 'مقارنة النتائج حسب الطابعة', '按设备比较结果'],
+'Participación sobre el total':['Share of total', 'Part du total', 'Anteil am Gesamtbetrag', 'Quota sul totale', 'Udział w całości', 'الحصة من الإجمالي', '占总额比例'],
+'Importe acumulado en el periodo':['Total amount for the period', 'Montant cumulé sur la période', 'Gesamtbetrag im Zeitraum', 'Importo totale nel periodo', 'Łączna kwota w okresie', 'إجمالي المبلغ خلال الفترة', '期间累计金额'],
+'Muy rentable':['Highly profitable', 'Très rentable', 'Sehr rentabel', 'Molto redditizio', 'Bardzo rentowna', 'مربحة جدًا', '盈利能力很高'],
+'El margen supera el 50 %.':['The margin is above 50%.', 'La marge dépasse 50 %.', 'Die Marge liegt über 50 %.', 'Il margine supera il 50%.', 'Marża przekracza 50%.', 'الهامش يتجاوز 50٪.', '利润率超过 50%。'],
+'Rentabilidad moderada':['Moderate profitability', 'Rentabilité modérée', 'Mäßige Rentabilität', 'Redditività moderata', 'Umiarkowana rentowność', 'ربحية متوسطة', '盈利能力一般'],
+'Margen por mejorar':['Margin needs improvement', 'Marge à améliorer', 'Marge verbesserungswürdig', 'Margine da migliorare', 'Marża do poprawy', 'الهامش يحتاج إلى تحسين', '利润率有待提高'],
+'El margen es positivo, pero puede mejorar.':['The margin is positive but could improve.', 'La marge est positive, mais peut être améliorée.', 'Die Marge ist positiv, kann aber verbessert werden.', 'Il margine è positivo, ma può migliorare.', 'Marża jest dodatnia, ale można ją poprawić.', 'الهامش إيجابي، لكن يمكن تحسينه.', '利润率为正，但仍有提升空间。'],
+'Todavía no hay margen positivo registrado.':['No positive margin has been recorded yet.', 'Aucune marge positive n’a encore été enregistrée.', 'Es wurde noch keine positive Marge erfasst.', 'Non è ancora stato registrato un margine positivo.', 'Nie zarejestrowano jeszcze dodatniej marży.', 'لم يتم تسجيل هامش إيجابي بعد.', '尚未记录正利润率。'],
+'El beneficio se calcula con los importes guardados en Contabilidad. Las tasaciones y ventas estimadas no equivalen a ingresos cobrados. Los movimientos manuales se contabilizan según su tipo y fecha.':['Profit is calculated from the amounts saved in Accounting. Estimates and estimated sales are not the same as collected revenue. Manual entries are counted according to their type and date.', 'Le bénéfice est calculé à partir des montants enregistrés en comptabilité. Les estimations et ventes estimées ne correspondent pas à des revenus encaissés. Les mouvements manuels sont comptabilisés selon leur type et leur date.', 'Der Gewinn wird anhand der in der Buchhaltung gespeicherten Beträge berechnet. Kalkulationen und geschätzte Verkäufe sind keine Zahlungseingänge. Manuelle Buchungen werden entsprechend Typ und Datum berücksichtigt.', 'Il profitto è calcolato sugli importi salvati in Contabilità. Le stime e le vendite stimate non equivalgono a ricavi incassati. I movimenti manuali sono conteggiati in base al tipo e alla data.', 'Zysk jest obliczany na podstawie kwot zapisanych w księgowości. Wyceny i szacowana sprzedaż nie są równoznaczne z otrzymanymi płatnościami. Ręczne wpisy są uwzględniane według rodzaju i daty.', 'يُحسب الربح من المبالغ المحفوظة في المحاسبة. لا تعادل التقديرات والمبيعات المقدرة الإيرادات المحصلة. تُحتسب القيود اليدوية وفقًا لنوعها وتاريخها.', '利润根据会计中保存的金额计算。估算和预计销售额不等于已收款收入。手动记录按其类型和日期计入。']
+};for(const [k,v] of Object.entries(entries)){if(!Object.prototype.hasOwnProperty.call(d,k))d[k]=v;}if(typeof window.PCP_I18N?.refresh==='function')window.PCP_I18N.refresh();})();
+
+;(()=>{const d=window.PCP_I18N?.dictionary;if(!d)return;const entries={
+"↗ Evolución de ingresos, costes y beneficio":["↗ Revenue, costs and profit trend", "↗ Évolution des revenus, des coûts et du bénéfice", "↗ Entwicklung von Einnahmen, Kosten und Gewinn", "↗ Andamento di ricavi, costi e profitto", "↗ Trend przychodów, kosztów i zysku", "↗ اتجاه الإيرادات والتكاليف والأرباح", "↗ 收入、成本和利润趋势"],
+"◉ Distribución de costes":["◉ Cost distribution", "◉ Répartition des coûts", "◉ Kostenverteilung", "◉ Distribuzione dei costi", "◉ Struktura kosztów", "◉ توزيع التكاليف", "◉ 成本分布"],
+"▣ Rentabilidad global":["▣ Overall profitability", "▣ Rentabilité globale", "▣ Gesamtrentabilität", "▣ Redditività complessiva", "▣ Rentowność ogółem", "▣ الربحية الإجمالية", "▣ 整体盈利能力"],
+"▣ Rentabilidad por impresora":["▣ Profitability by printer", "▣ Rentabilité par imprimante", "▣ Rentabilität nach Drucker", "▣ Redditività per stampante", "▣ Rentowność według drukarki", "▣ الربحية حسب الطابعة", "▣ 按打印机划分的盈利能力"],
+"◉ Ingresos por impresora":["◉ Revenue by printer", "◉ Revenus par imprimante", "◉ Einnahmen nach Drucker", "◉ Ricavi per stampante", "◉ Przychody według drukarki", "◉ الإيرادات حسب الطابعة", "◉ 按打印机划分的收入"],
+"▥ Costes por categoría":["▥ Costs by category", "▥ Coûts par catégorie", "▥ Kosten nach Kategorie", "▥ Costi per categoria", "▥ Koszty według kategorii", "▥ التكاليف حسب الفئة", "▥ 按类别划分的成本"],
+"↻ Actualizar":["↻ Refresh", "↻ Actualiser", "↻ Aktualisieren", "↻ Aggiorna", "↻ Odśwież", "↻ تحديث", "↻ 刷新"],
+"▮▮▮   CONTABILIDAD":["▮▮▮   ACCOUNTING", "▮▮▮   COMPTABILITÉ", "▮▮▮   BUCHHALTUNG", "▮▮▮   CONTABILITÀ", "▮▮▮   KSIĘGOWOŚĆ", "▮▮▮   المحاسبة", "▮▮▮   会计"]
+};for(const [k,v] of Object.entries(entries)){d[k]=v;}if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();})();
+
+;(()=>{const d=window.PCP_I18N?.dictionary;if(!d)return;const entries={
+'TU TALLER 3D':['YOUR 3D WORKSHOP', 'VOTRE ATELIER 3D', 'DEINE 3D-WERKSTATT', 'IL TUO LABORATORIO 3D', 'TWÓJ WARSZTAT 3D', 'ورشتك ثلاثية الأبعاد', '你的 3D 工作室'],
+'Panel de control':['Dashboard', 'Tableau de bord', 'Übersicht', 'Pannello di controllo', 'Panel główny', 'لوحة التحكم', '控制面板'],
+'Controla tus impresiones, costes y ventas desde un solo lugar.':['Manage your prints, costs and sales in one place.', 'Gérez vos impressions, coûts et ventes depuis un seul endroit.', 'Verwalte Drucke, Kosten und Verkäufe an einem Ort.', 'Gestisci stampe, costi e vendite da un unico posto.', 'Zarządzaj wydrukami, kosztami i sprzedażą w jednym miejscu.', 'أدر مطبوعاتك وتكاليفك ومبيعاتك من مكان واحد.', '在一个地方管理打印、成本和销售。'],
+'Nuevo cálculo':['New calculation', 'Nouveau calcul', 'Neue Kalkulation', 'Nuovo calcolo', 'Nowa kalkulacja', 'حساب جديد', '新建计算'],
+'Cargar G-code':['Load G-code', 'Charger un G-code', 'G-Code laden', 'Carica G-code', 'Wczytaj G-code', 'تحميل G-code', '加载 G-code'],
+'Nuevo presupuesto':['New quote', 'Nouveau devis', 'Neues Angebot', 'Nuovo preventivo', 'Nowa wycena', 'عرض سعر جديد', '新建报价单'],
+'Nueva factura':['New invoice', 'Nouvelle facture', 'Neue Rechnung', 'Nuova fattura', 'Nowa faktura', 'فاتورة جديدة', '新建发票'],
+'Registrar pedido':['Create order', 'Créer une commande', 'Auftrag erfassen', 'Registra ordine', 'Zarejestruj zamówienie', 'تسجيل طلب', '登记订单'],
+'Ventas registradas':['Recorded sales', 'Ventes enregistrées', 'Erfasste Verkäufe', 'Vendite registrate', 'Zarejestrowana sprzedaż', 'المبيعات المسجلة', '已记录销售额'],
+'Costes contabilizados':['Recorded costs', 'Coûts comptabilisés', 'Erfasste Kosten', 'Costi contabilizzati', 'Zarejestrowane koszty', 'التكاليف المسجلة', '已记账成本'],
+'Según tus registros':['Based on your records', 'Selon vos enregistrements', 'Basierend auf deinen Einträgen', 'In base ai tuoi registri', 'Na podstawie zapisów', 'وفقًا لسجلاتك', '根据已保存记录'],
+'Evolución del negocio':['Business performance', 'Évolution de l’activité', 'Geschäftsentwicklung', 'Andamento dell’attività', 'Wyniki działalności', 'أداء النشاط', '业务趋势'],
+'Ingresos, costes y beneficio · últimos seis meses':['Revenue, costs and profit · last six months', 'Revenus, coûts et bénéfices · six derniers mois', 'Einnahmen, Kosten und Gewinn · letzte sechs Monate', 'Ricavi, costi e profitto · ultimi sei mesi', 'Przychody, koszty i zysk · ostatnie sześć miesięcy', 'الإيرادات والتكاليف والأرباح · آخر ستة أشهر', '收入、成本和利润 · 最近六个月'],
+'Ingresos':['Revenue', 'Revenus', 'Einnahmen', 'Ricavi', 'Przychody', 'الإيرادات', '收入'],
+'Costes':['Costs', 'Coûts', 'Kosten', 'Costi', 'Koszty', 'التكاليف', '成本'],
+'Beneficio':['Profit', 'Bénéfice', 'Gewinn', 'Profitto', 'Zysk', 'الربح', '利润'],
+'Dónde se concentra el gasto':['Where spending is concentrated', 'Où se concentrent les dépenses', 'Wo die Ausgaben anfallen', 'Dove si concentrano le spese', 'Gdzie koncentrują się wydatki', 'أين تتركز النفقات', '支出集中情况'],
+'Estado de tus equipos':['Your machine status', 'État de vos machines', 'Status deiner Geräte', 'Stato delle tue macchine', 'Stan urządzeń', 'حالة أجهزتك', '设备状态'],
+'Abrir monitor':['Open monitor', 'Ouvrir le moniteur', 'Monitor öffnen', 'Apri monitor', 'Otwórz monitor', 'فتح المراقب', '打开监控'],
+'Consulta el estado desde el monitor U1.':['Check status in the U1 monitor.', 'Consultez l’état dans le moniteur U1.', 'Prüfe den Status im U1-Monitor.', 'Controlla lo stato nel monitor U1.', 'Sprawdź stan w monitorze U1.', 'تحقق من الحالة في مراقب U1.', '请在 U1 监控面板中查看状态。'],
+'Tus trabajos guardados más recientes':['Your latest saved jobs', 'Vos derniers travaux enregistrés', 'Deine zuletzt gespeicherten Aufträge', 'I tuoi ultimi lavori salvati', 'Ostatnio zapisane zadania', 'أحدث أعمالك المحفوظة', '最近保存的任务'],
+'Ver historial':['View history', 'Voir l’historique', 'Verlauf anzeigen', 'Visualizza cronologia', 'Zobacz historię', 'عرض السجل', '查看历史记录'],
+'Bobinas disponibles':['Available spools', 'Bobines disponibles', 'Verfügbare Spulen', 'Bobine disponibili', 'Dostępne szpule', 'البكرات المتاحة', '可用线轴'],
+'Ver stock':['View stock', 'Voir le stock', 'Bestand anzeigen', 'Visualizza scorte', 'Zobacz zapasy', 'عرض المخزون', '查看库存'],
+'Tus herramientas habituales':['Your everyday tools', 'Vos outils habituels', 'Deine häufig genutzten Werkzeuge', 'I tuoi strumenti abituali', 'Najczęściej używane narzędzia', 'أدواتك المعتادة', '常用工具'],
+'Historial de tasaciones':['Estimate history', 'Historique des estimations', 'Kalkulationsverlauf', 'Cronologia stime', 'Historia wycen', 'سجل التقديرات', '估价历史'],
+'Avisos que conviene revisar':['Notices worth reviewing', 'Alertes à vérifier', 'Hinweise zur Überprüfung', 'Avvisi da controllare', 'Alerty do sprawdzenia', 'تنبيهات تستحق المراجعة', '需要检查的提醒'],
+'No hay bobinas registradas.':['No spools registered.', 'Aucune bobine enregistrée.', 'Keine Spulen registriert.', 'Nessuna bobina registrata.', 'Brak zarejestrowanych szpul.', 'لا توجد بكرات مسجلة.', '尚未登记线轴。'],
+'Datos de impresión':['Print settings','Paramètres d’impression','Druckeinstellungen','Impostazioni di stampa','Ustawienia druku','إعدادات الطباعة','打印设置'],
+'No hay alertas pendientes.':['No pending alerts.', 'Aucune alerte en attente.', 'Keine offenen Warnungen.', 'Nessun avviso in sospeso.', 'Brak oczekujących alertów.', 'لا توجد تنبيهات معلقة.', '没有待处理提醒。'],
+'Todavía no hay tasaciones guardadas.':['No estimates saved yet.', 'Aucune estimation enregistrée pour le moment.', 'Noch keine Kalkulationen gespeichert.', 'Non ci sono ancora stime salvate.', 'Nie zapisano jeszcze wycen.', 'لا توجد تقديرات محفوظة بعد.', '尚未保存估价。'],
+'Tasaciones':['Estimates', 'Estimations', 'Kalkulationen', 'Stime', 'Wyceny', 'التقديرات', '估价'],
+'Consulta y organiza las tasaciones que has guardado.':['View and organize your saved estimates.', 'Consultez et organisez vos estimations enregistrées.', 'Sieh dir deine gespeicherten Kalkulationen an und organisiere sie.', 'Consulta e organizza le stime salvate.', 'Przeglądaj i porządkuj zapisane wyceny.', 'اعرض التقديرات المحفوظة ونظّمها.', '查看并整理已保存的估价。'],
+};for(const [k,v] of Object.entries(entries)){if(!Object.prototype.hasOwnProperty.call(d,k))d[k]=v;}if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();})();
+
+// v5.5 — Título del resumen de tasaciones en Inicio.
+;(function(){const d=window.PCP_I18N&&window.PCP_I18N.dictionary;if(!d)return;d['Últimas tasaciones']=['Latest estimates','Dernières estimations','Letzte Kalkulationen','Ultime stime','Ostatnie wyceny','آخر التقديرات','最近的估价'];if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();})();
+
+;(function(){const d=window.PCP_I18N&&window.PCP_I18N.dictionary;if(!d)return;
+const add={
+'Conectada':['Connected','Connectée','Verbunden','Connessa','Połączona','متصلة','已连接'],
+'Offline':['Offline','Hors ligne','Offline','Offline','Offline','غير متصلة','离线'],
+'Sin verificar':['Not verified','Non vérifiée','Nicht überprüft','Non verificata','Niezweryfikowana','لم يتم التحقق','未验证'],
+'Impresora configurada':['Configured printer','Imprimante configurée','Konfigurierter Drucker','Stampante configurata','Skonfigurowana drukarka','الطابعة المُعدة','已配置的打印机'],
+'No se han reconocido impresoras en la red.':['No printers were detected on the network.','Aucune imprimante détectée sur le réseau.','Keine Drucker im Netzwerk erkannt.','Nessuna stampante rilevata nella rete.','Nie wykryto drukarek w sieci.','لم يتم العثور على طابعات على الشبكة.','网络中未检测到打印机。'],
+'No se pudo consultar el estado de las impresoras.':['Could not retrieve printer status.','Impossible de récupérer l’état des imprimantes.','Druckerstatus konnte nicht abgerufen werden.','Impossibile recuperare lo stato delle stampanti.','Nie można pobrać stanu drukarek.','تعذر جلب حالة الطابعات.','无法获取打印机状态。'],
+'No se pudo actualizar el estado':['Could not update status','Impossible de mettre à jour l’état','Status konnte nicht aktualisiert werden','Impossibile aggiornare lo stato','Nie można zaktualizować stanu','تعذر تحديث الحالة','无法更新状态'],
+'Tiempo de espera agotado':['Request timed out','Délai d’attente dépassé','Zeitüberschreitung','Tempo di attesa scaduto','Przekroczono limit czasu','انتهت مهلة الطلب','请求超时'],
+'Impresora':['Printer','Imprimante','Drucker','Stampante','Drukarka','طابعة','打印机'],
+
+"Centro de mantenimiento": ["Maintenance Center", "Centre de maintenance", "Wartungszentrum", "Centro manutenzione", "Centrum konserwacji", "مركز الصيانة", "维护中心"],
+"Controla horas, revisiones y vida útil de tus impresoras.": ["Track printer hours, inspections and service life.", "Suivez les heures, les contrôles et la durée de vie de vos imprimantes.", "Überwache Druckstunden, Prüfungen und Lebensdauer deiner Drucker.", "Monitora ore, controlli e durata delle stampanti.", "Monitoruj godziny pracy, przeglądy i żywotność drukarek.", "تابع ساعات التشغيل والفحوصات والعمر التشغيلي للطابعات.", "跟踪打印机运行小时、检查和使用寿命。"],
+"Añadir máquina": ["Add machine", "Ajouter une machine", "Maschine hinzufügen", "Aggiungi macchina", "Dodaj maszynę", "إضافة آلة", "添加设备"],
+"Registrar horas": ["Log hours", "Enregistrer les heures", "Stunden erfassen", "Registra ore", "Zarejestruj godziny", "تسجيل الساعات", "记录工时"],
+"Próximos mantenimientos": ["Upcoming maintenance", "Maintenances à venir", "Anstehende Wartungen", "Prossime manutenzioni", "Nadchodzące przeglądy", "الصيانة القادمة", "即将进行的维护"],
+"Tareas pendientes según horas y calendario": ["Pending tasks based on hours and calendar", "Tâches en attente selon les heures et le calendrier", "Offene Aufgaben nach Stunden und Kalender", "Attività in sospeso in base alle ore e al calendario", "Zadania według godzin i kalendarza", "المهام المستحقة حسب الساعات والتقويم", "按运行小时和日历安排的待办任务"],
+"Crear mantenimiento": ["Create maintenance task", "Créer une tâche de maintenance", "Wartungsaufgabe erstellen", "Crea attività di manutenzione", "Utwórz zadanie konserwacji", "إنشاء مهمة صيانة", "创建维护任务"],
+"Añade tareas y frecuencias propias": ["Add custom tasks and intervals", "Ajoutez vos propres tâches et fréquences", "Eigene Aufgaben und Intervalle hinzufügen", "Aggiungi attività e intervalli personalizzati", "Dodaj własne zadania i interwały", "أضف مهام وفترات مخصصة", "添加自定义任务和间隔"],
+"Nombre de la tarea": ["Task name", "Nom de la tâche", "Aufgabenname", "Nome attività", "Nazwa zadania", "اسم المهمة", "任务名称"],
+"Cada cuántas horas": ["Every how many hours", "Toutes les combien d’heures", "Alle wie viele Stunden", "Ogni quante ore", "Co ile godzin", "كل كم ساعة", "每隔多少小时"],
+"Cada cuántos días (opcional)": ["Every how many days (optional)", "Tous les combien de jours (facultatif)", "Alle wie viele Tage (optional)", "Ogni quanti giorni (facoltativo)", "Co ile dni (opcjonalnie)", "كل كم يوم (اختياري)", "每隔多少天（可选）"],
+"Instrucciones": ["Instructions", "Instructions", "Anweisungen", "Istruzioni", "Instrukcje", "التعليمات", "说明"],
+"Guardar tarea": ["Save task", "Enregistrer la tâche", "Aufgabe speichern", "Salva attività", "Zapisz zadanie", "حفظ المهمة", "保存任务"],
+"Historial de mantenimiento": ["Maintenance history", "Historique de maintenance", "Wartungsverlauf", "Storico manutenzioni", "Historia konserwacji", "سجل الصيانة", "维护历史"],
+"Registro de las tareas realizadas y sus observaciones": ["Record of completed tasks and notes", "Historique des tâches effectuées et observations", "Protokoll erledigter Aufgaben und Notizen", "Registro delle attività completate e note", "Rejestr wykonanych zadań i uwag", "سجل المهام المنجزة والملاحظات", "已完成任务及备注记录"],
+"Las frecuencias del fabricante prevalecen. Las tareas generales o personalizadas deben revisarse según el manual de cada modelo.": ["Manufacturer intervals take precedence. General or custom tasks should be checked against each model’s manual.", "Les fréquences du fabricant prévalent. Vérifiez les tâches générales ou personnalisées dans le manuel de chaque modèle.", "Herstellerintervalle haben Vorrang. Allgemeine oder benutzerdefinierte Aufgaben sind anhand des jeweiligen Handbuchs zu prüfen.", "Prevalgono gli intervalli del produttore. Verifica le attività generiche o personalizzate nel manuale del modello.", "Pierwszeństwo mają zalecenia producenta. Ogólne lub własne zadania należy sprawdzić w instrukcji danego modelu.", "تُعتمد فترات الشركة المصنعة أولاً. يجب مراجعة المهام العامة أو المخصصة في دليل كل طراز.", "以制造商规定的周期为准。通用或自定义任务应对照对应型号的手册核实。"],
+"No hay impresoras: añade una máquina": ["No printers: add a machine", "Aucune imprimante : ajoutez une machine", "Keine Drucker: Maschine hinzufügen", "Nessuna stampante: aggiungi una macchina", "Brak drukarek: dodaj maszynę", "لا توجد طابعات: أضف آلة", "没有打印机：请添加设备"],
+"Añade una impresora para comenzar.": ["Add a printer to get started.", "Ajoutez une imprimante pour commencer.", "Füge einen Drucker hinzu, um zu beginnen.", "Aggiungi una stampante per iniziare.", "Dodaj drukarkę, aby rozpocząć.", "أضف طابعة للبدء.", "添加打印机以开始。"],
+"Vencido": ["Overdue", "En retard", "Überfällig", "Scaduto", "Zaległe", "متأخر", "已逾期"],
+"Próximo": ["Due soon", "Bientôt dû", "Demnächst fällig", "In scadenza", "Wkrótce", "قريب الاستحقاق", "即将到期"],
+"Al día": ["Up to date", "À jour", "Aktuell", "In regola", "Aktualne", "محدّث", "正常"],
+"Cada": ["Every", "Tous les", "Alle", "Ogni", "Co", "كل", "每"],
+"días": ["days", "jours", "Tage", "giorni", "dni", "أيام", "天"],
+"Quedan": ["Remaining", "Restant", "Verbleibend", "Restano", "Pozostało", "متبقي", "剩余"],
+"Necesita atención": ["Needs attention", "Nécessite une intervention", "Benötigt Aufmerksamkeit", "Richiede attenzione", "Wymaga uwagi", "يتطلب الانتباه", "需要处理"],
+"Sin intervalo": ["No interval", "Aucun intervalle", "Kein Intervall", "Nessun intervallo", "Brak interwału", "بدون فترة", "无间隔"],
+"Marcar realizado": ["Mark completed", "Marquer comme effectué", "Als erledigt markieren", "Segna come completato", "Oznacz jako wykonane", "وضع علامة كمكتمل", "标记为已完成"],
+"No hay tareas configuradas.": ["No tasks configured.", "Aucune tâche configurée.", "Keine Aufgaben konfiguriert.", "Nessuna attività configurata.", "Nie skonfigurowano zadań.", "لم يتم إعداد مهام.", "尚未配置任务。"],
+"Tarea": ["Task", "Tâche", "Aufgabe", "Attività", "Zadanie", "المهمة", "任务"],
+"Horas de máquina": ["Machine hours", "Heures machine", "Maschinenstunden", "Ore macchina", "Godziny pracy maszyny", "ساعات تشغيل الآلة", "设备运行小时"],
+"Notas": ["Notes", "Notes", "Notizen", "Note", "Uwagi", "ملاحظات", "备注"],
+"Todavía no hay mantenimientos registrados.": ["No maintenance recorded yet.", "Aucune maintenance enregistrée.", "Noch keine Wartungen erfasst.", "Nessuna manutenzione registrata.", "Nie zapisano jeszcze konserwacji.", "لم يتم تسجيل أي صيانة بعد.", "尚无维护记录。"],
+"Ver guía oficial": ["View official guide", "Voir le guide officiel", "Offizielle Anleitung ansehen", "Vedi guida ufficiale", "Zobacz oficjalny przewodnik", "عرض الدليل الرسمي", "查看官方指南"],
+"Observaciones del mantenimiento (opcional):": ["Maintenance notes (optional):", "Observations de maintenance (facultatif) :", "Wartungsnotizen (optional):", "Note di manutenzione (facoltative):", "Uwagi dotyczące konserwacji (opcjonalnie):", "ملاحظات الصيانة (اختياري):", "维护备注（可选）："],
+"Intervalo de horas (0 si no aplica)": ["Hour interval (0 if not applicable)", "Intervalle en heures (0 si non applicable)", "Stundenintervall (0 falls nicht zutreffend)", "Intervallo ore (0 se non applicabile)", "Interwał godzin (0 jeśli nie dotyczy)", "الفاصل بالساعات (0 إن لم ينطبق)", "小时间隔（不适用则填 0）"],
+"Intervalo de días (0 si no aplica)": ["Day interval (0 if not applicable)", "Intervalle en jours (0 si non applicable)", "Tagesintervall (0 falls nicht zutreffend)", "Intervallo giorni (0 se non applicabile)", "Interwał dni (0 jeśli nie dotyczy)", "الفاصل بالأيام (0 إن لم ينطبق)", "天数间隔（不适用则填 0）"],
+"Introduce un número de horas válido.": ["Enter a valid number of hours.", "Saisissez un nombre d’heures valide.", "Gib eine gültige Stundenzahl ein.", "Inserisci un numero di ore valido.", "Wprowadź prawidłową liczbę godzin.", "أدخل عدد ساعات صالحًا.", "请输入有效的小时数。"],
+"Selecciona o añade una impresora primero.": ["Select or add a printer first.", "Sélectionnez ou ajoutez d’abord une imprimante.", "Wähle zuerst einen Drucker aus oder füge einen hinzu.", "Seleziona o aggiungi prima una stampante.", "Najpierw wybierz lub dodaj drukarkę.", "اختر طابعة أو أضفها أولاً.", "请先选择或添加打印机。"],
+"Indica un intervalo en horas o días.": ["Enter an interval in hours or days.", "Indiquez un intervalle en heures ou en jours.", "Gib ein Intervall in Stunden oder Tagen an.", "Indica un intervallo in ore o giorni.", "Podaj interwał w godzinach lub dniach.", "أدخل فترة بالساعات أو الأيام.", "请输入小时或天数间隔。"],
+"Nombre o alias de la impresora": ["Printer name or alias", "Nom ou alias de l’imprimante", "Druckername oder Alias", "Nome o alias della stampante", "Nazwa lub alias drukarki", "اسم الطابعة أو الاسم المستعار", "打印机名称或别名"],
+"Marca y modelo de la impresora": ["Printer make and model", "Marque et modèle de l’imprimante", "Marke und Modell des Druckers", "Marca e modello della stampante", "Marka i model drukarki", "الشركة المصنعة وطراز الطابعة", "打印机品牌和型号"],
+"Horas acumuladas": ["Total hours", "Heures cumulées", "Gesamtstunden", "Ore totali", "Łączna liczba godzin", "إجمالي الساعات", "累计小时"],
+"Vencidos": ["Overdue", "En retard", "Überfällig", "Scaduti", "Zaległe", "متأخرة", "已逾期"],
+"Próximos": ["Upcoming", "À venir", "Demnächst", "In arrivo", "Nadchodzące", "قادمة", "即将到期"],
+"Tareas configuradas": ["Configured tasks", "Tâches configurées", "Konfigurierte Aufgaben", "Attività configurate", "Skonfigurowane zadania", "المهام المُعدة", "已配置任务"],
+
+"Mecánica y movimiento": ["Motion system", "Mécanique et mouvement", "Mechanik und Bewegung", "Meccanica e movimento", "Mechanika i ruch", "الميكانيكا والحركة", "机械与运动"],
+"Extrusor y hotend": ["Extruder and hotend", "Extrudeur et hotend", "Extruder und Hotend", "Estrusore e hotend", "Ekstruder i hotend", "وحدة البثق والرأس الساخن", "挤出机与热端"],
+"Ventiladores y filtros": ["Fans and filters", "Ventilateurs et filtres", "Lüfter und Filter", "Ventole e filtri", "Wentylatory i filtry", "المراوح والفلاتر", "风扇与滤芯"],
+"Electrónica": ["Electronics", "Électronique", "Elektronik", "Elettronica", "Elektronika", "الإلكترونيات", "电子部件"],
+"Limpieza general": ["General cleaning", "Nettoyage général", "Allgemeine Reinigung", "Pulizia generale", "Czyszczenie ogólne", "التنظيف العام", "常规清洁"],
+"Ej. Engrasar husillos": ["E.g. Grease lead screws", "Ex. : graisser les vis", "Z. B. Gewindespindeln schmieren", "Es. Lubrificare le viti", "Np. Nasmarować śruby", "مثال: تشحيم البراغي", "例如：润滑丝杆"],
+"Ej. 200": ["E.g. 200", "Ex. : 200", "Z. B. 200", "Es. 200", "Np. 200", "مثال: 200", "例如：200"],
+"Ej. 30": ["E.g. 30", "Ex. : 30", "Z. B. 30", "Es. 30", "Np. 30", "مثال: 30", "例如：30"],
+"Describe qué hay que revisar y cómo hacerlo...": ["Describe what to inspect and how to do it...", "Décrivez ce qu’il faut vérifier et comment procéder...", "Beschreibe, was geprüft werden soll und wie...", "Descrivi cosa controllare e come farlo...", "Opisz, co sprawdzić i jak to zrobić...", "صف ما يجب فحصه وكيفية القيام بذلك...", "描述需要检查的内容及操作方法..."],
+
+"Horas de impresión adicionales que quieres registrar": ["Additional print hours to log", "Heures d’impression supplémentaires à enregistrer", "Zusätzliche Druckstunden zum Erfassen", "Ore di stampa aggiuntive da registrare", "Dodatkowe godziny drukowania do zapisania", "ساعات الطباعة الإضافية التي تريد تسجيلها", "要记录的额外打印小时数"],
+
+"Limpieza y lubricación de ejes lineales": ["Clean and lubricate linear shafts", "Nettoyer et lubrifier les axes linéaires", "Linearschienen reinigen und schmieren", "Pulire e lubrificare gli assi lineari", "Wyczyść i nasmaruj prowadnice liniowe", "تنظيف وتزييت المحاور الخطية", "清洁并润滑直线轴"],
+"Limpieza de varillas de carbono X": ["Clean X carbon rods", "Nettoyer les tiges carbone X", "X-Karbonstäbe reinigen", "Pulire le barre in carbonio X", "Wyczyść pręty węglowe X", "تنظيف قضبان الكربون X", "清洁 X 碳杆"],
+"Revisión y limpieza de correas XY": ["Inspect and clean XY belts", "Vérifier et nettoyer les courroies XY", "XY-Riemen prüfen und reinigen", "Controllare e pulire le cinghie XY", "Sprawdź i wyczyść paski XY", "فحص وتنظيف أحزمة XY", "检查并清洁 XY 皮带"],
+"Limpieza y engrase de husillos Z": ["Clean and grease Z lead screws", "Nettoyer et graisser les vis Z", "Z-Gewindespindeln reinigen und fetten", "Pulire e ingrassare le viti Z", "Wyczyść i nasmaruj śruby Z", "تنظيف وتشحيم براغي Z", "清洁并润滑 Z 丝杆"],
+"Limpieza y lubricación de pasadores y bolas": ["Clean and lubricate pins and balls", "Nettoyer et lubrifier les axes et billes", "Stifte und Kugeln reinigen und schmieren", "Pulire e lubrificare perni e sfere", "Wyczyść i nasmaruj trzpienie i kulki", "تنظيف وتزييت الدبابيس والكرات", "清洁并润滑销钉和钢珠"],
+"Limpieza de contactos pogo pin": ["Clean pogo-pin contacts", "Nettoyer les contacts pogo", "Pogo-Pin-Kontakte reinigen", "Pulire i contatti pogo pin", "Wyczyść styki pogo pin", "تنظيف نقاط التلامس pogo pin", "清洁弹簧针触点"],
+"Revisión de extrusor, hotend y ventiladores": ["Inspect extruder, hotend and fans", "Vérifier l’extrudeur, le hotend et les ventilateurs", "Extruder, Hotend und Lüfter prüfen", "Controllare estrusore, hotend e ventole", "Sprawdź ekstruder, hotend i wentylatory", "فحص وحدة البثق والرأس الساخن والمراوح", "检查挤出机、热端和风扇"],
+"Limpieza de máquina y plataforma": ["Clean printer and build plate", "Nettoyer la machine et le plateau", "Drucker und Druckplatte reinigen", "Pulire stampante e piano", "Wyczyść drukarkę i stół", "تنظيف الطابعة ومنصة الطباعة", "清洁打印机和打印平台"],
+"Comprobar hotend tras cambio de filamento": ["Check hotend after filament change", "Vérifier le hotend après changement de filament", "Hotend nach Filamentwechsel prüfen", "Controllare l’hotend dopo il cambio filamento", "Sprawdź hotend po zmianie filamentu", "فحص الرأس الساخن بعد تغيير الخيط", "更换耗材后检查热端"],
+"Lubricación del mecanismo XYZ y husillos": ["Lubricate XYZ mechanism and lead screws", "Lubrifier le mécanisme XYZ et les vis", "XYZ-Mechanik und Spindeln schmieren", "Lubrificare il meccanismo XYZ e le viti", "Nasmaruj mechanizm XYZ i śruby", "تزييت آلية XYZ والبراغي", "润滑 XYZ 机构和丝杆"],
+"Sustitución del cartucho de filtro": ["Replace filter cartridge", "Remplacer la cartouche du filtre", "Filtereinsatz austauschen", "Sostituire la cartuccia del filtro", "Wymień wkład filtra", "استبدال خرطوشة الفلتر", "更换滤芯"],
+"Autocomprobación y optimización de vibraciones": ["Run self-test and vibration optimization", "Lancer l’autotest et l’optimisation des vibrations", "Selbsttest und Vibrationsoptimierung ausführen", "Eseguire autotest e ottimizzazione vibrazioni", "Uruchom autotest i optymalizację drgań", "تشغيل الاختبار الذاتي وتحسين الاهتزازات", "执行自检和振动优化"],
+"Limpieza de placa y zona de impresión": ["Clean build plate and print area", "Nettoyer le plateau et la zone d’impression", "Druckplatte und Druckbereich reinigen", "Pulire il piano e l’area di stampa", "Wyczyść stół i obszar drukowania", "تنظيف منصة الطباعة ومنطقة الطباعة", "清洁打印板和打印区域"],
+"Inspección de ventiladores y conductos": ["Inspect fans and air ducts", "Vérifier les ventilateurs et conduits", "Lüfter und Luftkanäle prüfen", "Ispezionare ventole e condotti", "Sprawdź wentylatory i kanały", "فحص المراوح ومجاري الهواء", "检查风扇和风道"],
+"Revisión de husillos Z y guías": ["Inspect Z lead screws and rails", "Vérifier les vis Z et les rails", "Z-Spindeln und Führungen prüfen", "Controllare viti Z e guide", "Sprawdź śruby Z i prowadnice", "فحص براغي Z والقضبان", "检查 Z 丝杆和导轨"],
+"Revisión de extrusor y cortador": ["Inspect extruder and cutter", "Vérifier l’extrudeur et le coupe-filament", "Extruder und Filamentschneider prüfen", "Controllare estrusore e taglierina", "Sprawdź ekstruder i obcinak", "فحص وحدة البثق والقاطع", "检查挤出机和切刀"],
+"Inspección de correas y conectores": ["Inspect belts and connectors", "Vérifier les courroies et connecteurs", "Riemen und Anschlüsse prüfen", "Controllare cinghie e connettori", "Sprawdź paski i złącza", "فحص الأحزمة والموصلات", "检查皮带和连接器"],
+"Limpieza general y hotend": ["General cleaning and hotend", "Nettoyage général et hotend", "Allgemeine Reinigung und Hotend", "Pulizia generale e hotend", "Czyszczenie ogólne i hotend", "تنظيف عام والرأس الساخن", "常规清洁和热端"],
+"Comprobación y lubricación de varillas lisas": ["Check and lubricate smooth rods", "Vérifier et lubrifier les tiges lisses", "Glatte Wellen prüfen und schmieren", "Controllare e lubrificare le barre lisce", "Sprawdź i nasmaruj gładkie pręty", "فحص وتزييت القضبان الملساء", "检查并润滑光轴"],
+"Revisión de correas, poleas y ventiladores": ["Inspect belts, pulleys and fans", "Vérifier courroies, poulies et ventilateurs", "Riemen, Riemenscheiben und Lüfter prüfen", "Controllare cinghie, pulegge e ventole", "Sprawdź paski, koła pasowe i wentylatory", "فحص الأحزمة والبكرات والمراوح", "检查皮带、滑轮和风扇"],
+"Revisión de conectores eléctricos": ["Inspect electrical connectors", "Vérifier les connecteurs électriques", "Elektrische Anschlüsse prüfen", "Controllare i connettori elettrici", "Sprawdź złącza elektryczne", "فحص الموصلات الكهربائية", "检查电气连接器"],
+"Lubricación de guías lineales": ["Lubricate linear rails", "Lubrifier les rails linéaires", "Linearschienen schmieren", "Lubrificare le guide lineari", "Nasmaruj prowadnice liniowe", "تزييت القضبان الخطية", "润滑直线导轨"],
+"Revisión y cambio de filtro de algodón": ["Inspect and replace filter cotton", "Vérifier et remplacer le filtre en coton", "Baumwollfilter prüfen und wechseln", "Controllare e sostituire il filtro in cotone", "Sprawdź i wymień filtr bawełniany", "فحص واستبدال فلتر القطن", "检查并更换棉滤芯"],
+"Limpieza de residuos de filamento": ["Clean filament debris", "Nettoyer les résidus de filament", "Filamentreste entfernen", "Pulire i residui di filamento", "Usuń pozostałości filamentu", "تنظيف بقايا الخيط", "清理耗材残留"],
+"Limpieza y lubricación de husillos dobles X/Y": ["Clean and lubricate X/Y dual spindles", "Nettoyer et lubrifier les doubles vis X/Y", "Doppelte X/Y-Spindeln reinigen und schmieren", "Pulire e lubrificare le doppie viti X/Y", "Wyczyść i nasmaruj podwójne śruby X/Y", "تنظيف وتزييت براغي X/Y المزدوجة", "清洁并润滑 X/Y 双丝杆"],
+"Inspección de extrusor y hotend": ["Inspect extruder and hotend", "Vérifier l’extrudeur et le hotend", "Extruder und Hotend prüfen", "Controllare estrusore e hotend", "Sprawdź ekstruder i hotend", "فحص وحدة البثق والرأس الساخن", "检查挤出机和热端"],
+"Limpieza general y plataforma": ["General cleaning and build plate", "Nettoyage général et plateau", "Allgemeine Reinigung und Druckplatte", "Pulizia generale e piano", "Czyszczenie ogólne i stół", "تنظيف عام ومنصة الطباعة", "常规清洁和打印平台"],
+"Inspección de correas y movimiento": ["Inspect belts and motion system", "Vérifier les courroies et le mouvement", "Riemen und Bewegungssystem prüfen", "Controllare cinghie e movimento", "Sprawdź paski i układ ruchu", "فحص الأحزمة ونظام الحركة", "检查皮带和运动系统"],
+"Limpiar los ejes y rodamientos lineales con paño sin pelusa e IPA; aplicar una película fina de grasa blanca de litio NLGI 2–3 o aceite de husillo adecuado. Retirar el exceso.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Limpiar con paño sin pelusa ligeramente humedecido con IPA/etanol. No aplicar aceite ni grasa a las varillas de carbono.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Comprobar tensión y desgaste; retirar polvo con paño seco. No contaminar con lubricante.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Limpiar roscas con cepillo suave y aplicar una capa fina de grasa blanca de litio. Mover Z para repartir y retirar el exceso.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Limpiar con paño sin pelusa e IPA/etanol y aplicar una cantidad moderada de grasa compatible en los puntos indicados por Snapmaker.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Con la máquina apagada, limpiar suavemente en una dirección con paño sin pelusa apenas humedecido con alcohol. Dejar secar.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Retirar restos visibles de filamento, comprobar el engranaje impulsor, la boquilla y que los ventiladores giren sin obstrucciones. Consultar la guía de desmontaje antes de abrir componentes.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Antes de cada impresión, retirar restos del interior y limpiar residuos de filamento o adhesivo de la plataforma.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Tras cada cambio, comprobar que la alimentación/extrusión sea normal. Si no lo es, revisar posible obstrucción.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Aplicar una pequeña cantidad de grasa en los puntos indicados por el manual y mover los ejes para distribuirla. Evitar exceso y correas.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Sustituir el cartucho del filtro de aire según el procedimiento del fabricante.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Ejecutar la optimización de vibraciones y la nivelación automática desde la interfaz de la impresora.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Limpiar la placa según el material de superficie y retirar restos de filamento antes de imprimir.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Revisar acumulación de polvo o filamento en ventiladores y conductos; limpiar con la máquina apagada.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Limpiar y lubricar según el tipo de guía del modelo. No aplicar grasa a varillas de carbono X de X1/P1.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Retirar restos de filamento y revisar engranajes, cortador y tubo PTFE según desgaste. No lubricar engranajes salvo indicación del manual.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Comprobar desgaste, tensión y conectores visibles. Ajustar correas solo siguiendo el procedimiento oficial o avisos del equipo.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Retirar residuos. Limpiar boquilla/bloque con el procedimiento Prusa, evitando cables y superficies calientes.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Comprobar arañazos, limpiar varillas lisas y lubricar con Prusa Lubricant. No lubricar husillos roscados Z ni tuercas trapezoidales.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Retirar residuos de poleas/correas, comprobar tensión y limpiar ventiladores sin hacerlos girar con aire comprimido.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Con impresora apagada y desenchufada, revisar conectores de placas, cama, PSU y pantalla.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Limpiar y aplicar aceite lubricante a las guías según el manual del fabricante.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Revisar oscurecimiento y sustituir el algodón del filtro cuando corresponda.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Retirar residuos acumulados en el interior de la cámara.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Limpiar los husillos metálicos dobles X/Y y aplicar una capa fina de grasa. Mover los ejes para distribuirla.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Limpiar los husillos Z y aplicar una capa fina de grasa. Mover Z varias veces y retirar exceso.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Comprobar alimentación, acumulación de filamento, ventilador del hotend y estado de la boquilla.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Retirar polvo y restos de filamento; limpiar la superficie de impresión según el material. Frecuencia orientativa, revisar manual del modelo.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Comprobar tensión, desgaste y suavidad de los ejes. Lubricar solo los elementos que el manual del modelo indique.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+"Revisar restos de filamento, boquilla, engranajes y ventiladores. Limpiar con la máquina apagada y fría.": ["Follow the model-specific maintenance procedure. See the linked manufacturer guide and observe all safety precautions.", "Suivez la procédure d’entretien propre au modèle. Consultez le guide du fabricant et respectez les consignes de sécurité.", "Befolge das modellspezifische Wartungsverfahren. Beachte die Herstelleranleitung und alle Sicherheitshinweise.", "Segui la procedura di manutenzione specifica del modello. Consulta la guida del produttore e rispetta le precauzioni.", "Postępuj zgodnie z procedurą konserwacji danego modelu. Sprawdź instrukcję producenta i przestrzegaj zasad bezpieczeństwa.", "اتبع إجراء الصيانة الخاص بالطراز. راجع دليل الشركة المصنعة والتزم بجميع احتياطات السلامة.", "请按照该型号的维护流程操作。查阅制造商指南并遵守所有安全注意事项。"],
+
+"Orientativo · confirmar manual del modelo": ["Guidance only · verify the model manual", "Indicatif · vérifier le manuel du modèle", "Orientierung · Modellhandbuch prüfen", "Indicativo · verificare il manuale del modello", "Orientacyjnie · sprawdź instrukcję modelu", "إرشادي · تحقق من دليل الطراز", "参考建议 · 请核对型号手册"],
+"Guía de mantenimiento del fabricante": ["Manufacturer maintenance guide", "Guide d’entretien du fabricant", "Wartungsanleitung des Herstellers", "Guida di manutenzione del produttore", "Instrukcja konserwacji producenta", "دليل صيانة الشركة المصنعة", "制造商维护指南"],
+"Base orientativa · personalizable": ["General starting point · customizable", "Base indicative · personnalisable", "Allgemeine Grundlage · anpassbar", "Base indicativa · personalizzabile", "Ogólna baza · do dostosowania", "قاعدة إرشادية · قابلة للتخصيص", "通用基础方案 · 可自定义"],
+
+"Lubricación de ejes X/Y/Z": ["Lubricate X/Y/Z axes", "Lubrifier les axes X/Y/Z", "X/Y/Z-Achsen schmieren", "Lubrificare gli assi X/Y/Z", "Nasmaruj osie X/Y/Z", "تزييت محاور X/Y/Z", "润滑 X/Y/Z 轴"],
+"Limpieza de engranajes del extrusor": ["Clean extruder gears", "Nettoyer les engrenages de l’extrudeur", "Extruderzahnräder reinigen", "Pulire gli ingranaggi dell’estrusore", "Wyczyść koła zębate ekstrudera", "تنظيف تروس وحدة البثق", "清洁挤出机齿轮"],
+"Revisión de módulos y ventiladores": ["Inspect modules and fans", "Vérifier les modules et ventilateurs", "Module und Lüfter prüfen", "Controllare moduli e ventole", "Sprawdź moduły i wentylatory", "فحص الوحدات والمراوح", "检查模块和风扇"],
+"Lubricación de husillos dobles X/Y": ["Lubricate X/Y dual spindles", "Lubrifier les doubles vis X/Y", "Doppelte X/Y-Spindeln schmieren", "Lubrificare le doppie viti X/Y", "Nasmaruj podwójne śruby X/Y", "تزييت براغي X/Y المزدوجة", "润滑 X/Y 双丝杆"],
+"Limpieza y lubricación del husillo Z": ["Clean and lubricate Z lead screw", "Nettoyer et lubrifier la vis Z", "Z-Gewindespindel reinigen und schmieren", "Pulire e lubrificare la vite Z", "Wyczyść i nasmaruj śrubę Z", "تنظيف وتزييت برغي Z", "清洁并润滑 Z 丝杆"],
+"Inspección de movimiento y extrusor": ["Inspect motion system and extruder", "Vérifier le mouvement et l’extrudeur", "Bewegungssystem und Extruder prüfen", "Controllare movimento ed estrusore", "Sprawdź układ ruchu i ekstruder", "فحص نظام الحركة ووحدة البثق", "检查运动系统和挤出机"],
+"Lubricar guías lineales X/Y y husillo Z con las grasas especificadas por Snapmaker. Adelantar si hay ruido, bloqueo o grasa ennegrecida.": ["Lubricate X/Y linear guides and Z lead screw with the greases specified by Snapmaker. Service sooner if noise, binding or darkened grease appears.", "Lubrifiez les guides X/Y et la vis Z avec les graisses indiquées par Snapmaker. Intervenez plus tôt en cas de bruit, blocage ou graisse noircie.", "X/Y-Führungen und Z-Spindel mit den von Snapmaker angegebenen Schmierstoffen schmieren. Bei Geräuschen, Blockieren oder dunklem Fett früher warten.", "Lubrifica le guide X/Y e la vite Z con i grassi indicati da Snapmaker. Anticipa in caso di rumore, blocco o grasso scurito.", "Nasmaruj prowadnice X/Y i śrubę Z smarami wskazanymi przez Snapmaker. Wykonaj wcześniej, jeśli pojawi się hałas, blokowanie lub ściemniony smar.", "قم بتزييت أدلة X/Y وبرغي Z بالشحوم المحددة من Snapmaker. أجرِ الصيانة مبكرًا عند ظهور ضوضاء أو انحشار أو اسوداد الشحم.", "使用 Snapmaker 指定的润滑脂润滑 X/Y 导轨和 Z 丝杆。如出现噪音、卡滞或润滑脂变黑，请提前维护。"],
+"Descargar filamento, apagar la máquina y limpiar las virutas de filamento de los engranajes con un cepillo suave.": ["Unload filament, power off the printer and brush filament debris from the gears.", "Déchargez le filament, éteignez l’imprimante et retirez les débris des engrenages avec une brosse douce.", "Filament entladen, Drucker ausschalten und Filamentreste mit einer weichen Bürste von den Zahnrädern entfernen.", "Scarica il filamento, spegni la stampante e rimuovi i residui dagli ingranaggi con una spazzola morbida.", "Rozładuj filament, wyłącz drukarkę i usuń resztki z kół zębatych miękką szczotką.", "أفرغ الخيط وأوقف الطابعة ونظّف بقايا الخيط من التروس بفرشاة ناعمة.", "卸载耗材并关闭打印机，用软刷清除齿轮上的耗材碎屑。"],
+"Descargar filamento, apagar la máquina, abrir la cubierta del módulo y retirar residuos de filamento de los engranajes con un cepillo.": ["Unload filament, power off the machine, open the module cover and brush filament debris from the gears.", "Déchargez le filament, éteignez la machine, ouvrez le capot du module et nettoyez les engrenages avec une brosse.", "Filament entladen, Maschine ausschalten, Modulabdeckung öffnen und Filamentreste mit einer Bürste entfernen.", "Scarica il filamento, spegni la macchina, apri il coperchio del modulo e pulisci gli ingranaggi con una spazzola.", "Rozładuj filament, wyłącz urządzenie, otwórz osłonę modułu i wyczyść koła zębate szczotką.", "أفرغ الخيط وأوقف الجهاز وافتح غطاء الوحدة ونظّف التروس بفرشاة.", "卸载耗材并关闭设备，打开模块盖，用刷子清理齿轮上的耗材残留。"],
+"Comprobar polvo, residuos y funcionamiento de ventiladores y módulos. Seguir la guía específica del módulo instalado.": ["Check dust, debris and fan/module operation. Follow the guide for the installed module.", "Vérifiez la poussière, les débris et le fonctionnement des ventilateurs/modules. Suivez le guide du module installé.", "Staub, Rückstände und Lüfter-/Modulfunktion prüfen. Anleitung des installierten Moduls befolgen.", "Controlla polvere, residui e funzionamento di ventole e moduli. Segui la guida del modulo installato.", "Sprawdź kurz, zanieczyszczenia oraz działanie wentylatorów i modułów. Postępuj zgodnie z instrukcją modułu.", "افحص الغبار والبقايا وعمل المراوح والوحدات. اتبع دليل الوحدة المثبتة.", "检查灰尘、残留物以及风扇/模块运行情况。遵循已安装模块的指南。"],
+"Desconectar la alimentación. Limpiar el husillo con paño sin polvo y aplicar una capa fina de grasa blanca de litio.": ["Disconnect power. Clean the lead screw with a lint-free cloth and apply a thin layer of white lithium grease.", "Débranchez l’alimentation. Nettoyez la vis avec un chiffon non pelucheux et appliquez une fine couche de graisse blanche au lithium.", "Strom trennen. Spindel mit fusselfreiem Tuch reinigen und dünn mit weißem Lithiumfett schmieren.", "Scollega l’alimentazione. Pulisci la vite con un panno senza pelucchi e applica un sottile strato di grasso al litio bianco.", "Odłącz zasilanie. Wyczyść śrubę niestrzępiącą się ściereczką i nałóż cienką warstwę białego smaru litowego.", "افصل الطاقة. نظّف البرغي بقطعة قماش لا تترك وبرًا وضع طبقة رقيقة من شحم الليثيوم الأبيض.", "断开电源。用无绒布清洁丝杆，并涂上一层薄薄的白色锂基润滑脂。"],
+"Revisar movimiento suave, restos de filamento, boquilla y ventiladores. Consultar el centro de soporte del modelo.": ["Check smooth motion, filament debris, nozzle and fans. Consult the model support center.", "Vérifiez la fluidité du mouvement, les résidus de filament, la buse et les ventilateurs. Consultez l’assistance du modèle.", "Leichtgängigkeit, Filamentreste, Düse und Lüfter prüfen. Modell-Support konsultieren.", "Controlla la fluidità del movimento, i residui di filamento, l’ugello e le ventole. Consulta il supporto del modello.", "Sprawdź płynność ruchu, resztki filamentu, dyszę i wentylatory. Skorzystaj z pomocy dla modelu.", "افحص سلاسة الحركة وبقايا الخيط والفوهة والمراوح. راجع دعم الطراز.", "检查运动是否顺畅、耗材残留、喷嘴和风扇。请查阅该型号的支持资料。"],
+
+"Registrar mantenimiento": ["Log maintenance", "Enregistrer la maintenance", "Wartung erfassen", "Registra manutenzione", "Zarejestruj konserwację", "تسجيل الصيانة", "记录维护"],
+"Editar tarea": ["Edit task", "Modifier la tâche", "Aufgabe bearbeiten", "Modifica attività", "Edytuj zadanie", "تعديل المهمة", "编辑任务"],
+
+"Inspeccionar visualmente cables, conectores y elementos móviles. No manipular conexiones con la máquina conectada.": ["Visually inspect cables, connectors and moving parts. Do not handle connections while the machine is powered.", "Inspectez visuellement les câbles, connecteurs et pièces mobiles. Ne manipulez pas les connexions lorsque la machine est sous tension.", "Kabel, Anschlüsse und bewegliche Teile visuell prüfen. Anschlüsse nicht bei eingeschaltetem Gerät berühren.", "Ispeziona visivamente cavi, connettori e parti mobili. Non manipolare i collegamenti con la macchina accesa.", "Sprawdź wzrokowo przewody, złącza i ruchome części. Nie dotykaj połączeń, gdy urządzenie jest włączone.", "افحص الكابلات والموصلات والأجزاء المتحركة بصريًا. لا تلمس التوصيلات أثناء تشغيل الجهاز.", "目视检查线缆、连接器和活动部件。设备通电时不要操作连接部位。"],
+"Limpieza y lubricación de husillos Z": ["Clean and lubricate Z lead screws", "Nettoyer et lubrifier les vis Z", "Z-Gewindespindeln reinigen und schmieren", "Pulire e lubrificare le viti Z", "Wyczyść i nasmaruj śruby Z", "تنظيف وتزييت براغي Z", "清洁并润滑 Z 丝杆"],
+"Revisión de cables y conectores": ["Inspect cables and connectors", "Vérifier les câbles et connecteurs", "Kabel und Anschlüsse prüfen", "Controllare cavi e connettori", "Sprawdź przewody i złącza", "فحص الكابلات والموصلات", "检查线缆和连接器"],
+
+"MANTENIMIENTO DE IMPRESORAS": ["PRINTER MAINTENANCE", "MAINTENANCE DES IMPRIMANTES", "DRUCKERWARTUNG", "MANUTENZIONE STAMPANTI", "KONSERWACJA DRUKAREK", "صيانة الطابعات", "打印机维护"],
+"Hotend y bloque calefactor": ["Hotend and heater block", "Hotend et bloc chauffant", "Hotend und Heizblock", "Hotend e blocco riscaldante", "Hotend i blok grzejny", "الفوهة الساخنة وكتلة التسخين", "热端和加热块"],
+"Boquilla y desgaste": ["Nozzle and wear", "Buse et usure", "Düse und Verschleiß", "Ugello e usura", "Dysza i zużycie", "الفوهة والتآكل", "喷嘴与磨损"],
+"Correas, poleas y tensores": ["Belts, pulleys and tensioners", "Courroies, poulies et tendeurs", "Riemen, Riemenscheiben und Spanner", "Cinghie, pulegge e tenditori", "Paski, koła pasowe i napinacze", "الأحزمة والبكرات والشدادات", "皮带、滑轮和张紧器"],
+"Cama y superficie": ["Bed and print surface", "Plateau et surface d’impression", "Druckbett und Druckoberfläche", "Piano e superficie di stampa", "Stół i powierzchnia druku", "السرير وسطح الطباعة", "热床和打印表面"],
+"Sensores y nivelación": ["Sensors and leveling", "Capteurs et nivellement", "Sensoren und Nivellierung", "Sensori e livellamento", "Czujniki i poziomowanie", "المستشعرات والتسوية", "传感器和调平"],
+"Cableado y conectores": ["Wiring and connectors", "Câblage et connecteurs", "Verkabelung und Steckverbinder", "Cablaggio e connettori", "Okablowanie i złącza", "الأسلاك والموصلات", "线缆和连接器"],
+"Inspección del hotend y bloque calefactor": ["Inspect the hotend and heater block", "Inspecter le hotend et le bloc chauffant", "Hotend und Heizblock prüfen", "Ispezionare hotend e blocco riscaldante", "Sprawdź hotend i blok grzejny", "فحص الفوهة الساخنة وكتلة التسخين", "检查热端和加热块"],
+"Con la impresora apagada y fría, comprobar fijación del bloque, restos de plástico, daños visibles y estado del aislamiento. No apretar ni desmontar en caliente salvo procedimiento del fabricante.": ["With the printer switched off and cold, check the block mounting, plastic residue, visible damage and insulation. Do not tighten or dismantle while hot unless the manufacturer procedure requires it.", "Imprimante éteinte et froide, vérifier la fixation du bloc, les résidus de plastique, les dommages visibles et l’isolation. Ne pas serrer ni démonter à chaud sauf procédure du fabricant.", "Drucker ausschalten und abkühlen lassen. Befestigung des Blocks, Kunststoffreste, sichtbare Schäden und Isolierung prüfen. Nur nach Herstellervorgabe im heißen Zustand festziehen oder zerlegen.", "A stampante spenta e fredda, controllare il fissaggio del blocco, residui di plastica, danni visibili e isolamento. Non serrare né smontare a caldo salvo procedura del produttore.", "Przy wyłączonej i zimnej drukarce sprawdź mocowanie bloku, pozostałości plastiku, widoczne uszkodzenia i izolację. Nie dokręcaj ani nie demontuj na gorąco, chyba że wymaga tego procedura producenta.", "أوقف الطابعة واتركها تبرد، ثم افحص تثبيت الكتلة وبقايا البلاستيك والأضرار الظاهرة والعزل. لا تشد أو تفك الأجزاء وهي ساخنة إلا وفق إجراء الشركة المصنعة.", "关闭打印机并冷却后，检查加热块固定情况、塑料残留、可见损坏和绝缘层。除非制造商流程明确要求，否则不要在高温时拧紧或拆卸。"],
+"Limpieza de boquilla y comprobación de obstrucciones": ["Clean the nozzle and check for clogs", "Nettoyer la buse et vérifier les obstructions", "Düse reinigen und auf Verstopfungen prüfen", "Pulire l’ugello e verificare eventuali ostruzioni", "Wyczyść dyszę i sprawdź zatkanie", "تنظيف الفوهة والتحقق من الانسداد", "清洁喷嘴并检查堵塞"],
+"Comprobar la salida de material y retirar residuos siguiendo el procedimiento del fabricante. Usar la temperatura y herramienta adecuadas; evitar forzar la boquilla en frío.": ["Check material flow and remove residue following the manufacturer's procedure. Use the correct temperature and tool; do not force the nozzle when cold.", "Vérifier le débit du matériau et retirer les résidus selon la procédure du fabricant. Utiliser la température et l’outil adaptés ; ne pas forcer la buse à froid.", "Materialfluss prüfen und Rückstände gemäß Herstellervorgabe entfernen. Geeignete Temperatur und Werkzeuge verwenden; Düse nicht kalt gewaltsam lösen.", "Verificare il flusso del materiale e rimuovere i residui secondo la procedura del produttore. Usare temperatura e utensile adeguati; non forzare l’ugello a freddo.", "Sprawdź przepływ materiału i usuń pozostałości zgodnie z procedurą producenta. Użyj odpowiedniej temperatury i narzędzia; nie próbuj na siłę odkręcać zimnej dyszy.", "تحقق من تدفق المادة وأزل البقايا وفق إجراء الشركة المصنعة. استخدم درجة الحرارة والأداة المناسبتين ولا تضغط على الفوهة وهي باردة.", "按照制造商流程检查材料流动并清除残留物。使用适当温度和工具；不要在冷却状态下强行处理喷嘴。"],
+"Comprobar desgaste de boquilla y sustituir si procede": ["Check nozzle wear and replace if needed", "Vérifier l’usure de la buse et la remplacer si nécessaire", "Düsenverschleiß prüfen und bei Bedarf ersetzen", "Controllare l’usura dell’ugello e sostituirlo se necessario", "Sprawdź zużycie dyszy i w razie potrzeby wymień", "فحص تآكل الفوهة واستبدالها عند الحاجة", "检查喷嘴磨损，必要时更换"],
+"Revisar diámetro, deformación, desgaste y calidad de extrusión. Sustituir si está desgastada, dañada o no puede desatascarse. Intervalo orientativo: adelantar según material abrasivo y síntomas.": ["Check diameter, deformation, wear and extrusion quality. Replace if worn, damaged or impossible to unclog. Suggested interval: shorten it when using abrasive materials or when symptoms appear.", "Vérifier le diamètre, la déformation, l’usure et la qualité d’extrusion. Remplacer si la buse est usée, endommagée ou impossible à déboucher. Intervalle indicatif à raccourcir avec les matériaux abrasifs ou en cas de symptômes.", "Durchmesser, Verformung, Verschleiß und Extrusionsqualität prüfen. Bei Verschleiß, Beschädigung oder nicht behebbarer Verstopfung ersetzen. Orientierungsintervall bei abrasiven Materialien oder Symptomen verkürzen.", "Controllare diametro, deformazione, usura e qualità dell’estrusione. Sostituire se usurato, danneggiato o impossibile da liberare. Intervallo indicativo: anticipare con materiali abrasivi o in presenza di sintomi.", "Sprawdź średnicę, odkształcenia, zużycie i jakość wytłaczania. Wymień dyszę, jeśli jest zużyta, uszkodzona lub nie można jej udrożnić. Skróć orientacyjny odstęp przy materiałach ściernych lub objawach.", "افحص القطر والتشوه والتآكل وجودة البثق. استبدل الفوهة إذا كانت متآكلة أو تالفة أو تعذر فتح الانسداد. قلّل الفترة الإرشادية عند استخدام مواد كاشطة أو ظهور أعراض.", "检查喷嘴直径、变形、磨损和挤出质量。若磨损、损坏或无法疏通则更换。使用磨蚀性材料或出现异常时，应缩短建议间隔。"],
+"Revisar calentador, termistor y lectura de temperatura": ["Check heater, thermistor and temperature readings", "Vérifier le chauffage, la thermistance et la température", "Heizung, Thermistor und Temperaturanzeige prüfen", "Controllare riscaldatore, termistore e lettura della temperatura", "Sprawdź grzałkę, termistor i odczyt temperatury", "فحص السخان والثرمستور وقراءة الحرارة", "检查加热器、热敏电阻和温度读数"],
+"Comprobar estabilidad de temperatura, calentamiento y ausencia de errores. Con la máquina apagada, inspeccionar visualmente cables y fijaciones; no tirar de los conductores.": ["Check temperature stability, heating and absence of errors. With the machine off, visually inspect wires and fasteners; do not pull on the conductors.", "Vérifier la stabilité de la température, la chauffe et l’absence d’erreurs. Machine éteinte, inspecter visuellement les câbles et fixations ; ne pas tirer sur les conducteurs.", "Temperaturstabilität, Aufheizen und Fehlerfreiheit prüfen. Bei ausgeschaltetem Gerät Kabel und Befestigungen visuell prüfen; nicht an den Leitungen ziehen.", "Verificare stabilità della temperatura, riscaldamento e assenza di errori. A macchina spenta, ispezionare visivamente cavi e fissaggi; non tirare i conduttori.", "Sprawdź stabilność temperatury, nagrzewanie i brak błędów. Przy wyłączonym urządzeniu obejrzyj przewody i mocowania; nie ciągnij za przewody.", "تحقق من ثبات الحرارة والتسخين وعدم وجود أخطاء. عند إيقاف الجهاز، افحص الأسلاك والمثبتات بصريًا ولا تسحب الموصلات.", "检查温度稳定性、加热情况和错误提示。关闭设备后目视检查线缆和固定件；不要拉扯导线。"],
+"Limpiar engranajes y recorrido del extrusor": ["Clean extruder gears and filament path", "Nettoyer les engrenages de l’extrudeur et le trajet du filament", "Extruderzahnräder und Filamentweg reinigen", "Pulire gli ingranaggi dell’estrusore e il percorso del filamento", "Wyczyść koła zębate ekstrudera i tor filamentu", "تنظيف تروس الطارد ومسار الخيط", "清洁挤出机齿轮和耗材路径"],
+"Retirar polvo y virutas de filamento de los engranajes, entrada y recorrido del filamento. Comprobar dientes, presión y alimentación. No lubricar engranajes salvo indicación expresa del fabricante.": ["Remove dust and filament shavings from gears, inlet and filament path. Check teeth, tension and feed. Do not lubricate gears unless the manufacturer explicitly instructs you to.", "Retirer la poussière et les copeaux de filament des engrenages, de l’entrée et du trajet du filament. Vérifier les dents, la pression et l’alimentation. Ne pas lubrifier les engrenages sauf indication explicite du fabricant.", "Staub und Filamentspäne von Zahnrädern, Einlass und Filamentweg entfernen. Zähne, Anpressdruck und Vorschub prüfen. Zahnräder nur schmieren, wenn der Hersteller dies ausdrücklich vorgibt.", "Rimuovere polvere e trucioli di filamento dagli ingranaggi, dall’ingresso e dal percorso. Controllare denti, pressione e alimentazione. Non lubrificare gli ingranaggi salvo indicazione esplicita del produttore.", "Usuń kurz i drobiny filamentu z kół zębatych, wejścia i toru filamentu. Sprawdź zęby, docisk i podawanie. Nie smaruj kół, chyba że producent wyraźnie to zaleca.", "أزل الغبار وبقايا الخيط من التروس والمدخل والمسار. افحص الأسنان والضغط والتغذية. لا تضع مادة تشحيم على التروس إلا إذا طلبت الشركة المصنعة ذلك صراحةً.", "清除齿轮、入口和耗材通道中的灰尘与碎屑。检查齿齿、压力和送料情况。除非制造商明确要求，否则不要润滑齿轮。"],
+"Inspeccionar correas, poleas y tensores": ["Inspect belts, pulleys and tensioners", "Inspecter les courroies, poulies et tendeurs", "Riemen, Riemenscheiben und Spanner prüfen", "Ispezionare cinghie, pulegge e tenditori", "Sprawdź paski, koła pasowe i napinacze", "فحص الأحزمة والبكرات والشدادات", "检查皮带、滑轮和张紧器"],
+"Buscar grietas, desgaste, dientes dañados, rozamiento o holgura. Comprobar alineación y tensión según el procedimiento del modelo. No aplicar lubricante a las correas.": ["Look for cracks, wear, damaged teeth, rubbing or slack. Check alignment and tension according to the model's procedure. Do not lubricate belts.", "Rechercher fissures, usure, dents endommagées, frottement ou jeu. Vérifier l’alignement et la tension selon la procédure du modèle. Ne pas lubrifier les courroies.", "Auf Risse, Verschleiß, beschädigte Zähne, Reibung oder Spiel prüfen. Ausrichtung und Spannung gemäß Modellverfahren kontrollieren. Riemen nicht schmieren.", "Cercare crepe, usura, denti danneggiati, sfregamenti o gioco. Controllare allineamento e tensione secondo la procedura del modello. Non lubrificare le cinghie.", "Sprawdź pęknięcia, zużycie, uszkodzone zęby, tarcie i luz. Skontroluj ustawienie i napięcie zgodnie z procedurą modelu. Nie smaruj pasków.", "ابحث عن التشققات والتآكل والأسنان التالفة والاحتكاك أو الارتخاء. تحقق من المحاذاة والشد وفق إجراء الطراز. لا تضع مواد تشحيم على الأحزمة.", "检查裂纹、磨损、齿损、摩擦或松弛。按照型号对应流程检查对齐和张力。不要润滑皮带。"],
+"Limpiar ventiladores, disipadores y conductos": ["Clean fans, heatsinks and ducts", "Nettoyer les ventilateurs, dissipateurs et conduits", "Lüfter, Kühlkörper und Luftkanäle reinigen", "Pulire ventole, dissipatori e condotti", "Wyczyść wentylatory, radiatory i kanały", "تنظيف المراوح والمشتتات والقنوات", "清洁风扇、散热片和风道"],
+"Apagar la impresora y retirar polvo de aspas, rejillas y disipadores con un cepillo suave. Evitar que el ventilador gire a gran velocidad por aire comprimido.": ["Turn off the printer and remove dust from blades, grilles and heatsinks with a soft brush. Avoid spinning the fan at high speed with compressed air.", "Éteindre l’imprimante et retirer la poussière des pales, grilles et dissipateurs avec une brosse douce. Éviter de faire tourner le ventilateur à grande vitesse avec de l’air comprimé.", "Drucker ausschalten und Staub von Lüfterblättern, Gittern und Kühlkörpern mit einer weichen Bürste entfernen. Lüfter nicht durch Druckluft stark hochdrehen lassen.", "Spegnere la stampante e rimuovere la polvere da pale, griglie e dissipatori con una spazzola morbida. Evitare di far girare la ventola ad alta velocità con aria compressa.", "Wyłącz drukarkę i usuń kurz z łopatek, kratek i radiatorów miękkim pędzelkiem. Nie rozpędzaj wentylatora sprężonym powietrzem.", "أوقف الطابعة وأزل الغبار من الشفرات والشبكات والمشتتات بفرشاة ناعمة. تجنب تدوير المروحة بسرعة عالية باستخدام الهواء المضغوط.", "关闭打印机，用软刷清除叶片、格栅和散热片上的灰尘。避免用压缩空气使风扇高速旋转。"],
+"Limpiar cama y revisar superficie de impresión": ["Clean the bed and inspect the print surface", "Nettoyer le plateau et inspecter la surface d’impression", "Druckbett reinigen und Druckoberfläche prüfen", "Pulire il piano e controllare la superficie di stampa", "Wyczyść stół i sprawdź powierzchnię druku", "تنظيف السرير وفحص سطح الطباعة", "清洁热床并检查打印表面"],
+"Limpiar la superficie con el producto compatible con su recubrimiento. Revisar rayas, deformación, restos adheridos y estado de los conectores accesibles.": ["Clean the surface with a product compatible with its coating. Check for scratches, deformation, stuck residue and the condition of accessible connectors.", "Nettoyer la surface avec un produit compatible avec son revêtement. Vérifier les rayures, déformations, résidus collés et l’état des connecteurs accessibles.", "Oberfläche mit einem für die Beschichtung geeigneten Mittel reinigen. Auf Kratzer, Verformung, anhaftende Rückstände und zugängliche Steckverbinder prüfen.", "Pulire la superficie con un prodotto compatibile con il rivestimento. Controllare graffi, deformazioni, residui aderenti e connettori accessibili.", "Czyść powierzchnię środkiem odpowiednim do jej powłoki. Sprawdź zarysowania, odkształcenia, przyklejone pozostałości i dostępne złącza.", "نظف السطح بمنتج متوافق مع طلاءه. افحص الخدوش والتشوهات والبقايا العالقة وحالة الموصلات المتاحة.", "使用与表面涂层兼容的产品清洁。检查划痕、变形、粘附残留物以及可接触连接器的状态。"],
+"Comprobar sensores, nivelación y finales de carrera": ["Check sensors, leveling and endstops", "Vérifier les capteurs, le nivellement et les fins de course", "Sensoren, Nivellierung und Endschalter prüfen", "Controllare sensori, livellamento e finecorsa", "Sprawdź czujniki, poziomowanie i wyłączniki krańcowe", "فحص المستشعرات والتسوية ومفاتيح نهاية الحركة", "检查传感器、调平和限位开关"],
+"Verificar que los sensores detectan correctamente, que la nivelación termina sin errores y que los finales de carrera actúan. No modificar alturas ni offsets sin recalibrar.": ["Verify that sensors detect correctly, leveling completes without errors and endstops operate. Do not change heights or offsets without recalibrating.", "Vérifier que les capteurs détectent correctement, que le nivellement se termine sans erreur et que les fins de course fonctionnent. Ne pas modifier les hauteurs ou offsets sans recalibrage.", "Prüfen, ob Sensoren korrekt erkennen, die Nivellierung fehlerfrei endet und Endschalter auslösen. Höhen oder Offsets nur mit anschließender Kalibrierung ändern.", "Verificare che i sensori rilevino correttamente, che il livellamento termini senza errori e che i finecorsa funzionino. Non modificare altezze o offset senza ricalibrare.", "Sprawdź poprawne działanie czujników, bezbłędne poziomowanie i wyłączniki krańcowe. Nie zmieniaj wysokości ani offsetów bez ponownej kalibracji.", "تحقق من أن المستشعرات تعمل بشكل صحيح وأن التسوية تنتهي دون أخطاء وأن مفاتيح نهاية الحركة تعمل. لا تغير الارتفاعات أو الإزاحات دون إعادة المعايرة.", "确认传感器检测正常、调平无错误完成且限位开关有效。未经重新校准，不要更改高度或偏移量。"],
+"Inspeccionar cableado y conectores móviles": ["Inspect moving cables and connectors", "Inspecter les câbles mobiles et les connecteurs", "Bewegliche Kabel und Steckverbinder prüfen", "Ispezionare cablaggi mobili e connettori", "Sprawdź ruchome przewody i złącza", "فحص الأسلاك المتحركة والموصلات", "检查活动线缆和连接器"],
+"Con el equipo apagado y desenchufado, revisar visualmente cables de cabezal, cama y cadenas portacables. Buscar pellizcos, rozaduras, aislamiento dañado o conectores flojos. No abrir fuentes de alimentación.": ["With the machine switched off and unplugged, visually inspect the toolhead, bed and cable-chain wiring. Look for pinching, abrasion, damaged insulation or loose connectors. Do not open power supplies.", "Machine éteinte et débranchée, inspecter visuellement les câbles de la tête, du plateau et des chaînes porte-câbles. Rechercher pincements, frottements, isolation endommagée ou connecteurs lâches. Ne pas ouvrir les alimentations.", "Gerät ausschalten und Netzstecker ziehen. Kabel am Druckkopf, Bett und in Energieketten visuell auf Quetschungen, Scheuerstellen, beschädigte Isolierung oder lose Stecker prüfen. Netzteile nicht öffnen.", "A dispositivo spento e scollegato, ispezionare visivamente i cavi della testina, del piano e delle catene portacavi. Cercare schiacciamenti, abrasioni, isolamento danneggiato o connettori allentati. Non aprire gli alimentatori.", "Przy wyłączonym i odłączonym urządzeniu obejrzyj przewody głowicy, stołu i prowadników kablowych. Szukaj zgnieceń, przetarć, uszkodzonej izolacji lub luźnych złączy. Nie otwieraj zasilaczy.", "أوقف الجهاز وافصل القابس، ثم افحص بصريًا أسلاك الرأس والسرير وسلاسل الكابلات. ابحث عن الانضغاط أو الاحتكاك أو تلف العزل أو ارتخاء الموصلات. لا تفتح وحدات الطاقة.", "关闭设备并拔下电源，目视检查打印头、热床和拖链线缆。查找挤压、磨损、绝缘损坏或连接器松动。不要打开电源模块。"],
+
+};Object.entries(add).forEach(([k,v])=>{d[k]=v});if(typeof window.PCP_I18N.refresh==='function')window.PCP_I18N.refresh();})();
