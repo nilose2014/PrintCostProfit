@@ -4,7 +4,7 @@
 
 This branch creates unsigned, non-notarized DMG installers for Apple Silicon (arm64) and Intel (x86_64).
 
-The application experimental build version is **v1.4.2**. This is an experimental platform build and does not change the stable Windows or Linux releases.
+The application experimental build version is **v1.4.3**. This is an experimental platform build and does not change the stable Windows or Linux releases.
 
 ## Important warning
 
