@@ -50,7 +50,7 @@ jobs:
         run: |
           set -euo pipefail
           VERSION="$(tr -d '[:space:]' < VERSION)"
-          test "$VERSION" = "1.4.2"
+          test "$VERSION" = "1.4.3"
           APP="Print Cost & Profit.app"
           CONTENTS="$RUNNER_TEMP/$APP/Contents"
           RES="$CONTENTS/Resources/PrintCostProfit"
@@ -107,7 +107,7 @@ jobs:
       - name: Upload experimental DMG
         uses: actions/upload-artifact@v4
         with:
-          name: PrintCostProfit-macOS-v1.4.2-${{ matrix.arch }}-EXPERIMENTAL
+          name: PrintCostProfit-macOS-v1.4.3-${{ matrix.arch }}-EXPERIMENTAL
           path: ${{ runner.temp }}/PrintCostProfit-macOS-*-EXPERIMENTAL.dmg
           if-no-files-found: error
           retention-days: 30
