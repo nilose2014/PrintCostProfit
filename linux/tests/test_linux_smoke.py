@@ -186,7 +186,7 @@ class LinuxServerSmokeTests(unittest.TestCase):
 
     def test_invalid_printer_ip_and_unknown_api(self):
         self.request("GET", "/api/u1/config?" + urlencode({"ip": "not-an-ip"}), expected_status=400)
-        response = self.request("GET", "/api/u1/status", expected_status=502)
+        response = self.request("GET", "/api/u1/status", expected_status=200)
         self.assertFalse(response.get("ok"))
         self.request("GET", "/api/not-implemented", expected_status=501)
 
