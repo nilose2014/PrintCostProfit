@@ -1,0 +1,10 @@
+/* Print Cost & Profit 2.0.318 — único ajuste del icono de las tareas */
+body.pcp-light-theme #maintenanceView .maintenance-task-icon {
+  background:#e6f0fb!important;
+  background-image:none!important;
+  color:#2463a6!important;
+  -webkit-text-fill-color:#2463a6!important;
+  border:1px solid #a9c5e3!important;
+  text-shadow:none!important;
+  box-shadow:none!important;
+}

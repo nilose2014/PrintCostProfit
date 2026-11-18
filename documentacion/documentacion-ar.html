@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html dir="rtl" xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>دليل Print Cost &amp; Profit</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+<style>
+:root{color-scheme:dark;--bg:#081326;--panel:#12243d;--line:#294766;--text:#eaf3ff;--muted:#aac0dc;--accent:#55d6c5}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#081326,#101d3c);color:var(--text);font:16px/1.7 Segoe UI,Arial,sans-serif}
+main{max-width:1050px;margin:34px auto;padding:36px 46px;background:rgba(18,36,61,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 55px #0006}
+h1,h2,h3{line-height:1.25;color:#fff}h1{font-size:2.1rem;border-bottom:1px solid var(--line);padding-bottom:18px}h2{margin-top:2.1em;color:#7fe4dc}a{color:#79dcd5}code,pre{background:#09182c;border-radius:6px}code{padding:.15em .35em}pre{padding:16px;overflow:auto;border:1px solid var(--line)}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:9px 12px;text-align:start}blockquote{border-inline-start:3px solid var(--accent);margin-inline:0;padding-inline:18px;color:var(--muted)}img{max-width:100%;height:auto;border-radius:10px}li{margin:.35em 0}.doc-top{color:var(--muted);font-size:.85rem;margin-bottom:18px}
+@media(max-width:700px){main{margin:0;padding:22px;border-radius:0}body{font-size:15px}}
+</style>
+<style id="pcp-doc-v207">
+html,body{background:#081426!important;color:#e8f2ff!important}
+body{max-width: min(1180px, calc(100% - 48px))!important;margin:0 auto!important;padding:34px 24px 60px!important;font:16px/1.72 "Segoe UI",Arial,sans-serif!important;hyphens:auto}
+main{max-width:100%!important}
+h1,h2,h3,h4{color:#64ddd7!important;line-height:1.25}
+h1.title{font-size:2.15rem!important;color:#f4f8ff!important}
+p,li,td,th{color:#e0ebfa!important}
+a{color:#65dcd7!important}
+a:visited{color:#9bbcff!important}
+code,pre{background:#10233d!important;color:#d9eaff!important;border-radius:7px;padding:2px 5px}
+img{display:block;max-width:min(100%,900px)!important;height:auto!important;margin:18px auto!important;border:1px solid #34506f;border-radius:12px;background:#10233d;box-shadow:0 8px 24px #0005}
+.doc-image-fallback{width:min(100%,900px);min-height:180px;margin:18px auto;padding:24px;display:flex;align-items:center;justify-content:center;gap:18px;border:1px solid #34506f;border-radius:12px;background:linear-gradient(135deg,#10233d,#172a49);color:#bcd2e9}
+.doc-image-fallback svg{width:86px;height:86px;flex:none}
+.doc-image-fallback strong{display:block;color:#64ddd7;font-size:1.05rem}
+.doc-top{color:#7ee5df!important;border-bottom:1px solid #284361;padding-bottom:12px;margin-bottom:24px}
+table{display:block;max-width:100%;overflow-x:auto}
+blockquote{border-left:3px solid #45c9c7!important;color:#bfd1e5!important}
+hr{background:#2b4564!important}
+@media(max-width:700px){body{max-width:100%!important;padding:18px 14px 40px!important;font-size:15px!important}h1.title{font-size:1.7rem!important}}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('img').forEach(function(img){
+  img.addEventListener('error',function(){
+   if(img.dataset.pcpFallback)return;img.dataset.pcpFallback='1';
+   var box=document.createElement('div');box.className='doc-image-fallback';
+   var svg='<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="18" width="76" height="62" rx="9" fill="#173b5d" stroke="#55d7d2" stroke-width="3"/><path d="M25 65l17-18 12 12 10-11 12 17" fill="none" stroke="#72e2d9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="34" cy="34" r="6" fill="#f0b65a"/></svg>';
+   var label=document.createElement('div');var strong=document.createElement('strong');strong.textContent=img.alt||'Print Cost & Profit';label.appendChild(strong);
+   var small=document.createElement('span');small.textContent='Ilustración del apartado';label.appendChild(small);
+   box.innerHTML=svg;box.appendChild(label);img.replaceWith(box);
+  },{once:true});
+  if(img.complete&&img.naturalWidth===0)img.dispatchEvent(new Event('error'));
+ });
+});
+</script>
+
+</head>
+<body><main><div class="doc-top">Print Cost &amp; Profit · دليل Print Cost & Profit</div>
+<header id="title-block-header">
+<h1 class="title">دليل Print Cost &amp; Profit</h1>
+</header>
+<h1 id="التثبيت-السريع">التثبيت السريع</h1>
+<p>اختر الحزمة المناسبة لنظام التشغيل لديك:</p>
+<h3 id="windows-10--11--الإصدار-المستقر-v12">Windows 10 / 11 — الإصدار
+المستقر v1.2</h3>
+<ul>
+<li><strong><a
+href="https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip">تنزيل
+مُثبّت Windows v1.2</a></strong>.</li>
+<li>فك ضغط ملف ZIP وشغّل <code>PrintCostProfit-Setup-1.2.exe</code>.</li>
+<li>اتبع خطوات التثبيت، ثم شغّل Print Cost &amp; Profit باستخدام الاختصار
+الذي تم إنشاؤه.</li>
+<li>يتضمن المُثبّت المكونات اللازمة للتخزين المحلي باستخدام SQLite؛ ولا
+تحتاج إلى تثبيت Python يدويًا.</li>
+</ul>
+<p><strong>مستودع Windows:</strong> <a
+href="https://github.com/nilose2014/PrintCostProfit">PrintCostProfit —
+الفرع الرئيسي</a>. إذا كنت تفضّل التثبيت من الشيفرة المصدرية، فافتح
+<strong>Code → Download ZIP</strong>، واستخرج جميع الملفات إلى مجلد
+دائم، ثم شغّل <code>Integracion_Orca_Postprocesado.bat</code>.</p>
+<h3 id="linux--ubuntu--الإصدار-المستقر">Linux / Ubuntu — الإصدار
+المستقر</h3>
+<ul>
+<li><strong><a
+href="https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1">تنزيل
+إصدار Linux المستقر</a></strong>.</li>
+<li>فك ضغط ملف ZIP الذي تم تنزيله.</li>
+<li>اتبع تعليمات التثبيت والتشغيل المضمّنة في الحزمة.</li>
+</ul>
+<p><strong>مستودع / إصدار Linux:</strong> <a
+href="https://github.com/nilose2014/PrintCostProfit/tree/linux">PrintCostProfit
+— Linux</a>.</p>
+<hr />
+<h1 id="print-cost--profit-v12">Print Cost &amp; Profit v1.2</h1>
+<h2 id="حاسبة-التكاليف-والإنتاج-والإدارة-للطباعة-ثلاثية-الأبعاد">حاسبة
+التكاليف والإنتاج والإدارة للطباعة ثلاثية الأبعاد</h2>
+<p>Print Cost &amp; Profit هو تطبيق مصمم لمساعدة مستخدمي الطباعة ثلاثية
+الأبعاد على حساب تكاليف التصنيع الفعلية، ومراقبة استهلاك الخيوط، وإدارة
+المواد، وتنظيم النشاط التجاري المرتبط بالمطبوعات.</p>
+<p>يجمع التطبيق بين حاسبة للتكاليف وأدوات للإدارة والتخزين المحلي
+والتكامل مع برامج التقطيع المبنية على OrcaSlicer، ولا سيما Snapmaker
+Orca وOrcaSlicer وCreality Print. كما يتضمن شاشة مراقبة للطابعات
+المتوافقة، مع اختلاف مستوى التوافق حسب الطراز والاتصال المتاح.</p>
+<h2 id="لقطات-شاشة-التطبيق">لقطات شاشة التطبيق</h2>
+<p>تعرض الصور التالية بعض شاشات Print Cost &amp; Profit. وهي توضح أجزاء
+مختلفة من الواجهة؛ وتعتمد الوظائف المتاحة على الإصدار والتكوين
+المثبّتَين.</p>
+<p><img src="galeria/es/01-calculadora-de-costes.jpg"
+alt="حاسبة التكاليف" /></p>
+<p><img src="galeria/es/02-resultado-y-beneficio.jpg"
+alt="النتيجة والربح" /></p>
+<p><img src="galeria/es/03-panel-flotante-de-impresion.jpg"
+alt="لوحة الطباعة العائمة" /></p>
+<p><strong>إعداد:</strong> Beatriz Toro Martin</p>
+<p><strong>الإصدار المنشور:</strong> v1.2</p>
+<p><strong>نظام التشغيل المرجعي:</strong> Windows 10 وWindows 11</p>
+<p><strong>المستودع الرسمي:</strong> <a
+href="https://github.com/nilose2014/PrintCostProfit">https://github.com/nilose2014/PrintCostProfit</a></p>
+<hr />
+<h1 id="1-الميزات-الرئيسية">1. الميزات الرئيسية</h1>
+<h2 id="11-حاسبة-تكاليف-الطباعة-ثلاثية-الأبعاد">1.1. حاسبة تكاليف
+الطباعة ثلاثية الأبعاد</h2>
+<p>تتيح الحاسبة تقدير تكلفة تصنيع قطعة استنادًا إلى معلمات الطباعة
+والتكاليف المرتبطة بها.</p>
+<p>وفقًا للتكوين المتاح، يمكن استخدام بنود التكلفة التالية:</p>
+<ul>
+<li>استهلاك الخيوط.</li>
+<li>سعر المادة المستخدمة.</li>
+<li>وقت الطباعة.</li>
+<li>تكلفة تشغيل الطابعة واستهلاكها.</li>
+<li>استهلاك قيمة المعدات (الإهلاك).</li>
+<li>نفقات أخرى مرتبطة بالتصنيع.</li>
+<li>هامش الربح المطلوب.</li>
+<li>الضرائب والعملة المحددتان.</li>
+</ul>
+<p>الهدف هو معرفة تكلفة تصنيع القطعة قبل تحديد سعر بيعها.</p>
+<h2 id="12-سعر-البيع-والربح-والهامش">1.2. سعر البيع والربح والهامش</h2>
+<p>تتيح الحاسبة دراسة النتيجة المالية التقديرية لعملية الطباعة.</p>
+<p>تساعد الحسابات على التمييز بين:</p>
+<ul>
+<li><strong>تكلفة التصنيع:</strong> القيمة التقديرية للموارد
+المستخدمة.</li>
+<li><strong>سعر البيع:</strong> المبلغ المقترح تحصيله مقابل القطعة.</li>
+<li><strong>الربح التقديري:</strong> الفرق المحسوب بين الإيرادات
+والتكاليف التي أُخذت في الاعتبار.</li>
+<li><strong>الهامش:</strong> العلاقة بين الربح وسعر البيع وفق التعريف
+المستخدم في الحساب.</li>
+<li><strong>السعر الموصى به:</strong> السعر المقترح بناءً على المعلمات
+التي تم ضبطها.</li>
+</ul>
+<p>تعتمد النتائج على الأسعار والنسب المئوية والأوقات والقيم الأخرى
+المُدخلة. للحصول على تقديرات مفيدة، حافظ على تحديث تكاليف الخيوط والطابعة
+والنفقات الإضافية.</p>
+<p><img src="galeria/es/04-inventario-de-productos.jpg"
+alt="مخزون المنتجات" /></p>
+<h2 id="13-ملفات-تعريف-الطابعات">1.3. ملفات تعريف الطابعات</h2>
+<p>تتيح ملفات التعريف ضبط المعلمات الاقتصادية المرتبطة بالمعدات
+المستخدمة.</p>
+<p>ويمكن أن تأخذ في الاعتبار بيانات مثل تكلفة الشراء والعمر التشغيلي
+التقديري وتكاليف التشغيل، عندما تكون هذه العناصر مدرجة في ملف
+التعريف.</p>
+<p>إذا كنت تستخدم عدة طابعات، فاختر ملف التعريف المناسب حتى تعكس
+التقديرات الاختلافات بين الأجهزة.</p>
+<p><img src="galeria/es/06-perfiles-y-monitor-de-impresoras.jpg"
+alt="ملفات تعريف الطابعات وشاشة المراقبة" /></p>
+<h2 id="14-التوافق-مع-برامج-التقطيع">1.4. التوافق مع برامج التقطيع</h2>
+<p>تم تصميم التكامل لبرامج التقطيع المبنية على OrcaSlicer، ولا سيما
+<strong>Snapmaker Orca وOrcaSlicer وCreality Print</strong>. تبلغ نسبة
+التوافق مع هذه البرامج نحو <strong>90%</strong>؛ وقد يختلف السلوك بحسب
+الإصدار والتكوين. لذلك لا ينبغي وصف التوافق بأنه 100%.</p>
+<p>يتيح التكامل عبر نصوص المعالجة اللاحقة معالجة ملفات G-code التي
+ينشئها برنامج التقطيع واستخدام البيانات المتاحة ضمن سير عمل Print Cost
+&amp; Profit. وتعتمد المعلومات التي يمكن استخراجها على الملف والتكوين
+وإصدار برنامج التقطيع.</p>
+<p><img src="galeria/es/08-presupuestos.jpg" alt="عروض الأسعار" /></p>
+<h2 id="15-مراقبة-الطابعات-والتوافق">1.5. مراقبة الطابعات والتوافق</h2>
+<p>الطابعة التي تم تأكيد توافقها بنسبة <strong>100%</strong> هي
+<strong>Snapmaker U1</strong>. تعمل شاشة المراقبة أيضًا مع طابعات أخرى
+يمكن الوصول إليها عبر <strong>Fluidd</strong> أو
+<strong>Mainsail/Moonraker</strong> (بحسب التكوين)، لكن دعم هذه الطرازات
+لا يزال قيد التحسين. وقد لا تتوفر بعض الوظائف أو قد تعمل بشكل مختلف
+أثناء استمرار الاختبارات.</p>
+<h2 id="16-التخزين-المحلي-sqlite">1.6. التخزين المحلي SQLite</h2>
+<p>يتضمن التطبيق مكونات للتخزين المحلي تعتمد على SQLite.</p>
+<p>الهدف هو الاحتفاظ بالبيانات في قاعدة بيانات على الكمبيوتر بدلًا من
+توزيعها بين الكمبيوتر والمتصفح.</p>
+<p>إذا تعذر تشغيل التخزين المحلي، فيجب أن يعرض التطبيق رسالة الخطأ
+المناسبة بدلًا من الانتقال بصمت إلى نظام تخزين آخر.</p>
+<h2 id="17-أدوات-التشخيص">1.7. أدوات التشخيص</h2>
+<p>يتضمن المشروع نصوصًا برمجية تساعد على التحقق من بدء تشغيل التطبيق وعمل
+الجسر المحلي وبعض مشكلات التكامل.</p>
+<p>توفر هذه الأدوات معلومات مفيدة عندما يتعذر تشغيل أحد المكونات أو لا
+تكتمل عملية ما بشكل صحيح.</p>
+<hr />
+<h1 id="2-المتطلبات-المسبقة">2. المتطلبات المسبقة</h1>
+<p>قبل تشغيل البرنامج، يُنصح بتوفر ما يلي:</p>
+<ul>
+<li>كمبيوتر يعمل بنظام Windows 10 أو Windows 11 أو Linux.</li>
+<li>مجلد محلي دائم لتثبيت المشروع.</li>
+<li>برنامج تقطيع مبني على OrcaSlicer — ولا سيما Snapmaker Orca أو
+OrcaSlicer أو Creality Print — إذا كنت تريد استخدام التكامل.</li>
+<li>جميع ملفات التوزيعة التي تم تنزيلها.</li>
+<li>مكونات التخزين والتكوين المضمّنة في حزمة التوزيعة.</li>
+</ul>
+<p>ينبغي أن تتضمن التوزيعة الملف التنفيذي لـ SQLite المُعدّ لنظام Windows
+حتى لا يضطر المستخدم النهائي إلى تثبيت Python يدويًا.</p>
+<p>لا تشغّل التطبيق مباشرة من ملف ZIP. استخرج جميع الملفات أولًا.</p>
+<hr />
+<h1 id="3-تنزيل-print-cost--profit-وتثبيته">3. تنزيل Print Cost &amp;
+Profit وتثبيته</h1>
+<h2 id="الخطوة-1-تنزيل-البرنامج">الخطوة 1. تنزيل البرنامج</h2>
+<ol type="1">
+<li><p>افتح المستودع الرسمي:</p>
+<p><a
+href="https://github.com/nilose2014/PrintCostProfit">https://github.com/nilose2014/PrintCostProfit</a>
+لنظام Windows
+وhttps://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1
+لنظام Linux</p></li>
+<li><p>انقر على <strong>Code</strong>.</p></li>
+<li><p>اختر <strong>Download ZIP</strong>.</p></li>
+<li><p>انتظر حتى يكتمل التنزيل.</p></li>
+<li><p>استخرج محتويات ملف ZIP.</p></li>
+</ol>
+<h2 id="الخطوة-2-اختيار-المجلد">الخطوة 2. اختيار المجلد</h2>
+<p>يمكنك استخدام مجلد مثل:</p>
+<p><code>C:\PrintCostProfit</code></p>
+<p>يمكنك أيضًا اختيار موقع دائم آخر. تجنب المجلدات المؤقتة، ولا تنقل
+البرنامج بعد ضبط المسارات في OrcaSlicer إلا إذا قمت بتحديث تلك المسارات
+أيضًا.</p>
+<h2 id="الخطوة-3-تشغيل-البرنامج">الخطوة 3. تشغيل البرنامج</h2>
+<p>افتح المجلد الذي استخرجت إليه الملفات وانقر نقرًا مزدوجًا على:</p>
+<p><strong><code>Integracion_Orca_Postprocesado.bat</code></strong></p>
+<p>يُستخدم هذا الملف للتشغيل اليدوي وللتكامل مع OrcaSlicer.</p>
+<p>عند تشغيله يدويًا، يتحقق من توفر الخدمة المحلية. وإذا لم تستجب، يحاول
+تشغيلها وينتظر حتى تصبح جاهزة قبل فتح الواجهة في المتصفح.</p>
+<p>لا تحتاج إلى فتح ملف HTML أولًا أو تشغيل الجسر المحلي بشكل منفصل عندما
+يستطيع مشغّل التطبيق تنفيذ ذلك.</p>
+<p><strong>مهم:</strong> لاستخدام الوظائف التي تحتاج إلى التخزين المحلي،
+شغّل التطبيق باستخدام هذا الملف بدلًا من فتح
+<code>Print_Cost_Profit.html</code> مباشرة.</p>
+<hr />
+<h1 id="4-إعداد-برنامج-تقطيع-مبني-على-orcaslicer">4. إعداد برنامج تقطيع
+مبني على OrcaSlicer</h1>
+<p>تم تصميم التكامل لبرامج التقطيع المبنية على OrcaSlicer، ولا سيما
+Snapmaker Orca وOrcaSlicer وCreality Print. قد تختلف أسماء القوائم وبعض
+التفاصيل. تبلغ نسبة التوافق العامة نحو 90%، لذلك نوصي بإجراء اختبار
+باستخدام الإصدار المثبّت.</p>
+<p>يستخدم التكامل نص المعالجة اللاحقة لمعالجة G-code عند انتهاء برنامج
+التقطيع من عملية التقطيع.</p>
+<h2 id="الخطوة-1-تحديد-موقع-ملف-التكامل">الخطوة 1. تحديد موقع ملف
+التكامل</h2>
+<p>في مجلد البرنامج، ابحث عن:</p>
+<p><code>Integracion_Orca_Postprocesado.bat</code></p>
+<p>انسخ المسار الكامل. إذا استخدمت مجلد المثال، فسيكون:</p>
+<p><code>C:\PrintCostProfit\Integracion_Orca_Postprocesado.bat</code></p>
+<p>إذا ثبّت البرنامج في موقع آخر، فاستخدم المسار الفعلي.</p>
+<h2 id="الخطوة-2-فتح-إعدادات-الطباعة">الخطوة 2. فتح إعدادات الطباعة</h2>
+<ol type="1">
+<li>افتح OrcaSlicer.</li>
+<li>اختر ملف تعريف الطابعة الذي تريد استخدامه.</li>
+<li>افتح إعدادات الطباعة.</li>
+<li>فعّل الوضع المتقدم أو وضع الخبراء إذا لزم الأمر.</li>
+<li>افتح قسم <strong>أخرى</strong>.</li>
+<li>ابحث عن <strong>نصوص المعالجة اللاحقة</strong>.</li>
+</ol>
+<p>قد تختلف أسماء القوائم وترتيباتها حسب برنامج التقطيع وإصداره واللغة
+المحددة.</p>
+<h2 id="الخطوة-3-إضافة-النص-البرمجي">الخطوة 3. إضافة النص البرمجي</h2>
+<p>أدخل المسار الكامل للملف:</p>
+<p><code>Integracion_Orca_Postprocesado.bat</code></p>
+<p>احفظ إعدادات ملف التعريف.</p>
+<p>إذا كان برنامج التقطيع يتطلب صيغة محددة للمسارات أو الوسائط، فاستخدم
+الصيغة المناسبة لذلك الإصدار.</p>
+<h2 id="الخطوة-4-إجراء-اختبار">الخطوة 4. إجراء اختبار</h2>
+<ol type="1">
+<li>حمّل نموذجًا بسيطًا.</li>
+<li>اختر الطابعة وملف تعريف الطباعة.</li>
+<li>اضبط المادة.</li>
+<li>نفّذ التقطيع للنموذج.</li>
+<li>صدّر ملف G-code.</li>
+<li>تحقق من تنفيذ المعالجة اللاحقة دون أخطاء.</li>
+</ol>
+<p>يعالج النص البرمجي ملف G-code عندما يستدعيه OrcaSlicer مع مسار الملف.
+في هذه الحالة يختلف السلوك عن التشغيل اليدوي: تتم معالجة الملف ثم ينتهي
+النص البرمجي دون فتح نافذة ثانية للتطبيق.</p>
+<hr />
+<h1 id="5-معالجة-ملفات-g-code">5. معالجة ملفات G-code</h1>
+<p>يحتوي G-code على التعليمات التي ينشئها برنامج التقطيع للطابعة ثلاثية
+الأبعاد.</p>
+<p>يمكن لتكامل Print Cost &amp; Profit معالجة هذه الملفات لاسترجاع
+البيانات المتاحة والمفيدة للحسابات وتسجيل الأعمال.</p>
+<p>وفقًا للمعلومات الموجودة في الملف والوظائف المتاحة، قد تشمل البيانات
+المهمة ما يلي:</p>
+<ul>
+<li>اسم الملف أو مساره.</li>
+<li>معلومات الطباعة التي أنشأها برنامج التقطيع.</li>
+<li>الوقت التقديري واستهلاك المادة.</li>
+<li>معلومات الخيوط، عند توفرها.</li>
+</ul>
+<p>القيم المستخرجة من G-code هي تقديرات ناتجة عن عملية التقطيع. ولا
+ينبغي اعتبارها تلقائيًا استهلاكًا فعليًا أكدته الطابعة.</p>
+<h2 id="اختبار-يدوي-باستخدام-ملف-g-code">اختبار يدوي باستخدام ملف
+G-code</h2>
+<p>يتضمن المشروع الملف:</p>
+<p><code>Probar_Integracion_con_Gcode.bat</code></p>
+<p>لإجراء اختبار:</p>
+<ol type="1">
+<li>حدد ملف G-code تم إنشاؤه باستخدام برنامج التقطيع المتوافق الذي
+تستخدمه.</li>
+<li>اسحب الملف وأفلته فوق
+<code>Probar_Integracion_con_Gcode.bat</code>.</li>
+<li>انتظر حتى تنتهي العملية.</li>
+<li>تحقق من النتيجة وأي رسائل خطأ.</li>
+</ol>
+<p>يساعد هذا الاختبار على التمييز بين مشكلة في معالجة الملف ومشكلة في
+الخدمة المحلية.</p>
+<hr />
+<h1 id="6-إدارة-التكاليف-والربحية-ملخص-التكاليف">6. إدارة التكاليف
+والربحية <img src="galeria/es/14-resumen-de-costes.jpg"
+alt="ملخص التكاليف" /></h1>
+<p>للحصول على نتائج مفيدة، اضبط البيانات المالية قبل حساب سعر
+القطعة.</p>
+<h2 id="الخيوط">الخيوط</h2>
+<p>حافظ على تحديث سعر كل مادة مستخدمة. فقد يؤدي تغير السعر لكل كيلوغرام
+إلى تغيير كبير في تكلفة القطع المصنّعة.</p>
+<h2 id="الطابعة">الطابعة</h2>
+<p>استخدم ملف تعريف الجهاز الذي سيصنع القطعة. ينبغي أن تستند معلمات
+الإهلاك والاستهلاك إلى تقديرات معقولة للتكلفة والعمر التشغيلي.</p>
+<h2 id="وقت-التصنيع">وقت التصنيع</h2>
+<p>يتيح الوقت الذي يقدّره برنامج التقطيع تقدير التكلفة المرتبطة باستخدام
+الجهاز. وقد تختلف النتيجة الفعلية بسبب التوقفات أو تغييرات المواد أو
+الأعطال أو الاختلاف بين الوقت التقديري والوقت الفعلي.</p>
+<h2 id="النفقات-الإضافية">النفقات الإضافية</h2>
+<p>أدرج النفقات المنطبقة على العمل والمشمولة في إعدادات الحاسبة.</p>
+<h2 id="سعر-البيع">سعر البيع</h2>
+<p>راجع السعر الموصى به إلى جانب التكلفة والربح والهامش. وتعتمد موثوقية
+السعر المحسوب على جودة البيانات المُدخلة.</p>
+<hr />
+<h1 id="7-تخزين-البيانات-والاحتفاظ-بها">7. تخزين البيانات والاحتفاظ
+بها</h1>
+<p>يستخدم Print Cost &amp; Profit خدمة محلية وقاعدة بيانات SQLite
+للوظائف التي تعتمد على هذا التخزين.</p>
+<p>قد يكون موقع التخزين الذي يستخدمه التثبيت داخل ملف تعريف المستخدم
+المحلي في Windows.</p>
+<h2 id="توصيات">توصيات</h2>
+<ul>
+<li>لا تحذف قاعدة البيانات أثناء تشغيل الخدمة.</li>
+<li>لا تنقل مجلد البيانات يدويًا.</li>
+<li>أنشئ نسخة احتياطية من بياناتك قبل تحديث البرنامج.</li>
+<li>تحقق من بدء تشغيل الخدمة المحلية بشكل صحيح بعد التحديث.</li>
+<li>تحقق من الاحتفاظ بالبيانات بعد إغلاق التطبيق وإعادة فتحه.</li>
+</ul>
+<h2 id="إذا-ظهر-خطأ-في-التخزين">إذا ظهر خطأ في التخزين</h2>
+<p>إذا أشار التطبيق إلى تعذر بدء تخزين الكمبيوتر، فلا تواصل إدخال
+البيانات كما لو كانت تُحفظ بشكل صحيح.</p>
+<p>تحقق من الخدمة المحلية واستخدم أدوات التشخيص. لا تحذف قاعدة البيانات
+لمحاولة حل المشكلة.</p>
+<p>تهدف الحماية من الانتقال الصامت إلى تخزين المتصفح إلى منع تقسيم
+البيانات بين موقعين مختلفين.</p>
+<hr />
+<h1 id="8-النصوص-البرمجية-والأدوات-المضمّنة-التوثيق-والمساعدة">8. النصوص
+البرمجية والأدوات المضمّنة <img
+src="galeria/es/19-documentacion-y-ayuda.jpg"
+alt="التوثيق والمساعدة" /></h1>
+<p>يحتوي المستودع على ملفات مساعدة مختلفة. ولا يلزم تشغيلها جميعًا يدويًا
+أثناء الاستخدام المعتاد.</p>
+<table>
+<thead>
+<tr class="header">
+<th>الملف</th>
+<th>الوظيفة</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Integracion_Orca_Postprocesado.bat</code></td>
+<td>تشغيل التطبيق يدويًا ونقطة دخول المعالجة اللاحقة لبرامج التقطيع
+المتوافقة المبنية على OrcaSlicer.</td>
+</tr>
+<tr class="even">
+<td><code>Iniciar_Puente_Orca.ps1</code></td>
+<td>تشغيل جسر التكامل أو التحقق منه.</td>
+</tr>
+<tr class="odd">
+<td><code>Iniciar_Puente_Orca_Independiente.cmd</code></td>
+<td>مشغّل مستقل للجسر المحلي.</td>
+</tr>
+<tr class="even">
+<td><code>Integracion_Print_Cost_Profit.ps1</code></td>
+<td>معالجة التكامل مع ملف G-code.</td>
+</tr>
+<tr class="odd">
+<td><code>Probar_Integracion_con_Gcode.bat</code></td>
+<td>اختبار يدوي لمعالجة ملف G-code.</td>
+</tr>
+<tr class="even">
+<td><code>Comprobar_Puente_U1.bat</code></td>
+<td>التحقق من الجسر المرتبط بطابعة Snapmaker U1.</td>
+</tr>
+<tr class="odd">
+<td><code>Diagnostico_Arranque.bat</code></td>
+<td>المساعدة في فحص مشكلات بدء التشغيل.</td>
+</tr>
+<tr class="even">
+<td><code>Diagnostico_Print_Cost_Profit.bat</code></td>
+<td>أداة تشخيص التطبيق.</td>
+</tr>
+<tr class="odd">
+<td><code>Diagnostico_Version.bat</code></td>
+<td>التحقق من معلومات الإصدار.</td>
+</tr>
+<tr class="even">
+<td><code>pcp_sqlite_api.py</code></td>
+<td>شيفرة خدمة التخزين SQLite.</td>
+</tr>
+<tr class="odd">
+<td><code>pcp_sqlite_store.py</code></td>
+<td>مكوّن الوصول إلى تخزين SQLite وإدارته.</td>
+</tr>
+<tr class="even">
+<td><code>storage-client.js</code></td>
+<td>العميل الذي تستخدمه الواجهة للتواصل مع التخزين.</td>
+</tr>
+<tr class="odd">
+<td><code>VERSION</code></td>
+<td>معلومات إصدار المشروع.</td>
+</tr>
+<tr class="even">
+<td><code>LICENSE.txt</code></td>
+<td>شروط الاستخدام وإشعار حقوق النشر.</td>
+</tr>
+</tbody>
+</table>
+<p>يعتمد توفر كل وظيفة وسلوكها الدقيق على الملفات المضمّنة في التوزيعة
+وعلى تكوينها.</p>
+<hr />
+<h1 id="9-استكشاف-الأخطاء-وإصلاحها">9. استكشاف الأخطاء وإصلاحها</h1>
+<h2 id="لا-يفتح-التطبيق">لا يفتح التطبيق</h2>
+<ol type="1">
+<li>تحقق من استخراج جميع الملفات.</li>
+<li>شغّل <code>Integracion_Orca_Postprocesado.bat</code>.</li>
+<li>انتظر استجابة الخدمة المحلية.</li>
+<li>إذا لم يفتح التطبيق، شغّل <code>Diagnostico_Arranque.bat</code>.</li>
+<li>احتفظ برسالة الخطأ كاملة.</li>
+</ol>
+<h2 id="لا-يبدأ-تخزين-بيانات-الكمبيوتر">لا يبدأ تخزين بيانات
+الكمبيوتر</h2>
+<p>تحقق من أن الحزمة تتضمن الملف التنفيذي لـ SQLite الخاص بنظام Windows
+وأنه موجود في الموقع الذي يتوقعه الخادم.</p>
+<p>إذا ظهر خطأ HTTP 500، فتحقق من حالة الخدمة ورسائل التشخيص قبل محاولة
+تعديل البيانات.</p>
+<p>لا تنتقل إلى تخزين المتصفح ولا تحذف قاعدة البيانات كحل مؤقت.</p>
+<h2 id="لا-ينفذ-برنامج-التقطيع-التكامل">لا ينفذ برنامج التقطيع
+التكامل</h2>
+<ol type="1">
+<li>تحقق من مسار ملف <code>.bat</code>.</li>
+<li>تأكد من وجود الملف.</li>
+<li>راجع إعدادات ملف تعريف الطباعة.</li>
+<li>اختبر باستخدام <code>Probar_Integracion_con_Gcode.bat</code>.</li>
+<li>احتفظ برسالة الخطأ ومسار ملف G-code المستخدم.</li>
+</ol>
+<h2 id="لا-يتم-الاحتفاظ-بالبيانات">لا يتم الاحتفاظ بالبيانات</h2>
+<p>تحقق من تشغيل التطبيق باستخدام مشغّل التطبيق ومن عمل الخدمة
+المحلية.</p>
+<p>بعد ذلك، أجرِ اختبارًا باستخدام بيانات غير مهمة وتحقق من بقائها بعد
+إعادة تشغيل التطبيق.</p>
+<p>لا تحذف البيانات الموجودة لمحاولة إصلاح التخزين.</p>
+<hr />
+<h1 id="10-الأمان-وأفضل-الممارسات">10. الأمان وأفضل الممارسات</h1>
+<ul>
+<li>نزّل البرنامج من المستودع الرسمي.</li>
+<li>لا تشارك كلمات المرور أو المفاتيح الخاصة أو بيانات الاعتماد.</li>
+<li>لا تشغّل نصوصًا برمجية من مصادر غير معروفة.</li>
+<li>لا تعرّض الخدمة المحلية للإنترنت دون إعداد أمني مناسب.</li>
+<li>احتفظ بنسخ احتياطية من البيانات المهمة.</li>
+<li>تحقق من التبعيات وعمل البرنامج قبل استبدال الملفات أثناء
+التحديث.</li>
+</ul>
+<hr />
+<h1 id="11-حقوق-النشر-وشروط-الاستخدام">11. حقوق النشر وشروط
+الاستخدام</h1>
+<p>يخضع Print Cost &amp; Profit للشروط الواردة في
+<code>LICENSE.txt</code>.</p>
+<p>إن نشر الشيفرة على GitHub لا يمنح بحد ذاته إذنًا بتسويق البرنامج أو
+إعادة بيعه أو ترخيصه من الباطن أو إعادة توزيعه أو استغلاله تجاريًا، ولا
+ينطبق ذلك أيضًا على النسخ المعدلة أو المنتجات المشتقة عندما تحظر الرخصة
+المعمول بها هذه الأنشطة.</p>
+<p>يجب تقديم طلبات الإذن كتابةً وقبولها صراحةً من صاحب الحقوق.</p>
+<hr />
+<h1 id="12-المساعدة-والإبلاغ-عن-المشكلات">12. المساعدة والإبلاغ عن
+المشكلات</h1>
+<p>عند الإبلاغ عن مشكلة، أدرج المعلومات التالية:</p>
+<ul>
+<li>إصدار Print Cost &amp; Profit.</li>
+<li>إصدار Windows.</li>
+<li>اسم برنامج التقطيع وإصداره (Snapmaker Orca أو OrcaSlicer أو Creality
+Print أو غيره).</li>
+<li>الطابعة المستخدمة، إذا كان ذلك ذا صلة.</li>
+<li>العملية التي تم تنفيذها.</li>
+<li>رسالة الخطأ كاملة.</li>
+<li>الخطوات اللازمة لإعادة حدوث المشكلة.</li>
+</ul>
+<p>لا تُدرج كلمات مرور أو مفاتيح خاصة أو بيانات شخصية غير ضرورية.</p>
+<hr />
+<p><strong>Print Cost &amp; Profit v1.2</strong></p>
+<p>تطوير Beatriz Toro Martin.</p>
+<p>احسب تكاليفك، وتابع أعمالك، وحسّن إدارتك المالية.</p>
+</main></body>
+</html>

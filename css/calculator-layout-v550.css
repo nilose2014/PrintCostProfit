@@ -1,0 +1,75 @@
+/* v2.0.80 — Calculadora: distribución compacta inspirada en el diseño de referencia. */
+@media (min-width:1101px){
+ .pcp-calculator-page>.grid{
+  display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;
+  gap:14px!important;align-items:stretch!important;
+ }
+ .pcp-calculator-page>.grid>main,.pcp-calculator-page>.grid>aside{display:contents!important}
+ .pcp-calculator-page>.grid>main>section:nth-of-type(1){grid-column:span 4!important;grid-row:1!important}
+ .pcp-calculator-page>.grid>main>section:nth-of-type(2){grid-column:span 4!important;grid-row:1!important}
+ .pcp-calculator-page>.grid>main>section:nth-of-type(3){grid-column:span 2!important;grid-row:1!important}
+ .pcp-calculator-page>.grid>main>section.pcp-extra-costs{grid-column:span 2!important;grid-row:1!important}
+ .pcp-calculator-page>.grid>aside>section:nth-of-type(1){grid-column:span 3!important;grid-row:2!important}
+ .pcp-calculator-page>.grid>aside>section:nth-of-type(2){grid-column:span 3!important;grid-row:2!important}
+ .pcp-calculator-page>.grid>aside>section:nth-of-type(3){grid-column:span 6!important;grid-row:2!important}
+ .pcp-calculator-page>.grid #comparePanel{grid-column:span 8!important;grid-row:3!important;min-width:0!important}
+ .pcp-calculator-page>.grid .calculate-dock{grid-column:span 4!important;grid-row:3!important;align-self:stretch!important}
+}
+.pcp-calculator-page>.grid>main>section,.pcp-calculator-page>.grid>aside>section,.pcp-calculator-page>#comparePanel,.pcp-calculator-page .calculate-dock{
+ box-sizing:border-box!important;min-width:0!important;border-radius:15px!important;
+}
+.pcp-calculator-page>.grid>main>section>h2,.pcp-calculator-page>.grid>aside>section>h2{
+ font-size:15px!important;letter-spacing:.01em!important;padding-bottom:10px!important;
+ border-bottom:1px solid rgba(110,155,255,.24)!important;
+}
+.pcp-calculator-page>.grid>main>section .fields,.pcp-calculator-page>.grid>aside>section .fields{
+ gap:10px 12px!important;
+}
+.pcp-calculator-page>.grid>main>section input,.pcp-calculator-page>.grid>aside>section input,
+.pcp-calculator-page>.grid>main>section select,.pcp-calculator-page>.grid>aside>section select{
+ min-height:36px!important;border-radius:8px!important;
+}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-order-bottom{
+ margin-top:14px!important;padding-top:12px!important;border-top:0!important;
+}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-order-box{
+ display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(150px,.85fr)!important;
+ align-items:center!important;gap:8px 16px!important;padding:16px!important;
+ border:1px solid rgba(50,232,208,.75)!important;border-radius:14px!important;
+ background:linear-gradient(120deg,rgba(0,111,103,.28),rgba(12,32,61,.96))!important;
+ box-shadow:0 0 18px rgba(0,220,194,.13),inset 0 0 18px rgba(0,220,194,.06)!important;
+}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-label,
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-value,
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-detail,
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-hint{grid-column:1!important}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-value{
+ font-size:clamp(30px,3vw,48px)!important;font-weight:950!important;color:#73ffe1!important;
+ text-shadow:0 0 18px rgba(39,240,211,.25)!important;line-height:1.05!important;
+}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-detail{font-size:12px!important}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-hint{display:none!important}
+.pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-order-box:after{
+ content:"";grid-column:2;grid-row:1/5;align-self:stretch;border-left:1px solid rgba(105,180,220,.28);
+}
+.pcp-calculator-page>.grid .calculate-dock{
+ display:flex!important;flex-direction:column!important;justify-content:center!important;
+ gap:12px!important;padding:16px!important;background:linear-gradient(145deg,#11284a,#0b1830)!important;
+ border:1px solid rgba(82,157,255,.42)!important;
+}
+.pcp-calculator-page .calculate-dock-actions{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;
+}
+.pcp-calculator-page #comparePanel .fields{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.pcp-calculator-page #comparePanel .filemeta{overflow-x:auto!important}
+@media(max-width:1100px){
+ .pcp-calculator-page>.grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .pcp-calculator-page>.grid>main,.pcp-calculator-page>.grid>aside{display:contents!important}
+ .pcp-calculator-page>.grid>main>section,.pcp-calculator-page>.grid>aside>section,.pcp-calculator-page>.grid #comparePanel,.pcp-calculator-page>.grid .calculate-dock{grid-column:1/-1!important}
+}
+@media(max-width:700px){
+ .pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-order-box{grid-template-columns:1fr!important}
+ .pcp-calculator-page>.grid>aside>section:nth-of-type(3) .total-order-box:after{display:none}
+ .pcp-calculator-page .calculate-dock-actions{grid-template-columns:1fr!important}
+ .pcp-calculator-page #comparePanel .fields{grid-template-columns:1fr!important}
+}

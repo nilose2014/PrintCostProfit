@@ -1,0 +1,75 @@
+/* v2.0.268 — pasada de contraste final para módulos que conservaban superficies oscuras.
+   Solo actúa cuando el usuario tiene activo el tema claro. */
+body.pcp-light-theme {
+  --pcp268-ink:#172b45;
+  --pcp268-muted:#52657d;
+  --pcp268-surface:#ffffff;
+  --pcp268-soft:#f2f6fb;
+  --pcp268-border:#cbd8e6;
+}
+/* Presupuestos, pedidos y facturas: formularios, paneles y listas dinámicas. */
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) {
+  color:var(--pcp268-ink)!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.panel,.seller-modal,.multi-line-editor,.list-search-bar,.filemeta,#savedQuotesList,#quotePreview,#ordersList,#savedInvoicesList,#invoiceClientChooser) {
+  background-color:var(--pcp268-surface)!important;
+  background-image:none!important;
+  color:var(--pcp268-ink)!important;
+  border-color:var(--pcp268-border)!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(h2,h3,h4,p,small,label,strong,b,span,td,th,div):not(.badge):not(.status-badge) {
+  text-shadow:none!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.section-note,small,.search-sort-label) {
+  color:var(--pcp268-muted)!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea) {
+  background:#fff!important;
+  color:var(--pcp268-ink)!important;
+  border:1px solid var(--pcp268-border)!important;
+  box-shadow:none!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(input,select,textarea)::placeholder {
+  color:#718198!important;
+  opacity:1!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.filemeta table,.saved-quotes-list table,table) {background:#fff!important;color:var(--pcp268-ink)!important}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(thead th,table th) {background:#e8eff7!important;color:#20344d!important;border-color:var(--pcp268-border)!important}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(tbody td,table td) {background:#fff!important;color:#263a53!important;border-color:#d8e1eb!important}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) tbody tr:nth-child(even) td {background:#f5f8fc!important}
+/* Stock: el formulario y las tarjetas de bobinas se generan con fondos navy inline. */
+body.pcp-light-theme #spoolsView,
+body.pcp-light-theme #spoolsView #spoolsPanel {background:transparent!important;color:var(--pcp268-ink)!important}
+body.pcp-light-theme #spoolsView :is(.panel,.fields,.field,.list-search-bar,.filemeta,#spoolsList,.spool-card,.spool-item,.spool-form,.spools-form) {
+  background-color:#fff!important;
+  background-image:none!important;
+  color:var(--pcp268-ink)!important;
+  border-color:var(--pcp268-border)!important;
+}
+body.pcp-light-theme #spoolsView :is(h2,h3,h4,p,small,label,strong,b,span,div):not(.badge):not(.spool-color):not(.color-swatch) {text-shadow:none!important}
+body.pcp-light-theme #spoolsView :is(.section-note,small,.field label) {color:var(--pcp268-muted)!important}
+body.pcp-light-theme #spoolsView :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select,textarea) {
+  background:#fff!important;color:var(--pcp268-ink)!important;border:1px solid var(--pcp268-border)!important;
+}
+body.pcp-light-theme #spoolsView :is(.spool-card,.spool-item,.spools-list-item) * {color:var(--pcp268-ink)!important;text-shadow:none!important}
+body.pcp-light-theme #spoolsView :is(.spool-card,.spool-item,.spools-list-item) :is(.muted,small,.section-note) {color:var(--pcp268-muted)!important}
+/* Opciones: contraste de títulos, textos auxiliares y paneles de configuración. */
+body.pcp-light-theme #programOptionsView :is(.panel,.seller-modal,.settings-card,.settings-section,.options-section,.option-section,.options-card) {
+  background:#fff!important;background-image:none!important;color:var(--pcp268-ink)!important;border-color:var(--pcp268-border)!important;
+}
+body.pcp-light-theme #programOptionsView :is(h1,h2,h3,h4,.seller-modal-head,.section-order,.options-order,.sortable-section-header) {
+  color:var(--pcp268-ink)!important;text-shadow:none!important;
+}
+body.pcp-light-theme #programOptionsView :is(p,small,.section-note,label,.field label) {color:var(--pcp268-muted)!important;text-shadow:none!important}
+body.pcp-light-theme #programOptionsView :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea) {background:#fff!important;color:var(--pcp268-ink)!important;border-color:var(--pcp268-border)!important}
+/* Tarjetas y textos del monitor: mantener visibles los importes incluso con colores heredados. */
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid :is(article,div) {color:var(--pcp268-ink)!important;text-shadow:none!important}
+/* Modal de resumen de impresión, que antes llevaba estilos navy inline. */
+body.pcp-light-theme .pcp-print-completion-dialog {
+  background:#fff!important;color:var(--pcp268-ink)!important;border:1px solid var(--pcp268-border)!important;
+  box-shadow:0 18px 55px rgba(24,42,65,.22)!important;
+}
+body.pcp-light-theme .pcp-print-completion-dialog :is(h2,p,span,strong,b,div) {color:var(--pcp268-ink)!important;text-shadow:none!important}
+body.pcp-light-theme .pcp-print-completion-dialog .pcp-completion-muted {color:var(--pcp268-muted)!important}
+body.pcp-light-theme .pcp-print-completion-dialog .pcp-completion-row {border-color:#d7e0ea!important}
+body.pcp-light-theme .pcp-print-completion-dialog button {background:#e8eff7!important;color:#172b45!important;border:1px solid #cbd8e6!important}

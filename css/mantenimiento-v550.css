@@ -1,4 +1,4 @@
-﻿#maintenanceView{padding:22px;min-height:calc(100vh - 130px);background:linear-gradient(145deg,rgba(10,22,45,.92),rgba(15,24,48,.94));border:1px solid rgba(65,111,171,.42);border-radius:18px;color:#eaf3ff}
+#maintenanceView{padding:22px;min-height:calc(100vh - 130px);background:linear-gradient(145deg,rgba(10,22,45,.92),rgba(15,24,48,.94));border:1px solid rgba(65,111,171,.42);border-radius:18px;color:#eaf3ff}
 #maintenanceView .maintenance-heading{display:flex;justify-content:space-between;align-items:center;padding:8px 4px 22px;border-bottom:1px solid rgba(83,139,198,.25);margin-bottom:18px}
 #maintenanceView .maintenance-eyebrow{font-size:11px;letter-spacing:2px;color:#37e4e0;font-weight:800}
 #maintenanceView h2{font-size:26px;margin:7px 0;color:#f4f8ff}

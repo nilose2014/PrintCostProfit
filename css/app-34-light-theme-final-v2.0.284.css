@@ -1,0 +1,59 @@
+/* v2.0.315 — corrección final de la bienvenida en tema claro.
+   No se cambia el tema oscuro ni la lógica de selección de tema. */
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome,
+body.pcp-light-theme .pcp-home-dashboard .pcp-home-welcome,
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome {
+  background: #f4f7fb !important;
+  background-color: #f4f7fb !important;
+  background-image: none !important;
+  border: 1px solid #cbd8e6 !important;
+  box-shadow: 0 5px 18px rgba(25,45,70,.10) !important;
+  color: #20344d !important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome::before,
+body.pcp-light-theme .pcp-home-dashboard .pcp-home-welcome::before,
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  opacity: 0 !important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome::after,
+body.pcp-light-theme .pcp-home-dashboard .pcp-home-welcome::after,
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome h2,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome h3,
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome h2 {
+  color: #20344d !important;
+  background: transparent !important;
+  background-image: none !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome p,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome .pcp-home-kicker,
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome p {
+  color: #52657d !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome .pcp-home-kicker {
+  color: #087f91 !important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome .pcp-home-action {
+  background: #e6edf6 !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border: 1px solid #c5d3e2 !important;
+  text-shadow: none !important;
+  box-shadow: 0 2px 6px rgba(25,45,70,.10) !important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome .pcp-home-action * {
+  color: #20344d !important;
+  text-shadow: none !important;
+}
+/* El panel de bienvenida deja de ser una superficie azul oscuro en tema claro. */

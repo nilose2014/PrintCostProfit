@@ -1,0 +1,83 @@
+/* PCP 2.0.315 — ajuste final del tema claro en Stock de filamento.
+   Neutraliza los campos oscuros heredados de management-professional-v70
+   y stock-filament-premium sin alterar el tema oscuro ni los datos. */
+body.pcp-light-theme #spoolsView,
+body.pcp-light-theme #spoolsView #spoolsPanel,
+body.pcp-light-theme #spoolsView #spoolsList,
+body.pcp-light-theme #spoolsView .list-search-bar,
+body.pcp-light-theme #spoolsView .list-search-controls,
+body.pcp-light-theme #spoolsView .spool-card,
+body.pcp-light-theme #spoolsView .spool-stat,
+body.pcp-light-theme #spoolsView .spool-units-grid,
+body.pcp-light-theme #spoolsView .spool-units-grid label {
+  color:#20344d!important;
+}
+body.pcp-light-theme #spoolsView input:not([type="color"]):not([type="checkbox"]),
+body.pcp-light-theme #spoolsView select,
+body.pcp-light-theme #spoolsView textarea,
+body.pcp-light-theme #spoolsView #spoolsSearch,
+body.pcp-light-theme #spoolsView #spoolsSort,
+body.pcp-light-theme #spoolsView #spoolSortOrder,
+body.pcp-light-theme #spoolsView #spoolsList .spool-stat input,
+body.pcp-light-theme #spoolsView #spoolsList .spool-remaining input,
+body.pcp-light-theme #spoolsView #spoolsList .spool-units-grid input {
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important;
+  border:1px solid #bdccdc!important;
+  box-shadow:0 1px 2px rgba(31,55,82,.05)!important;
+  color-scheme:light!important;
+}
+body.pcp-light-theme #spoolsView input::placeholder,
+body.pcp-light-theme #spoolsView textarea::placeholder {
+  color:#71839a!important;
+  -webkit-text-fill-color:#71839a!important;
+  opacity:1!important;
+}
+body.pcp-light-theme #spoolsView select option {
+  background:#fff!important;
+  color:#20344d!important;
+}
+body.pcp-light-theme #spoolsView .list-search-bar,
+body.pcp-light-theme #spoolsView .list-search-controls {
+  background:#f3f7fb!important;
+  background-color:#f3f7fb!important;
+  background-image:none!important;
+  border-color:#d2deea!important;
+}
+body.pcp-light-theme #spoolsView .spool-stat {
+  background:#edf3f9!important;
+  background-color:#edf3f9!important;
+  background-image:none!important;
+  border-color:#d2deea!important;
+}
+body.pcp-light-theme #spoolsView .spool-stat :is(span,strong,small,label) {
+  color:#405873!important;
+  -webkit-text-fill-color:#405873!important;
+}
+body.pcp-light-theme #spoolsView .spool-stat input {
+  background:#fff!important;
+  color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important;
+}
+
+/* Rentabilidad avanzada: aclarar también el hueco central de los donuts.
+   Se mantienen intactos los segmentos de color de cada gráfica. */
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-donut::before,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-share-donut::before {
+  background:#edf3f9!important;
+  border:1px solid #d2deea!important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-donut :is(strong,span),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-share-donut :is(strong,span) {
+  color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-donut-legend :is(span,strong,small),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-share-legend :is(span,b) {
+  color:#405873!important;
+  -webkit-text-fill-color:#405873!important;
+}

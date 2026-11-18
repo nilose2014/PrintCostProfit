@@ -1,4 +1,4 @@
-/* v2.0 — abre los manuales README convertidos a HTML y localizados. */
+/* v2.0.10 — abre manuales locales adaptables según el idioma. */
 (()=>{
  'use strict';
  const files={"es": "documentacion-es.html", "en": "documentacion-en.html", "fr": "documentacion-fr.html", "de": "documentacion-de.html", "it": "documentacion-it.html", "pl": "documentacion-pl.html", "ar": "documentacion-ar.html", "zh-CN": "documentacion-zh-CN.html"};

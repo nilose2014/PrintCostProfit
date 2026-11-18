@@ -1,0 +1,131 @@
+/* v2.0.262 — normalización global del tema claro en todas las vistas.
+   Solo actúa con pcp-light-theme; el tema oscuro no se modifica. */
+body.pcp-light-theme {
+  --pcp-light-bg:#f2f5f9;
+  --pcp-light-surface:#ffffff;
+  --pcp-light-soft:#f5f8fc;
+  --pcp-light-border:#d3deea;
+  --pcp-light-text:#26384f;
+  --pcp-light-muted:#60728a;
+  background:var(--pcp-light-bg)!important;
+  color:var(--pcp-light-text)!important;
+}
+body.pcp-light-theme .tab-page:not(#homeView) {
+  color:var(--pcp-light-text)!important;
+}
+/* Panels and structural containers across every tab, not just selected pages. */
+body.pcp-light-theme .tab-page:not(#homeView) > .panel,
+body.pcp-light-theme .tab-page:not(#homeView) section.panel,
+body.pcp-light-theme .tab-page:not(#homeView) .seller-modal,
+body.pcp-light-theme .tab-page:not(#homeView) .clients-modern,
+body.pcp-light-theme .tab-page:not(#homeView) .acc-entry-panel,
+body.pcp-light-theme .tab-page:not(#homeView) .acc-history-panel,
+body.pcp-light-theme .tab-page:not(#homeView) .multi-line-editor,
+body.pcp-light-theme .tab-page:not(#homeView) .list-search-bar,
+body.pcp-light-theme .tab-page:not(#homeView) .search-panel,
+body.pcp-light-theme .tab-page:not(#homeView) .filemeta,
+body.pcp-light-theme .tab-page:not(#homeView) .empty {
+  background-color:var(--pcp-light-surface)!important;
+  background-image:none!important;
+  color:var(--pcp-light-text)!important;
+  border-color:var(--pcp-light-border)!important;
+  box-shadow:0 4px 16px rgba(31,53,80,.07)!important;
+}
+/* Headings, labels and copy: remove low-contrast pale text inherited from dark gradients. */
+body.pcp-light-theme .tab-page:not(#homeView) h1,
+body.pcp-light-theme .tab-page:not(#homeView) h2,
+body.pcp-light-theme .tab-page:not(#homeView) h3,
+body.pcp-light-theme .tab-page:not(#homeView) h4,
+body.pcp-light-theme .tab-page:not(#homeView) label,
+body.pcp-light-theme .tab-page:not(#homeView) p,
+body.pcp-light-theme .tab-page:not(#homeView) small,
+body.pcp-light-theme .tab-page:not(#homeView) .section-note,
+body.pcp-light-theme .tab-page:not(#homeView) .field,
+body.pcp-light-theme .tab-page:not(#homeView) .field span,
+body.pcp-light-theme .tab-page:not(#homeView) .muted {
+  color:var(--pcp-light-muted)!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme .tab-page:not(#homeView) h1,
+body.pcp-light-theme .tab-page:not(#homeView) h2,
+body.pcp-light-theme .tab-page:not(#homeView) h3,
+body.pcp-light-theme .tab-page:not(#homeView) h4,
+body.pcp-light-theme .tab-page:not(#homeView) .seller-modal-head,
+body.pcp-light-theme .tab-page:not(#homeView) .seller-modal-head * {
+  color:#20334b!important;
+  text-shadow:none!important;
+}
+/* All form controls, including controls nested inside inline dark wrappers. */
+body.pcp-light-theme .tab-page:not(#homeView) input:not([type=checkbox]):not([type=radio]):not([type=file]),
+body.pcp-light-theme .tab-page:not(#homeView) select,
+body.pcp-light-theme .tab-page:not(#homeView) textarea {
+  background:#fff!important;
+  background-image:none!important;
+  color:#26384f!important;
+  border:1px solid #bdcad9!important;
+  box-shadow:inset 0 1px 2px rgba(25,45,70,.04)!important;
+}
+body.pcp-light-theme .tab-page:not(#homeView) input::placeholder,
+body.pcp-light-theme .tab-page:not(#homeView) textarea::placeholder {color:#7b899b!important;opacity:1!important}
+/* Inline dark backgrounds used by legacy views: normalize surfaces without changing button/status colors. */
+body.pcp-light-theme .tab-page:not(#homeView) [style*="background:#0"],
+body.pcp-light-theme .tab-page:not(#homeView) [style*="background: #0"],
+body.pcp-light-theme .tab-page:not(#homeView) [style*="background-color:#0"],
+body.pcp-light-theme .tab-page:not(#homeView) [style*="background-color: #0"],
+body.pcp-light-theme .tab-page:not(#homeView) [style*="background:rgb(15"],
+body.pcp-light-theme .tab-page:not(#homeView) [style*="background: rgb(15"] {
+  background:#f5f8fc!important;
+  background-image:none!important;
+  color:#34465e!important;
+  border-color:#d3deea!important;
+}
+/* Data tables and generated list rows. */
+body.pcp-light-theme .tab-page:not(#homeView) table,
+body.pcp-light-theme .tab-page:not(#homeView) th,
+body.pcp-light-theme .tab-page:not(#homeView) td {
+  border-color:#d3deea!important;
+  color:#34465e!important;
+}
+body.pcp-light-theme .tab-page:not(#homeView) thead th {
+  background:#e9eff6!important;
+  color:#20334b!important;
+}
+body.pcp-light-theme .tab-page:not(#homeView) tbody tr:nth-child(even) td {background:#f5f8fc!important}
+body.pcp-light-theme .tab-page:not(#homeView) tbody tr:nth-child(odd) td {background:#fff!important}
+/* Page title bands were designed for dark mode and used dark text on navy. */
+body.pcp-light-theme .pcp-calculator-heading,
+body.pcp-light-theme .tab-page:not(#homeView) .page-heading,
+body.pcp-light-theme .tab-page:not(#homeView) .seller-modal-head {
+  background:#eaf1f8!important;
+  background-image:none!important;
+  border-color:#d3deea!important;
+}
+body.pcp-light-theme .pcp-calculator-heading *,
+body.pcp-light-theme .tab-page:not(#homeView) .page-heading * {color:#20334b!important;text-shadow:none!important}
+/* Floating printer monitor is outside the tab DOM; theme it independently. */
+body.pcp-light-theme #u1-monitor-panel,
+body.pcp-light-theme #u1-monitor-content {
+  background:#fff!important;
+  background-image:none!important;
+  color:#26384f!important;
+  border-color:#cbd8e6!important;
+}
+body.pcp-light-theme #u1-monitor-panel h1,
+body.pcp-light-theme #u1-monitor-panel h2,
+body.pcp-light-theme #u1-monitor-panel h3,
+body.pcp-light-theme #u1-monitor-panel label,
+body.pcp-light-theme #u1-monitor-panel p,
+body.pcp-light-theme #u1-monitor-content * {color:#34465e!important;text-shadow:none!important}
+body.pcp-light-theme #u1-monitor-panel [class*="filament"],
+body.pcp-light-theme #u1-monitor-panel [class*="Filament"],
+body.pcp-light-theme #u1-monitor-panel [class*="spool"],
+body.pcp-light-theme #u1-monitor-panel [class*="slot"] {
+  background-color:#f4f7fb!important;
+  background-image:none!important;
+  border-color:#d3deea!important;
+}
+body.pcp-light-theme #u1-monitor-panel button,
+body.pcp-light-theme #u1-monitor-content button {color:#20334b!important}
+/* Keep primary/semantic action buttons and colored status indicators intact. */
+body.pcp-light-theme .tab-page:not(#homeView) button.primary,
+body.pcp-light-theme .tab-page:not(#homeView) .btn.primary {color:#fff!important}

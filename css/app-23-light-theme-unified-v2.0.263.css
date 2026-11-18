@@ -1,0 +1,61 @@
+/* v2.0.263 — normalización final del tema claro para todos los módulos.
+   Se carga al final del documento. Solo actúa con body.pcp-light-theme. */
+:root[data-theme="light"] { color-scheme: light; }
+body.pcp-light-theme {
+  --pcp-light-bg:#f1f4f8; --pcp-light-surface:#ffffff; --pcp-light-soft:#f5f8fc;
+  --pcp-light-border:#d3deea; --pcp-light-text:#24364d; --pcp-light-muted:#60728a;
+  color-scheme:light !important; background:var(--pcp-light-bg)!important; color:var(--pcp-light-text)!important;
+}
+body.pcp-light-theme .tab-page,
+body.pcp-light-theme .tab-page.active,
+body.pcp-light-theme #mainContent,
+body.pcp-light-theme main {
+  background-color:var(--pcp-light-bg)!important; background-image:none!important; color:var(--pcp-light-text)!important;
+}
+/* Main module surfaces: remove navy gradients and dark glass backgrounds. */
+body.pcp-light-theme .tab-page :is(.panel,.card,.clients-modern,.orders-modern,.seller-modal,.acc-entry-panel,.acc-history-panel,.client-manager-list,.multi-line-editor,.list-search-bar,.search-panel,.filemeta,.empty,.section-card,.content-card,.management-card,.quote-card,.invoice-card,.order-card,.client-card,.maintenance-card,.task-card,.accounting-card,.dashboard-card,.metric-card,.stat-card,.result-card),
+body.pcp-light-theme .tab-page [class*="-panel"],
+body.pcp-light-theme .tab-page [class*="-card"],
+body.pcp-light-theme .tab-page [class*="-section"],
+body.pcp-light-theme .tab-page [class*="-container"] {
+  background-color:var(--pcp-light-surface)!important; background-image:none!important;
+  color:var(--pcp-light-text)!important; border-color:var(--pcp-light-border)!important;
+  box-shadow:0 4px 16px rgba(31,53,80,.08)!important;
+}
+/* Headers and title strips inside cards must not retain dark gradients. */
+body.pcp-light-theme .tab-page :is(header,.panel-header,.section-header,.card-header,.section-title,.page-heading),
+body.pcp-light-theme .tab-page [class*="-header"] {
+  background-color:var(--pcp-light-soft)!important; background-image:none!important;
+  color:var(--pcp-light-text)!important; border-color:var(--pcp-light-border)!important; text-shadow:none!important;
+}
+body.pcp-light-theme .tab-page :is(h1,h2,h3,h4,h5,strong,b,label,legend,th,.title,.heading,.section-note,.field-help),
+body.pcp-light-theme .tab-page [class*="title"],
+body.pcp-light-theme .tab-page [class*="heading"] {
+  color:var(--pcp-light-text)!important; text-shadow:none!important;
+}
+body.pcp-light-theme .tab-page :is(p,small,span,div,td,li,.muted,.hint,.description,.subtitle) {
+  text-shadow:none!important;
+}
+body.pcp-light-theme .tab-page :is(p,small,.muted,.hint,.description,.subtitle,.section-note) { color:var(--pcp-light-muted)!important; }
+/* Inputs remain readable and visually consistent across calculator, options and CRM. */
+body.pcp-light-theme .tab-page :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select) {
+  color:#24364d!important; background:#fff!important; background-image:none!important;
+  border:1px solid #c7d3e1!important; box-shadow:inset 0 1px 2px rgba(20,40,65,.05)!important;
+  color-scheme:light!important;
+}
+body.pcp-light-theme .tab-page :is(input,textarea,select)::placeholder { color:#8291a5!important; opacity:1!important; }
+body.pcp-light-theme .tab-page :is(button,.btn,.button) {
+  color:#20344d!important; border-color:#c7d3e1!important;
+}
+body.pcp-light-theme .tab-page :is(table,thead,tbody,tr,th,td) { border-color:var(--pcp-light-border)!important; }
+body.pcp-light-theme .tab-page thead th { background:#eaf0f7!important; color:#20344d!important; }
+body.pcp-light-theme .tab-page tbody tr:nth-child(even) { background:#f5f8fc!important; }
+body.pcp-light-theme .tab-page tbody tr:nth-child(odd) { background:#fff!important; }
+/* Keep colored status chips, charts, filament swatches and product previews intact. */
+body.pcp-light-theme .tab-page :is(canvas,svg,.chart,.chart-container,.color-swatch,.filament-color,.status-dot,.badge,.chip,.progress,.progress-bar,.product-preview,.piece-preview) {
+  background-image:initial;
+}
+/* Floating printer monitor is intentionally independent from the page theme. */
+body.pcp-light-theme #u1MonitorPanel,
+body.pcp-light-theme .u1-monitor-panel,
+body.pcp-light-theme #u1MonitorFloating { color-scheme:light; }

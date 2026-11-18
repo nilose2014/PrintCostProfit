@@ -99,3 +99,33 @@ body.pcp-light-theme #accountingRows .accounting-history .acc-printer-name,
 body.pcp-light-theme #accountingRows .accounting-history .acc-concept{color:#26364c}
 body.pcp-light-theme #accountingRows .accounting-history .acc-reference-details summary{background:#e8f2fb;color:#176d75;border-color:#b8d2e8}
 body.pcp-light-theme #accountingRows .accounting-history .acc-reference-details>div{background:#fff;color:#26364c}
+
+/* Fecha y hora en dos líneas para los movimientos contables. */
+#accountingRows .accounting-history .acc-date-day{display:block;white-space:nowrap}
+#accountingRows .accounting-history .acc-date-time{display:block;margin-top:3px;color:#8eafd4;font-size:11px;font-weight:600;line-height:1.2;white-space:nowrap}
+
+
+/* v2.0.110: contabilidad ocupa el ancho disponible sin desplazamiento horizontal. */
+#accountingRows .accounting-table-wrap{width:100%!important;max-width:100%!important;overflow-x:hidden!important;overflow-y:visible}
+#accountingRows table.accounting-history{width:100%!important;min-width:0!important;max-width:100%!important;table-layout:fixed!important}
+#accountingRows .accounting-history th,#accountingRows .accounting-history td{min-width:0!important;padding:9px 7px!important;white-space:normal!important;overflow-wrap:anywhere;word-break:normal}
+#accountingRows .accounting-history th:nth-child(1),#accountingRows .accounting-history td:nth-child(1){width:4%!important;text-align:center}
+#accountingRows .accounting-history th:nth-child(2),#accountingRows .accounting-history td:nth-child(2){width:8%!important}
+#accountingRows .accounting-history th:nth-child(3),#accountingRows .accounting-history td:nth-child(3){width:9%!important}
+#accountingRows .accounting-history th:nth-child(4),#accountingRows .accounting-history td:nth-child(4){width:8%!important}
+#accountingRows .accounting-history th:nth-child(5),#accountingRows .accounting-history td:nth-child(5){width:25%!important}
+#accountingRows .accounting-history th:nth-child(6),#accountingRows .accounting-history td:nth-child(6){width:10%!important}
+#accountingRows .accounting-history th:nth-child(7),#accountingRows .accounting-history td:nth-child(7){width:9%!important}
+#accountingRows .accounting-history th:nth-child(8),#accountingRows .accounting-history td:nth-child(8){width:8%!important}
+#accountingRows .accounting-history th:nth-child(9),#accountingRows .accounting-history td:nth-child(9){width:8%!important}
+#accountingRows .accounting-history th:nth-child(10),#accountingRows .accounting-history td:nth-child(10){width:11%!important}
+#accountingRows .accounting-history .acc-actions{display:flex!important;flex-wrap:wrap!important;gap:4px!important;white-space:normal!important}
+#accountingRows .accounting-history .acc-actions button{min-width:0!important;flex:1 1 auto!important;padding:6px 5px!important;font-size:10px!important}
+#accountingRows .accounting-history .acc-reference-details>div{min-width:0;max-width:100%;overflow-wrap:anywhere}
+@media(max-width:1100px){
+ #accountingRows .accounting-history th,#accountingRows .accounting-history td{padding:7px 4px!important;font-size:10px!important}
+ #accountingRows .accounting-history .acc-actions button{font-size:9px!important}
+}
+
+/* v2.0.241 — canales de filamento U1 */
+.pcp-u1-filaments{grid-column:1/-1}.pcp-u1-filament-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.pcp-u1-filament-slot{border:1px solid var(--border,#334155);border-radius:10px;padding:10px;background:rgba(15,23,42,.28);min-width:0}.pcp-u1-filament-slot header{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.pcp-u1-filament-slot small{display:block;color:var(--muted,#94a3b8);margin-top:6px}.pcp-u1-filament-body{margin-top:8px;overflow-wrap:anywhere}.pcp-u1-filaments .pcp-section-note{margin-top:10px;color:var(--muted,#94a3b8)}@media(max-width:900px){.pcp-u1-filament-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.pcp-u1-filament-grid{grid-template-columns:1fr}}

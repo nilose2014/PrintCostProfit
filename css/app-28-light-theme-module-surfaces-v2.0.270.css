@@ -1,0 +1,54 @@
+/* v2.0.269 — corrección basada en las capturas de la 2.0.268.
+   Normaliza contenedores internos que conservaban fondos navy en tema claro.
+   El tema oscuro y los colores funcionales (muestras de filamento, gráficos y estados) no se modifican. */
+body.pcp-light-theme {
+  --pcp269-ink:#172b45;
+  --pcp269-muted:#52657d;
+  --pcp269-surface:#fff;
+  --pcp269-soft:#f2f6fb;
+  --pcp269-border:#cbd8e6;
+}
+/* Los formularios de presupuestos, pedidos y facturas usan .fields como panel interno. */
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.fields,.fields > .field,.seller-modal-head,.multi-line-editor) {
+  background:#fff!important;
+  background-image:none!important;
+  color:var(--pcp269-ink)!important;
+  border-color:var(--pcp269-border)!important;
+  box-shadow:none!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.field,label,h2,h3,h4,p,small,strong,b,span) {
+  text-shadow:none!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.field > label,.section-note,small) {color:var(--pcp269-muted)!important}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.panel,.seller-modal,.orders-modern,#ordersPanel,#quotePanel) {
+  background:#fff!important;background-image:none!important;color:var(--pcp269-ink)!important;border-color:var(--pcp269-border)!important;
+}
+/* Stock: formulario superior y paneles que no usan la clase .fields estándar. */
+body.pcp-light-theme #spoolsView :is(#spoolsPanel,.fields,.field,.spool-form,.spools-form,.spool-card,.spool-item,.list-search-bar,.filemeta) {
+  background:#fff!important;background-image:none!important;color:var(--pcp269-ink)!important;border-color:var(--pcp269-border)!important;
+}
+body.pcp-light-theme #spoolsView :is(.field > label,.section-note,small) {color:var(--pcp269-muted)!important}
+body.pcp-light-theme #spoolsView :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select,textarea) {
+  background:#fff!important;color:var(--pcp269-ink)!important;border:1px solid var(--pcp269-border)!important;box-shadow:none!important;
+}
+body.pcp-light-theme #spoolsView :is(.spool-card,.spool-item) :is(h3,h4,p,label,strong,b,span,small,div) {color:var(--pcp269-ink)!important;text-shadow:none!important}
+body.pcp-light-theme #spoolsView :is(.spool-card,.spool-item) :is(.muted,small,.section-note) {color:var(--pcp269-muted)!important}
+/* Opciones: el banner del título es un contenedor independiente del panel de ajustes. */
+body.pcp-light-theme #programOptionsView > :is(.section-heading,.page-heading,.options-heading,.seller-modal-head),
+body.pcp-light-theme #programOptionsView :is(.options-header,.options-title,.section-heading,.page-heading) {
+  background:#eaf0f7!important;background-image:none!important;color:var(--pcp269-ink)!important;border-color:var(--pcp269-border)!important;text-shadow:none!important;
+}
+body.pcp-light-theme #programOptionsView :is(h1,h2,h3,h4,.seller-modal-head,.section-order,.options-order,.sortable-section-header) {color:var(--pcp269-ink)!important;text-shadow:none!important}
+body.pcp-light-theme #programOptionsView :is(.panel,.fields,.field,.settings-card,.settings-section,.options-section,.option-section,.options-card) {
+  background:#fff!important;background-image:none!important;color:var(--pcp269-ink)!important;border-color:var(--pcp269-border)!important;
+}
+/* Rentabilidad avanzada y contabilidad: tarjetas de métricas y paneles de formulario. */
+body.pcp-light-theme #accountingView :is(.pcp-profit-dashboard,.pcp-profit-dashboard .panel,.pcp-profit-dashboard .fields,.acc-entry-panel,.acc-history-panel,.acc-report-card,.pcp-profit-card,.pcp-profit-metric,.profit-metric-card,.metric-card) {
+  background:#fff!important;background-image:none!important;color:var(--pcp269-ink)!important;border-color:var(--pcp269-border)!important;
+}
+body.pcp-light-theme #accountingView :is(.pcp-profit-dashboard,.acc-entry-panel,.acc-history-panel) :is(h1,h2,h3,h4,p,label,small,strong,b,span,div) {text-shadow:none!important}
+body.pcp-light-theme #accountingView :is(.pcp-profit-dashboard,.acc-entry-panel,.acc-history-panel) :is(.section-note,small,label) {color:var(--pcp269-muted)!important}
+body.pcp-light-theme #accountingView :is(input:not([type=checkbox]):not([type=radio]),select,textarea) {background:#fff!important;color:var(--pcp269-ink)!important;border-color:var(--pcp269-border)!important}
+/* Resumen de impresión: asegura legibilidad de importes y filas. */
+body.pcp-light-theme .pcp-print-completion-dialog :is(.pcp-completion-row,hr) {border-color:var(--pcp269-border)!important}
+body.pcp-light-theme .pcp-print-completion-dialog :is(.pcp-completion-row span,.pcp-completion-row strong) {color:var(--pcp269-ink)!important}

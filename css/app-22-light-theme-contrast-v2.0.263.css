@@ -1,0 +1,148 @@
+/* v2.0.262 — corrección de contraste del tema claro. No altera el tema oscuro. */
+body.pcp-light-theme {
+  --pcp-l-bg:#f2f5f9; --pcp-l-card:#fff; --pcp-l-soft:#f5f8fc;
+  --pcp-l-border:#cbd7e5; --pcp-l-ink:#20334b; --pcp-l-muted:#526780;
+  background:var(--pcp-l-bg)!important; color:var(--pcp-l-ink)!important;
+}
+/* Las vistas anteriores mezclaban paneles navy heredados con el fondo claro. */
+body.pcp-light-theme .tab-page,
+body.pcp-light-theme .tab-page .panel,
+body.pcp-light-theme .tab-page .clients-modern,
+body.pcp-light-theme .tab-page .orders-modern,
+body.pcp-light-theme .tab-page .seller-modal,
+body.pcp-light-theme .tab-page .acc-entry-panel,
+body.pcp-light-theme .tab-page .acc-history-panel,
+body.pcp-light-theme .tab-page .client-manager-list,
+body.pcp-light-theme .tab-page .client-manager-list > *,
+body.pcp-light-theme .tab-page .multi-line-editor,
+body.pcp-light-theme .tab-page .list-search-bar,
+body.pcp-light-theme .tab-page .search-panel,
+body.pcp-light-theme .tab-page .filemeta,
+body.pcp-light-theme .tab-page .empty,
+body.pcp-light-theme .tab-page [class*="dashboard-card"],
+body.pcp-light-theme .tab-page [class*="metric-card"],
+body.pcp-light-theme .tab-page [class*="stat-card"],
+body.pcp-light-theme .tab-page [class*="result-card"] {
+  background-color:var(--pcp-l-card)!important;
+  background-image:none!important;
+  color:var(--pcp-l-ink)!important;
+  border-color:var(--pcp-l-border)!important;
+}
+/* Inicio: paneles de KPIs, gráficos, historial y accesos rápidos. */
+body.pcp-light-theme #homeView .home-card,
+body.pcp-light-theme #homeView .dashboard-card,
+body.pcp-light-theme #homeView .metric-card,
+body.pcp-light-theme #homeView .stat-card,
+body.pcp-light-theme #homeView .chart-card,
+body.pcp-light-theme #homeView .home-panel,
+body.pcp-light-theme #homeView .dashboard-panel,
+body.pcp-light-theme #homeView .recent-card,
+body.pcp-light-theme #homeView .quick-access-card {
+  background:#fff!important; background-image:none!important; color:#20334b!important;
+  border:1px solid #cbd7e5!important;
+}
+body.pcp-light-theme #homeView .home-card *,
+body.pcp-light-theme #homeView .dashboard-card *,
+body.pcp-light-theme #homeView .metric-card *,
+body.pcp-light-theme #homeView .stat-card *,
+body.pcp-light-theme #homeView .chart-card *,
+body.pcp-light-theme #homeView .home-panel *,
+body.pcp-light-theme #homeView .dashboard-panel *,
+body.pcp-light-theme #homeView .recent-card *,
+body.pcp-light-theme #homeView .quick-access-card * { text-shadow:none!important; }
+/* Cabeceras y texto: evita títulos oscuros sobre navy y texto blanco sobre blanco. */
+body.pcp-light-theme .tab-page h1,
+body.pcp-light-theme .tab-page h2,
+body.pcp-light-theme .tab-page h3,
+body.pcp-light-theme .tab-page h4,
+body.pcp-light-theme .tab-page .seller-modal-head,
+body.pcp-light-theme .tab-page .page-heading {
+  color:#20334b!important; background:#eaf1f8!important; background-image:none!important;
+  border-color:#cbd7e5!important; text-shadow:none!important;
+}
+body.pcp-light-theme .tab-page p,
+body.pcp-light-theme .tab-page label,
+body.pcp-light-theme .tab-page small,
+body.pcp-light-theme .tab-page .section-note,
+body.pcp-light-theme .tab-page .muted,
+body.pcp-light-theme .tab-page .field,
+body.pcp-light-theme .tab-page .field span,
+body.pcp-light-theme .tab-page .result-label,
+body.pcp-light-theme .tab-page .breakdown-row,
+body.pcp-light-theme .tab-page .breakdown-row span {
+  color:#526780!important; text-shadow:none!important;
+}
+body.pcp-light-theme .tab-page strong,
+body.pcp-light-theme .tab-page b,
+body.pcp-light-theme .tab-page .result-value,
+body.pcp-light-theme .tab-page .value,
+body.pcp-light-theme .tab-page td,
+body.pcp-light-theme .tab-page th { color:#20334b!important; text-shadow:none!important; }
+/* Formularios de todas las secciones. */
+body.pcp-light-theme .tab-page input:not([type=checkbox]):not([type=radio]):not([type=file]),
+body.pcp-light-theme .tab-page select,
+body.pcp-light-theme .tab-page textarea {
+  background:#fff!important; background-image:none!important; color:#20334b!important;
+  border:1px solid #bdcad9!important;
+}
+body.pcp-light-theme .tab-page input::placeholder,
+body.pcp-light-theme .tab-page textarea::placeholder {color:#78899e!important;opacity:1!important}
+/* Opciones: secciones oscuras creadas con fondos inline o gradientes de versiones anteriores. */
+body.pcp-light-theme #programOptionsView .options-section,
+body.pcp-light-theme #programOptionsView .option-section,
+body.pcp-light-theme #programOptionsView .settings-card,
+body.pcp-light-theme #programOptionsView .settings-section,
+body.pcp-light-theme #programOptionsView .options-card,
+body.pcp-light-theme #programOptionsView .panel {
+  background:#fff!important; background-image:none!important; color:#20334b!important;
+  border-color:#cbd7e5!important;
+}
+body.pcp-light-theme #programOptionsView .options-section *,
+body.pcp-light-theme #programOptionsView .option-section *,
+body.pcp-light-theme #programOptionsView .settings-card *,
+body.pcp-light-theme #programOptionsView .settings-section *,
+body.pcp-light-theme #programOptionsView .options-card *,
+body.pcp-light-theme #programOptionsView .panel * {text-shadow:none!important}
+/* Calculadora: cifras y desglose que heredaban blanco de la paleta oscura. */
+body.pcp-light-theme #calculatorView .result,
+body.pcp-light-theme #calculatorView .result-card,
+body.pcp-light-theme #calculatorView .result-box,
+body.pcp-light-theme #calculatorView .breakdown,
+body.pcp-light-theme #calculatorView .breakdown-list {background:#fff!important;color:#20334b!important}
+body.pcp-light-theme #calculatorView .result *:not(.positive):not(.negative),
+body.pcp-light-theme #calculatorView .result-card *:not(.positive):not(.negative),
+body.pcp-light-theme #calculatorView .result-box *:not(.positive):not(.negative),
+body.pcp-light-theme #calculatorView .breakdown * {text-shadow:none!important}
+/* Historiales y tablas. */
+body.pcp-light-theme .tab-page table,
+body.pcp-light-theme .tab-page th,
+body.pcp-light-theme .tab-page td {border-color:#d3deea!important}
+body.pcp-light-theme .tab-page thead th {background:#e9eff6!important;color:#20334b!important}
+body.pcp-light-theme .tab-page tbody tr:nth-child(even) td {background:#f5f8fc!important}
+body.pcp-light-theme .tab-page tbody tr:nth-child(odd) td {background:#fff!important}
+/* Monitor flotante, tarjetas de filamento y estados de sensores. */
+body.pcp-light-theme #u1-monitor-panel,
+body.pcp-light-theme #u1-monitor-content,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments,
+body.pcp-light-theme #u1-monitor-panel [class*="filament"],
+body.pcp-light-theme #u1-monitor-panel [class*="Filament"],
+body.pcp-light-theme #u1-monitor-panel [class*="slot"],
+body.pcp-light-theme #u1-monitor-panel [class*="spool"] {
+  background:#fff!important; background-image:none!important; color:#20334b!important;
+  border-color:#cbd7e5!important;
+}
+body.pcp-light-theme #u1-monitor-panel h1,
+body.pcp-light-theme #u1-monitor-panel h2,
+body.pcp-light-theme #u1-monitor-panel h3,
+body.pcp-light-theme #u1-monitor-panel p,
+body.pcp-light-theme #u1-monitor-panel label,
+body.pcp-light-theme #u1-monitor-panel small,
+body.pcp-light-theme #u1-monitor-panel span,
+body.pcp-light-theme #u1-monitor-panel strong {color:#344b65!important;text-shadow:none!important}
+body.pcp-light-theme #u1-monitor-panel input,
+body.pcp-light-theme #u1-monitor-panel select,
+body.pcp-light-theme #u1-monitor-panel textarea {background:#fff!important;color:#20334b!important}
+/* Conserva el contraste semántico de botones de acción. */
+body.pcp-light-theme .tab-page button.primary,
+body.pcp-light-theme .tab-page .btn.primary,
+body.pcp-light-theme #homeView button.primary {color:#fff!important}

@@ -1,0 +1,66 @@
+/* v2.0.315 — Override FINAL cargado después de todas las hojas premium. */
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList,
+#quotesView #quotePanel #savedQuotesList{
+  background:#ffffff!important;background-image:none!important;color:#203b59!important;
+  border:1px solid #cbd9e8!important;border-radius:16px!important;
+  box-shadow:0 5px 16px rgba(31,57,85,.07)!important;
+}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList table,
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList .saved-quotes-table,
+#quotesView #quotePanel #savedQuotesList table,
+#quotesView #quotePanel #savedQuotesList .saved-quotes-table{
+  background:#ffffff!important;background-image:none!important;color:#203b59!important;
+}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList thead,
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList thead tr,
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList th,
+#quotesView #quotePanel #savedQuotesList thead,
+#quotesView #quotePanel #savedQuotesList thead tr,
+#quotesView #quotePanel #savedQuotesList th{
+  color:#294764!important;background:#e8f0f8!important;background-image:none!important;
+  border:1px solid #d0ddeb!important;text-shadow:none!important;
+}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList tbody,
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList tbody tr,
+#quotesView #quotePanel #savedQuotesList tbody,
+#quotesView #quotePanel #savedQuotesList tbody tr{
+  color:#203b59!important;background:#ffffff!important;background-image:none!important;
+  box-shadow:inset 0 0 0 1px #d7e2ed!important;
+}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList tbody tr:nth-child(even),
+#quotesView #quotePanel #savedQuotesList tbody tr:nth-child(even){background:#f5f8fc!important;background-image:none!important;}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList tbody tr:hover,
+#quotesView #quotePanel #savedQuotesList tbody tr:hover{background:#edf5fc!important;background-image:none!important;}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList tbody td,
+#quotesView #quotePanel #savedQuotesList tbody td{
+  color:#29435f!important;background:transparent!important;background-image:none!important;
+  border-top:1px solid #dbe5ef!important;border-bottom:1px solid #dbe5ef!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList tbody td:first-child,
+#quotesView #quotePanel #savedQuotesList tbody td:first-child{color:#536d88!important;}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList tbody td:nth-child(3) strong,
+#quotesView #quotePanel #savedQuotesList tbody td:nth-child(3) strong{color:#203b59!important;}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList tbody td:nth-child(4),
+#quotesView #quotePanel #savedQuotesList tbody td:nth-child(4){color:#526b86!important;}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList tbody td:nth-child(5),
+#quotesView #quotePanel #savedQuotesList tbody td:nth-child(5){color:#087f78!important;}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList .quote-number,
+#quotesView #quotePanel #savedQuotesList .quote-number{
+  color:#173b5e!important;background:#f1f5f9!important;background-image:none!important;
+  border:1px solid #cbd5e1!important;text-shadow:none!important;
+}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList .quote-actions .btn,
+#quotesView #quotePanel #savedQuotesList .quote-actions .btn,
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList button,
+#quotesView #quotePanel #savedQuotesList button{
+  color:#173b5e!important;background:#edf3f9!important;background-image:none!important;
+  border:1px solid #c4d4e5!important;box-shadow:0 1px 2px rgba(20,50,80,.05)!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList [data-q-invoice],
+#quotesView #quotePanel #savedQuotesList [data-q-invoice]{color:#087f78!important;background:#e8f7f3!important;border-color:#b8e5dc!important;}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList [data-q-delete],
+#quotesView #quotePanel #savedQuotesList [data-q-delete]{color:#a52d43!important;background:#fff1f3!important;border-color:#edc4cc!important;}
+body.pcp-light-theme #quotesView #quotePanel #savedQuotesList .pagination button,
+#quotesView #quotePanel #savedQuotesList .pagination button{color:#173b5e!important;background:#edf3f9!important;}

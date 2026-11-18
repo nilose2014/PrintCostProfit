@@ -1,4 +1,4 @@
-﻿
+
 (function(){
  const el=id=>document.getElementById(id); const ipInput=el('pcpU1PrinterIp'); const select=el('pcpU1PrinterSelect'); const status=el('pcpPrinterStatus');
  if(!ipInput||!select||!status)return;
@@ -8,6 +8,7 @@
  function syncQuickSelect(){if(!quick||!select)return;const current=select.value;const opts=[...select.options];quick.innerHTML='';opts.forEach(o=>quick.add(new Option(o.textContent,o.value)));quick.value=current;quick.disabled=select.disabled||opts.filter(o=>o.value).length===0;}
  if(quick){quick.addEventListener('change',()=>{if(!quick.value)return;select.value=quick.value;select.dispatchEvent(new Event('change',{bubbles:true}));});select.addEventListener('change',syncQuickSelect);new MutationObserver(syncQuickSelect).observe(select,{childList:true,subtree:true,characterData:true});syncQuickSelect();}
  const DISCOVERED_KEY='pcp_u1_discovered_printers';
+ let selectionSequence=0,selectionQueue=Promise.resolve(),selectionController=null;
  let sqliteRevision=0, savedPrinters=[], storageReady=false, pendingSave=Promise.resolve();
  async function loadPrinterStore(){
   try{
@@ -27,62 +28,100 @@
  }
  const readSaved=()=>savedPrinters.slice();
  const saveDiscovered=list=>{
-  const map=new Map(savedPrinters.map(p=>[p.ip,p]));let changed=false;
+  const map=new Map(savedPrinters.map(p=>[p.ip,p]));let identityChanged=false;
   (list||[]).forEach(p=>{
    if(!p||!p.ip)return;
    const prev=map.get(p.ip)||{};
-   const next={...prev,ip:p.ip,hostname:p.hostname||prev.hostname||'',softwareVersion:p.softwareVersion||prev.softwareVersion||'',online:p.online!==undefined?p.online:prev.online,state:p.state||prev.state||''};
-   const meaningful=!prev.ip||next.hostname!==prev.hostname||next.softwareVersion!==prev.softwareVersion||next.online!==prev.online||next.state!==prev.state;
-   if(meaningful){next.lastSeen=new Date().toISOString();changed=true;}
+   // SQLite conserva solo identidad estable. online/state cambian durante cada
+   // sondeo y pertenecen a memoria, nunca a la lista persistente de impresoras.
+   const next={...prev,ip:p.ip,hostname:p.hostname||prev.hostname||'',softwareVersion:p.softwareVersion||prev.softwareVersion||'',model:p.model||prev.model||''};
+   if(!prev.ip||next.hostname!==prev.hostname||next.softwareVersion!==prev.softwareVersion||next.model!==prev.model)identityChanged=true;
+   // El estado vivo se conserva para la interfaz sin convertirlo en una escritura.
+   next.online=p.online!==undefined?p.online:prev.online;
+   next.state=p.state||prev.state||'';
    map.set(p.ip,next);
   });
   savedPrinters=Array.from(map.values());
-  if(!storageReady||!changed)return;
-  const serialized=JSON.stringify(savedPrinters);
-  pendingSave=pendingSave.then(async()=>{
-   const snap=await req(root()+'/api/storage/snapshot?t='+Date.now(),8000),sd=await snap.json();
-   if(!snap.ok||!sd.ok)throw new Error(sd.error||tr('No se pudo leer SQLite'));
-   let stored=sd.values&&sd.values[DISCOVERED_KEY];
-   if(typeof stored!=='string')stored=JSON.stringify(stored??[]);
-   if(stored===serialized)return;
-   const revision=Number(sd.revisions&&sd.revisions[DISCOVERED_KEY])||0;
-   const wr=await fetch(root()+'/api/storage/write',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key:DISCOVERED_KEY,value:serialized,expectedRevision:revision}),cache:'no-store'});
-   const wd=await wr.json();if(!wr.ok||!wd.ok)throw new Error(wd.error||tr('No se pudo guardar la lista en SQLite'));
-   sqliteRevision=Number(wd.revision)||revision+1;
-  }).catch(e=>say(tr('No se pudo guardar la lista de impresoras en SQLite: {message}',{message:e.message})));
+  if(!storageReady||!identityChanged)return;
+  const stable=savedPrinters.map(p=>({ip:p.ip,hostname:p.hostname||'',softwareVersion:p.softwareVersion||'',model:p.model||''}));
+  try{localStorage.setItem(DISCOVERED_KEY,JSON.stringify(stable));}catch(e){say(tr('No se pudo guardar la lista de impresoras: {message}',{message:e.message}));}
  };
 
- const req=async(url,ms=20000)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);try{return await fetch(url,{cache:'no-store',signal:c.signal})}finally{clearTimeout(t)}};
+ const req=async(url,ms=20000)=>{if(window.PCP_PRINTER_DIRECT&&new URL(url,location.href).pathname.startsWith('/api/u1/'))return window.PCP_PRINTER_DIRECT.fetch(url);const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);try{return await fetch(url,{cache:'no-store',signal:c.signal})}finally{clearTimeout(t)}};
  function render(printers,selected){
  const previous=[...readSaved(),...Array.from(select.options).filter(o=>o.value).map(o=>({ip:o.value,hostname:o.dataset.hostname||o.textContent.split(' · ')[1]||'',softwareVersion:o.dataset.softwareVersion||''}))];
  const merged=new Map();previous.forEach(p=>merged.set(p.ip,p));(printers||[]).forEach(p=>{const old=merged.get(p.ip)||{};merged.set(p.ip,{...old,...p,hostname:p.hostname||old.hostname,softwareVersion:p.softwareVersion||old.softwareVersion})});
  const list=Array.from(merged.values());saveDiscovered(list);select.innerHTML='';
  if(!list.length){select.add(new Option(tr('No se han encontrado impresoras'),''));return}
  select.add(new Option(tr('Selecciona una impresora…'),''));
- list.forEach(p=>{const offline=p.online===false||String(p.state||'').toLowerCase()==='offline';const label=p.ip+(p.hostname?' · '+p.hostname:'')+(p.softwareVersion?' · '+p.softwareVersion:'')+(offline?' · '+tr('SIN CONEXIÓN'):'');const o=new Option(label,p.ip);o.dataset.hostname=p.hostname||'';o.dataset.softwareVersion=p.softwareVersion||'';select.add(o)});
+ list.forEach(p=>{const offline=p.online===false||String(p.state||'').toLowerCase()==='offline';let aliases={};try{aliases=JSON.parse(localStorage.getItem('pcp_u1_printer_aliases')||'{}')||{}}catch(_){}
+  const alias=String(aliases[p.ip]||'').trim();
+  const rawName=String(p.model||p.printerModel||p.name||p.printerName||'').trim();
+  const safeModel=/^[\p{L}\p{N} ._-]{2,40}$/u.test(rawName)&&!/(dirty|unknown|offline|sin conexión)/i.test(rawName)?rawName:'';
+  const displayName=alias||safeModel||('Impresora · '+p.ip);
+  const label=displayName;
+  const o=new Option(label,p.ip);o.dataset.hostname='';o.dataset.softwareVersion='';o.dataset.displayName=displayName;select.add(o)});
  if(selected&&list.some(p=>p.ip===selected))select.value=selected;syncQuickSelect();
 }
-async function useIp(ip){if(!ip)return;ipInput.value=ip;try{localStorage.setItem('pcp_u1_manual_ip_v180',ip)}catch(_){}const r=await req(root()+'/api/u1/config?ip='+encodeURIComponent(ip)+'&t='+Date.now(),7000);let d={};try{d=await r.json()}catch(_){}if(!r.ok||!d.ok)throw new Error(d.error||('HTTP '+r.status));say(d.online===false?tr('Impresora seleccionada, pero está sin conexión: {ip}. La configuración se ha conservado.',{ip}):tr('Impresora seleccionada y conectada: {ip}.',{ip}));window.dispatchEvent(new CustomEvent('pcp-u1-printer-changed',{detail:{ip,online:d.online!==false}}));}
- select.addEventListener('change',async()=>{if(!select.value)return;select.disabled=true;say(tr('Conectando con {ip}…',{ip:select.value}));try{await useIp(select.value);const r=await req(root()+'/api/u1/printer?t='+Date.now(),6000);const d=await r.json();if(d.online===false)say(tr('IMPRESORA SIN CONEXIÓN · {ip}. Se conserva seleccionada y aparecerá conectada cuando vuelva a responder.',{ip:d.ip||select.value}));else if(d.ok)say(tr('IMPRESORA CONECTADA · {name} · IP {ip} · Estado: {state} · Archivo: {file}{software}.',{name:d.name||'Snapmaker U1',ip:d.ip,state:d.state||tr('desconocido'),file:d.filename||tr('ninguno'),software:d.softwareVersion?' · Software: '+d.softwareVersion:''}));}catch(e){say(tr('No se pudo seleccionar la impresora: {message}',{message:e.message}))}finally{select.disabled=false;syncQuickSelect()}});
+async function useIp(ip){
+  ip=String(ip||'').trim();
+  if(!ip)throw new Error('IP no válida');
+  const requestId=++selectionSequence;
+  if(selectionController){try{selectionController.abort('superseded')}catch(_){}}
+  const controller=new AbortController();
+  selectionController=controller;
+  select.value=ip;ipInput.value=ip;
+  try{
+    localStorage.setItem('pcp_u1_manual_ip_v180',ip);
+    localStorage.setItem('pcp_printers_detail_selected_ip',ip);
+  }catch(_){}
+  // La selección se publica inmediatamente. El estado se consulta después
+  // directamente contra la IP elegida, sin reconfigurar un trabajador global.
+  window.dispatchEvent(new CustomEvent('pcp-u1-printer-changed',{detail:{ip,online:null,pending:true}}));
+  say(tr('Consultando impresora {ip}…',{ip}));
+  let timeout=null;
+  try{
+    const url=root()+'/api/u1/config?ip='+encodeURIComponent(ip)+'&t='+Date.now();
+    timeout=setTimeout(()=>{try{controller.abort('timeout')}catch(_){}},4000);
+    const r=await fetch(url,{cache:'no-store',signal:controller.signal});
+    let d={};try{d=await r.json()}catch(_){}
+    if(requestId!==selectionSequence||controller.signal.aborted)return true;
+    if(!r.ok||!d.ok||String(d.ip||'')!==ip)throw new Error(d.error||tr('No se pudo seleccionar la impresora')+' (HTTP '+r.status+')');
+    window.dispatchEvent(new CustomEvent('pcp-u1-printer-changed',{detail:{ip,online:null,confirmed:true}}));
+    return true;
+  }catch(error){
+    if(requestId!==selectionSequence||controller.signal.aborted&&controller.signal.reason==='superseded')return true;
+    const message=controller.signal.aborted?tr('No se pudo seleccionar la impresora'):String(error&&error.message?error.message:error);
+    window.dispatchEvent(new CustomEvent('pcp-u1-printer-changed',{detail:{ip,failed:true,error:message}}));
+    throw new Error(message);
+  }finally{
+    if(timeout)clearTimeout(timeout);
+    if(selectionController===controller)selectionController=null;
+  }
+ }
+ // Punto único de selección: las tarjetas no simulan un cambio del selector;
+ // invocan directamente la misma operación que configura el puente U1.
+ window.PCPSelectU1Printer=async function(ip){ip=String(ip||'').trim();if(!ip)throw new Error('IP no válida');let option=[...select.options].find(o=>o.value===ip);if(!option){option=new Option('Impresora · '+ip,ip);select.add(option);}select.value=ip;syncQuickSelect();return await useIp(ip);};
+ select.addEventListener('change',async()=>{if(!select.value)return;const requested=String(select.value).trim();select.disabled=true;say(tr('Conectando con {ip}…',{ip:requested}));try{await window.PCPSelectU1Printer(requested);}catch(e){if(String(select.value).trim()===requested)say(tr('No se pudo seleccionar la impresora: {message}',{message:e.message}));}finally{select.disabled=false;syncQuickSelect()}});
  async function autoDetect(){
   await loadPrinterStore();
   const saved=localStorage.getItem('pcp_u1_manual_ip_v180')||localStorage.getItem('pcp_u1_manual_ip_v178')||localStorage.getItem('pcp_u1_manual_ip_v177')||localStorage.getItem('pcp_u1_manual_ip_v176')||'';
   const known=readSaved();
-  let current=saved, verified=null, configSynced=!saved, configError='';
+  let current=saved||(known[0]&&known[0].ip)||'', verified=null, configSynced=!current, configError='';
   // Al reiniciar el puente, su IP activa puede no coincidir con la última selección
   // guardada por la interfaz. Restauramos primero esa selección en el servidor.
-  if(saved){
-   ipInput.value=saved;
-   say(tr('Conectando con {ip}…',{ip:saved}));
+  if(current){
+   ipInput.value=current;
+   say(tr('Conectando con {ip}…',{ip:current}));
    try{
-    const cr=await req(root()+'/api/u1/config?ip='+encodeURIComponent(saved)+'&t='+Date.now(),7000),cd=await cr.json();
+    const cr=await req(root()+'/api/u1/config?ip='+encodeURIComponent(current)+'&t='+Date.now(),7000),cd=await cr.json();
     if(!cr.ok||!cd.ok)throw new Error(cd.error||('HTTP '+cr.status));
     configSynced=true;
    }catch(e){configError=e.message||String(e);say(tr('No se pudo seleccionar la impresora: {message}',{message:configError}));}
   }
   if(configSynced){
    try{
-    const r=await req(root()+'/api/u1/printer?t='+Date.now(),6000),d=await r.json();
+    const r=await req(root()+'/api/u1/printer?ip='+encodeURIComponent(current||ipInput.value.trim())+'&t='+Date.now(),6000),d=await r.json();
     if(r.ok&&d.ok&&d.ip){
      current=d.ip;verified=d;ipInput.value=d.ip;
      saveDiscovered([{ip:d.ip,hostname:d.name||'',softwareVersion:d.softwareVersion||'',online:d.online!==false,state:d.online===false?'offline':'ready'}]);

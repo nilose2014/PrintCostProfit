@@ -1,0 +1,121 @@
+/* v2.0.190 — Tarjetas de alertas del panel de inicio */
+.pcp-home-alerts #homeAlertsList{
+  display:grid!important;
+  gap:9px!important;
+  padding:11px 12px 13px!important;
+  max-height:310px!important;
+  overflow-y:auto!important;
+  scrollbar-width:thin;
+  scrollbar-color:#40577b transparent;
+}
+.pcp-home-alerts .home-alert-row{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:34px minmax(0,1fr)!important;
+  align-items:start!important;
+  gap:11px!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:11px 12px!important;
+  border:1px solid rgba(103,139,184,.28)!important;
+  border-radius:12px!important;
+  background:linear-gradient(135deg,rgba(26,46,75,.96),rgba(15,29,50,.98))!important;
+  color:#e8f0fc!important;
+  text-align:left!important;
+  white-space:normal!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 4px 12px rgba(0,0,0,.12)!important;
+  cursor:pointer!important;
+  transition:border-color .16s ease,background .16s ease,transform .16s ease!important;
+  font:inherit!important;
+  line-height:normal!important;
+}
+.pcp-home-alerts .home-alert-row:hover{
+  border-color:rgba(77,190,226,.62)!important;
+  background:linear-gradient(135deg,rgba(31,59,91,.98),rgba(17,37,62,.99))!important;
+  transform:translateY(-1px);
+}
+.pcp-home-alerts .home-alert-icon{
+  display:grid!important;
+  place-items:center!important;
+  width:34px!important;
+  height:34px!important;
+  border-radius:10px!important;
+  background:rgba(73,151,205,.16)!important;
+  color:#8bdcff!important;
+  font-size:17px!important;
+  line-height:1!important;
+}
+.pcp-home-alerts .home-alert-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:4px!important;
+  min-width:0!important;
+  width:100%!important;
+  white-space:normal!important;
+}
+.pcp-home-alerts .home-alert-copy strong{
+  display:block!important;
+  margin:0!important;
+  color:#f4f7ff!important;
+  font-size:12px!important;
+  font-weight:750!important;
+  line-height:1.35!important;
+  overflow-wrap:anywhere!important;
+}
+.pcp-home-alerts .home-alert-copy small{
+  display:block!important;
+  margin:0!important;
+  color:#b8c8dc!important;
+  font-size:11px!important;
+  font-weight:450!important;
+  line-height:1.45!important;
+  overflow-wrap:anywhere!important;
+  white-space:normal!important;
+}
+.pcp-home-alerts .home-alert-row.critical{
+  border-color:rgba(244,113,113,.42)!important;
+  box-shadow:inset 3px 0 0 rgba(244,113,113,.9),0 4px 12px rgba(0,0,0,.12)!important;
+}
+.pcp-home-alerts .home-alert-row.critical .home-alert-icon{
+  background:rgba(239,91,91,.15)!important;
+  color:#ffaaa8!important;
+}
+.pcp-home-alerts .home-alert-row:not(.critical) .home-alert-icon{
+  background:rgba(55,190,163,.13)!important;
+  color:#7ce0c2!important;
+}
+.pcp-home-alerts .home-alerts-empty{
+  padding:24px 12px!important;
+  color:#9fb2cb!important;
+  font-size:12px!important;
+}
+html[dir="rtl"] .pcp-home-alerts .home-alert-row{text-align:right!important}
+html[dir="rtl"] .pcp-home-alerts .home-alert-row.critical{box-shadow:inset -3px 0 0 rgba(244,113,113,.9),0 4px 12px rgba(0,0,0,.12)!important}
+@media(max-width:700px){
+ .pcp-home-alerts #homeAlertsList{max-height:260px!important;padding:9px!important}
+ .pcp-home-alerts .home-alert-row{grid-template-columns:30px minmax(0,1fr)!important;padding:10px!important;gap:9px!important}
+ .pcp-home-alerts .home-alert-icon{width:30px!important;height:30px!important;font-size:16px!important}
+ .pcp-home-alerts .home-alert-copy strong{font-size:12px!important}
+ .pcp-home-alerts .home-alert-copy small{font-size:11px!important}
+}
+
+/* v2.0.190 — Desactivar el pseudo-icono heredado que ocupaba una celda extra del grid. */
+.pcp-home-alerts .home-alert-row::before{
+  content:none!important;
+  display:none!important;
+}
+.pcp-home-alerts .home-alert-row{
+  grid-template-columns:34px minmax(0,1fr)!important;
+}
+.pcp-home-alerts .home-alert-copy,
+.pcp-home-alerts .home-alert-copy strong,
+.pcp-home-alerts .home-alert-copy small{
+  min-width:0!important;
+  max-width:100%!important;
+  white-space:normal!important;
+}

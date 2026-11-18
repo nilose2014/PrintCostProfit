@@ -1,0 +1,76 @@
+/* Print Cost & Profit 2.0.315 — cabecera legible y clara */
+body.pcp-light-theme .pcp-topbar {
+  background: #ffffff !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border-bottom: 1px solid #cbd8e6 !important;
+  box-shadow: 0 3px 12px rgba(30,50,75,.10) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.pcp-light-theme .pcp-brand h1 { color:#20344d !important; text-shadow:none !important; }
+body.pcp-light-theme .pcp-brand h1 span { color:#078f83 !important; }
+body.pcp-light-theme .pcp-brand h1 small { color:#52657d !important; }
+body.pcp-light-theme .pcp-brand .sub { color:#52657d !important; }
+body.pcp-light-theme .pcp-program-ribbon {
+  color:#344b65 !important;
+  opacity:1 !important;
+  filter:none !important;
+  text-shadow:none !important;
+  font-weight:800 !important;
+  letter-spacing:.12em !important;
+  -webkit-text-fill-color:#344b65 !important;
+}
+body.pcp-light-theme .pcp-program-ribbon .ribbon-symbol {
+  color:#087f91 !important;
+  text-shadow:none !important;
+  filter:none !important;
+}
+body.pcp-light-theme .pcp-program-ribbon::before,
+body.pcp-light-theme .pcp-program-ribbon::after {
+  background:#8aa8c4 !important;
+  box-shadow:none !important;
+}
+body.pcp-light-theme .pcp-header-clock {
+  background:#edf3f9 !important;
+  background-image:none !important;
+  color:#20344d !important;
+  border:1px solid #c5d3e2 !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+}
+body.pcp-light-theme .pcp-language-top {
+  background:#edf3f9 !important;
+  background-image:none !important;
+  color:#20344d !important;
+  border:1px solid #c5d3e2 !important;
+  box-shadow:none !important;
+}
+body.pcp-light-theme .pcp-language-top select {
+  background:#ffffff !important;
+  background-image:none !important;
+  color:#20344d !important;
+  border:1px solid #bdccdc !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  color-scheme:light !important;
+}
+body.pcp-light-theme .pcp-topbar-icon {
+  background:#edf3f9 !important;
+  background-image:none !important;
+  color:#344b65 !important;
+  border:1px solid #c5d3e2 !important;
+  box-shadow:none !important;
+}
+body.pcp-light-theme .pcp-topbar-icon svg {
+  stroke:#344b65 !important;
+}
+body.pcp-light-theme .pcp-topbar-badge {
+  color:#ffffff !important;
+  background:#e73558 !important;
+}
+/* No permitir que el estilo neón aplique desenfoque o baja opacidad al texto. */
+body.pcp-light-theme .pcp-topbar :is(.pcp-program-ribbon, .pcp-brand, .pcp-topbar-tools) {
+  opacity:1 !important;
+  filter:none !important;
+}

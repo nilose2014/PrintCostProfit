@@ -1,0 +1,86 @@
+/* v2.0.315 — fuerza contraste del tema claro usando los dos atributos
+   que aplica la propia app: html[data-theme] y body[data-theme]. */
+html[data-theme="light"] body .pcp-topbar,
+body[data-theme="light"] .pcp-topbar,
+body.pcp-light-theme .pcp-topbar {
+  background:#fff !important; background-image:none !important;
+  color:#20344d !important; border-bottom:1px solid #cbd8e6 !important;
+  box-shadow:0 3px 12px rgba(30,50,75,.10) !important;
+}
+html[data-theme="light"] body .pcp-program-ribbon,
+body[data-theme="light"] .pcp-program-ribbon,
+body.pcp-light-theme .pcp-program-ribbon {
+  color:#263b55 !important; -webkit-text-fill-color:#263b55 !important;
+  opacity:1 !important; filter:none !important; text-shadow:none !important;
+  font-weight:850 !important;
+}
+html[data-theme="light"] body .pcp-program-ribbon *,
+body[data-theme="light"] .pcp-program-ribbon *,
+body.pcp-light-theme .pcp-program-ribbon * {
+  color:#263b55 !important; -webkit-text-fill-color:#263b55 !important;
+  opacity:1 !important; filter:none !important; text-shadow:none !important;
+}
+html[data-theme="light"] body .pcp-program-ribbon::before,
+html[data-theme="light"] body .pcp-program-ribbon::after,
+body[data-theme="light"] .pcp-program-ribbon::before,
+body[data-theme="light"] .pcp-program-ribbon::after {
+  background:#9aadc2 !important; box-shadow:none !important;
+}
+html[data-theme="light"] body .pcp-header-clock,
+body[data-theme="light"] .pcp-header-clock,
+body.pcp-light-theme .pcp-header-clock {
+  background:#edf3f9 !important; background-image:none !important;
+  color:#20344d !important; border:1px solid #c5d3e2 !important;
+  text-shadow:none !important; box-shadow:none !important;
+}
+html[data-theme="light"] body .pcp-language-top,
+body[data-theme="light"] .pcp-language-top,
+body.pcp-light-theme .pcp-language-top {
+  background:#edf3f9 !important; background-image:none !important;
+  color:#20344d !important; border:1px solid #c5d3e2 !important;
+}
+html[data-theme="light"] body .pcp-language-top select,
+body[data-theme="light"] .pcp-language-top select,
+body.pcp-light-theme .pcp-language-top select {
+  background:#fff !important; background-image:none !important;
+  color:#20344d !important; border:1px solid #bdccdc !important;
+  text-shadow:none !important; box-shadow:none !important; color-scheme:light !important;
+}
+html[data-theme="light"] body .pcp-topbar-icon,
+body[data-theme="light"] .pcp-topbar-icon,
+body.pcp-light-theme .pcp-topbar-icon {
+  background:#edf3f9 !important; background-image:none !important;
+  color:#344b65 !important; border:1px solid #c5d3e2 !important;
+  box-shadow:none !important; text-shadow:none !important;
+}
+html[data-theme="light"] body .pcp-topbar-icon svg,
+body[data-theme="light"] .pcp-topbar-icon svg {
+  stroke:#344b65 !important; color:#344b65 !important;
+}
+/* Bienvenida: fondo gris muy claro, sin azul marino ni arte decorativo oscuro. */
+html[data-theme="light"] body #pcpHomeDashboard .pcp-home-welcome,
+body[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome {
+  background:#f4f7fb !important; background-color:#f4f7fb !important;
+  background-image:none !important; color:#20344d !important;
+  border:1px solid #cbd8e6 !important; box-shadow:0 5px 18px rgba(25,45,70,.10) !important;
+}
+html[data-theme="light"] body #pcpHomeDashboard .pcp-home-welcome::before,
+html[data-theme="light"] body #pcpHomeDashboard .pcp-home-welcome::after,
+body[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome::before,
+body[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome::after,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome::before,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome::after {
+  content:none !important; display:none !important; background:none !important; box-shadow:none !important;
+}
+html[data-theme="light"] body #pcpHomeDashboard .pcp-home-welcome :is(h1,h2,h3,h4,p,small,strong,b),
+body[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome :is(h1,h2,h3,h4,p,small,strong,b),
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome :is(h1,h2,h3,h4,p,small,strong,b) {
+  color:#263b55 !important; -webkit-text-fill-color:#263b55 !important; text-shadow:none !important;
+}
+html[data-theme="light"] body #pcpHomeDashboard .pcp-home-welcome .pcp-home-action,
+body[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome .pcp-home-action,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome .pcp-home-action {
+  background:#e8eef6 !important; background-image:none !important; color:#20344d !important;
+  border:1px solid #c5d3e2 !important; text-shadow:none !important; box-shadow:none !important;
+}

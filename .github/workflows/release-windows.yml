@@ -1,0 +1,64 @@
+name: Build and publish Print Cost & Profit 2.0 for Windows
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v2.0'
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build Windows x64 installer and portable EXE
+        run: npm run dist:win
+
+      - name: Assemble release packages
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Force -Path release, legacy-installer | Out-Null
+          $setup = 'dist/PrintCostProfit-Setup.exe'
+          $portable = 'dist/PrintCostProfit-Portable.exe'
+          if (!(Test-Path $setup) -or !(Test-Path $portable)) { throw 'Faltan los ejecutables Windows esperados en dist.' }
+          Copy-Item $setup 'release/PrintCostProfit-Setup.exe'
+          Copy-Item $portable 'release/PrintCostProfit-Portable.exe'
+          Compress-Archive -LiteralPath $portable -DestinationPath 'release/PrintCostProfit-Portable-v2.0.zip' -Force
+          Copy-Item $setup 'legacy-installer/PrintCostProfit-Setup.exe'
+          Compress-Archive -Path 'legacy-installer/*' -DestinationPath 'release/PrintCostProfit-Windows-Installer-v2.0.zip' -Force
+
+      - name: Package source code
+        shell: pwsh
+        run: |
+          $exclude = @('.git', 'node_modules', 'dist', 'release', 'legacy-installer')
+          Get-ChildItem -Force | Where-Object { $exclude -notcontains $_.Name } | Compress-Archive -DestinationPath 'release/PrintCostProfit-v2.0-Codigo-Fuente.zip' -Force
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: PrintCostProfit-v2.0-Windows-Release
+          path: release/*
+          if-no-files-found: error
+
+      - name: Publish GitHub release v2.0
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Print Cost & Profit 2.0 — Windows
+          draft: false
+          prerelease: false
+          files: release/*

@@ -1,0 +1,57 @@
+/* Print Cost & Profit 2.0.271 — contraste real del contenido dinámico en tema claro.
+   Se limita a las vistas afectadas y no cambia el tema oscuro ni las muestras de color. */
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView,#programOptionsView) {
+  color:#20344d!important;
+  color-scheme:light!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView,#programOptionsView) :is(.panel,.fields,.field,.seller-modal-head,.list-search-bar,.filemeta,.saved-quotes-list,.multi-line-editor,.acc-entry-panel,.acc-history-panel,.settings-card,.settings-section,.options-section,.option-section,.options-card) {
+  color:#20344d!important;
+}
+/* Los nodos de listas se crean por JavaScript y algunos traen colores/opacity inline. */
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView) :is(.filemeta,.saved-quotes-list,#savedQuotesList,#quotePreview,#ordersList,#savedInvoicesList,#accountingRows) :is(p,span,small,label,strong,b,td,th,div) {
+  text-shadow:none!important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList :is(td,td *, .invoice-date,.date,.date-badge,.muted,small) {
+  color:#344b65!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList :is(td,td *) {opacity:1!important}
+body.pcp-light-theme #invoicesView #savedInvoicesList :is(button,.btn) {
+  color:#20344d!important;
+  text-shadow:none!important;
+}
+/* Estados disabled siguen diferenciándose, pero el texto no desaparece. */
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView,#programOptionsView) button:disabled,
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView,#programOptionsView) .btn[aria-disabled="true"] {
+  opacity:.72!important;
+  color:#52657d!important;
+  filter:none!important;
+}
+/* Los campos de los formularios mantienen fondo blanco aunque los estilos heredados usen inline. */
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView,#programOptionsView) :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select,textarea) {
+  background-color:#fff!important;
+  background-image:none!important;
+  color:#20344d!important;
+  border:1px solid #bdccdc!important;
+  -webkit-text-fill-color:#20344d!important;
+  color-scheme:light!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView,#programOptionsView) :is(input,textarea)::placeholder {
+  color:#71839a!important;
+  -webkit-text-fill-color:#71839a!important;
+  opacity:1!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView) table :is(th,td) {
+  border-color:#d4deea!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView) table thead th {
+  background:#e8eff7!important;color:#20344d!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView) table tbody td {
+  background:#fff!important;color:#263a53!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView,#spoolsView,#accountingView) table tbody tr:nth-child(even) td {
+  background:#f5f8fc!important;
+}
+body.pcp-light-theme #programOptionsView :is(h1,h2,h3,h4,strong,b) {color:#20344d!important;text-shadow:none!important}
+body.pcp-light-theme #programOptionsView :is(p,small,label,.section-note) {color:#52657d!important;text-shadow:none!important}

@@ -1,0 +1,7 @@
+{
+  "compatibility_release_tag": "v2.0",
+  "upgrade_from": "v1.4",
+  "legacy_updater_rule": "numeric tag comparison; v2.0 is newer than v1.4",
+  "tracking": "github_latest_uploaded_release_asset",
+  "asset_selection": "Windows installer ZIP first, otherwise ZIP asset"
+}

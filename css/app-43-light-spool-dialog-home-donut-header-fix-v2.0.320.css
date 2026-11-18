@@ -1,0 +1,34 @@
+/* Print Cost & Profit 2.0.320 — tres correcciones puntuales del tema claro */
+
+/* Diálogo rápido «Crear bobina nueva»: aclarar únicamente la tarjeta de color */
+body.pcp-light-theme .pcp-quick-color {
+  background:#f1f5f9!important;
+  border-color:#cbd5e1!important;
+}
+body.pcp-light-theme .pcp-quick-color b {
+  color:#263449!important;
+  -webkit-text-fill-color:#263449!important;
+}
+body.pcp-light-theme .pcp-quick-color small {
+  color:#526174!important;
+  -webkit-text-fill-color:#526174!important;
+}
+
+/* Gráfico circular del panel de inicio: centro claro y cifras legibles */
+body.pcp-light-theme #pcpHomeDashboard .home-cost-donut-hole {
+  background:#edf3f9!important;
+  border:1px solid #cbd8e6!important;
+  box-shadow:inset 0 1px 4px rgba(31,55,82,.08)!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .home-cost-donut-hole strong {
+  color:#263b56!important;
+  -webkit-text-fill-color:#263b56!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .home-cost-donut-hole small {
+  color:#60738b!important;
+  -webkit-text-fill-color:#60738b!important;
+}
+
+/* Evita que los saltos de línea escapados aparezcan como texto en la cabecera.
+   La limpieza del marcado se realiza también directamente en el HTML. */

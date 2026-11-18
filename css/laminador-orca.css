@@ -1,0 +1,124 @@
+
+/* Laminador Snapmaker Orca integrado */
+.pcp-orca-shell{height:calc(100vh - 78px);max-height:calc(100vh - 78px);min-height:0;box-sizing:border-box;padding:7px;border:1px solid var(--line,#29425f);border-radius:18px;background:linear-gradient(145deg,#10213a,#0b1629);display:flex;flex-direction:column;gap:5px;overflow:hidden}.pcp-orca-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 3px 4px;border-bottom:1px solid #29415f;flex:0 0 auto;min-height:48px}.pcp-orca-heading h2{margin:2px 0;font-size:17px}.pcp-orca-heading p{margin:2px 0;font-size:11px;line-height:1.2}.pcp-orca-heading p,.pcp-orca-info,.pcp-orca-shell .section-note{color:#a9bdd7}.pcp-orca-status{padding:8px 12px;border:1px solid #2c5873;border-radius:20px;color:#80e6dc;font-size:12px}.pcp-orca-actions{display:flex;gap:7px;flex-wrap:wrap;flex:0 0 auto}.pcp-orca-actions button{min-height:30px;padding:5px 9px;font-size:12px}.pcp-orca-info{padding:4px 8px;border:1px solid #29415f;border-radius:8px;background:#0a1729;font-size:11px;line-height:1.2;min-height:0;max-height:23px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:0 0 auto}.pcp-orca-host-placeholder{position:relative;overflow:hidden;flex:1 1 0;min-height:0;min-width:0;border:1px dashed #426184;border-radius:10px;background:radial-gradient(ellipse at center,#1a3150,#091426 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#dceaff}.pcp-orca-host-placeholder p{color:#8fa7c5}.pcp-orca-placeholder-icon{font-size:48px;margin-bottom:12px;filter:drop-shadow(0 0 16px #19c5ce)}
+
+/* El laminador ocupa todo el espacio disponible y nunca fuerza el tamaño de PCP. */
+@media (max-height:700px){
+ .pcp-orca-shell{height:calc(100vh - 96px);max-height:calc(100vh - 96px);padding:7px;gap:6px}
+ .pcp-orca-heading{padding-bottom:4px}
+ .pcp-orca-heading h2{margin:2px 0;font-size:16px}
+ .pcp-orca-heading p{margin:2px 0;font-size:11px}
+ .pcp-orca-status{padding:5px 8px}
+ .pcp-orca-actions{gap:6px}
+ .pcp-orca-actions button{min-height:30px;padding:5px 9px}
+ .pcp-orca-info{padding:5px 8px;font-size:11px}
+}
+@media (max-width:900px){
+ .pcp-orca-shell{padding:6px;gap:6px}
+ .pcp-orca-heading{gap:6px}
+ .pcp-orca-actions{gap:5px}
+ .pcp-orca-actions button{padding-left:7px;padding-right:7px;font-size:11px}
+}
+
+/* Priorizar el área útil del laminador en pantallas habituales de escritorio. */
+@media (max-height:950px){
+ .pcp-orca-shell{height:calc(100vh - 70px);max-height:calc(100vh - 70px);padding:6px;gap:4px}
+ .pcp-orca-heading{min-height:40px;padding-bottom:3px}
+ .pcp-orca-heading .pcp-printer-eyebrow{font-size:9px;line-height:1}
+ .pcp-orca-heading h2{font-size:15px;margin:1px 0}
+ .pcp-orca-heading p{display:none}
+ .pcp-orca-status{padding:5px 8px;font-size:10px}
+ .pcp-orca-actions{gap:5px}
+ .pcp-orca-actions button{min-height:27px;padding:4px 8px;font-size:11px}
+ .pcp-orca-info{max-height:19px;padding:3px 7px;font-size:10px}
+ .pcp-orca-shell>.section-note{display:none}
+}
+@media (max-width:900px){
+ .pcp-orca-shell{padding:5px;gap:4px}
+ .pcp-orca-heading{gap:5px}
+ .pcp-orca-actions{gap:4px}
+ .pcp-orca-actions button{padding-left:6px;padding-right:6px;font-size:10px}
+}
+
+
+/* v2.0.168 — espacio máximo para el laminador integrado */
+#orcaView.active .pcp-orca-shell{
+  height:calc(100vh - 118px);
+  max-height:calc(100vh - 118px);
+  min-height:0;
+  padding:4px;
+  gap:3px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  box-sizing:border-box;
+}
+#orcaView.active .pcp-orca-heading{
+  min-height:30px;
+  height:30px;
+  flex:0 0 30px;
+  padding:0 3px 2px;
+  gap:8px;
+  align-items:center;
+}
+#orcaView.active .pcp-orca-heading .pcp-printer-eyebrow{display:none}
+#orcaView.active .pcp-orca-heading h2{font-size:14px;line-height:1.1;margin:0}
+#orcaView.active .pcp-orca-heading p{display:none!important}
+#orcaView.active .pcp-orca-status{font-size:10px;padding:3px 7px;line-height:1.1}
+#orcaView.active .pcp-orca-actions{
+  min-height:25px;
+  height:25px;
+  flex:0 0 25px;
+  gap:4px;
+  flex-wrap:nowrap;
+  overflow:hidden;
+}
+#orcaView.active .pcp-orca-actions button{
+  min-height:24px;
+  height:24px;
+  padding:2px 7px;
+  font-size:10px;
+  line-height:1;
+  white-space:nowrap;
+}
+#orcaView.active .pcp-orca-info{
+  height:15px;
+  min-height:15px;
+  max-height:15px;
+  flex:0 0 15px;
+  padding:1px 6px;
+  font-size:9px;
+  line-height:12px;
+  overflow:hidden;
+  white-space:nowrap;
+}
+#orcaView.active .pcp-orca-host-placeholder{
+  flex:1 1 0;
+  min-height:0;
+  min-width:0;
+  width:100%;
+  height:auto;
+  overflow:hidden;
+  margin:0;
+  padding:0;
+}
+#orcaView.active .pcp-orca-shell>.section-note{display:none!important}
+@media(max-height:800px){
+  #orcaView.active .pcp-orca-shell{
+    height:calc(100vh - 112px);
+    max-height:calc(100vh - 112px);
+    padding:3px;
+    gap:2px;
+  }
+  #orcaView.active .pcp-orca-heading{height:26px;min-height:26px;flex-basis:26px}
+  #orcaView.active .pcp-orca-actions{height:23px;min-height:23px;flex-basis:23px}
+  #orcaView.active .pcp-orca-actions button{height:22px;min-height:22px;padding:1px 6px}
+  #orcaView.active .pcp-orca-info{height:13px;min-height:13px;max-height:13px;flex-basis:13px;font-size:8px}
+}
+
+/* v2.0.174: controles compactos que envían la rueda al panel nativo izquierdo de Orca. */
+.pcp-orca-workarea{position:relative;display:flex;flex:1 1 0;height:0;align-items:stretch;gap:3px;min-width:0;min-height:0;overflow:hidden}
+.pcp-orca-native-scroll{flex:0 0 25px;width:25px;display:flex;flex-direction:column;justify-content:flex-start;gap:5px;z-index:2;position:relative}.pcp-orca-native-scroll button{position:absolute;left:0}.pcp-orca-native-scroll button:first-child{top:62%}.pcp-orca-native-scroll button:last-child{top:calc(62% + 39px)}
+.pcp-orca-native-scroll button{height:34px;min-height:34px;padding:0;border:1px solid #3d7189;border-radius:6px;background:#142b45;color:#9cebe4;font-size:15px;font-weight:700;cursor:pointer}
+.pcp-orca-native-scroll button:hover{background:#20516a}
+.pcp-orca-host-placeholder{position:relative;flex:1 1 0;width:0;height:100%;min-width:0;min-height:0;margin:0}

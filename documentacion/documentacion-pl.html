@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Instrukcja Print Cost &amp; Profit</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+<style>
+:root{color-scheme:dark;--bg:#081326;--panel:#12243d;--line:#294766;--text:#eaf3ff;--muted:#aac0dc;--accent:#55d6c5}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#081326,#101d3c);color:var(--text);font:16px/1.7 Segoe UI,Arial,sans-serif}
+main{max-width:1050px;margin:34px auto;padding:36px 46px;background:rgba(18,36,61,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 55px #0006}
+h1,h2,h3{line-height:1.25;color:#fff}h1{font-size:2.1rem;border-bottom:1px solid var(--line);padding-bottom:18px}h2{margin-top:2.1em;color:#7fe4dc}a{color:#79dcd5}code,pre{background:#09182c;border-radius:6px}code{padding:.15em .35em}pre{padding:16px;overflow:auto;border:1px solid var(--line)}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:9px 12px;text-align:start}blockquote{border-inline-start:3px solid var(--accent);margin-inline:0;padding-inline:18px;color:var(--muted)}img{max-width:100%;height:auto;border-radius:10px}li{margin:.35em 0}.doc-top{color:var(--muted);font-size:.85rem;margin-bottom:18px}
+@media(max-width:700px){main{margin:0;padding:22px;border-radius:0}body{font-size:15px}}
+</style>
+<style id="pcp-doc-v207">
+html,body{background:#081426!important;color:#e8f2ff!important}
+body{max-width: min(1180px, calc(100% - 48px))!important;margin:0 auto!important;padding:34px 24px 60px!important;font:16px/1.72 "Segoe UI",Arial,sans-serif!important;hyphens:auto}
+main{max-width:100%!important}
+h1,h2,h3,h4{color:#64ddd7!important;line-height:1.25}
+h1.title{font-size:2.15rem!important;color:#f4f8ff!important}
+p,li,td,th{color:#e0ebfa!important}
+a{color:#65dcd7!important}
+a:visited{color:#9bbcff!important}
+code,pre{background:#10233d!important;color:#d9eaff!important;border-radius:7px;padding:2px 5px}
+img{display:block;max-width:min(100%,900px)!important;height:auto!important;margin:18px auto!important;border:1px solid #34506f;border-radius:12px;background:#10233d;box-shadow:0 8px 24px #0005}
+.doc-image-fallback{width:min(100%,900px);min-height:180px;margin:18px auto;padding:24px;display:flex;align-items:center;justify-content:center;gap:18px;border:1px solid #34506f;border-radius:12px;background:linear-gradient(135deg,#10233d,#172a49);color:#bcd2e9}
+.doc-image-fallback svg{width:86px;height:86px;flex:none}
+.doc-image-fallback strong{display:block;color:#64ddd7;font-size:1.05rem}
+.doc-top{color:#7ee5df!important;border-bottom:1px solid #284361;padding-bottom:12px;margin-bottom:24px}
+table{display:block;max-width:100%;overflow-x:auto}
+blockquote{border-left:3px solid #45c9c7!important;color:#bfd1e5!important}
+hr{background:#2b4564!important}
+@media(max-width:700px){body{max-width:100%!important;padding:18px 14px 40px!important;font-size:15px!important}h1.title{font-size:1.7rem!important}}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+ document.querySelectorAll('img').forEach(function(img){
+  img.addEventListener('error',function(){
+   if(img.dataset.pcpFallback)return;img.dataset.pcpFallback='1';
+   var box=document.createElement('div');box.className='doc-image-fallback';
+   var svg='<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="18" width="76" height="62" rx="9" fill="#173b5d" stroke="#55d7d2" stroke-width="3"/><path d="M25 65l17-18 12 12 10-11 12 17" fill="none" stroke="#72e2d9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="34" cy="34" r="6" fill="#f0b65a"/></svg>';
+   var label=document.createElement('div');var strong=document.createElement('strong');strong.textContent=img.alt||'Print Cost & Profit';label.appendChild(strong);
+   var small=document.createElement('span');small.textContent='Ilustración del apartado';label.appendChild(small);
+   box.innerHTML=svg;box.appendChild(label);img.replaceWith(box);
+  },{once:true});
+  if(img.complete&&img.naturalWidth===0)img.dispatchEvent(new Event('error'));
+ });
+});
+</script>
+
+</head>
+<body><main><div class="doc-top">Print Cost &amp; Profit · Instrukcja Print Cost & Profit</div>
+<header id="title-block-header">
+<h1 class="title">Instrukcja Print Cost &amp; Profit</h1>
+</header>
+<h1 id="szybka-instalacja">Szybka instalacja</h1>
+<p>Wybierz pakiet odpowiedni dla swojego systemu operacyjnego:</p>
+<h3 id="windows-10--11--stabilna-wersja-v12">Windows 10 / 11 — stabilna
+wersja v1.2</h3>
+<ul>
+<li><strong><a
+href="https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip">Pobierz
+instalator Windows v1.2</a></strong>.</li>
+<li>Rozpakuj plik ZIP i uruchom
+<code>PrintCostProfit-Setup-1.2.exe</code>.</li>
+<li>Postępuj zgodnie z instrukcjami instalatora. Następnie uruchom Print
+Cost &amp; Profit za pomocą utworzonego skrótu.</li>
+<li>Instalator zawiera komponenty wymagane do lokalnego przechowywania
+danych SQLite; nie trzeba ręcznie instalować Pythona.</li>
+</ul>
+<p><strong>Repozytorium Windows:</strong> <a
+href="https://github.com/nilose2014/PrintCostProfit">PrintCostProfit —
+główna gałąź</a>. Jeśli wolisz instalację z kodu źródłowego, otwórz
+<strong>Code → Download ZIP</strong>, rozpakuj wszystkie pliki do
+stałego folderu i uruchom
+<code>Integracion_Orca_Postprocesado.bat</code>.</p>
+<h3 id="linux--ubuntu--wersja-stabilna">Linux / Ubuntu — wersja
+stabilna</h3>
+<ul>
+<li><strong><a
+href="https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1">Pobierz
+stabilną wersję dla systemu Linux</a></strong>.</li>
+<li>Rozpakuj pobrany plik ZIP.</li>
+<li>Postępuj zgodnie z instrukcjami instalacji i uruchamiania
+dołączonymi do pakietu.</li>
+</ul>
+<p><strong>Repozytorium / wersja Linux:</strong> <a
+href="https://github.com/nilose2014/PrintCostProfit/tree/linux">PrintCostProfit
+— Linux</a>.</p>
+<hr />
+<h1 id="print-cost--profit-v12">Print Cost &amp; Profit v1.2</h1>
+<h2
+id="kalkulator-kosztów-produkcji-i-zarządzania-drukiem-3d">Kalkulator
+kosztów, produkcji i zarządzania drukiem 3D</h2>
+<p>Print Cost &amp; Profit to aplikacja zaprojektowana, aby pomagać
+użytkownikom druku 3D obliczać rzeczywiste koszty produkcji, monitorować
+zużycie filamentu, zarządzać materiałami i organizować działalność
+handlową związaną z wydrukami.</p>
+<p>Aplikacja łączy kalkulator kosztów z narzędziami do zarządzania,
+lokalnym przechowywaniem danych i integracją z programami do cięcia
+opartymi na OrcaSlicer, w szczególności Snapmaker Orca, OrcaSlicer i
+Creality Print. Zawiera również monitor kompatybilnych drukarek, przy
+czym poziom zgodności zależy od modelu i dostępnego połączenia.</p>
+<h2 id="zrzuty-ekranu-aplikacji">Zrzuty ekranu aplikacji</h2>
+<p>Poniższe obrazy przedstawiają wybrane ekrany Print Cost &amp; Profit.
+Pokazują różne obszary interfejsu; dostępne funkcje zależą od
+zainstalowanej wersji i konfiguracji.</p>
+<p><img src="galeria/es/01-calculadora-de-costes.jpg"
+alt="Kalkulator kosztów" /></p>
+<p><img src="galeria/es/02-resultado-y-beneficio.jpg"
+alt="Wynik i zysk" /></p>
+<p><img src="galeria/es/03-panel-flotante-de-impresion.jpg"
+alt="Pływający panel drukowania" /></p>
+<p><strong>Autorstwo:</strong> Beatriz Toro Martin</p>
+<p><strong>Opublikowana wersja:</strong> v1.2</p>
+<p><strong>Referencyjny system operacyjny:</strong> Windows 10 i Windows
+11</p>
+<p><strong>Oficjalne repozytorium:</strong> <a
+href="https://github.com/nilose2014/PrintCostProfit">https://github.com/nilose2014/PrintCostProfit</a></p>
+<hr />
+<h1 id="1-najważniejsze-funkcje">1. Najważniejsze funkcje</h1>
+<h2 id="11-kalkulator-kosztów-druku-3d">1.1. Kalkulator kosztów druku
+3D</h2>
+<p>Kalkulator umożliwia oszacowanie kosztu wykonania elementu na
+podstawie parametrów drukowania i powiązanych kosztów.</p>
+<p>W zależności od dostępnej konfiguracji można uwzględnić następujące
+pozycje kosztowe:</p>
+<ul>
+<li>Zużycie filamentu.</li>
+<li>Cena użytego materiału.</li>
+<li>Czas drukowania.</li>
+<li>Koszty eksploatacji i zużycia drukarki.</li>
+<li>Amortyzacja urządzenia.</li>
+<li>Inne wydatki związane z produkcją.</li>
+<li>Oczekiwana marża zysku.</li>
+<li>Wybrane podatki i waluta.</li>
+</ul>
+<p>Celem jest poznanie kosztu wykonania elementu przed ustaleniem jego
+ceny sprzedaży.</p>
+<h2 id="12-cena-sprzedaży-zysk-i-marża">1.2. Cena sprzedaży, zysk i
+marża</h2>
+<p>Kalkulator umożliwia analizę szacowanego wyniku finansowego
+wydruku.</p>
+<p>Obliczenia pomagają rozróżnić:</p>
+<ul>
+<li><strong>Koszt produkcji:</strong> szacunkowa wartość wykorzystanych
+zasobów.</li>
+<li><strong>Cena sprzedaży:</strong> kwota, którą planujesz pobrać za
+element.</li>
+<li><strong>Szacowany zysk:</strong> obliczona różnica między
+przychodami a uwzględnionymi kosztami.</li>
+<li><strong>Marża:</strong> relacja zysku do ceny sprzedaży, zgodnie z
+definicją zastosowaną w obliczeniach.</li>
+<li><strong>Cena rekomendowana:</strong> proponowana cena obliczona na
+podstawie skonfigurowanych parametrów.</li>
+</ul>
+<p>Wyniki zależą od wprowadzonych cen, wartości procentowych, czasów i
+pozostałych danych. Aby uzyskać przydatne szacunki, aktualizuj koszty
+filamentu, drukarki i dodatkowych wydatków.</p>
+<p><img src="galeria/es/04-inventario-de-productos.jpg"
+alt="Magazyn produktów" /></p>
+<h2 id="13-profile-drukarek">1.3. Profile drukarek</h2>
+<p>Profile umożliwiają konfigurację parametrów ekonomicznych związanych
+z używanym sprzętem.</p>
+<p>Mogą uwzględniać takie dane jak koszt zakupu, szacowany okres
+użytkowania i koszty eksploatacji, jeśli zostały przewidziane w
+profilu.</p>
+<p>Jeśli używasz kilku drukarek, wybierz odpowiedni profil, aby szacunki
+odzwierciedlały różnice między urządzeniami.</p>
+<p><img src="galeria/es/06-perfiles-y-monitor-de-impresoras.jpg"
+alt="Profile i monitor drukarek" /></p>
+<h2 id="14-zgodność-z-programami-do-cięcia">1.4. Zgodność z programami
+do cięcia</h2>
+<p>Integracja została zaprojektowana dla programów opartych na
+OrcaSlicer, w szczególności <strong>Snapmaker Orca, OrcaSlicer i
+Creality Print</strong>. Zgodność z tymi programami wynosi około
+<strong>90%</strong>; działanie może się jeszcze różnić w zależności od
+wersji i konfiguracji. Nie należy więc określać jej jako 100-procentowej
+zgodności.</p>
+<p>Integracja za pomocą skryptów przetwarzania końcowego umożliwia
+przetwarzanie plików G-code generowanych przez program do cięcia i
+wykorzystywanie dostępnych danych w procesie pracy Print Cost &amp;
+Profit. Zakres możliwych do odczytania informacji zależy od pliku,
+konfiguracji i wersji programu.</p>
+<p><img src="galeria/es/08-presupuestos.jpg" alt="Wyceny" /></p>
+<h2 id="15-monitor-i-zgodność-drukarek">1.5. Monitor i zgodność
+drukarek</h2>
+<p>Drukarką o potwierdzonej <strong>100-procentowej</strong> zgodności
+jest <strong>Snapmaker U1</strong>. Monitor działa również z innymi
+drukarkami dostępnymi przez <strong>Fluidd</strong> lub
+<strong>Mainsail/Moonraker</strong> (zależnie od konfiguracji), ale
+obsługa tych modeli jest nadal dopracowywana. Niektóre funkcje mogą być
+niedostępne lub działać inaczej w trakcie dalszych testów.</p>
+<h2 id="16-lokalny-magazyn-danych-sqlite">1.6. Lokalny magazyn danych
+SQLite</h2>
+<p>Aplikacja zawiera komponenty lokalnego przechowywania danych oparte
+na SQLite.</p>
+<p>Celem jest przechowywanie danych w bazie na komputerze zamiast
+rozdzielania ich między komputer i przeglądarkę.</p>
+<p>Jeśli lokalny magazyn danych nie może zostać uruchomiony, aplikacja
+powinna wyświetlić odpowiedni błąd zamiast po cichu przełączać się na
+inny system przechowywania.</p>
+<h2 id="17-narzędzia-diagnostyczne">1.7. Narzędzia diagnostyczne</h2>
+<p>Projekt zawiera skrypty pomagające sprawdzić uruchamianie aplikacji,
+działanie lokalnego mostu komunikacyjnego i wybrane problemy z
+integracją.</p>
+<p>Narzędzia te dostarczają przydatnych informacji, gdy komponent nie
+uruchamia się lub operacja nie kończy się prawidłowo.</p>
+<hr />
+<h1 id="2-wymagania-wstępne">2. Wymagania wstępne</h1>
+<p>Przed uruchomieniem programu zaleca się przygotowanie:</p>
+<ul>
+<li>Komputera z systemem Windows 10, Windows 11 lub Linux.</li>
+<li>Stałego lokalnego folderu na instalację projektu.</li>
+<li>Programu do cięcia opartego na OrcaSlicer — zwłaszcza Snapmaker
+Orca, OrcaSlicer lub Creality Print — jeśli chcesz korzystać z
+integracji.</li>
+<li>Wszystkich plików pobranej dystrybucji.</li>
+<li>Komponentów magazynowania danych i konfiguracji zawartych w pakiecie
+dystrybucyjnym.</li>
+</ul>
+<p>Dystrybucja powinna zawierać plik wykonywalny SQLite przygotowany dla
+systemu Windows, aby użytkownik końcowy nie musiał ręcznie instalować
+Pythona.</p>
+<p>Nie uruchamiaj aplikacji bezpośrednio z pliku ZIP. Najpierw rozpakuj
+wszystkie pliki.</p>
+<hr />
+<h1 id="3-pobieranie-i-instalacja-print-cost--profit">3. Pobieranie i
+instalacja Print Cost &amp; Profit</h1>
+<h2 id="krok-1-pobierz-program">Krok 1. Pobierz program</h2>
+<ol type="1">
+<li><p>Otwórz oficjalne repozytorium:</p>
+<p><a
+href="https://github.com/nilose2014/PrintCostProfit">https://github.com/nilose2014/PrintCostProfit</a>
+dla Windows oraz <a
+href="https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1">https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1</a>
+dla Linux</p></li>
+<li><p>Kliknij <strong>Code</strong>.</p></li>
+<li><p>Wybierz <strong>Download ZIP</strong>.</p></li>
+<li><p>Poczekaj na zakończenie pobierania.</p></li>
+<li><p>Rozpakuj zawartość pliku ZIP.</p></li>
+</ol>
+<h2 id="krok-2-wybierz-folder">Krok 2. Wybierz folder</h2>
+<p>Możesz użyć folderu takiego jak:</p>
+<p><code>C:\PrintCostProfit</code></p>
+<p>Możesz też wybrać inną stałą lokalizację. Unikaj folderów
+tymczasowych i nie przenoś programu po skonfigurowaniu ścieżek w
+OrcaSlicer, chyba że zaktualizujesz również te ścieżki.</p>
+<h2 id="krok-3-uruchom-program">Krok 3. Uruchom program</h2>
+<p>Otwórz folder, do którego rozpakowano pliki, i kliknij
+dwukrotnie:</p>
+<p><strong><code>Integracion_Orca_Postprocesado.bat</code></strong></p>
+<p>Plik ten służy zarówno do ręcznego uruchamiania, jak i do integracji
+z OrcaSlicer.</p>
+<p>Podczas ręcznego uruchamiania sprawdza, czy lokalna usługa jest
+dostępna. Jeśli nie odpowiada, próbuje ją uruchomić i czeka, aż będzie
+gotowa, zanim otworzy interfejs w przeglądarce.</p>
+<p>Nie trzeba najpierw otwierać pliku HTML ani osobno uruchamiać
+lokalnego mostu, jeśli może to zrobić program uruchamiający.</p>
+<p><strong>Ważne:</strong> aby korzystać z funkcji wymagających
+lokalnego przechowywania danych, uruchamiaj aplikację za pomocą tego
+pliku, a nie przez bezpośrednie otwarcie
+<code>Print_Cost_Profit.html</code>.</p>
+<hr />
+<h1 id="4-konfiguracja-programu-do-cięcia-opartego-na-orcaslicer">4.
+Konfiguracja programu do cięcia opartego na OrcaSlicer</h1>
+<p>Integracja jest przeznaczona dla programów opartych na OrcaSlicer, w
+szczególności Snapmaker Orca, OrcaSlicer i Creality Print. Nazwy menu i
+niektóre szczegóły mogą się różnić. Ogólna zgodność wynosi około 90%,
+dlatego zalecamy wykonanie testu z zainstalowaną wersją.</p>
+<p>Integracja wykorzystuje skrypt przetwarzania końcowego do
+przetworzenia G-code po zakończeniu cięcia modelu.</p>
+<h2 id="krok-1-znajdź-plik-integracji">Krok 1. Znajdź plik
+integracji</h2>
+<p>W folderze programu znajdź:</p>
+<p><code>Integracion_Orca_Postprocesado.bat</code></p>
+<p>Skopiuj pełną ścieżkę. Jeśli użyto przykładowego folderu, będzie
+to:</p>
+<p><code>C:\PrintCostProfit\Integracion_Orca_Postprocesado.bat</code></p>
+<p>Jeśli program został zainstalowany w innym miejscu, użyj rzeczywistej
+ścieżki.</p>
+<h2 id="krok-2-otwórz-ustawienia-drukowania">Krok 2. Otwórz ustawienia
+drukowania</h2>
+<ol type="1">
+<li>Otwórz OrcaSlicer.</li>
+<li>Wybierz profil drukarki, którego chcesz użyć.</li>
+<li>Otwórz ustawienia drukowania.</li>
+<li>W razie potrzeby włącz tryb zaawansowany lub ekspercki.</li>
+<li>Otwórz sekcję <strong>Inne</strong>.</li>
+<li>Znajdź pozycję <strong>Skrypty przetwarzania
+końcowego</strong>.</li>
+</ol>
+<p>Nazwy i układ menu mogą się różnić w zależności od programu do
+cięcia, jego wersji i wybranego języka.</p>
+<h2 id="krok-3-dodaj-skrypt">Krok 3. Dodaj skrypt</h2>
+<p>Wprowadź pełną ścieżkę do pliku:</p>
+<p><code>Integracion_Orca_Postprocesado.bat</code></p>
+<p>Zapisz ustawienia profilu.</p>
+<p>Jeśli program do cięcia wymaga określonej składni ścieżek lub
+argumentów, użyj formatu odpowiedniego dla tej wersji.</p>
+<h2 id="krok-4-wykonaj-test">Krok 4. Wykonaj test</h2>
+<ol type="1">
+<li>Wczytaj prosty model.</li>
+<li>Wybierz drukarkę i profil drukowania.</li>
+<li>Skonfiguruj materiał.</li>
+<li>Potnij model.</li>
+<li>Wyeksportuj G-code.</li>
+<li>Sprawdź, czy przetwarzanie końcowe przebiega bez błędów.</li>
+</ol>
+<p>Skrypt przetwarza plik G-code, gdy OrcaSlicer wywołuje go ze ścieżką
+pliku. W takim przypadku działa inaczej niż przy ręcznym uruchomieniu:
+przetwarza plik i kończy działanie bez otwierania drugiego okna
+aplikacji.</p>
+<hr />
+<h1 id="5-przetwarzanie-plików-g-code">5. Przetwarzanie plików
+G-code</h1>
+<p>G-code zawiera instrukcje generowane przez program do cięcia dla
+drukarki 3D.</p>
+<p>Integracja Print Cost &amp; Profit może przetwarzać te pliki, aby
+pobierać dostępne dane przydatne do obliczeń i rejestrowania zadań.</p>
+<p>W zależności od informacji zawartych w pliku i dostępnych funkcji
+istotne dane mogą obejmować:</p>
+<ul>
+<li>Nazwę lub ścieżkę pliku.</li>
+<li>Informacje o drukowaniu wygenerowane przez program do cięcia.</li>
+<li>Szacowany czas i zużycie materiału.</li>
+<li>Informacje o filamencie, jeśli są dostępne.</li>
+</ul>
+<p>Wartości uzyskane z G-code są szacunkami pochodzącymi z procesu
+cięcia. Nie należy automatycznie traktować ich jako rzeczywistego
+zużycia potwierdzonego przez drukarkę.</p>
+<h2 id="ręczny-test-pliku-g-code">Ręczny test pliku G-code</h2>
+<p>Projekt zawiera:</p>
+<p><code>Probar_Integracion_con_Gcode.bat</code></p>
+<p>Aby wykonać test:</p>
+<ol type="1">
+<li>Znajdź plik G-code wygenerowany przez używany kompatybilny program
+do cięcia.</li>
+<li>Przeciągnij plik na
+<code>Probar_Integracion_con_Gcode.bat</code>.</li>
+<li>Poczekaj na zakończenie procesu.</li>
+<li>Sprawdź wynik i ewentualne komunikaty o błędach.</li>
+</ol>
+<p>Test pomaga odróżnić problem z przetwarzaniem pliku od problemu
+lokalnej usługi.</p>
+<hr />
+<h1 id="6-zarządzanie-kosztami-i-rentownością-podsumowanie-kosztów">6.
+Zarządzanie kosztami i rentownością <img
+src="galeria/es/14-resumen-de-costes.jpg"
+alt="Podsumowanie kosztów" /></h1>
+<p>Aby uzyskać przydatne wyniki, skonfiguruj dane finansowe przed
+obliczeniem ceny elementu.</p>
+<h2 id="filament">Filament</h2>
+<p>Aktualizuj cenę każdego używanego materiału. Zmiana ceny za kilogram
+może znacząco wpłynąć na koszt wytwarzanych elementów.</p>
+<h2 id="drukarka">Drukarka</h2>
+<p>Używaj profilu urządzenia, na którym zostanie wykonany element.
+Parametry amortyzacji i zużycia powinny opierać się na rozsądnych
+szacunkach kosztu i okresu użytkowania.</p>
+<h2 id="czas-produkcji">Czas produkcji</h2>
+<p>Czas szacowany przez program do cięcia pozwala oszacować koszt
+związany z używaniem maszyny. Rzeczywisty wynik może się różnić z powodu
+przerw, zmian materiału, awarii lub różnic między czasem szacowanym a
+rzeczywistym.</p>
+<h2 id="dodatkowe-wydatki">Dodatkowe wydatki</h2>
+<p>Uwzględnij wydatki dotyczące danego zadania, które są przewidziane w
+konfiguracji kalkulatora.</p>
+<h2 id="cena-sprzedaży">Cena sprzedaży</h2>
+<p>Sprawdź sugerowaną cenę razem z kosztem, zyskiem i marżą.
+Wiarygodność obliczonej ceny zależy od jakości wprowadzonych danych.</p>
+<hr />
+<h1 id="7-przechowywanie-i-zachowywanie-danych">7. Przechowywanie i
+zachowywanie danych</h1>
+<p>Print Cost &amp; Profit korzysta z lokalnej usługi i bazy danych
+SQLite w funkcjach zależnych od tego sposobu przechowywania.</p>
+<p>Lokalizacja używana przez instalację może znajdować się w lokalnym
+profilu użytkownika systemu Windows.</p>
+<h2 id="zalecenia">Zalecenia</h2>
+<ul>
+<li>Nie usuwaj bazy danych, gdy usługa jest uruchomiona.</li>
+<li>Nie przenoś ręcznie folderu danych.</li>
+<li>Przed aktualizacją programu wykonaj kopię zapasową danych.</li>
+<li>Po aktualizacji sprawdź, czy lokalna usługa uruchamia się
+prawidłowo.</li>
+<li>Sprawdź, czy dane są zachowywane po zamknięciu i ponownym otwarciu
+aplikacji.</li>
+</ul>
+<h2 id="jeśli-pojawi-się-błąd-przechowywania-danych">Jeśli pojawi się
+błąd przechowywania danych</h2>
+<p>Jeśli aplikacja informuje, że nie może uruchomić magazynu danych PC,
+nie kontynuuj wprowadzania danych tak, jakby były prawidłowo
+zapisywane.</p>
+<p>Sprawdź lokalną usługę i skorzystaj z narzędzi diagnostycznych. Nie
+usuwaj bazy danych w celu rozwiązania problemu.</p>
+<p>Zabezpieczenie przed cichym przełączeniem na pamięć przeglądarki ma
+zapobiegać rozdzieleniu danych między dwie różne lokalizacje.</p>
+<hr />
+<h1 id="8-dołączone-skrypty-i-narzędzia-dokumentacja-i-pomoc">8.
+Dołączone skrypty i narzędzia <img
+src="galeria/es/19-documentacion-y-ayuda.jpg"
+alt="Dokumentacja i pomoc" /></h1>
+<p>Repozytorium zawiera różne pliki pomocnicze. Podczas normalnego
+użytkowania nie trzeba uruchamiać ich wszystkich ręcznie.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Plik</th>
+<th>Funkcja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Integracion_Orca_Postprocesado.bat</code></td>
+<td>Ręczne uruchamianie aplikacji i punkt wejścia przetwarzania
+końcowego dla kompatybilnych programów opartych na OrcaSlicer.</td>
+</tr>
+<tr class="even">
+<td><code>Iniciar_Puente_Orca.ps1</code></td>
+<td>Uruchamia lub sprawdza most integracyjny.</td>
+</tr>
+<tr class="odd">
+<td><code>Iniciar_Puente_Orca_Independiente.cmd</code></td>
+<td>Niezależny program uruchamiający lokalny most.</td>
+</tr>
+<tr class="even">
+<td><code>Integracion_Print_Cost_Profit.ps1</code></td>
+<td>Obsługuje integrację z plikiem G-code.</td>
+</tr>
+<tr class="odd">
+<td><code>Probar_Integracion_con_Gcode.bat</code></td>
+<td>Ręczny test przetwarzania pliku G-code.</td>
+</tr>
+<tr class="even">
+<td><code>Comprobar_Puente_U1.bat</code></td>
+<td>Sprawdza most związany z Snapmaker U1.</td>
+</tr>
+<tr class="odd">
+<td><code>Diagnostico_Arranque.bat</code></td>
+<td>Pomaga analizować problemy z uruchamianiem.</td>
+</tr>
+<tr class="even">
+<td><code>Diagnostico_Print_Cost_Profit.bat</code></td>
+<td>Narzędzie diagnostyczne aplikacji.</td>
+</tr>
+<tr class="odd">
+<td><code>Diagnostico_Version.bat</code></td>
+<td>Sprawdza informacje o wersji.</td>
+</tr>
+<tr class="even">
+<td><code>pcp_sqlite_api.py</code></td>
+<td>Kod usługi przechowywania danych SQLite.</td>
+</tr>
+<tr class="odd">
+<td><code>pcp_sqlite_store.py</code></td>
+<td>Komponent dostępu do magazynu SQLite i zarządzania nim.</td>
+</tr>
+<tr class="even">
+<td><code>storage-client.js</code></td>
+<td>Klient używany przez interfejs do komunikacji z magazynem
+danych.</td>
+</tr>
+<tr class="odd">
+<td><code>VERSION</code></td>
+<td>Informacje o wersji projektu.</td>
+</tr>
+<tr class="even">
+<td><code>LICENSE.txt</code></td>
+<td>Warunki użytkowania i informacja o prawach autorskich.</td>
+</tr>
+</tbody>
+</table>
+<p>Dostępność i dokładne działanie poszczególnych funkcji zależą od
+plików zawartych w dystrybucji i ich konfiguracji.</p>
+<hr />
+<h1 id="9-rozwiązywanie-problemów">9. Rozwiązywanie problemów</h1>
+<h2 id="aplikacja-się-nie-otwiera">Aplikacja się nie otwiera</h2>
+<ol type="1">
+<li>Sprawdź, czy rozpakowano wszystkie pliki.</li>
+<li>Uruchom <code>Integracion_Orca_Postprocesado.bat</code>.</li>
+<li>Poczekaj na odpowiedź lokalnej usługi.</li>
+<li>Jeśli aplikacja się nie otworzy, uruchom
+<code>Diagnostico_Arranque.bat</code>.</li>
+<li>Zachowaj pełny komunikat o błędzie.</li>
+</ol>
+<h2 id="magazyn-danych-pc-nie-uruchamia-się">Magazyn danych PC nie
+uruchamia się</h2>
+<p>Sprawdź, czy pakiet zawiera plik wykonywalny SQLite dla systemu
+Windows i czy znajduje się on w lokalizacji oczekiwanej przez
+serwer.</p>
+<p>Jeśli pojawi się błąd HTTP 500, sprawdź stan usługi i komunikaty
+diagnostyczne przed próbą modyfikowania danych.</p>
+<p>Nie przełączaj się na pamięć przeglądarki ani nie usuwaj bazy danych
+jako doraźnego rozwiązania.</p>
+<h2 id="program-do-cięcia-nie-uruchamia-integracji">Program do cięcia
+nie uruchamia integracji</h2>
+<ol type="1">
+<li>Sprawdź ścieżkę pliku <code>.bat</code>.</li>
+<li>Upewnij się, że plik istnieje.</li>
+<li>Sprawdź konfigurację profilu drukowania.</li>
+<li>Wykonaj test za pomocą
+<code>Probar_Integracion_con_Gcode.bat</code>.</li>
+<li>Zachowaj komunikat błędu i ścieżkę użytego pliku G-code.</li>
+</ol>
+<h2 id="dane-nie-są-zachowywane">Dane nie są zachowywane</h2>
+<p>Sprawdź, czy aplikacja została uruchomiona za pomocą programu
+uruchamiającego i czy lokalna usługa działa.</p>
+<p>Następnie wykonaj test z nieistotnymi danymi i sprawdź, czy zostaną
+zachowane po ponownym uruchomieniu aplikacji.</p>
+<p>Nie usuwaj istniejących danych w celu naprawy magazynu.</p>
+<hr />
+<h1 id="10-bezpieczeństwo-i-dobre-praktyki">10. Bezpieczeństwo i dobre
+praktyki</h1>
+<ul>
+<li>Pobieraj program z oficjalnego repozytorium.</li>
+<li>Nie udostępniaj haseł, kluczy prywatnych ani danych logowania.</li>
+<li>Nie uruchamiaj skryptów z nieznanych źródeł.</li>
+<li>Nie udostępniaj lokalnej usługi w Internecie bez odpowiedniej
+konfiguracji zabezpieczeń.</li>
+<li>Przechowuj kopie zapasowe ważnych danych.</li>
+<li>Przed zastąpieniem plików podczas aktualizacji sprawdź zależności i
+działanie programu.</li>
+</ul>
+<hr />
+<h1 id="11-prawa-autorskie-i-warunki-użytkowania">11. Prawa autorskie i
+warunki użytkowania</h1>
+<p>Print Cost &amp; Profit podlega warunkom określonym w pliku
+<code>LICENSE.txt</code>.</p>
+<p>Samo opublikowanie kodu w serwisie GitHub nie oznacza udzielenia
+zgody na sprzedaż, odsprzedaż, udzielanie sublicencji, redystrybucję ani
+komercyjne wykorzystywanie oprogramowania, jego zmodyfikowanych wersji
+lub produktów pochodnych, jeżeli takie działania są zabronione przez
+obowiązującą licencję.</p>
+<p>Wnioski o udzielenie zgody należy składać na piśmie i muszą one
+zostać wyraźnie zaakceptowane przez właściciela praw.</p>
+<hr />
+<h1 id="12-pomoc-i-zgłaszanie-problemów">12. Pomoc i zgłaszanie
+problemów</h1>
+<p>Zgłaszając problem, podaj:</p>
+<ul>
+<li>Wersję Print Cost &amp; Profit.</li>
+<li>Wersję systemu Windows.</li>
+<li>Nazwę i wersję programu do cięcia (Snapmaker Orca, OrcaSlicer,
+Creality Print lub innego).</li>
+<li>Używaną drukarkę, jeśli ma to znaczenie.</li>
+<li>Wykonaną czynność.</li>
+<li>Pełny komunikat o błędzie.</li>
+<li>Kroki pozwalające odtworzyć problem.</li>
+</ul>
+<p>Nie podawaj haseł, kluczy prywatnych ani zbędnych danych
+osobowych.</p>
+<hr />
+<p><strong>Print Cost &amp; Profit v1.2</strong></p>
+<p>Opracowane przez Beatriz Toro Martin.</p>
+<p>Obliczaj koszty, śledź realizowane zadania i usprawniaj zarządzanie
+finansami.</p>
+</main></body>
+</html>

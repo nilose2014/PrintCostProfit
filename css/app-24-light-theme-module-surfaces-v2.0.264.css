@@ -1,0 +1,97 @@
+/* v2.0.264 — correcciones dirigidas a superficies que seguían heredando el tema oscuro.
+   No se aplican fuera de pcp-light-theme para preservar íntegro el tema oscuro. */
+body.pcp-light-theme {
+  --pcp264-ink:#24364d;
+  --pcp264-muted:#60728a;
+  --pcp264-surface:#fff;
+  --pcp264-soft:#f3f7fb;
+  --pcp264-border:#d2deea;
+}
+/* Monitor flotante: sus estilos originales usan fondos inline, por eso se fuerzan aquí. */
+body.pcp-light-theme #u1-monitor-panel,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > div {
+  background:var(--pcp264-surface)!important;
+  background-image:none!important;
+  color:var(--pcp264-ink)!important;
+  border-color:var(--pcp264-border)!important;
+}
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments strong,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments p,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > div,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > div * {
+  color:var(--pcp264-ink)!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments p,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > div small {
+  color:var(--pcp264-muted)!important;
+}
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid button {
+  background:#e8f5f3!important;color:#075e56!important;border:1px solid #83cfc3!important;
+}
+body.pcp-light-theme #u1-monitor-panel > div:last-of-type button {
+  color:#20344d!important;background:#edf3f9!important;border:1px solid #c7d5e4!important;
+}
+body.pcp-light-theme #u1-monitor-panel > div:last-of-type button[data-i18n="Registrar como gasto personal"],
+body.pcp-light-theme #u1-monitor-panel > div:last-of-type button[data-i18n="Registrar como pedido"] {
+  background:#dff7ef!important;color:#075e50!important;border-color:#8ad7c0!important;
+}
+/* Agenda de clientes: las tarjetas se generan dinámicamente y no eran .panel/.card. */
+body.pcp-light-theme #clientsView #clientManagerList,
+body.pcp-light-theme #clientsView .client-manager-list {
+  background:var(--pcp264-surface)!important;color:var(--pcp264-ink)!important;
+}
+body.pcp-light-theme #clientsView .client-manager-card,
+body.pcp-light-theme #clientsView .client-manager-list > .client-manager-card {
+  background:var(--pcp264-surface)!important;background-image:none!important;
+  color:var(--pcp264-ink)!important;border:1px solid var(--pcp264-border)!important;
+  box-shadow:0 4px 14px rgba(31,53,80,.08)!important;
+}
+body.pcp-light-theme #clientsView .client-manager-card strong,
+body.pcp-light-theme #clientsView .client-manager-card span {
+  color:var(--pcp264-ink)!important;text-shadow:none!important;
+}
+body.pcp-light-theme #clientsView .client-manager-card .btn {
+  background:#edf3f9!important;color:#20344d!important;border:1px solid #c7d5e4!important;
+}
+/* Notas y ayudas de clientes: evitar fondos navy inline o heredados. */
+body.pcp-light-theme #clientsView textarea,
+body.pcp-light-theme #clientsView input,
+body.pcp-light-theme #clientsView select {
+  background:#fff!important;color:var(--pcp264-ink)!important;border-color:#c7d5e4!important;
+}
+body.pcp-light-theme #clientsView .section-note,
+body.pcp-light-theme #clientsView small {color:var(--pcp264-muted)!important;}
+/* Presupuestos, pedidos y facturas: las listas se rellenan en runtime. */
+body.pcp-light-theme #quotesView #savedQuotesList,
+body.pcp-light-theme #quotesView #quotePreview,
+body.pcp-light-theme #ordersView #ordersList,
+body.pcp-light-theme #invoicesView #savedInvoicesList,
+body.pcp-light-theme #quotesView .filemeta,
+body.pcp-light-theme #ordersView .filemeta,
+body.pcp-light-theme #invoicesView .filemeta {
+  background:var(--pcp264-surface)!important;background-image:none!important;
+  color:var(--pcp264-ink)!important;border-color:var(--pcp264-border)!important;
+}
+body.pcp-light-theme #quotesView .filemeta :is(table,thead,tbody,tr,th,td),
+body.pcp-light-theme #ordersView .filemeta :is(table,thead,tbody,tr,th,td),
+body.pcp-light-theme #invoicesView .filemeta :is(table,thead,tbody,tr,th,td) {
+  color:var(--pcp264-ink)!important;border-color:var(--pcp264-border)!important;
+}
+body.pcp-light-theme #quotesView .filemeta thead th,
+body.pcp-light-theme #ordersView .filemeta thead th,
+body.pcp-light-theme #invoicesView .filemeta thead th {background:#eaf0f7!important;color:#20344d!important;}
+body.pcp-light-theme #quotesView .filemeta tbody tr,
+body.pcp-light-theme #ordersView .filemeta tbody tr,
+body.pcp-light-theme #invoicesView .filemeta tbody tr {background:#fff!important;}
+body.pcp-light-theme #quotesView .filemeta tbody tr:nth-child(even),
+body.pcp-light-theme #ordersView .filemeta tbody tr:nth-child(even),
+body.pcp-light-theme #invoicesView .filemeta tbody tr:nth-child(even) {background:#f5f8fc!important;}
+/* Keep explicitly semantic action colors, but make ordinary buttons legible. */
+body.pcp-light-theme #clientsView button:not(.primary),
+body.pcp-light-theme #quotesView button:not(.primary),
+body.pcp-light-theme #ordersView button:not(.primary),
+body.pcp-light-theme #invoicesView button:not(.primary) {
+  color:#20344d!important;border-color:#c7d5e4!important;
+}

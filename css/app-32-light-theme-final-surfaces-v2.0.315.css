@@ -1,0 +1,131 @@
+/* Print Cost & Profit 2.0.315 — cierre de superficies pendientes del tema claro.
+   Solo afecta al tema claro. No modifica datos, cálculos, gráficas ni el monitor U1. */
+
+/* STOCK DE FILAMENTO: formulario, campos, etiquetas y controles */
+body.pcp-light-theme #spoolsView,
+body.pcp-light-theme #spoolsView #spoolsPanel,
+body.pcp-light-theme #spoolsView #spoolsPanel > h2,
+body.pcp-light-theme #spoolsView #spoolsPanel > p,
+body.pcp-light-theme #spoolsView #spoolsPanel .field,
+body.pcp-light-theme #spoolsView #spoolsPanel .field label,
+body.pcp-light-theme #spoolsView #spoolsPanel .section-note,
+body.pcp-light-theme #spoolsView #spoolsPanel .list-search-bar,
+body.pcp-light-theme #spoolsView #spoolsPanel .list-search-bar label,
+body.pcp-light-theme #spoolsView #spoolsPanel .list-search-controls,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolInventorySummary {
+  color: #20344d !important;
+  -webkit-text-fill-color: #20344d !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #spoolsView #spoolsPanel input:not([type="color"]):not([type="checkbox"]),
+body.pcp-light-theme #spoolsView #spoolsPanel select,
+body.pcp-light-theme #spoolsView #spoolsPanel textarea,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolMaterial,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolBrand,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolColor,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolInitial,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolRemaining,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolQuantity,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolPrice,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolBrandCustom,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolsSearch,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolsSort,
+body.pcp-light-theme #spoolsView #spoolsPanel #spoolSortOrder {
+  background: #fff !important;
+  background-color: #fff !important;
+  background-image: none !important;
+  color: #20344d !important;
+  -webkit-text-fill-color: #20344d !important;
+  border-color: #bdccdc !important;
+  color-scheme: light !important;
+  box-shadow: 0 1px 3px rgba(31,55,82,.07) !important;
+}
+body.pcp-light-theme #spoolsView #spoolsPanel input::placeholder,
+body.pcp-light-theme #spoolsView #spoolsPanel textarea::placeholder {
+  color: #71839a !important;
+  -webkit-text-fill-color: #71839a !important;
+  opacity: 1 !important;
+}
+body.pcp-light-theme #spoolsView #spoolsPanel select option {
+  background: #fff !important;
+  color: #20344d !important;
+}
+body.pcp-light-theme #spoolsView #spoolsPanel .list-search-bar,
+body.pcp-light-theme #spoolsView #spoolsPanel .list-search-controls {
+  background: #f3f7fb !important;
+  background-image: none !important;
+  border-color: #d2deea !important;
+}
+body.pcp-light-theme #spoolsView #spoolsPanel .field {
+  background: transparent !important;
+}
+
+/* RENTABILIDAD AVANZADA: encabezado, filtros y cinco indicadores */
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-head,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-kpis,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-kpi,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-filters {
+  background: #fff !important;
+  background-color: #fff !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border-color: #cbd8e6 !important;
+  box-shadow: 0 3px 12px rgba(30,50,75,.07) !important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-head {
+  background: #eaf1f8 !important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-head :is(h1,h2,h3,p,span,label,small),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-kpi :is(*),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-filters :is(label,span) {
+  color: #20344d !important;
+  -webkit-text-fill-color: #20344d !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-filters select,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-filters input {
+  background: #fff !important;
+  background-color: #fff !important;
+  background-image: none !important;
+  color: #20344d !important;
+  -webkit-text-fill-color: #20344d !important;
+  border: 1px solid #bdccdc !important;
+  color-scheme: light !important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-kpi .pcp-kpi-icon {
+  background: #e8f1f8 !important;
+  color: #176b82 !important;
+  -webkit-text-fill-color: #176b82 !important;
+  border-color: #b9d3e5 !important;
+}
+
+/* CONCLUSIONES: franja del periodo, tarjetas inferiores y nota informativa */
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights article,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights > div,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-footnote,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-status {
+  background: #edf3f9 !important;
+  background-color: #edf3f9 !important;
+  background-image: none !important;
+  color: #405670 !important;
+  -webkit-text-fill-color: #405670 !important;
+  border-color: #cbd8e6 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights :is(h1,h2,h3,h4,p,span,strong,b,small,label,div),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-footnote :is(*) {
+  color: #405670 !important;
+  -webkit-text-fill-color: #405670 !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights strong,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights b {
+  color: #20344d !important;
+  -webkit-text-fill-color: #20344d !important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-footnote {
+  border-left: 3px solid #35b8c8 !important;
+}

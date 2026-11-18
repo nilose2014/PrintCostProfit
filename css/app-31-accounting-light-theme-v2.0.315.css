@@ -1,0 +1,68 @@
+/* Print Cost & Profit 2.0.315 — contabilidad: superficies claras en tema claro.
+   Corrige los selectores reales del dashboard (pcp-profit-head, pcp-profit-kpi,
+   pcp-profit-insights) que no quedaban cubiertos por las reglas anteriores.
+   Los gráficos SVG/canvas y sus colores de series se conservan. */
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-head,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-card,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-kpi,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights article {
+  background:#fff!important;
+  background-image:none!important;
+  color:#20344d!important;
+  border-color:#cbd8e6!important;
+  box-shadow:0 3px 12px rgba(30,50,75,.07)!important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-head {
+  background:#eaf1f8!important;
+  border:1px solid #cbd8e6!important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-head h2,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-head p,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-head label,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-head .section-note,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-kpi :is(.label,.value,small),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights :is(h3,h4,p,span,strong,small,div),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-card :is(header h3,header p) {
+  color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-kpi .pcp-kpi-icon {
+  background:#e8f1f8!important;
+  color:#176b82!important;
+  border-color:#b9d3e5!important;
+  box-shadow:none!important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-filters {
+  background:#edf3f9!important;
+  border:1px solid #cbd8e6!important;
+  border-radius:12px!important;
+  padding:12px!important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-filters :is(label,.field) {color:#20344d!important}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-filters :is(select,input) {
+  background:#fff!important;color:#20344d!important;border:1px solid #bdccdc!important;color-scheme:light!important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-footnote,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-status,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-insights article {
+  background:#edf3f9!important;color:#405670!important;border-color:#cbd8e6!important;
+}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-footnote {border-left:3px solid #35b8c8!important}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-table,
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-table-wrap table {background:#fff!important;color:#20344d!important}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-table :is(th,td),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-table-wrap table :is(th,td) {color:#20344d!important;border-color:#d4deea!important}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-table :is(th),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-table-wrap table th {background:#e8eff7!important}
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-table :is(td),
+body.pcp-light-theme #accountingView #advancedProfitabilityPanel .pcp-profit-table-wrap table td {background:#fff!important}
+/* También las secciones inferiores de movimientos contables respetan el tema claro. */
+body.pcp-light-theme #accountingView > section.panel:not(#advancedProfitabilityPanel) {
+  background:#fff!important;background-image:none!important;color:#20344d!important;border-color:#cbd8e6!important;
+}
+body.pcp-light-theme #accountingView > section.panel:not(#advancedProfitabilityPanel) :is(h2,h3,h4,p,label,small,strong,b,span,th,td) {
+  color:#20344d!important;text-shadow:none!important;
+}

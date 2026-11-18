@@ -1,0 +1,38 @@
+/* v2.0.265 — corrección de selectores reales. Solo tema claro. */
+html[data-theme="light"], body[data-theme="light"], body.pcp-light-theme {
+  color-scheme: light !important;
+}
+body.pcp-light-theme { --pcp265-bg:#f2f5f9; --pcp265-surface:#fff; --pcp265-soft:#edf3f9; --pcp265-text:#24364d; --pcp265-muted:#62758d; --pcp265-border:#ccd9e7; }
+/* Monitor real: #u1-monitor-panel (fuera de .tab-page) */
+body.pcp-light-theme #u1-monitor-panel,
+body.pcp-light-theme #u1-monitor-panel #u1-monitor-content,
+body.pcp-light-theme #u1-monitor-panel .u1-body,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > div {
+  background:var(--pcp265-surface)!important; background-image:none!important; color:var(--pcp265-text)!important;
+  border-color:var(--pcp265-border)!important; box-shadow:0 2px 8px rgba(30,50,75,.08)!important;
+}
+body.pcp-light-theme #u1-monitor-panel :is(.u1-line,.u1-label,.u1-value,#u1-live-filaments strong,#u1-live-filament-grid,#u1-live-filament-grid *) { color:var(--pcp265-text)!important; text-shadow:none!important; }
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments p { color:var(--pcp265-muted)!important; }
+body.pcp-light-theme #u1-monitor-panel button:not(#u1-register-personal):not(#u1-register-order) { color:#20344d!important;background:#edf3f9!important;border:1px solid #c7d5e4!important; }
+body.pcp-light-theme #u1-monitor-panel #u1-register-personal,
+body.pcp-light-theme #u1-monitor-panel #u1-register-order {color:#075e50!important;background:#dff7ef!important;border:1px solid #8ad7c0!important;}
+/* Agenda de clientes: lista y tarjetas que crea renderClientManager(). */
+body.pcp-light-theme #clientsView .client-manager-list,
+body.pcp-light-theme #clientsView #clientManagerList {background:#fff!important;color:var(--pcp265-text)!important;}
+body.pcp-light-theme #clientsView .client-manager-card {background:#fff!important;background-image:none!important;color:var(--pcp265-text)!important;border:1px solid var(--pcp265-border)!important;box-shadow:0 4px 14px rgba(31,53,80,.08)!important;}
+body.pcp-light-theme #clientsView .client-manager-card :is(strong,span,div) {color:var(--pcp265-text)!important;text-shadow:none!important;}
+body.pcp-light-theme #clientsView .client-manager-card .btn {background:#edf3f9!important;color:#20344d!important;border:1px solid #c7d5e4!important;}
+body.pcp-light-theme #clientsView :is(.panel,.clients-modern,.fields,.field,.actions,#clientManagerStatus) {color:var(--pcp265-text)!important;}
+body.pcp-light-theme #clientsView :is(input,select,textarea) {background:#fff!important;color:var(--pcp265-text)!important;border-color:#c7d5e4!important;}
+/* Contenedores de documentos y sus resultados dinámicos. */
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.panel,.seller-modal,.orders-modern,.filemeta,.saved-quotes-list,.list-search-bar,#savedQuotesList,#quotePreview,#ordersList,#savedInvoicesList) {
+ background:#fff!important;background-image:none!important;color:var(--pcp265-text)!important;border-color:var(--pcp265-border)!important;
+}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.filemeta,.saved-quotes-list) :is(table,thead,tbody,tr,th,td) {color:var(--pcp265-text)!important;border-color:var(--pcp265-border)!important;}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.filemeta,.saved-quotes-list) thead th {background:#eaf0f7!important;color:#20344d!important;}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.filemeta,.saved-quotes-list) tbody tr {background:#fff!important;}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(.filemeta,.saved-quotes-list) tbody tr:nth-child(even) {background:#f5f8fc!important;}
+body.pcp-light-theme :is(#quotesView,#ordersView,#invoicesView) :is(p,small,.section-note) {color:var(--pcp265-muted)!important;}
+/* Evita fondos navy inline en cajas de contenido, sin tocar gráficos ni muestras de color. */
+body.pcp-light-theme .tab-page :is(.client-manager-card,.filemeta,.saved-quotes-list,.list-search-bar) {background-color:#fff!important;background-image:none!important;color:var(--pcp265-text)!important;}

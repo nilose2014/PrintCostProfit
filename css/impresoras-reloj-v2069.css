@@ -1,0 +1,235 @@
+.pcp-header-clock{display:inline-flex;align-items:center;justify-content:center;min-width:88px;padding:9px 11px;border:1px solid var(--line,#30415e);border-radius:10px;background:rgba(20,36,67,.88);color:var(--txt,#eef5ff);font:700 13px/1.2 ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:.04em;white-space:nowrap}
+.pcp-printers-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.pcp-printers-kicker{color:#42e6e0;font-size:11px;font-weight:900;letter-spacing:.16em}.pcp-printers-heading h2{margin:7px 0}.pcp-printers-heading p{color:var(--muted,#9fb2cc);margin:0}.pcp-printers-statusline{display:flex;align-items:center;gap:9px;margin:20px 0;padding:12px 14px;border:1px solid var(--line,#30415e);border-radius:12px;background:rgba(13,28,50,.8)}.pcp-printers-statusline>span:last-child{margin-left:auto;color:var(--muted,#9fb2cc);font-size:12px}.pcp-printers-dot{width:9px;height:9px;border-radius:50%;background:#20cf8a;box-shadow:0 0 12px #20cf8a}.pcp-printers-dot.is-error{background:#f06464;box-shadow:0 0 12px #f06464}.pcp-printers-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pcp-printer-card{min-width:0;padding:16px;border:1px solid var(--line,#30415e);border-radius:14px;background:linear-gradient(145deg,rgba(20,39,67,.96),rgba(12,25,45,.96))}.pcp-printer-card h3{margin:0 0 12px;color:#e9f5ff;font-size:15px}.pcp-printer-card p{color:var(--muted,#9fb2cc);font-size:13px}.pcp-printer-card dl{display:grid;gap:0;margin:0}.pcp-printer-card dl>div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-top:1px solid rgba(120,155,195,.16)}.pcp-printer-card dt{color:#a9bfd9;font-size:12px}.pcp-printer-card dd{margin:0;text-align:right;color:#f2f7ff;font-size:12px;font-weight:700;overflow-wrap:anywhere}.pcp-printers-note{margin-top:14px;color:var(--muted,#9fb2cc);font-size:12px;line-height:1.5}@media(max-width:850px){.pcp-printers-grid{grid-template-columns:1fr}.pcp-header-clock{min-width:76px;padding:8px 7px;font-size:12px}}
+
+/* v2.0.80 — visual dashboard for printer status and thermal channels */
+.pcp-printers-overview{margin:14px 0 18px}
+.pcp-printer-hero{position:relative;display:grid;grid-template-columns:minmax(220px,1.4fr) 150px minmax(230px,1fr);align-items:center;gap:22px;padding:22px 24px;border:1px solid rgba(70,213,221,.32);border-radius:18px;background:radial-gradient(ellipse at 8% 0%,rgba(22,178,193,.17),transparent 48%),linear-gradient(125deg,#142b49,#101d36 62%,#17264a);box-shadow:0 14px 36px rgba(0,0,0,.2);overflow:hidden}
+.pcp-printer-hero:after{content:"";position:absolute;right:-65px;top:-100px;width:260px;height:260px;border:1px solid rgba(90,220,226,.12);border-radius:50%;box-shadow:0 0 0 25px rgba(90,220,226,.025),0 0 0 50px rgba(90,220,226,.02);pointer-events:none}
+.pcp-printer-eyebrow{font-size:10px;font-weight:900;letter-spacing:.17em;color:#51e1df}
+.pcp-printer-hero h2{margin:7px 0 6px;font-size:25px;color:#f1f7ff;letter-spacing:-.02em}
+.pcp-printer-hero-meta{display:flex;align-items:center;gap:8px;color:#bdd0e8;font-size:12px}
+.pcp-live-dot{width:8px;height:8px;border-radius:50%;background:#25d895;box-shadow:0 0 12px #25d895}
+.pcp-current-file{display:flex;align-items:center;gap:10px;margin-top:18px;padding:10px 12px;max-width:520px;border:1px solid rgba(142,174,211,.18);border-radius:11px;background:rgba(4,15,32,.28)}
+.pcp-current-file>span{font-size:22px;color:#57dfe0}.pcp-current-file div{min-width:0;display:grid;gap:3px}.pcp-current-file small,.pcp-hero-stats small{font-size:10px;color:#9fb6d3}.pcp-current-file strong{font-size:12px;color:#eef6ff;overflow-wrap:anywhere}
+.pcp-progress-ring{width:136px;height:136px;display:grid;place-items:center;border-radius:50%;background:conic-gradient(#39d5ce calc(var(--progress)*1%),rgba(139,164,198,.18) 0);position:relative;box-shadow:0 0 28px rgba(45,211,209,.12)}
+.pcp-progress-ring:before{content:"";position:absolute;inset:9px;border-radius:50%;background:#11213c;border:1px solid rgba(152,187,220,.14)}
+.pcp-progress-ring>div{position:relative;display:grid;text-align:center;gap:3px}.pcp-progress-ring strong{font-size:25px;color:#fff;font-variant-numeric:tabular-nums}.pcp-progress-ring small{font-size:10px;color:#9fb6d3}
+.pcp-hero-stats{display:grid;gap:10px}.pcp-hero-stats>div{padding:8px 11px;border-left:2px solid rgba(68,216,218,.6);background:rgba(4,15,32,.2);border-radius:0 8px 8px 0;display:grid;gap:3px}.pcp-hero-stats strong{font-size:15px;color:#f1f7ff;font-variant-numeric:tabular-nums}
+.pcp-printers-grid{align-items:start}.pcp-printer-card{box-shadow:0 8px 22px rgba(0,0,0,.12);transition:border-color .18s ease,transform .18s ease}.pcp-printer-card:hover{border-color:rgba(65,211,218,.42);transform:translateY(-1px)}
+.pcp-thermal-section{grid-column:1/-1;min-width:0;padding:18px;border:1px solid rgba(72,210,216,.24);border-radius:16px;background:linear-gradient(145deg,rgba(17,36,62,.96),rgba(10,24,43,.96));box-shadow:0 10px 28px rgba(0,0,0,.14)}
+.pcp-thermal-section>header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.pcp-thermal-section h2{margin:5px 0 0;font-size:18px;color:#eef6ff}.pcp-thermal-count{font-size:11px;color:#a9c1dd;border:1px solid rgba(133,167,207,.22);padding:6px 10px;border-radius:20px;white-space:nowrap}
+.pcp-thermal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:12px}
+.pcp-extruder-card{padding:14px 15px;border:1px solid rgba(116,155,197,.2);border-radius:13px;background:linear-gradient(145deg,rgba(27,49,78,.82),rgba(13,29,51,.92));min-width:0}
+.pcp-extruder-head{display:flex;align-items:center;gap:10px;margin-bottom:17px}.pcp-temp-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;color:#ffb45f;background:rgba(255,159,67,.12);font-size:19px}.pcp-extruder-head>div{min-width:0;flex:1}.pcp-extruder-head h3{margin:0;color:#edf6ff;font-size:14px}.pcp-extruder-head small{font-size:10px;color:#92abc9}.pcp-extruder-head>strong{font-size:19px;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pcp-temp-scale{display:grid;grid-template-columns:auto minmax(60px,1fr) auto;align-items:center;gap:9px;font-size:10px;color:#a8bfdc;font-variant-numeric:tabular-nums}.pcp-temp-track{height:9px;border-radius:10px;background:rgba(128,157,192,.17);position:relative;overflow:visible}.pcp-temp-track i{position:absolute;inset:0 auto 0 0;border-radius:10px;background:linear-gradient(90deg,#36c8cf,#ffb34f);box-shadow:0 0 10px rgba(255,170,75,.3)}.pcp-temp-track b{position:absolute;top:-3px;width:3px;height:15px;border-radius:2px;background:#f4f8ff;box-shadow:0 0 5px #fff;transform:translateX(-50%)}
+.pcp-extruder-foot{display:flex;justify-content:space-between;gap:8px;margin-top:13px;padding-top:10px;border-top:1px solid rgba(127,160,198,.13);font-size:10px;color:#a6bdd9}.pcp-extruder-foot span:last-child{color:#d6e6f7;font-weight:700}
+@media(max-width:1050px){.pcp-printer-hero{grid-template-columns:1fr 120px}.pcp-hero-stats{grid-column:1/-1;grid-template-columns:repeat(3,1fr)}.pcp-progress-ring{width:116px;height:116px}}
+@media(max-width:650px){.pcp-printer-hero{grid-template-columns:1fr 100px;padding:16px}.pcp-progress-ring{width:96px;height:96px}.pcp-progress-ring strong{font-size:20px}.pcp-hero-stats{grid-template-columns:1fr}.pcp-thermal-section{padding:12px}.pcp-thermal-grid{grid-template-columns:1fr}}
+
+/* v2.0.81 — Live printer cards */
+.pcp-printers-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.pcp-printer-live-card{min-width:0;position:relative;overflow:hidden;border:1px solid rgba(54,205,198,.25);background:linear-gradient(145deg,rgba(19,39,65,.98),rgba(12,24,43,.98))}
+.pcp-printer-live-card.is-offline{border-color:rgba(239,112,125,.35)}
+.pcp-live-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:14px}
+.pcp-live-card-head h3{margin:0 0 4px;font-size:16px}
+.pcp-live-card-head small{color:var(--muted,#9fb1ca);font-size:11px}
+.pcp-live-status{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-size:11px;font-weight:800}
+.pcp-live-status i{width:8px;height:8px;border-radius:50%;background:#20d69a;box-shadow:0 0 10px #20d69a}
+.pcp-live-status.offline i{background:#f07883;box-shadow:0 0 10px #f07883}
+.pcp-live-model,.pcp-live-job{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid rgba(130,160,200,.13);font-size:12px}
+.pcp-live-model span,.pcp-live-job span,.pcp-live-progress span{color:var(--muted,#9fb1ca)}
+.pcp-live-model strong,.pcp-live-job strong{max-width:70%;text-align:right;overflow-wrap:anywhere}
+.pcp-live-progress{margin-top:10px}
+.pcp-live-progress>div:first-child{display:flex;justify-content:space-between;gap:10px;font-size:12px;margin-bottom:8px}
+.pcp-live-progress b{font-variant-numeric:tabular-nums}
+.pcp-live-track{height:9px;border-radius:99px;background:rgba(125,153,190,.2);overflow:hidden}
+.pcp-live-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#20b9d1,#42e0bd);box-shadow:0 0 12px rgba(45,220,198,.35);transition:width .35s ease}
+.pcp-live-card-foot{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(130,160,200,.13);font-size:11px;color:var(--muted,#9fb1ca)}
+.pcp-live-card-foot b{color:var(--text,#edf4ff);font-variant-numeric:tabular-nums}
+@media(max-width:900px){.pcp-printers-grid{grid-template-columns:1fr}}
+
+/* v2.0.83 — Four printer cards per row with independent selected-machine details */
+.pcp-printers-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:stretch}
+.pcp-printer-live-card{cursor:pointer;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.pcp-printer-live-card:hover{transform:translateY(-2px);border-color:rgba(58,220,205,.65);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.pcp-printer-live-card.is-selected{border:1px solid #35d9cc;box-shadow:0 0 0 1px rgba(53,217,204,.2),0 0 20px rgba(53,217,204,.12)}
+.pcp-printer-live-card:focus-visible{outline:2px solid #35d9cc;outline-offset:2px}
+.pcp-printer-live-card .pcp-live-card-head{min-height:42px}
+.pcp-printer-live-card .pcp-live-job strong{max-width:66%;font-size:11px}
+.pcp-printer-live-card .pcp-live-card-foot{gap:6px 10px}
+.pcp-printers-details{margin-top:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.pcp-printers-details .pcp-thermal-section{grid-column:1/-1}
+.pcp-printers-details .pcp-printer-card{min-width:0}
+@media(max-width:1250px){.pcp-printers-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){.pcp-printers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pcp-printers-details{grid-template-columns:1fr}}
+@media(max-width:560px){.pcp-printers-grid{grid-template-columns:1fr}}
+
+/* v2.0.84: the selected printer is shown only in the large detail panel */
+.pcp-printers-grid{grid-template-columns:repeat(var(--pcp-card-count,4),minmax(0,1fr))}
+@media(max-width:1250px){.pcp-printers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.pcp-printers-grid{grid-template-columns:1fr}}
+
+/* v2.0.86 — tarjetas dinámicas, sin duplicar la impresora principal y gráfico térmico refinado */
+.pcp-printers-grid{align-items:stretch;contain:layout style}
+.pcp-printer-live-card{transition:border-color .16s ease,box-shadow .16s ease}
+.pcp-printer-live-card:hover{transform:none}
+.pcp-printer-live-card .pcp-live-track i{transition:width .35s ease}
+.pcp-printers-details .pcp-printer-card,.pcp-printers-details .pcp-thermal-section{min-width:0}
+.pcp-printers-details .pcp-printer-chart{grid-column:1/-1}
+.pcp-temp-chart{height:145px;padding:10px 8px;border:1px solid rgba(130,170,220,.16);border-radius:10px;background:rgba(5,17,35,.28)}
+.pcp-temp-chart svg{width:100%;height:100%;overflow:visible}
+.pcp-chart-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px}
+.pcp-chart-legend span{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--text-secondary,#aabbd2)}
+.pcp-chart-legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.pcp-printers-grid .pcp-printer-live-card{animation:none!important;opacity:1!important;visibility:visible!important}
+
+/* v2.0.86 — la fila se adapta al número real de impresoras secundarias (1 a 4) */
+.pcp-printers-grid{grid-template-columns:repeat(var(--pcp-card-count,1),minmax(0,1fr));gap:14px}
+.pcp-printers-grid:empty{display:none}
+.pcp-printers-grid .pcp-empty-printers{grid-column:1/-1}
+.pcp-temp-chart{position:relative;height:190px;padding:12px 14px;background:
+ linear-gradient(rgba(115,151,194,.09) 1px,transparent 1px) 0 0/100% 25%,
+ linear-gradient(90deg,rgba(115,151,194,.07) 1px,transparent 1px) 0 0/10% 100%,
+ linear-gradient(145deg,rgba(6,19,39,.88),rgba(12,29,51,.92));border:1px solid rgba(105,160,207,.22);border-radius:13px;box-shadow:inset 0 1px 12px rgba(0,0,0,.14)}
+.pcp-temp-chart:after{content:"";position:absolute;inset:0;border-radius:13px;pointer-events:none;background:linear-gradient(180deg,rgba(55,210,205,.035),transparent 65%)}
+.pcp-temp-chart svg{position:relative;z-index:1}
+.pcp-printer-chart{padding:18px}
+.pcp-printer-chart h3{font-size:16px;margin-bottom:14px}
+.pcp-chart-legend{gap:9px 18px;padding:10px 12px;border:1px solid rgba(105,160,207,.13);border-radius:10px;background:rgba(5,17,35,.22)}
+.pcp-chart-legend span{font-size:11px;font-weight:650}
+.pcp-chart-legend i{width:8px;height:8px;box-shadow:0 0 8px currentColor}
+@media(max-width:900px){.pcp-printers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.pcp-printers-grid{grid-template-columns:1fr}}
+
+/* v2.0.87 — panel de impresoras y estadísticas separados; gráficas legibles */
+.pcp-printers-grid{grid-template-columns:repeat(var(--pcp-card-count,1),minmax(0,1fr));gap:16px;margin:18px 0 26px}
+.pcp-printers-grid .pcp-printer-live-card{min-height:205px;padding:17px;background:linear-gradient(155deg,#172b49 0%,#101d32 100%);border-color:rgba(94,151,196,.24);box-shadow:0 7px 20px rgba(0,0,0,.13)}
+.pcp-printers-grid .pcp-printer-live-card.is-selected{border-color:#38d9ce;box-shadow:0 0 0 1px rgba(56,217,206,.2),0 8px 24px rgba(0,0,0,.2)}
+.pcp-printers-details{display:block;margin-top:28px}
+.pcp-printer-detail-section,.pcp-printer-stats-section{margin-top:24px;padding:20px;border:1px solid rgba(105,151,195,.2);border-radius:18px;background:linear-gradient(145deg,rgba(15,30,51,.96),rgba(10,22,39,.96));box-shadow:0 12px 30px rgba(0,0,0,.13)}
+.pcp-section-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:17px;padding-bottom:14px;border-bottom:1px solid rgba(125,160,198,.17)}
+.pcp-section-heading h2{margin:5px 0 0;font-size:19px;color:#eff6ff}
+.pcp-section-heading>span{font-size:12px;color:#a9bfd9}
+.pcp-printer-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.pcp-printer-detail-grid .pcp-thermal-section,.pcp-printer-detail-grid .pcp-printer-chart{grid-column:1/-1}
+.pcp-printer-stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:15px}
+.pcp-stat-tile{min-width:0;padding:17px;border:1px solid rgba(91,153,194,.2);border-radius:13px;background:linear-gradient(145deg,rgba(24,47,76,.86),rgba(13,29,49,.96));display:grid;gap:10px}
+.pcp-stat-tile span{font-size:12px;color:#a9bfd9}
+.pcp-stat-tile strong{font-size:clamp(17px,2vw,23px);color:#f4f8ff;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.pcp-printer-chart{grid-column:1/-1}
+.pcp-chart-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
+.pcp-chart-heading h3{margin:5px 0}.pcp-chart-heading p{margin:0;color:#91a9c6;font-size:11px}
+.pcp-chart-heading>strong{font-size:11px;color:#a9bfd9}
+.pcp-temp-chart{height:230px;padding:12px 8px 8px 0}
+.pcp-temp-chart svg{overflow:visible}
+.pcp-chart-gridline{stroke:rgba(142,174,211,.17);stroke-width:.35;vector-effect:non-scaling-stroke}
+.pcp-chart-axis{fill:#8ea8c7;font-size:3px}
+.pcp-chart-time-axis{display:flex;justify-content:space-between;margin:6px 8px 0 30px;color:#91a9c6;font-size:10px}
+.pcp-chart-legend{margin-top:12px}
+.pcp-printer-stats-section .pcp-jobs-chart-card{margin-top:14px}
+.pcp-jobs-chart{display:grid;gap:12px}
+.pcp-job-bar-row{display:grid;grid-template-columns:minmax(100px,1.1fr) minmax(100px,2fr) 82px;align-items:center;gap:12px}
+.pcp-job-bar-row>span{font-size:11px;color:#b9cce2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pcp-job-bar-row>div{height:10px;border-radius:99px;background:rgba(130,160,195,.15);overflow:hidden}
+.pcp-job-bar-row>div i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#278fc1,#38d9c5)}
+.pcp-job-bar-row>b{text-align:right;font-size:11px;color:#eef6ff;font-variant-numeric:tabular-nums}
+.pcp-no-chart-data{padding:22px;text-align:center;color:#91a9c6;border:1px dashed rgba(130,160,195,.25);border-radius:10px}
+@media(max-width:1150px){.pcp-printers-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pcp-printer-stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.pcp-printers-grid,.pcp-printer-detail-grid{grid-template-columns:1fr}.pcp-printer-stats-grid{grid-template-columns:1fr 1fr}.pcp-printer-detail-section,.pcp-printer-stats-section{padding:13px}.pcp-job-bar-row{grid-template-columns:minmax(75px,1fr) 1.2fr 68px;gap:7px}}
+
+/* v2.0.88 — escala y tipografía del gráfico térmico */
+.pcp-temp-chart{height:190px;padding:10px 14px}
+.pcp-temp-chart svg{width:100%;height:100%;overflow:hidden}
+.pcp-chart-axis{font-size:10px;fill:#9db2cc;font-weight:500}
+.pcp-chart-gridline{stroke:rgba(142,174,211,.14);stroke-width:1;vector-effect:non-scaling-stroke}
+.pcp-chart-time-axis{font-size:10px;margin-left:54px}
+.pcp-stat-tile strong{font-size:clamp(16px,1.35vw,20px)}
+.pcp-jobs-chart{gap:10px}
+.pcp-job-bar-row>div{height:8px}
+
+
+/* v2.0.89 — gráfico térmico a todo el ancho y tarjetas de métricas más limpias */
+.pcp-temp-chart{height:176px;padding:10px 12px;overflow:hidden}
+.pcp-temp-chart svg{display:block;width:100%!important;min-width:100%;height:100%;overflow:hidden}
+.pcp-chart-axis{font-size:9px;letter-spacing:0;paint-order:stroke;stroke:rgba(8,20,38,.55);stroke-width:.35px}
+.pcp-chart-gridline{stroke:rgba(142,174,211,.13);stroke-width:.8;vector-effect:non-scaling-stroke}
+.pcp-printer-chart{padding:17px 18px}
+.pcp-chart-heading h3{font-size:15px;font-weight:700}
+.pcp-printer-stats-section{padding:22px}
+.pcp-printer-stats-grid{gap:14px}
+.pcp-stat-tile{padding:15px 17px;gap:8px;min-height:88px}
+.pcp-stat-tile strong{font-size:clamp(17px,1.25vw,20px);line-height:1.25}
+.pcp-jobs-chart-card{padding:16px 18px}
+.pcp-job-bar-row{grid-template-columns:minmax(150px,1.05fr) minmax(160px,2.4fr) 88px;gap:14px}
+@media(max-width:700px){.pcp-temp-chart{height:155px}.pcp-printer-stats-section{padding:14px}.pcp-job-bar-row{grid-template-columns:minmax(90px,1fr) 1.2fr 72px}}
+
+/* v2.0.90 — marcas horarias reales bajo el gráfico térmico */
+.pcp-chart-time-ticks{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:8px 8px 0 30px;color:#9fb5cf;font-size:10px;font-variant-numeric:tabular-nums}
+.pcp-chart-time-ticks time{padding:3px 7px;border:1px solid rgba(105,160,207,.18);border-radius:6px;background:rgba(7,20,39,.55);white-space:nowrap}
+.pcp-chart-time-ticks>span{font-weight:600;color:#c0d1e5}
+.pcp-printer-stats-grid .pcp-stat-tile:last-child strong{font-size:clamp(13px,1.05vw,17px);line-height:1.5;white-space:normal}
+@media(max-width:700px){.pcp-chart-time-ticks{justify-content:flex-start;margin-left:8px}.pcp-chart-time-ticks time{font-size:9px}}
+
+/* v2.0.96 — gráfico térmico estilo Fluidd, eje temporal real de 20 minutos */
+.pcp-printer-chart{grid-column:1/-1;width:100%;min-width:0}
+.pcp-temp-chart-fluidd{height:300px;padding:12px 14px 8px;overflow:hidden}
+.pcp-temp-chart-fluidd svg{display:block;width:100%;height:100%;overflow:visible}
+.pcp-temp-chart-fluidd .pcp-chart-axis{fill:#a9bad0;font-size:11px;font-family:inherit}
+.pcp-temp-chart-fluidd .pcp-chart-gridline{stroke:rgba(135,164,199,.19);stroke-width:1;vector-effect:non-scaling-stroke}
+.pcp-temp-chart-fluidd .pcp-chart-gridline-v{stroke:rgba(135,164,199,.11);stroke-dasharray:3 5}
+.pcp-printer-chart .pcp-chart-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:14px}
+.pcp-printer-chart .pcp-chart-heading p{margin:5px 0 0;color:#91a9c5;font-size:11px}
+.pcp-printer-chart .pcp-chart-legend{margin-top:12px}
+@media(max-width:700px){.pcp-temp-chart-fluidd{height:235px;padding:8px}.pcp-printer-chart{padding:12px}.pcp-printer-chart .pcp-chart-heading{align-items:flex-start}}
+
+/* v2.0.96 — registros de máquina cargados solo bajo demanda */
+.pcp-machine-events{margin-top:16px}
+.pcp-machine-events .pcp-section-heading{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.pcp-machine-events .pcp-section-heading h3{margin:0 0 5px}
+.pcp-machine-events .pcp-section-heading p{margin:0;color:var(--muted,#9fb2cc);font-size:12px}
+.pcp-machine-event-list{display:grid;gap:7px;max-height:420px;overflow:auto;margin-top:12px}
+.pcp-machine-event{display:grid;gap:4px;padding:9px 11px;border:1px solid var(--line,#30415e);border-left:3px solid #38bdf8;border-radius:8px;background:rgba(7,18,34,.55)}
+.pcp-machine-event.is-error{border-left-color:#fb7185}
+.pcp-machine-event.is-warning{border-left-color:#fbbf24}
+.pcp-machine-event small{color:#9fb2cc;font-size:10px;text-transform:uppercase}
+.pcp-machine-event code{white-space:pre-wrap;overflow-wrap:anywhere;color:#e2eaf5;font-size:11px}
+
+/* v2.0.96 — tarjetas de uso por cabezal */
+.pcp-head-stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px;margin-top:14px}
+.pcp-head-stat-card{min-width:0;padding:14px;border:1px solid var(--line,#29415f);border-radius:12px;background:linear-gradient(145deg,rgba(24,48,76,.92),rgba(11,25,44,.96));box-shadow:inset 0 1px rgba(255,255,255,.035)}
+.pcp-head-stat-card>header{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding-bottom:11px;border-bottom:1px solid rgba(130,165,205,.16)}
+.pcp-head-icon{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:rgba(45,212,191,.13);color:#5eead4;font-size:17px}
+.pcp-head-stat-card>header strong{flex:1;color:#eef6ff;font-size:14px}
+.pcp-head-temp{color:#8fd8ff;font-size:12px;font-weight:700}
+.pcp-head-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding-top:12px}
+.pcp-head-stat-grid>div{display:grid;gap:5px;min-width:0}
+.pcp-head-stat-grid small{color:#9db3cf;font-size:10px;line-height:1.3}
+.pcp-head-stat-grid b{color:#f4f8ff;font-size:20px;font-weight:750}
+.pcp-head-log-summary{margin-top:12px;padding:10px 12px;border:1px dashed rgba(116,155,198,.25);border-radius:9px;color:#a9c4e4;font-size:12px}
+@media(max-width:650px){.pcp-head-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* v2.0.103 — ventana de progreso de carga de impresoras */
+.pcp-printer-loading-overlay{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:20px;background:rgba(3,10,22,.76);backdrop-filter:blur(5px)}
+.pcp-printer-loading-dialog{width:min(440px,calc(100vw - 36px));padding:28px 30px;border:1px solid rgba(45,212,191,.65);border-radius:18px;background:linear-gradient(145deg,#142844,#0b172a);box-shadow:0 22px 80px rgba(0,0,0,.55);text-align:center;color:#eff7ff}
+.pcp-printer-loading-dialog h3{margin:14px 0 7px;font-size:19px}
+.pcp-printer-loading-dialog p{margin:0 0 18px;color:#a9bfd9;font-size:13px}
+.pcp-printer-loading-spinner{width:38px;height:38px;margin:auto;border:3px solid rgba(87,221,214,.2);border-top-color:#38d9cf;border-radius:50%;animation:pcp-printer-spin .8s linear infinite}
+.pcp-printer-loading-track{height:9px;overflow:hidden;border-radius:99px;background:#263c59}
+.pcp-printer-loading-track i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#279fca,#35ddc2);transition:width .25s ease}
+.pcp-printer-loading-dialog strong{display:block;margin-top:10px;color:#69e5d5;font-size:13px;font-variant-numeric:tabular-nums}
+@keyframes pcp-printer-spin{to{transform:rotate(360deg)}}
+
+/* Visualización 3D de la malla real publicada por Klipper/Moonraker */
+.pcp-bedmesh-card{background:#0d1b30;border:1px solid #294565;border-radius:14px;padding:18px;margin:16px 0;min-width:0;overflow:hidden}
+.pcp-bedmesh-card>header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.pcp-bedmesh-card h3{margin:4px 0;font-size:17px;color:#e5eefb}
+.pcp-bedmesh-card small,.pcp-bedmesh-values{color:#a9bfd9;font-size:12px}
+.pcp-bedmesh-range{font-size:13px;color:#b9cce3;font-weight:700}
+.pcp-bedmesh-plot{position:relative;min-height:260px;background:#101b2d;border-radius:10px;overflow:hidden}
+.pcp-bedmesh-plot svg{display:block;width:100%;height:auto;max-height:460px}
+.pcp-bedmesh-plot svg text{fill:#b9c5d5;font-size:12px}
+.pcp-bedmesh-legend{position:absolute;z-index:1;left:12px;top:12px;bottom:12px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;color:#d2deee;font-size:11px}
+.pcp-bedmesh-legend i{display:block;flex:1;width:13px;min-height:110px;margin:7px 0;border-radius:9px;background:linear-gradient(to top,#435bdc,#a5dcee,#fff6ae,#ffae68,#be1e37);border:1px solid #c8d5e7}
+.pcp-bedmesh-values{padding-top:10px}
+.pcp-bedmesh-empty{padding:22px;color:#f5c66b;background:#17263c;border-radius:10px;font-size:13px}
+@media(max-width:700px){.pcp-bedmesh-plot{min-height:180px}.pcp-bedmesh-legend{font-size:9px}.pcp-bedmesh-legend i{width:9px}}

@@ -1,0 +1,97 @@
+{
+  "name": "print-cost-profit-desktop",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Aplicación de escritorio Print Cost & Profit para Windows",
+  "main": "desktop/electron/main.cjs",
+  "author": "Print Cost & Profit",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "dist:win:setup": "electron-builder --win nsis --x64",
+    "dist:win:portable": "electron-builder --win portable --x64",
+    "dist:win:all": "electron-builder --win nsis portable --x64",
+    "dist:win": "electron-builder --win nsis portable --x64"
+  },
+  "devDependencies": {
+    "electron": "45.2.3",
+    "electron-builder": "26.18.1"
+  },
+  "build": {
+    "appId": "com.printcostprofit.desktop",
+    "productName": "Print Cost & Profit",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "desktop/electron/main.cjs",
+      "package.json",
+      "desktop/electron/preload.cjs",
+      "desktop/electron/orca-window.ps1"
+    ],
+    "extraResources": [
+      {
+        "from": ".",
+        "to": "pcp-app",
+        "filter": [
+          "Print_Cost_Profit.html",
+          "desktop-api.js",
+          "storage-client.js",
+          "licencias-config.js",
+          "desktop-error.html",
+          "VERSION",
+          "Integracion_Orca_Postprocesado.bat",
+          "Integracion_Print_Cost_Profit.ps1",
+          "INSTALADOR_ORCA_AYUDA.hta",
+          "css/**/*",
+          "js/**/*",
+          "assets/**/*",
+          "documentacion/**/*",
+          "desktop/electron/orca-window.ps1"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "PrintCostProfit-Setup.${ext}",
+      "icon": "desktop/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Print Cost & Profit",
+      "language": "1034",
+      "deleteAppDataOnUninstall": false,
+      "license": "LICENSE",
+      "installerLanguages": [
+        "es_ES",
+        "en_US",
+        "fr_FR",
+        "de_DE",
+        "it_IT",
+        "pl_PL",
+        "ar",
+        "zh_CN"
+      ],
+      "displayLanguageSelector": true,
+      "multiLanguageInstaller": true,
+      "allowElevation": true,
+      "include": "build/installer.nsh",
+      "warningsAsErrors": false
+    },
+    "portable": {
+      "artifactName": "PrintCostProfit-Portable.${ext}"
+    }
+  }
+}

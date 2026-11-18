@@ -1,0 +1,70 @@
+/* Facturas: superficies legibles en tema claro. El tema oscuro conserva el diseño original. */
+body.pcp-light-theme #invoicesView #invoiceStatus {
+  background: #eef5fb !important;
+  background-image: none !important;
+  color: #334b67 !important;
+  border: 1px solid #cbdced !important;
+  box-shadow: none !important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList {
+  background: #f7faff !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border: 1px solid #cbdced !important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList tbody tr,
+body.pcp-light-theme #invoicesView #savedInvoicesList tbody tr:hover td {
+  background: #ffffff !important;
+  background-image: none !important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList tbody tr:nth-child(even) td {
+  background: #f3f7fc !important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList tbody td,
+body.pcp-light-theme #invoicesView #savedInvoicesList tbody td :is(span,small,strong,b) {
+  color: #263b55 !important;
+  opacity: 1 !important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList .invoice-total {
+  color: #087f72 !important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList .invoice-date-chip {
+  background: #eaf1f8 !important;
+  border-color: #cfdeed !important;
+  color: #334b67 !important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList input[data-inv-number],
+body.pcp-light-theme #invoicesView #invoiceNumber {
+  color: #20344d !important;
+  -webkit-text-fill-color: #20344d !important;
+  background: #ffffff !important;
+  background-image: none !important;
+  border: 1px solid #bfd0e2 !important;
+  box-shadow: none !important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList input[data-inv-number]::placeholder,
+body.pcp-light-theme #invoicesView #invoiceNumber::placeholder {
+  color: #71839a !important;
+  -webkit-text-fill-color: #71839a !important;
+}
+body.pcp-light-theme #invoicesView :is(button, .btn):disabled,
+body.pcp-light-theme #invoicesView :is(button, .btn)[aria-disabled="true"] {
+  color: #596b80 !important;
+  -webkit-text-fill-color: #596b80 !important;
+  background: #e8eef5 !important;
+  border-color: #cbd7e4 !important;
+  opacity: 1 !important;
+  cursor: not-allowed !important;
+}
+body.pcp-light-theme #invoicesView #savedInvoicesList thead th {
+  background: #e8eff7 !important;
+  color: #29425f !important;
+}
+body.pcp-light-theme #invoicesView .invoice-empty {
+  background: #f7faff !important;
+  color: #263b55 !important;
+  border-color: #cbdced !important;
+}
+body.pcp-light-theme #invoicesView .invoice-empty p {
+  color: #526982 !important;
+}

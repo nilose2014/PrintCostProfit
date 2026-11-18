@@ -1,0 +1,185 @@
+/* v2.0.262 — tema claro real del dashboard y refuerzo de superficies.
+   Solo se activa cuando body.pcp-light-theme está activo. */
+body.pcp-light-theme #homeView,
+body.pcp-light-theme #pcpHomeDashboard{
+  color:#24364d!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-card,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-trend,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-costs,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-margin-card,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-recent,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-shortcuts,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-printers,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-stock,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-alerts{
+  background:#fff!important;
+  background-image:none!important;
+  color:#26384f!important;
+  border:1px solid #d5dfeb!important;
+  box-shadow:0 5px 18px rgba(25,45,70,.09)!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-card>header{
+  background:#f4f7fb!important;
+  background-image:none!important;
+  border-bottom:1px solid #dce5ef!important;
+  color:#20334b!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-card h3,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-card header h3{
+  color:#20334b!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-card p,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-card small,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-card .home-empty{
+  color:#65758a!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-kpi{
+  background:#fff!important;
+  background-image:none!important;
+  border:1px solid #d5dfeb!important;
+  box-shadow:0 4px 14px rgba(25,45,70,.08)!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-kpi small,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-kpi em{
+  color:#687990!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-kpi strong{
+  color:#20334b!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-kpi .home-kpi-icon{
+  box-shadow:none!important;
+  filter:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome{
+  box-shadow:0 6px 20px rgba(25,45,70,.10)!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-printer-top strong,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-printer-state,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-printer-file,
+body.pcp-light-theme #pcpHomeDashboard .home-printer-job-heading,
+body.pcp-light-theme #pcpHomeDashboard .home-printer-meta,
+body.pcp-light-theme #pcpHomeDashboard .home-printer-message{
+  color:#40536d!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .home-printer-progress,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-printer-progress{
+  background:#e2eaf3!important;
+  box-shadow:inset 0 1px 2px rgba(25,45,70,.12)!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-printer-list,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-spools,
+body.pcp-light-theme #pcpHomeDashboard #homeAlertsList,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-recent-list{
+  background:#fff!important;
+  color:#34465e!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-printer-list>*,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-spools>*,
+body.pcp-light-theme #pcpHomeDashboard #homeAlertsList>*,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-recent-list>*{
+  color:#34465e!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-alerts .home-alert-row{
+  background:#f4f7fb!important;
+  background-image:none!important;
+  border:1px solid #dce5ef!important;
+  color:#34465e!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-alerts .home-alert-row strong,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-alerts .home-alert-row small,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-alerts .home-alert-copy strong,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-alerts .home-alert-copy small{
+  color:#34465e!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-shortcut-grid button{
+  background:#edf3f9!important;
+  background-image:none!important;
+  border:1px solid #d0dce9!important;
+  color:#20334b!important;
+  box-shadow:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-shortcut-grid button span{
+  color:inherit!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .home-link{
+  background:#e8f0f8!important;
+  color:#175b91!important;
+  border-color:#c7d6e6!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-chart,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-cost-bars,
+body.pcp-light-theme #pcpHomeDashboard .home-margin-content,
+body.pcp-light-theme #pcpHomeDashboard .home-margin-gauge{
+  color:#34465e!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .home-margin-status{
+  background:#eef8f6!important;
+  border-color:#a9d9cf!important;
+  color:#24564f!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .home-margin-status strong,
+body.pcp-light-theme #pcpHomeDashboard .home-margin-status span{
+  color:#24564f!important;
+}
+/* SVG/canvas chart labels and donut legends remain readable on white. */
+body.pcp-light-theme #pcpHomeDashboard svg text{
+  fill:#52657d!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .home-legend,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-cost-bars,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-cost-bars *{
+  color:#40536d!important;
+  text-shadow:none!important;
+}
+/* Make light theme apply to every existing tab surface, including inline
+   dark panels that were outside the narrow 2.0.259 selector list. */
+body.pcp-light-theme #calculatorView .panel,
+body.pcp-light-theme #estimatesView .panel,
+body.pcp-light-theme #programOptionsView .panel,
+body.pcp-light-theme #clientsView .panel,
+body.pcp-light-theme #quotesView .panel,
+body.pcp-light-theme #calculatorView .card,
+body.pcp-light-theme #estimatesView .card,
+body.pcp-light-theme #programOptionsView .card,
+body.pcp-light-theme #clientsView .card,
+body.pcp-light-theme #quotesView .card{
+  background:#fff!important;
+  background-image:none!important;
+  color:#34465e!important;
+  border-color:#d5dfeb!important;
+}
+body.pcp-light-theme #calculatorView .panel *,
+body.pcp-light-theme #estimatesView .panel *,
+body.pcp-light-theme #programOptionsView .panel *,
+body.pcp-light-theme #clientsView .panel *,
+body.pcp-light-theme #quotesView .panel *,
+body.pcp-light-theme #calculatorView .card *,
+body.pcp-light-theme #estimatesView .card *,
+body.pcp-light-theme #programOptionsView .card *,
+body.pcp-light-theme #clientsView .card *,
+body.pcp-light-theme #quotesView .card *{
+  text-shadow:none!important;
+}
+body.pcp-light-theme #calculatorView .panel h1,
+body.pcp-light-theme #calculatorView .panel h2,
+body.pcp-light-theme #calculatorView .panel h3,
+body.pcp-light-theme #estimatesView .panel h1,
+body.pcp-light-theme #estimatesView .panel h2,
+body.pcp-light-theme #estimatesView .panel h3,
+body.pcp-light-theme #programOptionsView .panel h1,
+body.pcp-light-theme #programOptionsView .panel h2,
+body.pcp-light-theme #programOptionsView .panel h3,
+body.pcp-light-theme #clientsView .panel h1,
+body.pcp-light-theme #clientsView .panel h2,
+body.pcp-light-theme #clientsView .panel h3,
+body.pcp-light-theme #quotesView .panel h1,
+body.pcp-light-theme #quotesView .panel h2,
+body.pcp-light-theme #quotesView .panel h3{
+  color:#20334b!important;
+}

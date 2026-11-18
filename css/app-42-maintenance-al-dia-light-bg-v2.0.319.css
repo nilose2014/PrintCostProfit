@@ -1,0 +1,4 @@
+/* Print Cost & Profit 2.0.319 — único ajuste: fondo claro del indicador «Al día» */
+body.pcp-light-theme #maintenanceView .maintenance-state:not(.due):not(.soon) {
+  background:#e4f1ed!important;
+}

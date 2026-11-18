@@ -1,0 +1,138 @@
+/* Print Cost & Profit 2.0.315
+   Ajustes pedidos en capturas: selector, calculadora, tasaciones,
+   opciones, perfiles de impresora y copias SQLite. Solo tema claro. */
+:root { --pcp286-ink:#20344d; --pcp286-muted:#60738a; --pcp286-soft:#edf3f9; --pcp286-border:#cbd8e6; }
+
+/* Selector de idioma: tanto el contenedor como el select dinámico. */
+html[data-theme="light"] body .pcp-language-top,
+body[data-theme="light"] .pcp-language-top,
+body.pcp-light-theme .pcp-language-top {
+  background:#edf3f9!important; background-image:none!important;
+  color:#20344d!important; border:1px solid #bdccdc!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] body .pcp-language-top select,
+body[data-theme="light"] .pcp-language-top select,
+body.pcp-light-theme .pcp-language-top select,
+html[data-theme="light"] body .pcp-topbar select,
+body[data-theme="light"] .pcp-topbar select,
+body.pcp-light-theme .pcp-topbar select {
+  background:#fff!important; background-color:#fff!important; background-image:none!important;
+  color:#20344d!important; -webkit-text-fill-color:#20344d!important;
+  border:1px solid #bdccdc!important; text-shadow:none!important;
+  box-shadow:none!important; color-scheme:light!important;
+}
+
+/* Calculadora: los botones principales verdes deben tener texto blanco legible. */
+body.pcp-light-theme #calculatorView :is(button,.btn).primary,
+body[data-theme="light"] #calculatorView :is(button,.btn).primary,
+html[data-theme="light"] body #calculatorView :is(button,.btn).primary,
+body.pcp-light-theme #calculatorView button[id*="Gcode"],
+body.pcp-light-theme #calculatorView button[id*="GCode"] {
+  color:#fff!important; -webkit-text-fill-color:#fff!important;
+  text-shadow:none!important; opacity:1!important;
+}
+body.pcp-light-theme #calculatorView :is(button,.btn).primary *,
+body[data-theme="light"] #calculatorView :is(button,.btn).primary *,
+html[data-theme="light"] body #calculatorView :is(button,.btn).primary * {
+  color:#fff!important; -webkit-text-fill-color:#fff!important; text-shadow:none!important;
+}
+body.pcp-light-theme #calculatorView :is(button,.btn):not(.primary) {
+  color:#20344d!important; -webkit-text-fill-color:#20344d!important;
+}
+
+/* Tasaciones: elimina los bloques navy de filtros, cabeceras, resúmenes y listas. */
+body.pcp-light-theme #estimatesView,
+body[data-theme="light"] #estimatesView,
+html[data-theme="light"] body #estimatesView {
+  color:#20344d!important; color-scheme:light!important;
+}
+body.pcp-light-theme #estimatesView :is(.panel,.fields,.field,.card,.section-heading,.page-heading,.estimate-card,.estimate-item,.estimate-row,.estimate-summary,.estimate-toolbar,.toolbar,.filters,.search-panel,.list-panel,.saved-list,.filemeta,.table-wrap,.table-container) {
+  background:#fff!important; background-color:#fff!important; background-image:none!important;
+  color:#20344d!important; border-color:#cbd8e6!important;
+  box-shadow:0 2px 9px rgba(30,50,75,.06)!important;
+}
+body.pcp-light-theme #estimatesView :is(h1,h2,h3,h4,strong,b,th,td,label,p,small,span,div) {
+  text-shadow:none!important;
+}
+body.pcp-light-theme #estimatesView :is(h1,h2,h3,h4,strong,b,th) {color:#20344d!important}
+body.pcp-light-theme #estimatesView :is(p,small,label,.muted,.section-note) {color:#60738a!important}
+body.pcp-light-theme #estimatesView :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select,textarea) {
+  background:#fff!important; background-image:none!important; color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important; border:1px solid #bdccdc!important;
+  box-shadow:none!important; color-scheme:light!important;
+}
+body.pcp-light-theme #estimatesView table {background:#fff!important;color:#20344d!important}
+body.pcp-light-theme #estimatesView thead th {background:#eaf0f7!important;color:#20344d!important}
+body.pcp-light-theme #estimatesView tbody td {background:#fff!important;color:#263b55!important}
+body.pcp-light-theme #estimatesView tbody tr:nth-child(even) td {background:#f5f8fc!important}
+
+/* Opciones: título, paneles, perfiles y secciones internas dejan de ser navy. */
+body.pcp-light-theme #programOptionsView,
+body[data-theme="light"] #programOptionsView,
+html[data-theme="light"] body #programOptionsView {
+  background:transparent!important; color:#20344d!important; color-scheme:light!important;
+}
+body.pcp-light-theme #programOptionsView :is(.pcp-options-heading,.options-heading,.section-heading,.page-heading,.pcp-section-heading,.pcp-opt-section>header,.pcp-opt-section>.pcp-opt-heading) {
+  background:#eaf0f7!important; background-image:none!important; color:#20344d!important;
+  border-color:#cbd8e6!important; text-shadow:none!important;
+}
+body.pcp-light-theme #programOptionsView :is(.panel,.fields,.field,.pcp-opt-section,.pcp-opt-content,.settings-card,.settings-section,.options-section,.option-section,.options-card,.machine-inventory,.machine-cards,.machine-card,.machine-card-top,.machine-stat,.filemeta) {
+  background:#fff!important; background-color:#fff!important; background-image:none!important;
+  color:#20344d!important; border-color:#cbd8e6!important;
+  box-shadow:0 2px 9px rgba(30,50,75,.06)!important;
+}
+body.pcp-light-theme #programOptionsView :is(h1,h2,h3,h4,strong,b,.machine-title) {color:#20344d!important;text-shadow:none!important}
+body.pcp-light-theme #programOptionsView :is(p,small,label,.section-note,.machine-subtitle,.machine-stat>span) {color:#60738a!important;text-shadow:none!important}
+body.pcp-light-theme #programOptionsView :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select,textarea) {
+  background:#fff!important; background-image:none!important; color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important; border:1px solid #bdccdc!important;
+  box-shadow:none!important; color-scheme:light!important;
+}
+
+/* Iconos de los perfiles de impresora: el cuadrado del icono también es claro. */
+body.pcp-light-theme #programOptionsView .machine-icon,
+body[data-theme="light"] #programOptionsView .machine-icon,
+html[data-theme="light"] body #programOptionsView .machine-icon {
+  background:#eaf0f7!important; background-image:none!important; color:#31516f!important;
+  border:1px solid #cbd8e6!important; box-shadow:none!important; text-shadow:none!important;
+}
+body.pcp-light-theme #pcpPrintersGrid .pcp-printer-card :is(.pcp-live-card-icon,.pcp-printer-icon,.printer-icon,.machine-icon) {
+  background:#eaf0f7!important; background-image:none!important; color:#31516f!important;
+  border-color:#cbd8e6!important; box-shadow:none!important;
+}
+
+/* Base de datos: lista de copias, métricas y panel completo en claro. */
+body.pcp-light-theme #pcpBackupSettingsPanel,
+body[data-theme="light"] #pcpBackupSettingsPanel,
+html[data-theme="light"] body #pcpBackupSettingsPanel {
+  background:#fff!important; background-image:none!important; color:#20344d!important;
+  border:1px solid #cbd8e6!important; box-shadow:0 2px 9px rgba(30,50,75,.06)!important;
+}
+body.pcp-light-theme #pcpBackupSettingsPanel :is(h2,h3,h4,label,p,strong,b,small,.label,.value) {
+  color:#20344d!important; text-shadow:none!important;
+}
+body.pcp-light-theme #pcpBackupSettingsPanel :is(.cards,.metric,.field,.fields,.actions) {
+  background:#fff!important; background-image:none!important; color:#20344d!important;
+  border-color:#cbd8e6!important;
+}
+body.pcp-light-theme #pcpBackupList {
+  background:#fff!important; background-color:#fff!important; background-image:none!important;
+  color:#20344d!important; -webkit-text-fill-color:#20344d!important;
+  border:1px solid #bdccdc!important; box-shadow:none!important; color-scheme:light!important;
+}
+body.pcp-light-theme #pcpBackupList option {background:#fff!important;color:#20344d!important}
+body.pcp-light-theme #pcpBackupSettingsPanel code {
+  background:#edf3f9!important; color:#344b65!important; border-color:#d5dfeb!important;
+}
+
+/* Perfiles económicos de impresoras: icono y tarjetas de mantenimiento claros. */
+body.pcp-light-theme #machinesPanel .machine-icon {
+  background:#eaf0f7!important; color:#31516f!important; border:1px solid #cbd8e6!important;
+  box-shadow:none!important;
+}
+body.pcp-light-theme #machinesPanel .machine-card-top,
+body.pcp-light-theme #machinesPanel .machine-stat {
+  background:#fff!important; background-image:none!important; color:#20344d!important;
+  border-color:#cbd8e6!important;
+}

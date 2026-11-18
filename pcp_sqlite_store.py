@@ -22,7 +22,11 @@ def _timing_log(message: str) -> None:
         pass
 
 class StorageError(RuntimeError): pass
-class RevisionConflict(StorageError): pass
+class RevisionConflict(StorageError):
+    def __init__(self, message: str, revision: int = 0, exists: bool = False):
+        super().__init__(message)
+        self.revision = int(revision or 0)
+        self.exists = bool(exists)
 
 class SQLiteStore:
     def __init__(self, db_path: str | Path, backup_dir: str | Path | None = None,
@@ -43,12 +47,29 @@ class SQLiteStore:
         con.row_factory = sqlite3.Row
         con.execute('PRAGMA busy_timeout=15000')
         con.execute('PRAGMA foreign_keys=ON')
-        con.execute('PRAGMA journal_mode=WAL')
+        # WAL es persistente en el archivo; no volver a negociar journal_mode
+        # en cada conexión, porque puede adquirir bloqueos innecesarios.
         con.execute('PRAGMA synchronous=FULL')
         return con
 
     def _init_db(self):
+        # El adaptador se inicia en cada petición HTTP. Si el esquema actual ya
+        # existe, no ejecutar DDL ni INSERT OR IGNORE en cada proceso: son
+        # operaciones innecesarias que pueden competir por el bloqueo de escritura.
+        if self.db_path.is_file() and self.db_path.stat().st_size > 0:
+            with closing(self._connect()) as check:
+                tables = {row[0] for row in check.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table' AND name IN ('kv','meta')"
+                ).fetchall()}
+                if tables == {'kv', 'meta'}:
+                    schema = check.execute("SELECT value FROM meta WHERE key='schema_version'").fetchone()
+                    if schema and str(schema[0]) == str(SCHEMA_VERSION):
+                        return
         with closing(self._connect()) as con:
+            # Solo negociar WAL cuando aún no está activado.
+            mode_row = con.execute('PRAGMA journal_mode').fetchone()
+            if not mode_row or str(mode_row[0]).lower() != 'wal':
+                con.execute('PRAGMA journal_mode=WAL')
             con.execute('''CREATE TABLE IF NOT EXISTS kv (
                 key TEXT PRIMARY KEY NOT NULL,
                 value TEXT NOT NULL,
@@ -196,19 +217,20 @@ class SQLiteStore:
 
     def get_item(self, key: str):
         with closing(self._connect()) as con:
-            row = con.execute('SELECT value,revision FROM kv WHERE key=?', (str(key),)).fetchone()
+            row = con.execute('SELECT revision FROM kv WHERE key=?', (str(key),)).fetchone()
             return None if row is None else {'value': row['value'], 'revision': row['revision']}
 
     def write(self, key: str, value: str, expected_revision: int):
         key, value = str(key), str(value)
         if not key or len(key) > 500: raise StorageError('Clave de almacenamiento no válida.')
         with closing(self._connect()) as con:
-            self._backup_if_due(con)
+            # Las copias automáticas se solicitan por un endpoint asíncrono;
+            # nunca deben bloquear una escritura interactiva del monitor.
             con.execute('BEGIN IMMEDIATE')
             row = con.execute('SELECT revision FROM kv WHERE key=?', (key,)).fetchone()
             actual = int(row['revision']) if row else 0
             if actual != int(expected_revision):
-                con.rollback(); raise RevisionConflict(f'El dato ha cambiado en otra ventana (revisión actual {actual}).')
+                con.rollback(); raise RevisionConflict(f'El dato ha cambiado en otra ventana (revisión actual {actual}).', actual, row is not None)
             next_rev = actual + 1
             con.execute('''INSERT INTO kv(key,value,revision,updated_at)
                 VALUES(?,?,?,strftime('%Y-%m-%dT%H:%M:%fZ','now'))
@@ -216,21 +238,71 @@ class SQLiteStore:
                 (key, value, next_rev))
             con.execute("UPDATE meta SET value=CAST(value AS INTEGER)+1 WHERE key='global_revision'")
             con.commit()
-            return {'ok': True, 'revision': next_rev, 'globalRevision': self.snapshot()['revision']}
+            global_revision = self._meta_int(con, 'global_revision')
+            return {'ok': True, 'revision': next_rev, 'globalRevision': global_revision}
 
     def remove(self, key: str, expected_revision: int):
         key = str(key)
         with closing(self._connect()) as con:
-            self._backup_if_due(con)
+            # Las copias automáticas se solicitan por un endpoint asíncrono;
+            # nunca deben bloquear una escritura interactiva del monitor.
             con.execute('BEGIN IMMEDIATE')
             row = con.execute('SELECT revision FROM kv WHERE key=?', (key,)).fetchone()
             actual = int(row['revision']) if row else 0
             if actual != int(expected_revision):
-                con.rollback(); raise RevisionConflict(f'El dato ha cambiado en otra ventana (revisión actual {actual}).')
+                con.rollback(); raise RevisionConflict(f'El dato ha cambiado en otra ventana (revisión actual {actual}).', actual, row is not None)
             con.execute('DELETE FROM kv WHERE key=?', (key,))
             con.execute("UPDATE meta SET value=CAST(value AS INTEGER)+1 WHERE key='global_revision'")
             con.commit()
-            return {'ok': True, 'revision': 0, 'globalRevision': self.snapshot()['revision']}
+            global_revision = self._meta_int(con, 'global_revision')
+            return {'ok': True, 'revision': 0, 'globalRevision': global_revision}
+
+    def write_batch(self, items: list[dict[str, Any]]):
+        '''Apply independent key updates in one SQLite transaction/connection.
+
+        Revision conflicts are returned per key; valid entries are still committed
+        together. This reduces process starts, connection setup and transaction
+        overhead without weakening optimistic concurrency control.
+        '''
+        if not isinstance(items, list) or not items or len(items) > 50:
+            raise StorageError('Lote de almacenamiento no válido (1-50 operaciones).')
+        results, conflicts = [], []
+        seen = set()
+        with closing(self._connect()) as con:
+            con.execute('BEGIN IMMEDIATE')
+            try:
+                for item in items:
+                    if not isinstance(item, dict):
+                        raise StorageError('Operación del lote no válida.')
+                    key = str(item.get('key', ''))
+                    operation = str(item.get('operation', 'write'))
+                    if not key or len(key) > 500 or key in seen or operation not in ('write', 'remove'):
+                        raise StorageError('Clave u operación duplicada/no válida en el lote.')
+                    seen.add(key)
+                    row = con.execute('SELECT revision FROM kv WHERE key=?', (key,)).fetchone()
+                    actual = int(row['revision']) if row else 0
+                    expected = int(item.get('expectedRevision', 0))
+                    if actual != expected:
+                        conflicts.append({'key': key, 'currentRevision': actual, 'currentExists': row is not None})
+                        continue
+                    if operation == 'remove':
+                        con.execute('DELETE FROM kv WHERE key=?', (key,))
+                        next_revision = 0
+                    else:
+                        value = str(item.get('value', ''))
+                        next_revision = actual + 1
+                        con.execute('''INSERT INTO kv(key,value,revision,updated_at)
+                            VALUES(?,?,?,strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+                            ON CONFLICT(key) DO UPDATE SET value=excluded.value,revision=excluded.revision,updated_at=excluded.updated_at''',
+                            (key, value, next_revision))
+                    con.execute("UPDATE meta SET value=CAST(value AS INTEGER)+1 WHERE key='global_revision'")
+                    results.append({'key': key, 'revision': next_revision, 'operation': operation})
+                con.commit()
+            except Exception:
+                con.rollback()
+                raise
+            global_revision = self._meta_int(con, 'global_revision')
+        return {'ok': True, 'results': results, 'conflicts': conflicts, 'globalRevision': global_revision}
 
     def import_values(self, values: dict[str, Any], only_if_empty: bool = True):
         with closing(self._connect()) as con:

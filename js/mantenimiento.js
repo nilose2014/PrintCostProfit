@@ -1,8 +1,9 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id),t=k=>window.PCP_I18N?.t(k)||k;
 const KEY='pcp_maintenance_v550';
+const SORT_KEY='pcp_maintenance_task_sort_v1';
 const read=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(_){return {}}};
-const write=d=>localStorage.setItem(KEY,JSON.stringify(d));
+const write=d=>{localStorage.setItem(KEY,JSON.stringify(d));try{window.dispatchEvent(new CustomEvent('pcp-maintenance-updated'));}catch(_){}};
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const dateNow=()=>new Date().toISOString().slice(0,10);
 const hoursFmt=n=>Number(n||0).toLocaleString(window.PCP_LOCALE||'es-ES',{maximumFractionDigits:1});
@@ -121,7 +122,7 @@ function machineOptions(){
  const out=[],seen=new Set(),als=aliases(),profiles=models();
  discovered().forEach(p=>{
   const ip=String(p.ip||'').trim();if(!ip)return;
-  const name=String(als[ip]||p.alias||p.hostname||ip);
+  const name=String(als[ip]||p.alias||p.name||p.hostname||ip);
   const modelHint=String(p.model||p.printerModel||p.machineModel||'').trim();
   const matched=profiles.find(x=>modelHint&&String(x.name||'').toLowerCase().includes(modelHint.toLowerCase()));
   const fallback=profiles.length===1?profiles[0].name:'';
@@ -129,11 +130,9 @@ function machineOptions(){
   const id='network:'+ip;
   if(!seen.has(id)){seen.add(id);out.push({id,name,model,ip})}
  });
- profiles.forEach(m=>{
-  const name=String(m.name||'').trim();if(!name)return;
-  const represented=out.some(o=>String(o.model||'').toLowerCase()===name.toLowerCase()||String(o.name||'').toLowerCase()===name.toLowerCase()||(family(o.model)!=='generic'&&family(o.model)===family(name)));
-  if(!represented&&!seen.has('profile:'+name)){seen.add('profile:'+name);out.push({id:'profile:'+name,name,model:name})}
- });
+
+ // Los perfiles económicos (pcp_machines) no son impresoras detectadas.
+ // Solo se muestran equipos de red y máquinas añadidas manualmente al mantenimiento.
  Object.values(data).forEach(m=>{if(m&&m.custom&&!seen.has(m.id)){seen.add(m.id);out.push({id:m.id,name:m.name,model:m.model||m.name,custom:true})}});
  return out;
 }
@@ -149,7 +148,7 @@ function ensure(m){
   write(data);
  }
  const record=data[m.id];
- record.name=m.name;record.model=m.model||record.model||m.name;
+ record.name=m.name;record.model=m.model||record.model||m.name;if(m.ip)record.ip=m.ip;
  record.tasks=Array.isArray(record.tasks)?record.tasks:[];
  // Migration v5.56: daily/after-print cleaning is advice, not scheduled maintenance.
  const adviceNames=new Set(['limpieza de máquina y plataforma','limpieza de placa y zona de impresión','limpieza general y plataforma','limpieza general y hotend','limpieza de residuos de filamento','limpiar cama y revisar superficie de impresión']);
@@ -178,6 +177,44 @@ function ensure(m){
  if(changed)write(data);
  return record;
 }
+function printHoursForMachine(machine){
+ // Solo suma tiempo real informado por el monitor de la impresora; las tasaciones no son impresiones ejecutadas.
+ let moves=[];try{moves=JSON.parse(localStorage.getItem('pcp_accounting_moves')||'[]')}catch(_){}
+ if(!Array.isArray(moves))return 0;
+ const ip=String(machine.ip||String(machine.id||'').replace(/^network:/,'')).trim().toLowerCase();
+ const name=String(machine.name||'').trim().toLocaleLowerCase();
+ const ids=new Set();let total=0;
+ // Suma también la impresión que está en curso, usando el contador real de print_stats.
+ try{
+  for(let i=0;i<localStorage.length;i++){
+   const key=localStorage.key(i);if(!key||!key.startsWith('pcp_active_job_by_printer_v1577_'))continue;
+   const job=JSON.parse(localStorage.getItem(key)||'null');if(!job||job.deducted||job.completedAt||job.cancelledAt||!['printing','paused'].includes(String(job.printingState||'')))continue;
+   const jobIp=String(job.printerIp||'').trim().toLowerCase(),jobName=String(job.printerName||'').trim().toLocaleLowerCase();
+   const matches=ip&&jobIp?ip===jobIp:(name&&jobName===name);
+   const seconds=Math.max(0,Number(job.actualPrintSeconds)||0);
+   if(matches&&seconds>0)total+=seconds/3600;
+  }
+ }catch(_){}
+ for(const move of moves){
+  if(!move||typeof move!=='object'||!String(move.jobKey||'').startsWith('u1:'))continue;
+  if(move.provisional===true&&!move.cancelled)continue;
+  const moveIp=String(move.printerIp||'').trim().toLowerCase();
+  const moveName=String(move.printerName||move.printer||move.machineName||'').trim().toLocaleLowerCase();
+  const matches=ip&&moveIp?ip===moveIp:(name&&moveName===name);
+  if(!matches)continue;
+  const identity=String(move.jobKey||move.id||'');if(ids.has(identity))continue;ids.add(identity);
+  const seconds=Number(move.actualPrintSeconds);
+  const hours=Number(move.actualPrintHours);
+  if(Number.isFinite(seconds)&&seconds>0)total+=seconds/3600;
+  else if(Number.isFinite(hours)&&hours>0)total+=hours;
+ }
+ return total;
+}
+function effectiveMachine(machine){
+ const recorded=Math.max(0,Number(machine.hours)||0);
+ const printed=printHoursForMachine(machine);
+ return {...machine,hours:recorded+printed,printedHours:printed,manuallyRegisteredHours:recorded};
+}
 function due(task,m){
  const hDue=Number(task.intervalHours)>0&&m.hours>=Number(task.lastHours||0)+Number(task.intervalHours);
  const dDue=Number(task.intervalDays)>0&&((Date.now()-new Date(task.lastDate||dateNow()).getTime())/86400000)>=Number(task.intervalDays);
@@ -190,7 +227,7 @@ function render(){
  else sel.innerHTML=opts.map(m=>`<option value="${esc(m.id)}">${esc(m.name)}${m.ip?' · '+esc(m.ip):''}</option>`).join('');
  if(active&&!opts.some(m=>m.id===active))active='';if(!active&&opts.length)active=opts[0].id;sel.value=active||'';
  if(!active){$('maintenanceTaskList').innerHTML=`<div class="maintenance-empty">${esc(t('Añade una impresora para comenzar.'))}</div>`;$('maintenanceHistory').innerHTML='';renderKpis(null);return}
- const m=ensure(opts.find(x=>x.id===active)),tasks=m.tasks||[],dueTasks=tasks.filter(x=>status(x,m)==='due'),soon=tasks.filter(x=>status(x,m)==='soon');
+ const storedMachine=ensure(opts.find(x=>x.id===active)),m=effectiveMachine(storedMachine);let tasks=(m.tasks||[]).slice();const sortEl=$('maintenanceTaskSort'),sortMode=sortEl?.value||localStorage.getItem(SORT_KEY)||'due';if(sortEl)sortEl.value=sortMode;const interval=x=>{const h=Number(x.intervalHours)||0,d=Number(x.intervalDays)||0;return h>0&&d>0?Math.min(h,d*24):(h||d*24||Number.MAX_SAFE_INTEGER)};if(sortMode==='interval-asc')tasks.sort((a,b)=>interval(a)-interval(b));else if(sortMode==='interval-desc')tasks.sort((a,b)=>interval(b)-interval(a));else if(sortMode==='name')tasks.sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),window.PCP_LOCALE||'es'));else tasks.sort((a,b)=>({due:0,soon:1,ok:2}[status(a,m)]-{due:0,soon:1,ok:2}[status(b,m)])||interval(a)-interval(b));const dueTasks=tasks.filter(x=>status(x,m)==='due'),soon=tasks.filter(x=>status(x,m)==='soon');
  renderKpis({m,dueTasks,soon});
  $('maintenanceTaskList').innerHTML=tasks.length?tasks.map(task=>{const st=status(task,m),d=due(task,m),badge=st==='due'?t('Vencido'):st==='soon'?t('Próximo'):t('Al día');return `<article class="maintenance-task ${st}"><div class="maintenance-task-main"><span class="maintenance-task-icon">${task.category==='motion'?'⚙':task.category==='extruder'?'♨':task.category==='hotend'?'♨':task.category==='nozzle'?'◎':task.category==='belts'?'↔':task.category==='bed'?'▤':task.category==='sensors'?'⌁':task.category==='wiring'?'ϟ':task.category==='fans'?'◉':task.category==='electrical'?'ϟ':'✦'}</span><div><h4>${esc(task.customTask?task.name:t(task.name))}</h4><p>${esc(task.customTask?task.instructions:t(task.instructions))}</p><small>${esc(task.source==='Orientativo · confirmar manual del modelo'?t(task.source):task.source==='Guía de mantenimiento del fabricante'?t(task.source):task.source==='Base orientativa · personalizable'?t(task.source):task.source==='Personalizado'?t(task.source):task.source||t('Personalizado'))}${task.sourceUrl?` · <a href="${esc(task.sourceUrl)}" target="_blank" rel="noopener">${esc(t('Ver guía oficial'))}</a>`:''}</small></div><span class="maintenance-state ${st}">${esc(badge)}</span></div><div class="maintenance-task-foot"><span>${task.intervalHours?`${esc(t('Cada'))} ${hoursFmt(task.intervalHours)} h`:''}${task.intervalHours&&task.intervalDays?' · ':''}${task.intervalDays?`${esc(t('Cada'))} ${task.intervalDays} ${esc(t('días'))}`:''}</span><span>${st==='due'?esc(t('Necesita atención')):d.remainingH!==null?`${esc(t('Quedan'))} ${hoursFmt(d.remainingH)} h`:d.remainingD!==null?`${esc(t('Quedan'))} ${d.remainingD} ${esc(t('días'))}`:esc(t('Sin intervalo'))}</span></div><div class="maintenance-task-actions"><button class="btn primary" data-maint-done="${esc(task.id)}">${esc(t('Marcar realizado'))}</button><button class="btn" data-maint-edit="${esc(task.id)}">${esc(t('Editar'))}</button><button class="btn danger" data-maint-delete="${esc(task.id)}">${esc(t('Eliminar'))}</button></div></article>`}).join(''):`<div class="maintenance-empty">${esc(t('No hay tareas configuradas.'))}</div>`;
  const tips=careAdvice[family(m.model||m.name)]||careAdvice.generic;
@@ -201,16 +238,10 @@ function render(){
 function renderKpis(ctx){
  const el=$('maintenanceKpis');if(!el)return;
  const values=ctx?[[t('Horas acumuladas'),hoursFmt(ctx.m.hours)+' h'],[t('Vencidos'),ctx.dueTasks.length],[t('Próximos'),ctx.soon.length],[t('Tareas configuradas'),ctx.m.tasks.length]]:[[t('Horas acumuladas'),'—'],[t('Vencidos'),'—'],[t('Próximos'),'—'],[t('Tareas configuradas'),'—']];
- el.innerHTML=values.map((v,i)=>`<div class="maintenance-kpi"><span>${['◷','!','◌','▤'][i]}</span><small>${esc(v[0])}</small><strong>${esc(v[1])}</strong></div>`).join('');
+ el.innerHTML=values.map((v,i)=>`<div class="maintenance-kpi" ${i===0?`title="${esc(t('Suma las horas reales reportadas por el monitor y las horas registradas manualmente.'))}"`:''}><span>${['◷','!','◌','▤'][i]}</span><small>${esc(v[0])}</small><strong>${esc(v[1])}</strong></div>`).join('');
 }
-function updateHomeAlerts(opts){
- const el=$('homeAlertsList'),count=$('homeAlertCount');if(!el)return;
- let row=el.querySelector('.maintenance-home-alerts');if(!row){row=document.createElement('div');row.className='maintenance-home-alerts';el.appendChild(row)}
- const alerts=[];opts.forEach(o=>{const m=ensure(o);m.tasks.forEach(task=>{const st=status(task,m);if(st!=='ok')alerts.push({m,task,st})})});
- row.innerHTML=alerts.length?alerts.slice(0,5).map(a=>`<button class="maintenance-alert-line" data-maint-jump="${esc(a.m.id)}"><b>${esc(a.m.name)}</b> · ${esc(a.task.name)} <strong>${esc(a.st==='due'?t('Vencido'):t('Próximo'))}</strong></button>`).join(''):'';
- if(count){let low=0;try{const sp=JSON.parse(localStorage.getItem('pcp_spools')||'[]');low=sp.filter(x=>Number(x.remaining||0)<Math.max(50,Number(x.initial||1000)*.15)).length}catch(_){}count.textContent=String(low+alerts.length)}
- row.querySelectorAll('[data-maint-jump]').forEach(b=>b.addEventListener('click',()=>{active=b.dataset.maintJump;document.querySelector('[data-tab="maintenanceView"]')?.click();render()}));
-}
+function updateHomeAlerts(){const home=document.querySelector('[data-tab="homeView"].active');if(!home||document.hidden||typeof window.PCPRefreshHomeDashboard!=='function')return;const run=()=>{if(!document.hidden&&document.querySelector('[data-tab="homeView"].active'))window.PCPRefreshHomeDashboard();};if(typeof window.requestIdleCallback==='function')window.requestIdleCallback(run,{timeout:1800});else setTimeout(run,250);}
+
 let modalSave=null;
 function openModal(title,fields,onSave){
  const root=$('maintenanceModal'),body=$('maintenanceModalBody');if(!root||!body)return;
@@ -224,8 +255,8 @@ function closeModal(){const root=$('maintenanceModal');if(root){root.classList.r
 function done(id){
  const m=data[active],task=m?.tasks.find(x=>x.id===id);if(!task)return;
  openModal('Registrar mantenimiento',[{label:'Observaciones del mantenimiento (opcional):',type:'textarea',value:''}],values=>{
-  task.lastHours=Number(m.hours)||0;task.lastDate=dateNow();task.doneCount=(task.doneCount||0)+1;
-  m.history=m.history||[];m.history.push({date:dateNow(),name:task.name,customTask:!!task.customTask,hours:m.hours,notes:values[0]||''});
+  task.lastHours=effectiveMachine(m).hours;task.lastDate=dateNow();task.doneCount=(task.doneCount||0)+1;
+  m.history=m.history||[];m.history.push({date:dateNow(),name:task.name,customTask:!!task.customTask,hours:effectiveMachine(m).hours,notes:values[0]||''});
   write(data);render();
  });
 }
@@ -263,9 +294,10 @@ document.addEventListener('DOMContentLoaded',()=>{
  $('maintenanceAddHours')?.addEventListener('click',addHours);
  $('maintenanceSaveTask')?.addEventListener('click',saveTask);
  $('maintenanceModalSave')?.addEventListener('click',()=>{if(modalSave)modalSave()});document.querySelectorAll('[data-maint-close]').forEach(b=>b.addEventListener('click',closeModal));document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+ $('maintenanceTaskSort')?.addEventListener('change',e=>{try{localStorage.setItem(SORT_KEY,e.target.value)}catch(_){}render()});
  $('maintenanceTaskList')?.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.maintDone)done(b.dataset.maintDone);if(b.dataset.maintEdit)editTask(b.dataset.maintEdit);if(b.dataset.maintDelete){const m=data[active];m.tasks=m.tasks.filter(x=>x.id!==b.dataset.maintDelete);write(data);render()}});
  document.querySelectorAll('[data-tab="maintenanceView"]').forEach(b=>b.addEventListener('click',()=>setTimeout(render,0)));
  document.addEventListener('storage',e=>{if(e.key==='pcp_machines'||e.key==='pcp_u1_discovered_printers'||e.key==='pcp_u1_printer_aliases')render()});$('pcpLanguage')?.addEventListener('change',()=>setTimeout(render,100));
- render();setTimeout(()=>updateHomeAlerts(machineOptions()),900);setInterval(()=>updateHomeAlerts(machineOptions()),30000);
+ render();setTimeout(()=>updateHomeAlerts(),1200);setInterval(updateHomeAlerts,60000);
 });
 })();

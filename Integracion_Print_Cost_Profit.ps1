@@ -1,4 +1,4 @@
-﻿param([Parameter(ValueFromRemainingArguments=$true)][string[]]$InputArgs)
+param([Parameter(ValueFromRemainingArguments=$true)][string[]]$InputArgs)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $logPath = Join-Path $root 'Integracion_Print_Cost_Profit.log'
@@ -207,30 +207,31 @@ $payload = [pscustomobject]@{
  integrationVersion='1.73'
 }
 $json = $payload | ConvertTo-Json -Depth 6 -Compress
-$json = $json.Replace('<','\u003c').Replace('>','\u003e').Replace('&','\u0026')
-$html = [IO.File]::ReadAllText($htmlPath, [Text.Encoding]::UTF8)
-$scriptTag = '<script>window.PCP_INTEGRATION_DATA = ' + $json + ';</script>'
-if ($html -notmatch '(?i)</head>\s*<body') { throw 'La página de la calculadora no contiene </head> seguido de <body>.' }
-# Insertar solo en el cierre real de <head> del documento principal. No tocar </head><body> que aparezca dentro de cadenas JavaScript (por ejemplo, el HTML del informe PDF).
-$html = [regex]::Replace($html,'(?i)</head>(?=\r?\n\s*<body)',[System.Text.RegularExpressions.MatchEvaluator]{ param($m) $scriptTag + $m.Value },1)
-$integratedPath = Join-Path $root 'Print_Cost_Profit_Integrado.html'
-[IO.File]::WriteAllText($integratedPath,$html,[Text.UTF8Encoding]::new($false))
-# Abrir una sola vez con el navegador predeterminado de Windows.
-# No invocar Chrome/Edge/Opera directamente: eso podía generar pestañas extra
-# y URLs literales como http://+/ o $integratedPath.
+# Entrega directa a Electron mediante una bandeja de archivos local (sin HTTP,
+# sin HttpListener y sin proceso PowerShell persistente).
+$inbox = Join-Path $env:LOCALAPPDATA 'PrintCostProfit\integration-inbox'
+if (-not (Test-Path -LiteralPath $inbox)) { New-Item -ItemType Directory -Path $inbox -Force | Out-Null }
+$handoff = Join-Path $inbox ('gcode_' + [Guid]::NewGuid().ToString('N') + '.json')
+$handoffTemp = $handoff + '.tmp'
+[IO.File]::WriteAllText($handoffTemp,$json,[Text.UTF8Encoding]::new($false))
+Move-Item -LiteralPath $handoffTemp -Destination $handoff -Force
+Write-IntegrationLog ('Datos preparados para entrega directa a Electron. Archivo=' + [IO.Path]::GetFileName($gcodePath) + '; JSON=' + $handoff + '; Tiempo=' + $timeText + '; gramos=' + (($filaments | ForEach-Object { $_.grams }) -join ','))
 Write-Host ''
-Write-IntegrationLog ('Datos analizados. Archivo=' + [IO.Path]::GetFileName($gcodePath) + '; Tiempo=' + $timeText + '; horas=' + $hours + '; gramos=' + (($filaments | ForEach-Object { $_.grams }) -join ',') + '; materiales=' + $filaments.Count + '; miniatura=' + [bool]$thumbnailData + '; precios/kg=' + (($filaments | ForEach-Object { $_.price }) -join ',') + '; archivo integrado=' + $integratedPath)
-Write-Host 'Print Cost & Profit: datos importados correctamente.' -ForegroundColor Green
+Write-Host 'Print Cost & Profit: G-code analizado correctamente.' -ForegroundColor Green
 Write-Host ('Archivo: ' + [IO.Path]::GetFileName($gcodePath))
 Write-Host ('Tiempo detectado: ' + $timeText)
 Write-Host ('Materiales detectados: ' + $filaments.Count)
-Write-Host 'Abriendo una única ventana de la calculadora...' -ForegroundColor Cyan
-# Abrir la calculadora a traves del servidor local compartido, no mediante file://.
-# El servidor entrega la copia integrada generada en tiempo de ejecución. No se distribuye ni mantiene un segundo HTML; conserva PCP_INTEGRATION_DATA y permite al panel consultar /api/u1/status.
-$integratedUri = 'http://127.0.0.1:8700/'
-Start-Process -FilePath $integratedUri
-Write-IntegrationLog ('Solicitud de apertura enviada al navegador predeterminado mediante el puente local: ' + $integratedUri)
-Write-IntegrationLog 'Fin del postprocesado sin errores.'
+Write-Host 'Entregando los datos directamente a la aplicación...' -ForegroundColor Cyan
+$installPathFile = Join-Path $root 'PCP_InstallPath.txt'
+$installDir = $null
+if (Test-Path -LiteralPath $installPathFile) { $installDir = (Get-Content -LiteralPath $installPathFile -Raw).Trim() }
+$exe = if ($installDir) { Join-Path $installDir 'Print Cost & Profit.exe' } else { Join-Path $root '..\..\Print Cost & Profit.exe' }
+if (Test-Path -LiteralPath $exe -PathType Leaf) {
+  try { Start-Process -FilePath $exe | Out-Null; Write-IntegrationLog ('Aplicación de escritorio solicitada: ' + $exe) }
+  catch { Write-IntegrationLog ('No se pudo iniciar la aplicación; el G-code queda pendiente en la bandeja: ' + $_.Exception.Message) }
+} else {
+  Write-IntegrationLog 'No se encontró el ejecutable junto al paquete. Los datos quedan pendientes hasta el próximo inicio de Print Cost & Profit.'
+}
 # Notificación visible breve para que se note que el postprocesado ha terminado.
 try {
   Add-Type -AssemblyName System.Windows.Forms

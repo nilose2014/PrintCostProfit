@@ -1,0 +1,138 @@
+/* PCP 2.0.315 — overrides finales del tema CLARO.
+   Selectores comprobados contra el HTML real de esta versión.
+   No se modifica el tema oscuro ni la lógica de preferencias. */
+body.pcp-light-theme,
+html[data-theme="light"] body,
+body[data-theme="light"] {
+  color-scheme:light!important;
+  --pcp286-ink:#20344d;
+  --pcp286-muted:#60738a;
+  --pcp286-surface:#fff;
+  --pcp286-soft:#edf3f9;
+  --pcp286-border:#cbd8e6;
+}
+
+/* Cabecera superior: cinta, selector, reloj e iconos */
+body.pcp-light-theme .pcp-topbar,
+html[data-theme="light"] .pcp-topbar,
+body[data-theme="light"] .pcp-topbar {
+  background:#fff!important;background-image:none!important;color:#20344d!important;
+}
+body.pcp-light-theme .pcp-program-ribbon,
+html[data-theme="light"] .pcp-program-ribbon,
+body[data-theme="light"] .pcp-program-ribbon {
+  color:#263b55!important;-webkit-text-fill-color:#263b55!important;
+  opacity:1!important;filter:none!important;text-shadow:none!important;
+}
+body.pcp-light-theme .pcp-language-top,
+body.pcp-light-theme .pcp-language-top select,
+body.pcp-light-theme .pcp-topbar select,
+html[data-theme="light"] .pcp-language-top,
+html[data-theme="light"] .pcp-language-top select,
+html[data-theme="light"] .pcp-topbar select {
+  background:#fff!important;background-color:#fff!important;background-image:none!important;
+  color:#20344d!important;-webkit-text-fill-color:#20344d!important;
+  border-color:#bdccdc!important;box-shadow:none!important;text-shadow:none!important;color-scheme:light!important;
+}
+body.pcp-light-theme .pcp-language-top,
+html[data-theme="light"] .pcp-language-top {background:#edf3f9!important}
+body.pcp-light-theme .pcp-header-clock,
+html[data-theme="light"] .pcp-header-clock {
+  background:#edf3f9!important;color:#20344d!important;border-color:#c5d3e2!important;text-shadow:none!important;
+}
+body.pcp-light-theme .pcp-topbar-icon,
+html[data-theme="light"] .pcp-topbar-icon {
+  background:#edf3f9!important;color:#344b65!important;border-color:#c5d3e2!important;box-shadow:none!important;
+}
+
+/* Inicio: el panel azul marino que seguía visible en la captura */
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome,
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome,
+body[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome {
+  background:#f2f6fb!important;background-color:#f2f6fb!important;background-image:none!important;
+  color:#20344d!important;border:1px solid #cbd8e6!important;box-shadow:0 4px 14px rgba(30,50,75,.08)!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome::before,
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome::after,
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome::before,
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome::after {
+  display:none!important;content:none!important;background:none!important;box-shadow:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome :is(h1,h2,h3,h4,p,span,strong,b,small),
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-welcome :is(h1,h2,h3,h4,p,span,strong,b,small) {
+  color:#20344d!important;-webkit-text-fill-color:#20344d!important;text-shadow:none!important;opacity:1!important;filter:none!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-welcome .pcp-home-kicker {color:#087f91!important;-webkit-text-fill-color:#087f91!important}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-action,
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-action {
+  background:#e8eef6!important;background-image:none!important;color:#20344d!important;
+  border:1px solid #c5d3e2!important;text-shadow:none!important;box-shadow:0 2px 6px rgba(25,45,70,.08)!important;
+}
+body.pcp-light-theme #pcpHomeDashboard .pcp-home-action :is(span,strong,b),
+html[data-theme="light"] #pcpHomeDashboard .pcp-home-action :is(span,strong,b) {
+  color:#20344d!important;-webkit-text-fill-color:#20344d!important;text-shadow:none!important;
+}
+
+/* Calculadora: acciones principales verdes conservan texto blanco */
+body.pcp-light-theme #calculatorView .btn.primary,
+body.pcp-light-theme #calculatorView button.primary,
+html[data-theme="light"] #calculatorView .btn.primary,
+html[data-theme="light"] #calculatorView button.primary {
+  color:#fff!important;-webkit-text-fill-color:#fff!important;text-shadow:none!important;opacity:1!important;
+}
+body.pcp-light-theme #calculatorView .btn.primary *,
+body.pcp-light-theme #calculatorView button.primary *,
+html[data-theme="light"] #calculatorView .btn.primary *,
+html[data-theme="light"] #calculatorView button.primary * {color:#fff!important;-webkit-text-fill-color:#fff!important}
+
+/* Tasaciones: paneles, resúmenes, filtros y tabla */
+body.pcp-light-theme #estimatesView,
+html[data-theme="light"] #estimatesView {color:#20344d!important;color-scheme:light!important}
+body.pcp-light-theme #estimatesView :is(.panel,.fields,.field,.card,.section-heading,.page-heading,.estimate-card,.estimate-item,.estimate-row,.estimate-summary,.estimate-toolbar,.toolbar,.filters,.search-panel,.list-panel,.saved-list,.filemeta,.table-wrap,.table-container) {
+  background:#fff!important;background-color:#fff!important;background-image:none!important;color:#20344d!important;border-color:#cbd8e6!important;box-shadow:0 2px 9px rgba(30,50,75,.06)!important;
+}
+body.pcp-light-theme #estimatesView :is(h1,h2,h3,h4,strong,b,th,td,label,p,small,span,div) {text-shadow:none!important}
+body.pcp-light-theme #estimatesView :is(h1,h2,h3,h4,strong,b,th) {color:#20344d!important}
+body.pcp-light-theme #estimatesView :is(p,small,label,.muted,.section-note) {color:#60738a!important}
+body.pcp-light-theme #estimatesView :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select,textarea) {
+  background:#fff!important;color:#20344d!important;-webkit-text-fill-color:#20344d!important;border:1px solid #bdccdc!important;box-shadow:none!important;color-scheme:light!important;
+}
+body.pcp-light-theme #estimatesView table {background:#fff!important;color:#20344d!important}
+body.pcp-light-theme #estimatesView thead th {background:#eaf0f7!important;color:#20344d!important}
+body.pcp-light-theme #estimatesView tbody td {background:#fff!important;color:#263b55!important}
+body.pcp-light-theme #estimatesView tbody tr:nth-child(even) td {background:#f5f8fc!important}
+
+/* Opciones y perfiles económicos */
+body.pcp-light-theme #programOptionsView,
+html[data-theme="light"] #programOptionsView {color:#20344d!important}
+body.pcp-light-theme #programOptionsView :is(.section-heading,.page-heading,.options-heading,.pcp-section-heading,.pcp-opt-section,.pcp-opt-content,.panel,.fields,.field,.settings-card,.settings-section,.options-section,.option-section,.options-card,.machine-inventory,.machine-cards,.machine-card,.machine-card-top,.machine-stat,.filemeta) {
+  background:#fff!important;background-color:#fff!important;background-image:none!important;color:#20344d!important;border-color:#cbd8e6!important;box-shadow:0 2px 9px rgba(30,50,75,.05)!important;
+}
+body.pcp-light-theme #programOptionsView :is(h1,h2,h3,h4,strong,b,.machine-title) {color:#20344d!important;text-shadow:none!important}
+body.pcp-light-theme #programOptionsView :is(p,small,label,.section-note,.machine-subtitle,.machine-stat>span) {color:#60738a!important;text-shadow:none!important}
+body.pcp-light-theme #programOptionsView :is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select,textarea) {
+  background:#fff!important;color:#20344d!important;-webkit-text-fill-color:#20344d!important;border:1px solid #bdccdc!important;box-shadow:none!important;color-scheme:light!important;
+}
+body.pcp-light-theme #programOptionsView .machine-icon,
+body.pcp-light-theme #machinesPanel .machine-icon,
+html[data-theme="light"] #programOptionsView .machine-icon {
+  background:#eaf0f7!important;background-image:none!important;color:#31516f!important;border:1px solid #cbd8e6!important;box-shadow:none!important;
+}
+
+/* Perfiles de impresora en la vista Impresoras: iconos cuadrados claros */
+body.pcp-light-theme #pcpPrintersGrid .pcp-printer-card :is(.pcp-live-card-head,.pcp-live-model,.pcp-live-job,.pcp-live-card-foot) {color:#20344d!important}
+body.pcp-light-theme #pcpPrintersGrid .pcp-printer-card :is(.pcp-live-card-icon,.pcp-printer-icon,.printer-icon,.machine-icon) {
+  background:#eaf0f7!important;background-image:none!important;color:#31516f!important;border:1px solid #cbd8e6!important;box-shadow:none!important;
+}
+
+/* Base de datos SQLite: panel y lista de copias */
+body.pcp-light-theme #pcpBackupSettingsPanel,
+html[data-theme="light"] #pcpBackupSettingsPanel {
+  background:#fff!important;background-color:#fff!important;background-image:none!important;color:#20344d!important;border:1px solid #cbd8e6!important;
+}
+body.pcp-light-theme #pcpBackupSettingsPanel :is(.cards,.metric,.field,.fields,.actions) {background:#fff!important;background-image:none!important;color:#20344d!important;border-color:#cbd8e6!important}
+body.pcp-light-theme #pcpBackupSettingsPanel :is(h2,h3,h4,label,p,strong,b,small,.label,.value) {color:#20344d!important;text-shadow:none!important}
+body.pcp-light-theme #pcpBackupList {
+  background:#fff!important;background-color:#fff!important;background-image:none!important;color:#20344d!important;-webkit-text-fill-color:#20344d!important;border:1px solid #bdccdc!important;box-shadow:none!important;color-scheme:light!important;
+}
+body.pcp-light-theme #pcpBackupList option {background:#fff!important;color:#20344d!important}

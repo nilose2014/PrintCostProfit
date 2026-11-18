@@ -1,0 +1,76 @@
+/* PCP v2.0.31 — modo personal y cabecera fija global */
+.pcp-topbar{
+  position:sticky !important;
+  top:0 !important;
+  z-index:1200 !important;
+  isolation:isolate;
+  background:rgba(10,18,39,.97);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 8px 24px rgba(0,0,0,.24);
+}
+body.pcp-accounting-personal #calculatorView .pcp-personal-excluded{
+  display:none !important;
+}
+
+body.pcp-accounting-personal #calculatorView .pcp-personal-disabled{display:none!important}
+
+/* v2.0.28: keep results visible in Personal mode */
+body.pcp-accounting-personal #calculatorView aside{display:block!important;min-width:0!important}
+body.pcp-accounting-personal #calculatorView .pcp-commercial-metric{display:none!important}
+body.pcp-accounting-personal #calculatorView #pcpPersonalCostTotal{display:block!important}
+body.pcp-accounting-personal #calculatorView #profitabilityAlert{display:none!important}
+
+/* v2.0.29: enforce persistent header against dashboard layout overrides */
+html body > header.pcp-topbar,
+html body .pcp-topbar{
+  position:sticky !important;
+  top:0 !important;
+  z-index:9999 !important;
+  align-self:stretch;
+}
+
+
+/* v2.0.31: modo Personal muestra el desglose real de los bloques 1, 2 y 3 */
+body.pcp-accounting-personal #calculatorView #pcpPersonalCostTotal{display:block!important}
+body.pcp-accounting-personal #calculatorView .pcp-cost-breakdown-title{display:block!important}
+body.pcp-accounting-personal #calculatorView #filamentCost,
+body.pcp-accounting-personal #calculatorView #electricCost,
+body.pcp-accounting-personal #calculatorView #wearCost,
+body.pcp-accounting-personal #calculatorView #maintenanceCost{display:inline!important}
+body.pcp-accounting-personal #calculatorView .resultline:has(#otherCost),
+body.pcp-accounting-personal #calculatorView .resultline:has(#failureCost),
+body.pcp-accounting-personal #calculatorView .resultline:has(#netSaleUnit),
+body.pcp-accounting-personal #calculatorView .resultline:has(#taxPerUnit),
+body.pcp-accounting-personal #calculatorView .resultline:has(#taxTotalOrder),
+body.pcp-accounting-personal #calculatorView .resultline:has(#grossSaleUnit),
+body.pcp-accounting-personal #calculatorView .resultline:has(#commissionCost),
+body.pcp-accounting-personal #calculatorView .resultline:has(#totalProfit){display:none!important}
+
+/* v2.0.32: cabecera fija en el viewport, independientemente de la pestaña o del scroll */
+html body > header.pcp-topbar{
+ position:fixed!important;inset:0 0 auto 0!important;width:100%!important;
+ min-height:90px!important;box-sizing:border-box!important;z-index:20000!important;
+}
+html body{padding-top:90px!important}
+html body .pcp-topbar{transform:none!important}
+
+/* v2.0.33: restaurar la distribución de 12 columnas del diseño original.
+   main y aside deben ser transparentes para que cada panel ocupe su columna prevista. */
+body.pcp-accounting-personal #calculatorView>.grid{
+ display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr))!important;
+ gap:14px!important;align-items:stretch!important;
+}
+body.pcp-accounting-personal #calculatorView>.grid>main,
+body.pcp-accounting-personal #calculatorView>.grid>aside{display:contents!important}
+body.pcp-accounting-personal #calculatorView>.grid>main>section,
+body.pcp-accounting-personal #calculatorView>.grid>aside>section{min-width:0!important}
+body.pcp-accounting-personal #calculatorView .cards{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;
+}
+body.pcp-accounting-personal #calculatorView .metric{min-width:0!important;overflow:hidden!important}
+body.pcp-accounting-personal #calculatorView .metric .label{line-height:1.35!important;overflow-wrap:anywhere!important}
+body.pcp-accounting-personal #calculatorView .metric .value{line-height:1.2!important;white-space:nowrap!important}
+body.pcp-accounting-personal #calculatorView .resultline{display:flex!important;justify-content:space-between!important;gap:12px!important;align-items:flex-start!important}
+body.pcp-accounting-personal #calculatorView .resultline span{min-width:0!important;overflow-wrap:anywhere!important}
+body.pcp-accounting-personal #calculatorView .resultline strong{flex:0 0 auto!important;white-space:nowrap!important}

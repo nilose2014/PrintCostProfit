@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Print Cost &amp; Profit</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:28px;background:#0b1220;color:#e8edf5;font-family:Segoe UI,Arial,sans-serif}.card{width:min(100%,620px);padding:34px;border:1px solid #354363;border-radius:18px;background:#121d32;box-shadow:0 24px 80px rgba(0,0,0,.35)}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:26px}.brand{font-weight:800;letter-spacing:.2px;font-size:21px}.brand span{color:#67dce8}.pcp-topbar-tools{display:flex;align-items:center;gap:8px}.language-switch{display:flex;align-items:center;gap:7px;color:#aab8d0;font-size:12px}.language-switch select{max-width:130px;padding:7px 9px;border:1px solid #435578;border-radius:8px;background:#0c1424;color:#fff}h1{font-size:24px;line-height:1.25;margin:0 0 14px}p{font-size:15px;line-height:1.65;color:#b8c4d8;margin:0 0 24px}.close{border:0;border-radius:9px;padding:11px 17px;background:#6d39df;color:#fff;font-weight:700;cursor:pointer}.close:hover{filter:brightness(1.12)}html[dir=rtl] body{text-align:right}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header><div class="brand">Print Cost <span>&amp; Profit</span></div><div class="pcp-topbar-tools"></div></header>
+    <h1 data-i18n="No se ha podido iniciar el servidor local de Print Cost & Profit.">No se ha podido iniciar el servidor local de Print Cost &amp; Profit.</h1>
+    <p data-i18n="El programa ha intentado iniciar el servidor local de forma independiente. Si vuelve a ocurrir, consulta Integracion_Print_Cost_Profit.log y los registros de arranque en la carpeta de datos. No se han modificado los datos.">El programa ha intentado iniciar el servidor local de forma independiente. Si vuelve a ocurrir, consulta Integracion_Print_Cost_Profit.log y los registros de arranque en la carpeta de datos. No se han modificado los datos.</p>
+    <button class="close" type="button" data-i18n="Cerrar programa" onclick="window.close()">Cerrar programa</button>
+  </main>
+  <script src="js/traducciones.js?v=2.0.9"></script>
+  <script>
+    (()=>{const sync=()=>{const ar=window.PCP_I18N&&window.PCP_I18N.language==='ar';document.documentElement.dir=ar?'rtl':'ltr';document.documentElement.lang=(window.PCP_I18N&&window.PCP_I18N.language)||'es'};window.addEventListener('pcp-language-changed',sync);sync()})();
+  </script>
+</body>
+</html>

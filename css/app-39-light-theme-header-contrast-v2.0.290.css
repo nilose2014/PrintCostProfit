@@ -1,0 +1,61 @@
+/* PCP 2.0.315 — contraste definitivo de cabecera y reloj en tema claro.
+   No toca la hoja ni las reglas del tema oscuro. */
+body.pcp-light-theme .pcp-topbar,
+body[data-theme="light"] .pcp-topbar,
+html[data-theme="light"] body .pcp-topbar {
+  background:#ffffff!important;background-color:#ffffff!important;background-image:none!important;
+  color:#20344d!important;filter:none!important;opacity:1!important;
+}
+body.pcp-light-theme .pcp-program-ribbon,
+body[data-theme="light"] .pcp-program-ribbon,
+html[data-theme="light"] body .pcp-program-ribbon {
+  color:#263b55!important;-webkit-text-fill-color:#263b55!important;
+  opacity:1!important;visibility:visible!important;filter:none!important;
+  text-shadow:none!important;mix-blend-mode:normal!important;
+  background:transparent!important;
+}
+body.pcp-light-theme .pcp-program-ribbon *,
+body[data-theme="light"] .pcp-program-ribbon *,
+html[data-theme="light"] body .pcp-program-ribbon * {
+  color:#263b55!important;-webkit-text-fill-color:#263b55!important;
+  opacity:1!important;visibility:visible!important;filter:none!important;
+  text-shadow:none!important;mix-blend-mode:normal!important;
+}
+body.pcp-light-theme .pcp-program-ribbon .ribbon-symbol,
+body[data-theme="light"] .pcp-program-ribbon .ribbon-symbol,
+html[data-theme="light"] body .pcp-program-ribbon .ribbon-symbol {
+  color:#087f91!important;-webkit-text-fill-color:#087f91!important;
+}
+body.pcp-light-theme .pcp-program-ribbon::before,
+body.pcp-light-theme .pcp-program-ribbon::after,
+body[data-theme="light"] .pcp-program-ribbon::before,
+body[data-theme="light"] .pcp-program-ribbon::after,
+html[data-theme="light"] body .pcp-program-ribbon::before,
+html[data-theme="light"] body .pcp-program-ribbon::after {
+  background:#9aadc2!important;box-shadow:none!important;filter:none!important;opacity:1!important;
+}
+body.pcp-light-theme #pcpHeaderClock,
+body.pcp-light-theme .pcp-header-clock,
+body[data-theme="light"] #pcpHeaderClock,
+body[data-theme="light"] .pcp-header-clock,
+html[data-theme="light"] body #pcpHeaderClock,
+html[data-theme="light"] body .pcp-header-clock {
+  background:#edf3f9!important;background-color:#edf3f9!important;background-image:none!important;
+  color:#20344d!important;-webkit-text-fill-color:#20344d!important;
+  border:1px solid #c5d3e2!important;border-radius:10px!important;
+  box-shadow:none!important;text-shadow:none!important;filter:none!important;
+  opacity:1!important;mix-blend-mode:normal!important;
+}
+body.pcp-light-theme .pcp-topbar-icon,
+body[data-theme="light"] .pcp-topbar-icon,
+html[data-theme="light"] body .pcp-topbar-icon {
+  background:#edf3f9!important;background-color:#edf3f9!important;background-image:none!important;
+  color:#344b65!important;-webkit-text-fill-color:#344b65!important;
+  border-color:#c5d3e2!important;box-shadow:none!important;filter:none!important;opacity:1!important;
+}
+body.pcp-light-theme .pcp-brand :is(h1,.sub,small),
+body[data-theme="light"] .pcp-brand :is(h1,.sub,small),
+html[data-theme="light"] body .pcp-brand :is(h1,.sub,small) {
+  color:#20344d!important;-webkit-text-fill-color:#20344d!important;
+  opacity:1!important;filter:none!important;text-shadow:none!important;
+}

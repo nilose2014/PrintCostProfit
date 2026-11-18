@@ -1,0 +1,109 @@
+/* Print Cost & Profit 2.0.315
+   Corrección real de superficies que conservaban paleta navy en tema claro.
+   Se limita al tema claro; el tema oscuro conserva el diseño original. */
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-welcome {
+  background: #f3f6fb !important;
+  background-image: none !important;
+  border: 1px solid #cbd8e6 !important;
+  box-shadow: 0 5px 18px rgba(25,45,70,.10) !important;
+  color: #20344d !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-welcome::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-welcome::after {
+  content: none !important;
+  display: none !important;
+  box-shadow: none !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-welcome :is(h1,h2,h3,h4,strong,b) {
+  color: #20344d !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-welcome :is(p,small,.pcp-home-kicker) {
+  color: #52657d !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-welcome .pcp-home-kicker {
+  color: #087f91 !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-welcome .pcp-home-action {
+  background: #e6edf6 !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border: 1px solid #c5d3e2 !important;
+  box-shadow: 0 2px 6px rgba(25,45,70,.10) !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-welcome .pcp-home-action :is(span,strong,b) {
+  color: #20344d !important;
+  text-shadow: none !important;
+}
+/* Las tarjetas del dashboard deben seguir claras incluso cuando los estilos
+   base asignan degradados navy a .pcp-home-card y a sus cabeceras. */
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-card,
+body.pcp-light-theme #homeView #pcpHomeDashboard :is(.pcp-home-trend,.pcp-home-costs,.pcp-home-margin-card,.pcp-home-recent,.pcp-home-shortcuts,.pcp-home-printers,.pcp-home-stock,.pcp-home-alerts) {
+  background: #fff !important;
+  background-image: none !important;
+  color: #26384f !important;
+  border-color: #d5dfeb !important;
+  box-shadow: 0 5px 18px rgba(25,45,70,.08) !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-card > header {
+  background: #f4f7fb !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border-bottom: 1px solid #dce5ef !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-card :is(h1,h2,h3,h4,strong,b) {
+  color: #20344d !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard .pcp-home-card :is(p,small,label,.muted,.home-empty) {
+  color: #60738a !important;
+  text-shadow: none !important;
+}
+/* Monitor flotante: superficie blanca y textos oscuros también en los nodos
+   dinámicos que se crean después de cargar la página. */
+body.pcp-light-theme #u1-monitor-panel {
+  background: #fff !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border: 1px solid #cbd8e6 !important;
+  box-shadow: 0 8px 28px rgba(31,55,82,.16) !important;
+}
+body.pcp-light-theme #u1-monitor-panel .u1-head {
+  background: #edf3f9 !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border-bottom: 1px solid #d5dfeb !important;
+}
+body.pcp-light-theme #u1-monitor-panel :is(.u1-label,.u1-value,.u1-head-title,label,p,span,strong,small,div) {
+  text-shadow: none !important;
+}
+body.pcp-light-theme #u1-monitor-panel :is(.u1-label,.u1-value,.u1-head-title,label,p,span,strong,small) {
+  color: #344b65 !important;
+}
+body.pcp-light-theme #u1-monitor-panel .u1-body,
+body.pcp-light-theme #u1-monitor-panel .u1-section,
+body.pcp-light-theme #u1-monitor-panel .u1-card {
+  background: #fff !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border-color: #d5dfeb !important;
+}
+body.pcp-light-theme #u1-monitor-panel button {
+  background: #edf3f9 !important;
+  background-image: none !important;
+  color: #20344d !important;
+  border-color: #c5d3e2 !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #u1-monitor-panel #u1-quick-printer {
+  background: #fff !important;
+  color: #20344d !important;
+  border-color: #bdccdc !important;
+}

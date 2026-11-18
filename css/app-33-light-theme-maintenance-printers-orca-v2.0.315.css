@@ -1,0 +1,254 @@
+/* Print Cost & Profit 2.0.313 — tema claro: mantenimiento, impresoras y laminador.
+   Corrección visual aislada; no cambia lógica, lecturas Moonraker ni conexiones. */
+
+/* MANTENIMIENTO: formulario, KPIs, paneles, historial y tabla */
+body.pcp-light-theme #maintenanceView {
+  color:#20344d!important;
+  color-scheme:light!important;
+}
+body.pcp-light-theme #maintenanceView :is(.maintenance-heading,.maintenance-panel,.maintenance-toolbar,.maintenance-advice-summary,.maintenance-history-panel) {
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  color:#20344d!important;
+  border-color:#cbd8e6!important;
+  box-shadow:0 3px 12px rgba(30,50,75,.07)!important;
+}
+body.pcp-light-theme #maintenanceView :is(.maintenance-heading h2,.maintenance-panel h3,.maintenance-panel h4,.maintenance-panel strong,.maintenance-advice-summary h3) {
+  color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #maintenanceView :is(.maintenance-heading p,.maintenance-panel header p,.maintenance-eyebrow,.maintenance-panel label,.maintenance-disclaimer,.maintenance-panel small,.maintenance-panel .muted) {
+  color:#60738a!important;
+  -webkit-text-fill-color:#60738a!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #maintenanceView .maintenance-heading-icon,
+body.pcp-light-theme #maintenanceView .maintenance-neon-icon {
+  background:#e8f3f7!important;
+  background-image:none!important;
+  color:#14798b!important;
+  border-color:#b9dce3!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #maintenanceView .maintenance-kpi {
+  background:#fff!important;
+  background-image:none!important;
+  color:#20344d!important;
+  border:1px solid #cbd8e6!important;
+  box-shadow:0 2px 8px rgba(30,50,75,.06)!important;
+}
+body.pcp-light-theme #maintenanceView .maintenance-kpi :is(span,small,strong) {
+  color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #maintenanceView .maintenance-toolbar {
+  background:#f3f7fb!important;
+}
+body.pcp-light-theme #maintenanceView :is(input,select,textarea) {
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important;
+  border:1px solid #bdccdc!important;
+  box-shadow:none!important;
+  color-scheme:light!important;
+}
+body.pcp-light-theme #maintenanceView :is(input,textarea)::placeholder {
+  color:#8292a6!important;
+  -webkit-text-fill-color:#8292a6!important;
+  opacity:1!important;
+}
+body.pcp-light-theme #maintenanceView select option {
+  background:#fff!important;
+  color:#20344d!important;
+}
+body.pcp-light-theme #maintenanceView .maintenance-history-head {
+  background:#eaf1f8!important;
+  color:#405670!important;
+  border-color:#cbd8e6!important;
+}
+body.pcp-light-theme #maintenanceView .maintenance-history-row {
+  background:#fff!important;
+  color:#405670!important;
+  border-color:#d8e2ed!important;
+}
+body.pcp-light-theme #maintenanceView .maintenance-history-row strong {
+  color:#20344d!important;
+}
+body.pcp-light-theme #maintenanceView .maintenance-disclaimer {
+  background:#edf3f9!important;
+  color:#60738a!important;
+  border-left:3px solid #35b8c8!important;
+  padding:10px 12px!important;
+  border-radius:8px!important;
+}
+body.pcp-light-theme #maintenanceView .maintenance-task,
+body.pcp-light-theme #maintenanceView .maintenance-task-card,
+body.pcp-light-theme #maintenanceView .maintenance-task-main,
+body.pcp-light-theme #maintenanceView .maintenance-advice-item,
+body.pcp-light-theme #maintenanceView .maintenance-empty {
+  background:#f7f9fc!important;
+  background-image:none!important;
+  color:#405670!important;
+  border-color:#d5dfeb!important;
+}
+body.pcp-light-theme #maintenanceView :is(.maintenance-task,.maintenance-task-card,.maintenance-task-main,.maintenance-advice-item,.maintenance-empty) :is(h3,h4,strong,b,span,p,small) {
+  color:#405670!important;
+  -webkit-text-fill-color:#405670!important;
+  text-shadow:none!important;
+}
+
+/* IMPRESORAS: resumen principal, tarjetas, datos, sensores y canales */
+body.pcp-light-theme #printersView {
+  color:#20344d!important;
+  color-scheme:light!important;
+}
+body.pcp-light-theme #printersView .pcp-printers-heading,
+body.pcp-light-theme #printersView .pcp-printers-statusline,
+body.pcp-light-theme #printersView .pcp-printer-hero,
+body.pcp-light-theme #printersView .pcp-printer-live-card,
+body.pcp-light-theme #printersView .pcp-printer-card,
+body.pcp-light-theme #printersView .pcp-thermal-section,
+body.pcp-light-theme #printersView .pcp-temp-chart,
+body.pcp-light-theme #printersView .pcp-printers-note {
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  color:#20344d!important;
+  border-color:#cbd8e6!important;
+  box-shadow:0 3px 12px rgba(30,50,75,.06)!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #printersView .pcp-printers-heading {
+  background:#eaf1f8!important;
+}
+body.pcp-light-theme #printersView .pcp-printers-statusline {
+  background:#edf3f9!important;
+}
+body.pcp-light-theme #printersView .pcp-printer-hero :is(h1,h2,h3,h4,strong,b,span,p,small,div),
+body.pcp-light-theme #printersView .pcp-printer-live-card :is(h1,h2,h3,h4,strong,b,span,p,small,div),
+body.pcp-light-theme #printersView .pcp-printer-card :is(h1,h2,h3,h4,strong,b,span,p,small,dt,dd,div),
+body.pcp-light-theme #printersView .pcp-thermal-section :is(h1,h2,h3,h4,strong,b,span,p,small,label,dt,dd,div) {
+  color:#405670!important;
+  -webkit-text-fill-color:#405670!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #printersView .pcp-printer-hero :is(h2,h3,strong,b),
+body.pcp-light-theme #printersView .pcp-printer-live-card :is(h3,strong,b),
+body.pcp-light-theme #printersView .pcp-printer-card :is(h3,strong,dd),
+body.pcp-light-theme #printersView .pcp-thermal-section :is(h3,strong,b) {
+  color:#20344d!important;
+  -webkit-text-fill-color:#20344d!important;
+}
+body.pcp-light-theme #printersView :is(.pcp-printer-hero,.pcp-printer-live-card,.pcp-printer-card,.pcp-thermal-section) :is(.pcp-printer-eyebrow,.pcp-live-dot,.pcp-printers-dot) {
+  text-shadow:none!important;
+}
+body.pcp-light-theme #printersView .pcp-current-file,
+body.pcp-light-theme #printersView .pcp-hero-stats > div,
+body.pcp-light-theme #printersView .pcp-hero-stat,
+body.pcp-light-theme #printersView .pcp-live-job,
+body.pcp-light-theme #printersView .pcp-live-card-head,
+body.pcp-light-theme #printersView .pcp-live-card-foot {
+  background:#f3f7fb!important;
+  background-image:none!important;
+  color:#405670!important;
+  border-color:#d5dfeb!important;
+}
+body.pcp-light-theme #printersView .pcp-current-file :is(strong,small,span),
+body.pcp-light-theme #printersView .pcp-hero-stats :is(strong,small,span),
+body.pcp-light-theme #printersView .pcp-live-job :is(strong,small,span) {
+  color:#405670!important;
+  -webkit-text-fill-color:#405670!important;
+}
+body.pcp-light-theme #printersView .pcp-printer-hero .pcp-progress-ring {
+  background:conic-gradient(#20bfae calc(var(--progress)*1%),#dce5ef 0)!important;
+  box-shadow:none!important;
+}
+body.pcp-light-theme #printersView .pcp-printer-hero .pcp-progress-ring::before {
+  background:#fff!important;
+}
+body.pcp-light-theme #printersView .pcp-temp-chart {
+  border:1px solid #d5dfeb!important;
+}
+body.pcp-light-theme #printersView .pcp-thermal-section .pcp-filament-channel,
+body.pcp-light-theme #printersView .pcp-thermal-section .pcp-channel-card,
+body.pcp-light-theme #printersView .pcp-thermal-section [class*="channel"] {
+  background:#f3f7fb!important;
+  background-image:none!important;
+  color:#405670!important;
+  border-color:#cbd8e6!important;
+}
+body.pcp-light-theme #printersView .pcp-printers-note {
+  background:#edf3f9!important;
+  color:#60738a!important;
+}
+
+/* LAMINADOR: solo la carcasa/placeholder de la integración; no toca la ventana nativa de Orca */
+body.pcp-light-theme #orcaView .pcp-orca-shell,
+body.pcp-light-theme #orcaView .pcp-orca-heading,
+body.pcp-light-theme #orcaView .pcp-orca-workarea,
+body.pcp-light-theme #orcaView .pcp-orca-host-placeholder,
+body.pcp-light-theme #orcaView .pcp-orca-info {
+  background:#fff!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  color:#20344d!important;
+  border-color:#cbd8e6!important;
+  box-shadow:0 3px 12px rgba(30,50,75,.06)!important;
+}
+body.pcp-light-theme #orcaView .pcp-orca-heading {
+  background:#eaf1f8!important;
+}
+body.pcp-light-theme #orcaView .pcp-orca-host-placeholder :is(strong,p,div) {
+  color:#60738a!important;
+  -webkit-text-fill-color:#60738a!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #orcaView .pcp-orca-placeholder-icon {
+  filter:none!important;
+  text-shadow:none!important;
+}
+body.pcp-light-theme #orcaView .pcp-orca-info,
+body.pcp-light-theme #orcaView .section-note {
+  color:#60738a!important;
+}
+
+
+/* Print Cost & Profit 2.0.315 — contraste de botones deshabilitados del laminador */
+body.pcp-light-theme #orcaView #pcpOrcaLaunch:disabled,
+body.pcp-light-theme #orcaView #pcpOrcaLaunch[disabled],
+body.pcp-light-theme #orcaView #pcpOrcaLaunch[aria-disabled="true"] {
+  background:#dce6f1!important;
+  background-color:#dce6f1!important;
+  background-image:none!important;
+  color:#29435f!important;
+  -webkit-text-fill-color:#29435f!important;
+  border:1px solid #aebfd2!important;
+  opacity:1!important;
+  filter:none!important;
+  text-shadow:none!important;
+  box-shadow:none!important;
+  cursor:not-allowed!important;
+}
+body.pcp-light-theme #orcaView #pcpOrcaLaunch:disabled *,
+body.pcp-light-theme #orcaView #pcpOrcaLaunch[disabled] *,
+body.pcp-light-theme #orcaView #pcpOrcaLaunch[aria-disabled="true"] * {
+  color:#29435f!important;
+  -webkit-text-fill-color:#29435f!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+
+/* Conserva un contraste suficiente en los botones inactivos del módulo */
+body.pcp-light-theme #orcaView button:disabled,
+body.pcp-light-theme #maintenanceView button:disabled {
+  color:#405670!important;
+  -webkit-text-fill-color:#405670!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}

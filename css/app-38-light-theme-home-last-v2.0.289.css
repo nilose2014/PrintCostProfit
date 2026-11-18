@@ -1,0 +1,62 @@
+/* PCP 2.0.315 — esta hoja se carga DESPUÉS de todas las hojas del body.
+   Corrige el panel Inicio en tema claro; no altera el tema oscuro. */
+body.pcp-light-theme #homeView #pcpHomeDashboard > .pcp-home-welcome,
+body[data-theme="light"] #homeView #pcpHomeDashboard > .pcp-home-welcome,
+html[data-theme="light"] body #homeView #pcpHomeDashboard > .pcp-home-welcome {
+  background: #f1f5fa !important;
+  background-color: #f1f5fa !important;
+  background-image: none !important;
+  border: 1px solid #cbd8e6 !important;
+  box-shadow: 0 4px 16px rgba(31,55,82,.10) !important;
+  color: #20344d !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard > .pcp-home-welcome::before,
+body.pcp-light-theme #homeView #pcpHomeDashboard > .pcp-home-welcome::after,
+body[data-theme="light"] #homeView #pcpHomeDashboard > .pcp-home-welcome::before,
+body[data-theme="light"] #homeView #pcpHomeDashboard > .pcp-home-welcome::after,
+html[data-theme="light"] body #homeView #pcpHomeDashboard > .pcp-home-welcome::before,
+html[data-theme="light"] body #homeView #pcpHomeDashboard > .pcp-home-welcome::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard > .pcp-home-welcome .pcp-home-kicker,
+body[data-theme="light"] #homeView #pcpHomeDashboard > .pcp-home-welcome .pcp-home-kicker,
+html[data-theme="light"] body #homeView #pcpHomeDashboard > .pcp-home-welcome .pcp-home-kicker {
+  color: #087f91 !important;
+  -webkit-text-fill-color: #087f91 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard > .pcp-home-welcome h2,
+body.pcp-light-theme #homeView #pcpHomeDashboard > .pcp-home-welcome p,
+body[data-theme="light"] #homeView #pcpHomeDashboard > .pcp-home-welcome h2,
+body[data-theme="light"] #homeView #pcpHomeDashboard > .pcp-home-welcome p,
+html[data-theme="light"] body #homeView #pcpHomeDashboard > .pcp-home-welcome h2,
+html[data-theme="light"] body #homeView #pcpHomeDashboard > .pcp-home-welcome p {
+  color: #263b55 !important;
+  -webkit-text-fill-color: #263b55 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard > .pcp-home-welcome .pcp-home-action,
+body[data-theme="light"] #homeView #pcpHomeDashboard > .pcp-home-welcome .pcp-home-action,
+html[data-theme="light"] body #homeView #pcpHomeDashboard > .pcp-home-welcome .pcp-home-action {
+  background: #e7edf5 !important;
+  background-image: none !important;
+  color: #20344d !important;
+  -webkit-text-fill-color: #20344d !important;
+  border: 1px solid #c5d3e2 !important;
+  box-shadow: 0 2px 7px rgba(31,55,82,.10) !important;
+  text-shadow: none !important;
+}
+body.pcp-light-theme #homeView #pcpHomeDashboard > .pcp-home-welcome .pcp-home-action *,
+body[data-theme="light"] #homeView #pcpHomeDashboard > .pcp-home-welcome .pcp-home-action *,
+html[data-theme="light"] body #homeView #pcpHomeDashboard > .pcp-home-welcome .pcp-home-action * {
+  color: #20344d !important;
+  -webkit-text-fill-color: #20344d !important;
+  text-shadow: none !important;
+}

@@ -1,0 +1,57 @@
+/* v2.0.266 — correcciones basadas en las capturas reales de Windows.
+   Exclusivo del tema claro; no modifica el tema oscuro. */
+body.pcp-light-theme {
+  --pcp266-ink:#24364d; --pcp266-muted:#64758b; --pcp266-surface:#fff;
+  --pcp266-soft:#eef3f8; --pcp266-border:#cbd8e6;
+}
+/* Monitor: las tarjetas son <article> con fondo inline, no div. */
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > article,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > div {
+  background:#fff!important; background-image:none!important; color:var(--pcp266-ink)!important;
+  border:1px solid var(--pcp266-border)!important; box-shadow:0 2px 8px rgba(30,50,75,.08)!important;
+}
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > article :is(b,span,small,div),
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments :is(strong,p) {
+  color:var(--pcp266-ink)!important; text-shadow:none!important;
+}
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > article small,
+body.pcp-light-theme #u1-monitor-panel #u1-live-filaments p {color:var(--pcp266-muted)!important;}
+/* Conserva el color real del filamento en la muestra <i>. */
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid > article i {border-color:#94a3b8!important;}
+body.pcp-light-theme #u1-monitor-panel #u1-live-filament-grid button {background:#e8f5f3!important;color:#075e56!important;border:1px solid #83cfc3!important;}
+/* Tasaciones: el historial está en #estimatesView/#historyContent, no quotesView. */
+body.pcp-light-theme #estimatesView #historyPanel,
+body.pcp-light-theme #estimatesView #historyContent,
+body.pcp-light-theme #estimatesView #historyCompare,
+body.pcp-light-theme #estimatesView #historyPanel .fields {
+  background:#fff!important; background-image:none!important; color:var(--pcp266-ink)!important;
+  border-color:var(--pcp266-border)!important;
+}
+body.pcp-light-theme #estimatesView #historyContent :is(table,thead,tbody,tr,th,td),
+body.pcp-light-theme #estimatesView #historyContent :is(strong,b,span,small,div) {color:var(--pcp266-ink)!important;text-shadow:none!important;}
+body.pcp-light-theme #estimatesView #historyContent thead th {background:#eaf0f7!important;color:#20344d!important;}
+body.pcp-light-theme #estimatesView #historyContent tbody tr {background:#fff!important;border-color:var(--pcp266-border)!important;}
+body.pcp-light-theme #estimatesView #historyContent tbody tr:nth-child(even) {background:#f4f7fb!important;}
+/* Opciones: encabezados y barras de ordenación que seguían usando texto/fondo oscuro. */
+body.pcp-light-theme #programOptionsView :is(.seller-modal-head,.options-section h2,.option-section h2,.settings-card h2,.settings-section h2,.options-card h2),
+body.pcp-light-theme #programOptionsView :is(.section-order,.options-order,.sortable-section-header) {
+  background:#eaf0f7!important; background-image:none!important; color:var(--pcp266-ink)!important;
+  border-color:var(--pcp266-border)!important; text-shadow:none!important;
+}
+body.pcp-light-theme #programOptionsView :is(label,.field label,.section-note,small,p) {color:var(--pcp266-muted)!important;text-shadow:none!important;}
+body.pcp-light-theme #programOptionsView :is(input:not([type=checkbox]):not([type=radio]),select,textarea) {
+  background:#fff!important;color:var(--pcp266-ink)!important;border:1px solid var(--pcp266-border)!important;
+}
+body.pcp-light-theme #programOptionsView :is(.options-section,.option-section,.settings-card,.settings-section,.options-card,.panel) {
+  color:var(--pcp266-ink)!important;
+}
+/* Clientes: reglas concretas por ID para inputs y notas; no heredar navy de estilos globales. */
+body.pcp-light-theme #clientsView :is(#clientManagerSearch,#clientManagerSelect,#clientManagerName,#clientManagerEmail,#clientManagerPhone,#clientManagerAddress,#clientManagerPostalCode,#clientManagerCity,#clientManagerProvince,#clientManagerTaxId,#clientManagerNotes) {
+  background:#fff!important;color:var(--pcp266-ink)!important;border:1px solid var(--pcp266-border)!important;
+}
+body.pcp-light-theme #clientsView .fields .field > label,
+body.pcp-light-theme #clientsView .fields .field > label * {color:var(--pcp266-muted)!important;text-shadow:none!important;}
+body.pcp-light-theme #clientsView .section-note,
+body.pcp-light-theme #clientsView #clientManagerStatus {background:#f5f8fc!important;color:var(--pcp266-muted)!important;}
+body.pcp-light-theme #clientsView #clientManagerList .client-manager-card {background:#fff!important;color:var(--pcp266-ink)!important;}

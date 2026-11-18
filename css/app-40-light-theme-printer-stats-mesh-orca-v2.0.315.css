@@ -1,0 +1,66 @@
+
+/* 2.0.315 — legibilidad del botón Orca, malla y estadísticas de impresoras */
+body.pcp-light-theme #orcaView .pcp-orca-actions #pcpOrcaLaunch,
+body.pcp-light-theme #orcaView .pcp-orca-actions #pcpOrcaLaunch:disabled,
+body.pcp-light-theme #orcaView .pcp-orca-actions #pcpOrcaLaunch[disabled],
+body.pcp-light-theme #orcaView .pcp-orca-actions #pcpOrcaLaunch[aria-disabled="true"] {
+  color:#263f59!important;
+  -webkit-text-fill-color:#263f59!important;
+  text-shadow:none!important;
+  opacity:1!important;
+  filter:none!important;
+  background:#e4edf6!important;
+  background-image:none!important;
+  border:1px solid #b8c9dc!important;
+  box-shadow:none!important;
+}
+body.pcp-light-theme #orcaView .pcp-orca-actions #pcpOrcaLaunch:disabled *,
+body.pcp-light-theme #orcaView .pcp-orca-actions #pcpOrcaLaunch[disabled] *,
+body.pcp-light-theme #orcaView .pcp-orca-actions #pcpOrcaLaunch[aria-disabled="true"] * {
+  color:#263f59!important;
+  -webkit-text-fill-color:#263f59!important;
+  opacity:1!important;
+}
+body.pcp-light-theme .pcp-printer-stats-section {
+  background:#ffffff!important;
+  border:1px solid #cbd9e8!important;
+  box-shadow:0 8px 22px rgba(30,55,80,.08)!important;
+}
+body.pcp-light-theme .pcp-printer-stats-section .pcp-section-heading h2,
+body.pcp-light-theme .pcp-printer-stats-section .pcp-section-heading>span {
+  color:#203b58!important;
+}
+body.pcp-light-theme .pcp-printer-stats-section .pcp-stat-tile {
+  background:#eef4fa!important;
+  border:1px solid #c8d8e8!important;
+  box-shadow:none!important;
+}
+body.pcp-light-theme .pcp-printer-stats-section .pcp-stat-tile span {
+  color:#526b85!important;
+}
+body.pcp-light-theme .pcp-printer-stats-section .pcp-stat-tile strong {
+  color:#183653!important;
+}
+body.pcp-light-theme .pcp-printer-stats-section .pcp-jobs-chart-card {
+  background:#ffffff!important;
+  border:1px solid #cbd9e8!important;
+}
+body.pcp-light-theme .pcp-printer-stats-section .pcp-jobs-chart-card h3,
+body.pcp-light-theme .pcp-printer-stats-section .pcp-job-bar-row,
+body.pcp-light-theme .pcp-printer-stats-section .pcp-job-bar-row b {
+  color:#203b58!important;
+}
+body.pcp-light-theme .pcp-printer-stats-section .pcp-job-bar-row>div {
+  background:#e8eef5!important;
+}
+body.pcp-light-theme .pcp-bed-mesh-card .pcp-mesh-viewport {
+  background:linear-gradient(145deg,#f4f7fb,#e8eef5)!important;
+  border:1px solid #c8d6e5!important;
+}
+body.pcp-light-theme .pcp-bed-mesh-card .pcp-mesh-viewport svg text {
+  fill:#29435f!important;
+}
+body.pcp-light-theme .pcp-bed-mesh-card .pcp-mesh-summary,
+body.pcp-light-theme .pcp-bed-mesh-card .pcp-mesh-hint {
+  color:#405a75!important;
+}

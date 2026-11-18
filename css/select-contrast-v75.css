@@ -1,41 +1,62 @@
-/* v5.30 — Contraste legible en menús desplegables nativos (Windows / Edge) */
-:root { color-scheme: dark; }
-select,
-select:focus,
-select:hover {
+/* PCP v2.0.315 — contraste de menús nativos.
+   Mantiene el menú oscuro en tema oscuro y fuerza menú claro en tema claro.
+   Importante: color-scheme también controla el popup nativo de Chromium/Windows. */
+
+/* Tema oscuro: comportamiento anterior, limitado al tema oscuro. */
+body:not(.pcp-light-theme) select,
+body:not(.pcp-light-theme) select:focus,
+body:not(.pcp-light-theme) select:hover {
   color-scheme: dark !important;
   color: #f1f6ff !important;
   background-color: #0b1a30 !important;
 }
-select option,
-select optgroup {
+body:not(.pcp-light-theme) select option,
+body:not(.pcp-light-theme) select optgroup {
   color: #edf4ff !important;
   background-color: #142844 !important;
   -webkit-text-fill-color: #edf4ff !important;
 }
-select option:checked {
+body:not(.pcp-light-theme) select option:checked {
   color: #ffffff !important;
   background-color: #176b83 !important;
   -webkit-text-fill-color: #ffffff !important;
 }
-select option:disabled {
+body:not(.pcp-light-theme) select option:disabled {
   color: #9aacc3 !important;
   background-color: #17263c !important;
   -webkit-text-fill-color: #9aacc3 !important;
 }
-select option:hover {
-  color: #ffffff !important;
-  background-color: #245276 !important;
-  -webkit-text-fill-color: #ffffff !important;
+
+/* Tema claro: fondo claro y texto oscuro también dentro del menú desplegado. */
+body.pcp-light-theme select,
+body.pcp-light-theme select:focus,
+body.pcp-light-theme select:hover {
+  color-scheme: light !important;
+  color: #203650 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #203650 !important;
 }
-/* Asegura contraste también en los select compactos de paneles flotantes y tablas. */
-#calculatorView select,
-#invoicesView select,
-#quotesView select,
-#ordersView select,
-#spoolsView select,
-#accountingView select,
-#optionsView select,
-#monitorPanel select {
+body.pcp-light-theme select option,
+body.pcp-light-theme select optgroup {
+  color: #203650 !important;
+  background-color: #ffffff !important;
+  -webkit-text-fill-color: #203650 !important;
+}
+body.pcp-light-theme select option:checked {
+  color: #173b5e !important;
+  background-color: #e4eef8 !important;
+  -webkit-text-fill-color: #173b5e !important;
+}
+body.pcp-light-theme select option:disabled {
+  color: #8293a7 !important;
+  background-color: #f1f5f9 !important;
+  -webkit-text-fill-color: #8293a7 !important;
+}
+
+/* Selectores de módulos y panel flotante: no deben reintroducir el modo oscuro. */
+body:not(.pcp-light-theme) :is(#calculatorView,#invoicesView,#quotesView,#ordersView,#spoolsView,#accountingView,#optionsView,#monitorPanel) select {
   color-scheme: dark !important;
+}
+body.pcp-light-theme :is(#calculatorView,#invoicesView,#quotesView,#ordersView,#spoolsView,#accountingView,#optionsView,#monitorPanel) select {
+  color-scheme: light !important;
 }
