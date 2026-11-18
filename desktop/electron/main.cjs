@@ -13,7 +13,7 @@ const os = require('node:os');
 const { fileURLToPath } = require('node:url');
 
 const APP_NAME = 'Print Cost & Profit';
-const PUBLIC_VERSION = '2.0';
+const PUBLIC_VERSION = '2.0.1';
 const APP_URL = 'http://127.0.0.1:8700/';
 const APP_ORIGIN = new URL(APP_URL).origin;
 const isWindows = process.platform === 'win32';
@@ -46,11 +46,56 @@ if (!gotLock) {
   function getDirectStorageDb() {
     if (directStorageDb) return directStorageDb;
     const base = process.env.LOCALAPPDATA || app.getPath('userData');
-    const dbPath = path.join(base, 'PrintCostProfit_SQLite_v1.249', 'data', 'printcostprofit.db');
-    if (!fs.existsSync(dbPath)) throw new Error(`No se encuentra la base SQLite existente: ${dbPath}`);
-    directStorageDb = new DatabaseSync(dbPath);
-    directStorageDb.exec('PRAGMA busy_timeout=15000; PRAGMA foreign_keys=ON;');
-    return directStorageDb;
+    const dataDir = path.join(base, 'PrintCostProfit_SQLite_v1.249', 'data');
+    const dbPath = path.join(dataDir, 'printcostprofit.db');
+
+    // Primera ejecución: preparar SQLite en la misma ubicación y con el mismo
+    // esquema que utiliza el servidor local/Orca. Nunca borrar ni reemplazar
+    // una base de datos existente.
+    fs.mkdirSync(dataDir, { recursive: true });
+    const existed = fs.existsSync(dbPath) && fs.statSync(dbPath).size > 0;
+    const db = new DatabaseSync(dbPath);
+    try {
+      db.exec('PRAGMA busy_timeout=15000; PRAGMA foreign_keys=ON;');
+      const currentTables = db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name IN ('kv','meta')").all().map(row => String(row.name));
+      if (!currentTables.includes('kv') || !currentTables.includes('meta')) {
+        // No se modifica una base ajena/no reconocida que ya contenga datos.
+        const existingUserTables = db.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'").all();
+        if (existed && existingUserTables.length && (!currentTables.includes('kv') || !currentTables.includes('meta'))) {
+          throw new Error('La base SQLite existente no tiene el esquema PCP esperado. Se ha conservado intacta para evitar pérdida de datos.');
+        }
+        db.exec('PRAGMA journal_mode=WAL;');
+        db.exec(`CREATE TABLE IF NOT EXISTS kv (
+          key TEXT PRIMARY KEY NOT NULL,
+          value TEXT NOT NULL,
+          revision INTEGER NOT NULL DEFAULT 1,
+          updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+        )`);
+        db.exec(`CREATE TABLE IF NOT EXISTS meta (
+          key TEXT PRIMARY KEY NOT NULL,
+          value TEXT NOT NULL
+        )`);
+      }
+      const requiredKv = db.prepare("PRAGMA table_info('kv')").all().map(row => String(row.name));
+      const requiredMeta = db.prepare("PRAGMA table_info('meta')").all().map(row => String(row.name));
+      if (!['key','value','revision','updated_at'].every(name => requiredKv.includes(name)) ||
+          !['key','value'].every(name => requiredMeta.includes(name))) {
+        throw new Error('El esquema de la base SQLite PCP no es compatible. No se han modificado ni eliminado sus datos.');
+      }
+      const insertMeta = db.prepare('INSERT OR IGNORE INTO meta(key,value) VALUES(?,?)');
+      for (const [key, value] of [
+        ['schema_version','1'],
+        ['global_revision','0'],
+        ['last_backup_epoch','0'],
+        ['backup_interval_seconds','300'],
+        ['max_backups','100']
+      ]) insertMeta.run(key, value);
+      directStorageDb = db;
+      return directStorageDb;
+    } catch (error) {
+      try { db.close(); } catch (_) {}
+      throw error;
+    }
   }
   function directSnapshot() {
     const db = getDirectStorageDb();
