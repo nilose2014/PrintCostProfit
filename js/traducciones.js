@@ -1,3 +1,4 @@
+/* v2.0.1 — Inicialización segura de SQLite en la primera ejecución. */
 /* v2.0.235 — Conexión directa de impresoras desde Electron. */
 /* v2.0.157 — Laminador independiente y prioridad de telemetría. */
 /* v2.0.136 — Contabilidad de tasaciones sin duplicados y cabecera persistente. */
