@@ -1,6 +1,6 @@
 {
   "name": "print-cost-profit-desktop",
-  "version": "2.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Aplicación de escritorio Print Cost & Profit para Windows",
   "main": "desktop/electron/main.cjs",
