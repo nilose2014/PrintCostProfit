@@ -1,4 +1,11 @@
 # Print Cost & Profit 2.0
+
+# v2.0.1
+- Se adapta la distribución a diferentes resoluciones y alturas de pantalla.
+- La imagen promocional de la impresora queda separada de las pestañas y ya no puede cubrir sus nombres.
+- La navegación lateral permite desplazamiento vertical; en ventanas estrechas pasa a una fila horizontal desplazable.
+- No se añaden nuevas cadenas de interfaz ni claves de traducción.
+
 - Se establece la versión pública de la aplicación como **2.0** (versión técnica del paquete: `2.0.0`).
 - La comprobación de actualizaciones deja de comparar números de versión: identifica el último ZIP publicado como recurso de una versión de GitHub, mediante su ID y fecha de subida.
 - Se prepara la transición compatible desde la rama anterior: el lanzamiento de GitHub debe publicarse con la etiqueta `v2.0`, para que las instalaciones actuales v1.4 lo detecten directamente.
