@@ -23,7 +23,7 @@
   },
   "build": {
     "appId": "com.printcostprofit.desktop",
-    "productName": "Print Cost & Profit",
+    "productName": "Print Cost Profit",
     "asar": true,
     "directories": {
       "output": "dist"
