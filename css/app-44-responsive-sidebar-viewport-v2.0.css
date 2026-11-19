@@ -1,0 +1,188 @@
+/* Print Cost & Profit 2.0 — correcciones de viewport y navegación lateral.
+   La ilustración deja de ocupar una capa absoluta encima de las pestañas.
+   Las pestañas conservan su espacio y la barra puede desplazarse completa. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow-x: clip !important;
+}
+
+/* La navegación lateral es una columna real: primero pestañas, después imagen. */
+@media (min-width: 851px) {
+  html body .wrap > .tab-navigation {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 7px !important;
+    height: calc(100vh - 112px) !important;
+    height: calc(100dvh - 112px) !important;
+    min-height: 0 !important;
+    max-height: calc(100vh - 112px) !important;
+    max-height: calc(100dvh - 112px) !important;
+    padding: 10px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    isolation: isolate;
+  }
+
+  html body .wrap > .tab-navigation > .tab-button {
+    position: relative !important;
+    z-index: 1 !important;
+    order: 0 !important;
+    display: flex !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 43px !important;
+    height: auto !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    transform: none;
+  }
+
+  html body .wrap > .tab-navigation > .pcp-sidebar-art {
+    position: relative !important;
+    inset: auto !important;
+    order: 1 !important;
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    height: clamp(96px, 17vh, 150px) !important;
+    min-height: 96px !important;
+    max-height: 150px !important;
+    margin: 8px 0 0 !important;
+    padding: 4px 4px 16px !important;
+    overflow: hidden !important;
+    border-top: 1px solid #64748b55 !important;
+    border-radius: 12px !important;
+    z-index: 0 !important;
+  }
+
+  html body .wrap > .tab-navigation > .pcp-sidebar-art img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    pointer-events: none !important;
+  }
+
+  html body .wrap > .tab-navigation > .pcp-sidebar-art span {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 3px !important;
+    z-index: 1 !important;
+    text-align: center !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Portátiles y ventanas de poca altura: se reduce el espacio decorativo,
+   nunca el espacio reservado a los nombres de las pestañas. */
+@media (min-width: 851px) and (max-height: 820px) {
+  html body .wrap > .tab-navigation {
+    height: calc(100dvh - 104px) !important;
+    max-height: calc(100dvh - 104px) !important;
+    gap: 5px !important;
+    padding: 8px !important;
+  }
+
+  html body .wrap > .tab-navigation > .tab-button {
+    min-height: 39px !important;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+  }
+
+  html body .wrap > .tab-navigation > .pcp-sidebar-art {
+    height: 92px !important;
+    min-height: 92px !important;
+    max-height: 92px !important;
+    margin-top: 5px !important;
+  }
+}
+
+/* Escritorios con anchura media: reservar más anchura al contenido principal. */
+@media (min-width: 851px) and (max-width: 1250px) {
+  html body .wrap {
+    grid-template-columns: 178px minmax(0, 1fr) !important;
+    column-gap: 12px !important;
+    margin-left: 8px !important;
+    margin-right: 8px !important;
+  }
+
+  html body .wrap > .tab-navigation {
+    width: 178px !important;
+    min-width: 178px !important;
+    max-width: 178px !important;
+  }
+
+  html body .wrap > .tab-navigation > .tab-button {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* Cuando el espacio horizontal ya no permite dos columnas cómodas,
+   la navegación pasa a una fila desplazable y la imagen se oculta. */
+@media (max-width: 850px) {
+  html body .wrap > .tab-navigation {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: thin;
+  }
+
+  html body .wrap > .tab-navigation > .tab-button {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: max-content !important;
+    white-space: nowrap !important;
+  }
+
+  html body .wrap > .tab-navigation > .pcp-sidebar-art {
+    display: none !important;
+  }
+}
+
+/* El panel de inicio se adapta también a la altura disponible, evitando
+   que las filas fijas expulsen el pie de página en pantallas bajas. */
+@media (min-width: 1251px) and (max-height: 900px) {
+  html body #homeView #pcpHomeDashboard {
+    grid-template-rows: minmax(150px, 22vh) minmax(76px, 10vh) minmax(190px, 27vh) minmax(190px, 27vh) !important;
+  }
+
+  html body #homeView #pcpHomeDashboard > .pcp-home-welcome {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  html body #homeView #pcpHomeDashboard .pcp-home-trend,
+  html body #homeView #pcpHomeDashboard .pcp-home-costs,
+  html body #homeView #pcpHomeDashboard .pcp-home-margin-card,
+  html body #homeView #pcpHomeDashboard .pcp-home-recent,
+  html body #homeView #pcpHomeDashboard .pcp-home-shortcuts {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+}
