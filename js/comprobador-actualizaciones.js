@@ -1,13 +1,13 @@
-/* Print Cost & Profit 2.0 — actualizaciones por último archivo publicado en GitHub.
-   No compara números de versión: compara el identificador/fecha del ZIP publicado.
+/* Print Cost & Profit 2.0 — actualizaciones por instalador Windows publicado en GitHub.
+   Prioriza el EXE NSIS y conserva compatibilidad con ZIP de instalador antiguos.
    Compatibilidad: el actualizador de v1.4 detecta el lanzamiento v2.0. */
 (function(){
  'use strict';
  const API='https://api.github.com/repos/nilose2014/PrintCostProfit/releases?per_page=100';
  const BASELINE_TAG='v2.0';
  const INTERVAL=6*60*60*1000;
- const BASELINE_KEY='pcp.update.baseline.asset.v2';
- const DISMISS_KEY='pcp.update.dismissed.asset.v2';
+ const BASELINE_KEY='pcp.update.baseline.asset.v3';
+ const DISMISS_KEY='pcp.update.dismissed.asset.v3';
  let autoBusy=false,manualBusy=false,baselinePromise=null;
  function t(s){return window.PCP_I18N&&typeof window.PCP_I18N.t==='function'?window.PCP_I18N.t(s):s;}
  function parseTime(v){const n=Date.parse(v||'');return Number.isFinite(n)?n:0;}
@@ -21,10 +21,21 @@
   return '2.0';
  }
  function chooseAsset(release){
-  const assets=Array.isArray(release.assets)?release.assets.filter(a=>a&&a.state==='uploaded'&&/\.zip$/i.test(a.name||'')):[];
+  // Para instalaciones NSIS se descarga el EXE real, no el ZIP del código fuente.
+  // Los ZIP de instalador se mantienen como alternativa para Releases anteriores.
+  const assets=Array.isArray(release.assets)?release.assets.filter(a=>a&&a.state==='uploaded'&&/\.(exe|zip)$/i.test(a.name||'')):[];
   if(!assets.length)return null;
-  const score=a=>/windows.*(installer|setup).*\.zip$/i.test(a.name||'')?5:/installer.*\.zip$/i.test(a.name||'')?4:/print.?cost.?profit.*\.zip$/i.test(a.name||'')?3:1;
-  return assets.sort((a,b)=>score(b)-score(a)||parseTime(b.updated_at||b.created_at)-parseTime(a.updated_at||a.created_at))[0];
+  const score=a=>{
+   const name=String(a.name||'');
+   if(/print.?cost.?profit.*(setup|installer).*\.exe$/i.test(name)||/(setup|installer).*print.?cost.?profit.*\.exe$/i.test(name))return 100;
+   if(/windows.*(installer|setup).*\.exe$/i.test(name))return 95;
+   if(/(installer|setup).*\.exe$/i.test(name))return 90;
+   if(/print.?cost.?profit.*(windows.*installer|installer).*\.zip$/i.test(name))return 70;
+   if(/(windows.*installer|installer).*\.zip$/i.test(name))return 60;
+   if(/print.?cost.?profit.*\.zip$/i.test(name))return 30;
+   return 0;
+  };
+  return assets.filter(a=>score(a)>0).sort((a,b)=>score(b)-score(a)||parseTime(b.updated_at||b.created_at)-parseTime(a.updated_at||a.created_at))[0]||null;
  }
  function assetRecord(release){
   const asset=chooseAsset(release);if(!asset)return null;

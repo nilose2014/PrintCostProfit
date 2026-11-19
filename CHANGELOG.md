@@ -1,11 +1,18 @@
 # Print Cost & Profit 2.0
+- Se corrige la identificación de los instaladores de Windows en el comprobador de actualizaciones, manteniendo la versión pública del producto en **2.0**.
+- La versión técnica del paquete Electron se establece en `2.0.0`; no se crea una versión pública 2.0.2.
+- Se actualiza el comprobador para priorizar el ejecutable instalador de Windows (.exe) publicado en GitHub, en lugar de seleccionar únicamente archivos ZIP.
+- Se mantiene compatibilidad con ZIP de instalador de publicaciones anteriores.
+- La comprobación distingue el nuevo recurso de instalación mediante claves de referencia renovadas.
+- No se modifican las rutas ni el contenido de SQLite; el instalador conserva `deleteAppDataOnUninstall: false`.
+- No se añaden textos de interfaz; `js/traducciones.js` se mantiene sin cambios y no requiere nuevas traducciones.
 
-# v2.0.1
-- Se adapta la distribución a diferentes resoluciones y alturas de pantalla.
-- La imagen promocional de la impresora queda separada de las pestañas y ya no puede cubrir sus nombres.
-- La navegación lateral permite desplazamiento vertical; en ventanas estrechas pasa a una fila horizontal desplazable.
-- No se añaden nuevas cadenas de interfaz ni claves de traducción.
+# Print Cost & Profit 2.0.1
+- Se establece la versión pública y técnica de esta compilación como **2.0.1**.
+- Se incorpora el ajuste responsive de la barra lateral y del área de trabajo para mejorar la visualización en distintas resoluciones.
+- No se añaden diálogos, campos ni textos nuevos de interfaz; `js/traducciones.js` se conserva sin cambios.
 
+# Print Cost & Profit 2.0
 - Se establece la versión pública de la aplicación como **2.0** (versión técnica del paquete: `2.0.0`).
 - La comprobación de actualizaciones deja de comparar números de versión: identifica el último ZIP publicado como recurso de una versión de GitHub, mediante su ID y fecha de subida.
 - Se prepara la transición compatible desde la rama anterior: el lanzamiento de GitHub debe publicarse con la etiqueta `v2.0`, para que las instalaciones actuales v1.4 lo detecten directamente.
