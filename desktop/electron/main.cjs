@@ -13,7 +13,7 @@ const os = require('node:os');
 const { fileURLToPath } = require('node:url');
 
 const APP_NAME = 'Print Cost & Profit';
-const PUBLIC_VERSION = '2.0';
+const PUBLIC_VERSION = '2.0.1';
 const APP_URL = 'http://127.0.0.1:8700/';
 const APP_ORIGIN = new URL(APP_URL).origin;
 const isWindows = process.platform === 'win32';
