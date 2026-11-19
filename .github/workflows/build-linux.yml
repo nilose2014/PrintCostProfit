@@ -1,0 +1,52 @@
+name: Build Print Cost & Profit 2.0 for Linux
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-linux-x64:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: desktop-v2.0-linux
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Verify official version
+        shell: bash
+        run: |
+          test "$(tr -d '\r\n' < VERSION)" = "2.0"
+          node -e "const p=require('./package.json'); if(p.version !== '2.0.0') process.exit(1); console.log('Versión pública 2.0; versión técnica SemVer 2.0.0')"
+
+      - name: Build Linux x64 packages
+        run: npm run dist:linux -- --publish never
+
+      - name: Verify generated packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$(find dist -maxdepth 1 -type f -name '*.AppImage' -print -quit)"
+          test -n "$(find dist -maxdepth 1 -type f -name '*.tar.gz' -print -quit)"
+          test -n "$(find dist -maxdepth 1 -type f -name '*.deb' -print -quit)"
+          file dist/*.AppImage dist/*.tar.gz dist/*.deb
+          mkdir -p release
+          cp dist/*.AppImage dist/*.tar.gz dist/*.deb release/
+
+      - name: Upload Linux build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: PrintCostProfit-v2.0-Linux-amd64
+          path: release/*
+          if-no-files-found: error
