@@ -1155,11 +1155,13 @@ if (!gotLock) {
       // No ejecutar PowerShell de separación durante el cierre: terminar el árbol
       // del proceso de Orca libera también su ventana Qt sin bloquear la salida.
       const pids = [...new Set([orcaWindowProcessId, orcaProcess?.pid, orcaExternalProcess?.pid].map(Number).filter(pid => Number.isInteger(pid) && pid > 0 && pid !== process.pid))];
-      for (const pid of pids) {
-        try {
-          await execFileAsync('taskkill.exe', ['/PID', String(pid), '/T', '/F'], { windowsHide: true, timeout: 10000 });
-          writeLog(`[CIERRE] Árbol de procesos finalizado: PID ${pid}.`);
-        } catch (error) { writeLog(`[CIERRE] PID ${pid}: ${error.message}`); }
+      if (isWindows) {
+        for (const pid of pids) {
+          try {
+            await execFileAsync('taskkill.exe', ['/PID', String(pid), '/T', '/F'], { windowsHide: true, timeout: 10000 });
+            writeLog(`[CIERRE] Árbol de procesos finalizado: PID ${pid}.`);
+          } catch (error) { writeLog(`[CIERRE] PID ${pid}: ${error.message}`); }
+        }
       }
       if (orcaProcess && !orcaProcess.killed) { try { orcaProcess.kill(); } catch (_) {} }
       if (orcaExternalProcess && !orcaExternalProcess.killed) { try { orcaExternalProcess.kill(); } catch (_) {} }
