@@ -25,7 +25,7 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: Build Windows x64 installer and portable EXE
-        run: npm run dist:win
+        run: npm run dist:win -- --publish never
 
       - name: Assemble release packages
         shell: pwsh
