@@ -1,414 +1,143 @@
-# Installazione rapida
+# Print Cost & Profit
+## Calcolatore dei costi di stampa 3D, inventario e gestione delle stampanti
 
-Scegli il pacchetto corrispondente al tuo sistema operativo:
+**Windows Desktop: 2.0 | Linux: 1.4**  
+Sviluppatrice: Beatriz Toro Martin
 
-### Windows 10 / 11 — versione stabile v1.2
+Repository ufficiale: https://github.com/nilose2014/PrintCostProfit  
+Tutte le release: https://github.com/nilose2014/PrintCostProfit/releases
 
-- **[Scarica il programma di installazione per Windows v1.2](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip)**.
-- Estrai il file ZIP ed esegui `PrintCostProfit-Setup-1.2.exe`.
-- Segui i passaggi dell'installazione. Quindi avvia Print Cost & Profit tramite il collegamento creato.
-- Il programma di installazione include i componenti necessari per l'archiviazione locale SQLite; non è necessario installare Python manualmente.
+## 1. Download
 
-**Repository Windows:** [PrintCostProfit — ramo principale](https://github.com/nilose2014/PrintCostProfit). Se preferisci installare dal codice sorgente, apri **Code → Download ZIP**, estrai tutti i file in una cartella permanente ed esegui `Integracion_Orca_Postprocesado.bat`.
+Scarica sempre dalle release ufficiali GitHub.
 
-### Linux / Ubuntu — versione stabile
+### Windows 10 / 11 — Versione 2.0
 
-- **[Scarica la versione stabile per Linux](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1)**.
-- Estrai il file ZIP scaricato.
-- Segui le istruzioni di installazione e avvio incluse nel pacchetto.
+**ZIP installer:** `PrintCostProfit-Setup-v2.0.zip`  
+[Release Windows 2.0](https://github.com/nilose2014/PrintCostProfit/releases/tag/v2.0)
 
-**Repository / versione Linux:** [PrintCostProfit — Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux).
+1. Scarica lo ZIP e seleziona **Estrai tutto**.
+2. Apri la cartella estratta.
+3. Avvia `PrintCostProfit-Setup.exe` e segui la procedura guidata.
 
----
+**ZIP portable:** `PrintCostProfit-Portable-v2.0.zip`  
+[Release Windows 2.0](https://github.com/nilose2014/PrintCostProfit/releases/tag/v2.0)
 
-# Print Cost & Profit v1.2
+1. Scarica ed estrai lo ZIP in una cartella permanente.
+2. Avvia `PrintCostProfit-Portable.exe` dalla cartella estratta.
 
-## Calcolatore dei costi, della produzione e della gestione per la stampa 3D
+Non eseguire file direttamente dallo ZIP. Mantieni insieme tutti i file estratti.
 
-Print Cost & Profit è un'applicazione progettata per aiutare gli utenti della stampa 3D a calcolare i costi effettivi di produzione, controllare il consumo di filamento, gestire i materiali e organizzare l'attività commerciale legata alle proprie stampe.
+### Linux — Versione 1.4
 
-L'applicazione combina un calcolatore dei costi con strumenti di gestione, archiviazione locale e integrazione con slicer basati su OrcaSlicer, in particolare Snapmaker Orca, OrcaSlicer e Creality Print. Include inoltre un monitor per le stampanti compatibili, con diversi livelli di compatibilità a seconda del modello e della connessione disponibile.
+[Release Linux 1.4](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4)
 
-## Schermate dell'applicazione
+**Debian / Ubuntu:** `printcostprofit_1.4.1_amd64.deb`  
+[Scarica .deb](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb)
 
-Le immagini seguenti mostrano alcune schermate di Print Cost & Profit. Illustrano diverse aree dell'interfaccia; le funzioni disponibili dipendono dalla versione e dalla configurazione installate.
+```bash
+sudo apt install ./printcostprofit_1.4.1_amd64.deb
+```
 
-![Calcolatore dei costi](galeria/es/01-calculadora-de-costes.jpg)
+In alternativa, fai doppio clic sul file `.deb` e usa il gestore pacchetti del sistema.
 
-![Risultato e profitto](galeria/es/02-resultado-y-beneficio.jpg)
+**AppImage:** `PrintCostProfit-Linux-x86_64.AppImage`  
+[Scarica AppImage](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/PrintCostProfit-Linux-x86_64.AppImage)
 
-![Pannello di stampa flottante](galeria/es/03-panel-flotante-de-impresion.jpg)
+```bash
+chmod +x PrintCostProfit-Linux-x86_64.AppImage
+./PrintCostProfit-Linux-x86_64.AppImage
+```
 
-**Autrice:** Beatriz Toro Martin
+I pacchetti Linux sono destinati ai sistemi AMD64 a 64 bit. **Windows è alla versione 2.0; la release Linux pubblicata è la 1.4. Sono linee di rilascio separate.**
 
-**Versione pubblicata:** v1.2
+## 2. Avviso di sicurezza Windows
 
-**Sistema operativo di riferimento:** Windows 10 e Windows 11
+Gli eseguibili Windows sono distribuiti senza certificato commerciale di firma del codice. SmartScreen o altri software di sicurezza possono mostrare un avviso. Verifica che il download provenga dal repository ufficiale. Non ignorare rilevamenti antivirus reali né aggirare avvisi se l'origine non è verificabile.
 
-**Repository ufficiale:** https://github.com/nilose2014/PrintCostProfit
+## 3. Funzionalità principali
 
----
+- **Calcolatore costi 3D:** stima i costi usando consumo di filamento, prezzo del materiale, tempo di stampa, funzionamento macchina, ammortamento, manutenzione e altre spese configurate.
+- **Prezzo e redditività:** mostra costo stimato, prezzo di vendita, profitto, margine e prezzo consigliato. I risultati dipendono dai valori inseriti.
+- **Inventario filamenti:** gestisce marche, materiali, colori, quantità delle bobine e prezzi.
+- **Profili stampante:** memorizza i parametri delle apparecchiature usati nei calcoli.
+- **Monitoraggio stampanti:** la Snapmaker U1 ha compatibilità completa confermata. Altre stampanti Moonraker, Fluidd o Mainsail possono funzionare secondo configurazione e funzioni supportate.
+- **Integrazione slicer:** progettata per Snapmaker Orca, OrcaSlicer e Creality Print. La compatibilità è circa del 90% e varia per versione e configurazione; non è garantita al 100%.
+- **Elaborazione G-code:** legge informazioni disponibili, tempo stimato, consumo stimato e metadati dei filamenti. Le stime dello slicer non equivalgono necessariamente al consumo reale.
+- **Preventivi, fatture e contabilità:** strumenti per organizzare documenti commerciali e attività finanziarie.
+- **SQLite locale:** Windows 2.0 salva i dati localmente con SQLite ed Electron IPC.
 
-# 1. Funzioni principali
+## 4. Architettura Windows — Versione 2.0
 
-## 1.1. Calcolatore dei costi di stampa 3D
+Windows 2.0 carica l'interfaccia da file Electron locali e non usa più il precedente bridge HTTP PowerShell. L'interfaccia comunica con SQLite tramite IPC. Le stampanti compatibili sono raggiunte in rete tramite Moonraker. Il flusso G-code Orca usa il monitoraggio locale dei file gestito da Electron. Le vecchie istruzioni sul server HTTP o sul bridge PowerShell non descrivono Windows 2.0.
 
-Il calcolatore consente di stimare il costo di produzione di un pezzo in base ai parametri di stampa e ai costi associati.
+## 5. Integrazione slicer
 
-A seconda della configurazione disponibile, è possibile considerare le seguenti voci di costo:
+L'integrazione è pensata per applicazioni basate su OrcaSlicer, in particolare Snapmaker Orca, OrcaSlicer e Creality Print. I menu possono variare in base all'applicazione e alla versione.
 
-- Consumo di filamento.
-- Prezzo del materiale utilizzato.
-- Tempo di stampa.
-- Costi di funzionamento e usura della stampante.
-- Ammortamento dell'attrezzatura.
-- Altre spese legate alla produzione.
-- Margine di profitto desiderato.
-- Imposte e valuta selezionate.
+1. Apri lo slicer e seleziona il profilo stampante.
+2. Apri le impostazioni di stampa e attiva la modalità avanzata se necessario.
+3. Cerca **Altro** e l'impostazione degli script di post-elaborazione.
+4. Segui le istruzioni incluse nel pacchetto corrispondente.
+5. Salva il profilo, genera un G-code di prova e verifica la ricezione delle informazioni disponibili.
 
-L'obiettivo è conoscere il costo di produzione di un pezzo prima di deciderne il prezzo di vendita.
+Windows 2.0 usa il monitoraggio locale dei file gestito da Electron. Non seguire le vecchie istruzioni che richiedono il bridge HTTP PowerShell.
 
-## 1.2. Prezzo di vendita, profitto e margine
+## 6. Rete della stampante
 
-Il calcolatore consente di esaminare il risultato economico stimato di una stampa.
+Per stampanti Moonraker compatibili, verifica che computer e stampante comunichino in rete, individua l'IP, verifica l'accesso a Moonraker e configura la connessione nell'applicazione. Le funzioni dipendono da stampante, firmware e rete. Snapmaker U1 è il modello con compatibilità completa confermata.
 
-I calcoli aiutano a distinguere tra:
+## 7. Dati e backup
 
-- **Costo di produzione:** valore stimato delle risorse utilizzate.
-- **Prezzo di vendita:** importo che si intende chiedere per il pezzo.
-- **Profitto stimato:** differenza calcolata tra ricavi e costi considerati.
-- **Margine:** rapporto tra profitto e prezzo di vendita, secondo la definizione utilizzata dal calcolo.
-- **Prezzo consigliato:** prezzo suggerito in base ai parametri configurati.
+Windows Desktop usa un database SQLite locale. Esegui backup regolari, soprattutto prima degli aggiornamenti. Non eliminare o spostare il database mentre l'applicazione è in esecuzione. Se l'inizializzazione fallisce, conserva il database e analizza l'errore prima di inserire dati importanti.
 
-I risultati dipendono dai prezzi, dalle percentuali, dai tempi e dagli altri valori inseriti. Per ottenere stime utili, mantieni aggiornati i costi del filamento, della stampante e delle spese aggiuntive.
+## 8. Requisiti di sistema
 
-![Inventario prodotti](galeria/es/04-inventario-de-productos.jpg)
+- **Windows:** Windows 10 o 11, 64 bit e spazio sufficiente. Serve la rete per monitorare le stampanti. I pacchetti utente non richiedono l'installazione manuale di Node.js o Python.
+- **Linux:** AMD64 a 64 bit. Usa il pacchetto Debian su sistemi Debian/Ubuntu compatibili oppure l'AppImage.
+- Integrazioni opzionali: Snapmaker Orca, OrcaSlicer, Creality Print e stampanti compatibili in rete.
 
-## 1.3. Profili delle stampanti
+## 9. Aggiornamento
 
-I profili consentono di configurare i parametri economici associati alle attrezzature utilizzate.
+1. Apri le release ufficiali.
+2. Leggi le note e verifica sistema e versione.
+3. Scarica il pacchetto corretto.
+4. Esegui il backup dei dati importanti.
+5. Installa o estrai il nuovo pacchetto.
 
-Possono tenere conto di dati come il costo di acquisto, la durata utile stimata e i costi di funzionamento, quando previsti nel profilo.
+Non eliminare i dati esistenti durante l'aggiornamento. Windows e Linux hanno linee di rilascio separate; controlla la versione.
 
-Se utilizzi più stampanti, seleziona il profilo appropriato affinché le stime riflettano le differenze tra le macchine.
+## 10. Risoluzione dei problemi
 
-![Profili e monitor delle stampanti](galeria/es/06-perfiles-y-monitor-de-impresoras.jpg)
+- **Windows non si avvia:** verifica che lo ZIP sia estratto completamente e che i file restino insieme. Annota l'errore.
+- **Avviso di sicurezza:** verifica origine e rilevamenti antivirus. La build Windows non è attualmente firmata con certificato commerciale.
+- **Monitoraggio non funziona:** controlla alimentazione, rete, IP, accesso a Moonraker e impostazioni.
+- **Integrazione non funziona:** controlla versione slicer, post-processing, G-code e ricezione locale.
+- **Dati non salvati:** conserva il database, controlla SQLite e registra l'errore. Non cancellare i dati come soluzione improvvisata.
+- **AppImage non parte:** esegui `chmod +x`, avvia da terminale e controlla gli errori. Per `.deb`, verifica installazione e dipendenze.
 
-## 1.4. Compatibilità con gli slicer
+## 11. Codice sorgente e sviluppo
 
-L'integrazione è progettata per slicer basati su OrcaSlicer, in particolare **Snapmaker Orca, OrcaSlicer e Creality Print**. La compatibilità con questi slicer è di circa **90%**; il comportamento può ancora variare in base alla versione e alla configurazione. Pertanto, non deve essere descritta come compatibilità al 100%.
+Codice sorgente: https://github.com/nilose2014/PrintCostProfit
 
-L'integrazione tramite script di post-elaborazione consente di elaborare i file G-code generati dallo slicer e utilizzare i dati disponibili nel flusso di lavoro di Print Cost & Profit. Le informazioni recuperabili dipendono dal file, dalla configurazione e dalla versione dello slicer.
+```bash
+npm install
+npm start
+```
 
-![Preventivi](galeria/es/08-presupuestos.jpg)
+Per creare la distribuzione Windows:
 
-## 1.5. Monitor e compatibilità delle stampanti
+```bash
+npm run dist:win
+```
 
-La stampante con compatibilità confermata al **100%** è la **Snapmaker U1**. Il monitor funziona anche con altre stampanti accessibili tramite **Fluidd** o **Mainsail/Moonraker** (a seconda della configurazione), ma il supporto per questi modelli è ancora in fase di perfezionamento. Alcune funzioni potrebbero non essere disponibili o comportarsi diversamente mentre proseguono i test.
+Questi comandi sono per sviluppatori. Gli utenti devono scaricare i pacchetti pronti da GitHub Releases.
 
-## 1.6. Archiviazione locale SQLite
+## 12. Licenza, copyright e supporto
 
-L'applicazione include componenti per l'archiviazione locale basati su SQLite.
+Print Cost & Profit è distribuito secondo le condizioni indicate in `LICENSE.txt` nel repository. Leggi la licenza prima di ridistribuire o modificare il software.
 
-L'obiettivo è conservare i dati in un database sul computer, anziché suddividerli tra PC e browser.
+Per segnalare un problema, includi versione, sistema operativo, modelli/versioni di stampante e slicer se pertinenti, descrizione, messaggio completo e passaggi per riprodurlo. Non includere password, chiavi private o dati personali non necessari.
 
-Se l'archiviazione locale non può essere avviata, l'applicazione deve mostrare l'errore corrispondente invece di passare silenziosamente a un altro sistema di archiviazione.
-
-## 1.7. Strumenti diagnostici
-
-Il progetto include script che aiutano a verificare l'avvio dell'applicazione, il funzionamento del bridge locale e alcuni problemi di integrazione.
-
-Questi strumenti forniscono informazioni utili quando un componente non si avvia o un'operazione non viene completata correttamente.
-
----
-
-# 2. Requisiti preliminari
-
-Prima di avviare il programma, è consigliabile disporre di:
-
-- Un computer con Windows 10, Windows 11 o Linux.
-- Una cartella locale permanente per installare il progetto.
-- Uno slicer basato su OrcaSlicer — in particolare Snapmaker Orca, OrcaSlicer o Creality Print — se desideri utilizzare l'integrazione.
-- Tutti i file della distribuzione scaricata.
-- I componenti di archiviazione e configurazione inclusi nel pacchetto di distribuzione.
-
-La distribuzione dovrebbe includere l'eseguibile SQLite predisposto per Windows, in modo che l'utente finale non debba installare Python manualmente.
-
-Non avviare l'applicazione direttamente dal file ZIP. Estrai prima tutti i file.
-
----
-
-# 3. Scaricare e installare Print Cost & Profit
-
-## Passaggio 1. Scaricare il programma
-
-1. Apri il repository ufficiale:
-
-   https://github.com/nilose2014/PrintCostProfit per Windows e https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1 per Linux
-
-2. Fai clic su **Code**.
-3. Seleziona **Download ZIP**.
-4. Attendi il completamento del download.
-5. Estrai il contenuto del file ZIP.
-
-## Passaggio 2. Scegliere la cartella
-
-Puoi utilizzare una cartella come:
-
-`C:\PrintCostProfit`
-
-Puoi anche scegliere un'altra posizione permanente. Evita le cartelle temporanee e non spostare il programma dopo aver configurato i percorsi di OrcaSlicer, a meno che tu non aggiorni anche tali percorsi.
-
-## Passaggio 3. Avviare il programma
-
-Apri la cartella in cui hai estratto i file e fai doppio clic su:
-
-**`Integracion_Orca_Postprocesado.bat`**
-
-Questo file serve sia per l'avvio manuale sia per l'integrazione con OrcaSlicer.
-
-Quando viene eseguito manualmente, verifica se il servizio locale è disponibile. Se non risponde, tenta di avviarlo e attende che sia pronto prima di aprire l'interfaccia nel browser.
-
-Non è necessario aprire prima il file HTML né avviare separatamente il bridge locale quando il programma di avvio può occuparsene.
-
-**Importante:** per utilizzare le funzioni che richiedono l'archiviazione locale, avvia l'applicazione tramite questo file anziché aprire direttamente `Print_Cost_Profit.html`.
-
----
-
-# 4. Configurare uno slicer basato su OrcaSlicer
-
-L'integrazione è pensata per slicer basati su OrcaSlicer, in particolare Snapmaker Orca, OrcaSlicer e Creality Print. I nomi dei menu e alcuni dettagli possono variare. La compatibilità generale è di circa 90%, quindi è consigliabile eseguire una prova con la versione installata.
-
-L'integrazione utilizza lo script di post-elaborazione per elaborare il G-code quando lo slicer ha terminato lo slicing.
-
-## Passaggio 1. Individuare il file di integrazione
-
-Nella cartella del programma, individua:
-
-`Integracion_Orca_Postprocesado.bat`
-
-Copia il percorso completo. Se hai utilizzato la cartella di esempio, sarà:
-
-`C:\PrintCostProfit\Integracion_Orca_Postprocesado.bat`
-
-Se hai installato il programma in un'altra posizione, utilizza il percorso effettivo.
-
-## Passaggio 2. Aprire le impostazioni di stampa
-
-1. Apri OrcaSlicer.
-2. Seleziona il profilo della stampante che desideri utilizzare.
-3. Apri le impostazioni di stampa.
-4. Attiva la modalità avanzata o esperto, se necessario.
-5. Apri la sezione **Altro**.
-6. Individua **Script di post-elaborazione**.
-
-I nomi e la disposizione dei menu possono variare in base allo slicer, alla versione e alla lingua selezionata.
-
-## Passaggio 3. Aggiungere lo script
-
-Inserisci il percorso completo di:
-
-`Integracion_Orca_Postprocesado.bat`
-
-Salva le impostazioni del profilo.
-
-Se lo slicer richiede una sintassi specifica per i percorsi o gli argomenti, utilizza il formato previsto da quella versione.
-
-## Passaggio 4. Eseguire una prova
-
-1. Carica un modello semplice.
-2. Seleziona la stampante e il profilo di stampa.
-3. Configura il materiale.
-4. Esegui lo slicing del modello.
-5. Esporta il G-code.
-6. Verifica che la post-elaborazione venga eseguita senza errori.
-
-Lo script elabora il file G-code quando OrcaSlicer lo richiama con il percorso del file. In questo caso, il comportamento è diverso dall'avvio manuale: elabora il file e termina senza aprire una seconda finestra dell'applicazione.
-
----
-
-# 5. Elaborazione dei file G-code
-
-Il G-code contiene le istruzioni generate dallo slicer per la stampante 3D.
-
-L'integrazione di Print Cost & Profit può elaborare questi file per recuperare i dati disponibili utili ai calcoli e alla registrazione dei lavori.
-
-A seconda delle informazioni presenti nel file e delle funzioni disponibili, i dati rilevanti possono includere:
-
-- Nome o percorso del file.
-- Informazioni di stampa generate dallo slicer.
-- Tempo stimato e consumo di materiale.
-- Informazioni sul filamento, quando disponibili.
-
-I valori ricavati dal G-code sono stime dello slicing. Non devono essere considerati automaticamente come consumo effettivo confermato dalla stampante.
-
-## Prova manuale con un file G-code
-
-Il progetto include:
-
-`Probar_Integracion_con_Gcode.bat`
-
-Per eseguire una prova:
-
-1. Individua un file G-code generato dallo slicer compatibile che stai utilizzando.
-2. Trascina il file su `Probar_Integracion_con_Gcode.bat`.
-3. Attendi il completamento del processo.
-4. Controlla il risultato e gli eventuali messaggi di errore.
-
-Questa prova aiuta a distinguere un problema di elaborazione del file da un problema del servizio locale.
-
----
-
-# 6. Gestione dei costi e della redditività ![Riepilogo dei costi](galeria/es/14-resumen-de-costes.jpg)
-
-Per ottenere risultati utili, configura i dati economici prima di calcolare il prezzo di un pezzo.
-
-## Filamento
-
-Mantieni aggiornato il prezzo di ogni materiale utilizzato. Una variazione del prezzo al chilogrammo può influire in modo significativo sul costo dei pezzi prodotti.
-
-## Stampante
-
-Utilizza il profilo della macchina che realizzerà il pezzo. I parametri di ammortamento e usura devono basarsi su stime ragionevoli del costo e della vita utile.
-
-## Tempo di produzione
-
-Il tempo stimato dallo slicer consente di stimare il costo associato all'utilizzo della macchina. Il risultato effettivo può variare a causa di pause, cambi di materiale, guasti o differenze tra tempo stimato e tempo reale.
-
-## Spese aggiuntive
-
-Includi le spese applicabili al lavoro e previste nella configurazione del calcolatore.
-
-## Prezzo di vendita
-
-Esamina il prezzo consigliato insieme a costo, profitto e margine. L'affidabilità di un prezzo calcolato dipende dalla qualità dei dati inseriti.
-
----
-
-# 7. Archiviazione e conservazione dei dati
-
-Print Cost & Profit utilizza un servizio locale e un database SQLite per le funzioni che dipendono da questa archiviazione.
-
-La posizione utilizzata dall'installazione può trovarsi all'interno del profilo utente locale di Windows.
-
-## Raccomandazioni
-
-- Non eliminare il database mentre il servizio è in esecuzione.
-- Non spostare manualmente la cartella dei dati.
-- Esegui una copia di sicurezza dei dati prima di aggiornare il programma.
-- Verifica che il servizio locale si avvii correttamente dopo un aggiornamento.
-- Verifica che i dati vengano conservati dopo aver chiuso e riaperto l'applicazione.
-
-## Se compare un errore di archiviazione
-
-Se l'applicazione segnala che non può avviare l'archiviazione del PC, non continuare a inserire dati come se venissero salvati correttamente.
-
-Controlla il servizio locale e utilizza gli strumenti diagnostici. Non eliminare il database per tentare di risolvere il problema.
-
-La protezione contro il passaggio silenzioso all'archiviazione del browser è progettata per evitare che i dati vengano suddivisi tra due posizioni differenti.
-
----
-
-# 8. Script e strumenti inclusi ![Documentazione e assistenza](galeria/es/19-documentacion-y-ayuda.jpg)
-
-Il repository contiene diversi file ausiliari. Non è necessario eseguirli tutti manualmente durante il normale utilizzo.
-
-| File | Funzione |
-|---|---|
-| `Integracion_Orca_Postprocesado.bat` | Avvio manuale dell'applicazione e punto di ingresso per la post-elaborazione degli slicer compatibili basati su OrcaSlicer. |
-| `Iniciar_Puente_Orca.ps1` | Avvia o controlla il bridge di integrazione. |
-| `Iniciar_Puente_Orca_Independiente.cmd` | Programma di avvio autonomo del bridge locale. |
-| `Integracion_Print_Cost_Profit.ps1` | Elabora l'integrazione con il file G-code. |
-| `Probar_Integracion_con_Gcode.bat` | Prova manuale dell'elaborazione di un G-code. |
-| `Comprobar_Puente_U1.bat` | Controlla il bridge relativo alla Snapmaker U1. |
-| `Diagnostico_Arranque.bat` | Aiuta a individuare i problemi di avvio. |
-| `Diagnostico_Print_Cost_Profit.bat` | Strumento diagnostico dell'applicazione. |
-| `Diagnostico_Version.bat` | Controlla le informazioni sulla versione. |
-| `pcp_sqlite_api.py` | Codice del servizio di archiviazione SQLite. |
-| `pcp_sqlite_store.py` | Componente per l'accesso e la gestione dell'archiviazione SQLite. |
-| `storage-client.js` | Client utilizzato dall'interfaccia per comunicare con l'archiviazione. |
-| `VERSION` | Informazioni sulla versione del progetto. |
-| `LICENSE.txt` | Condizioni d'uso e avviso sul diritto d'autore. |
-
-La disponibilità e il comportamento esatto di ogni funzione dipendono dai file inclusi nella distribuzione e dalla loro configurazione.
-
----
-
-# 9. Risoluzione dei problemi
-
-## L'applicazione non si apre
-
-1. Verifica di aver estratto tutti i file.
-2. Esegui `Integracion_Orca_Postprocesado.bat`.
-3. Attendi che il servizio locale risponda.
-4. Se non si apre, esegui `Diagnostico_Arranque.bat`.
-5. Conserva il messaggio di errore completo.
-
-## L'archiviazione del PC non si avvia
-
-Verifica che il pacchetto includa l'eseguibile SQLite per Windows e che si trovi nella posizione prevista dal server.
-
-Se compare un errore HTTP 500, controlla lo stato del servizio e i messaggi diagnostici prima di tentare di modificare i dati.
-
-Non passare all'archiviazione del browser e non eliminare il database come soluzione improvvisata.
-
-## Lo slicer non esegue l'integrazione
-
-1. Controlla il percorso del file `.bat`.
-2. Assicurati che il file esista.
-3. Controlla la configurazione del profilo di stampa.
-4. Esegui una prova con `Probar_Integracion_con_Gcode.bat`.
-5. Conserva l'errore e il percorso del G-code utilizzato.
-
-## I dati non vengono conservati
-
-Verifica di aver avviato l'applicazione tramite il programma di avvio e che il servizio locale sia in esecuzione.
-
-Quindi esegui una prova con dati non critici e verifica che vengano conservati dopo il riavvio dell'applicazione.
-
-Non eliminare i dati esistenti per tentare di riparare l'archiviazione.
-
----
-
-# 10. Sicurezza e buone pratiche
-
-- Scarica il programma dal repository ufficiale.
-- Non condividere password, chiavi private o credenziali.
-- Non eseguire script provenienti da fonti sconosciute.
-- Non esporre il servizio locale a Internet senza un'adeguata configurazione di sicurezza.
-- Conserva copie di sicurezza dei dati importanti.
-- Controlla le dipendenze e il funzionamento del programma prima di sostituire file durante un aggiornamento.
-
----
-
-# 11. Diritto d'autore e condizioni d'uso
-
-Print Cost & Profit è soggetto alle condizioni indicate in `LICENSE.txt`.
-
-La pubblicazione del codice su GitHub non concede, di per sé, il permesso di commercializzare, rivendere, concedere in sublicenza, ridistribuire o sfruttare commercialmente il software, le versioni modificate o i prodotti derivati quando tali attività sono vietate dalla licenza applicabile.
-
-Le richieste di autorizzazione devono essere presentate per iscritto e accettate espressamente dal titolare dei diritti.
-
----
-
-# 12. Assistenza e segnalazione dei problemi
-
-Quando segnali un problema, includi:
-
-- Versione di Print Cost & Profit.
-- Versione di Windows.
-- Nome e versione dello slicer (Snapmaker Orca, OrcaSlicer, Creality Print o altro).
-- Stampante utilizzata, se pertinente.
-- Operazione eseguita.
-- Messaggio di errore completo.
-- Passaggi per riprodurre il problema.
-
-Non includere password, chiavi private o dati personali non necessari.
-
----
-
-**Print Cost & Profit v1.2**
-
+**Print Cost & Profit — Windows 2.0 / Linux 1.4**  
 Sviluppato da Beatriz Toro Martin.
-
-Calcola i costi, tieni traccia dei lavori e migliora la gestione finanziaria.
