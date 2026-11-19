@@ -1,499 +1,540 @@
-# Print Cost & Profit — escritorio directo v2.0
+# Print Cost & Profit
+## 3D Printing Cost Calculator, Inventory and Printer Management
 
-> **Migración de escritorio:** esta versión de desarrollo carga la interfaz desde los archivos locales de Electron y ya no inicia el antiguo servidor HTTP/puente PowerShell. El almacenamiento de la aplicación se comunica con SQLite mediante IPC; las impresoras compatibles se consultan directamente por IP a través de Moonraker. La integración de G-code de Orca entrega sus datos mediante una bandeja local de archivos vigilada por Electron.
+**Windows Desktop: Version 2.0**  
+**Linux: Version 1.4**
 
-Para probar esta versión, instala las dependencias del proyecto (`npm install`) y ejecuta `npm start` desde esta carpeta. La compilación de Windows se genera con `npm run dist:win`. Antes de distribuirla, prueba en Windows la apertura, el guardado SQLite, copias/restauración, búsqueda de impresoras y recepción de G-code desde Orca.
+Print Cost & Profit is a desktop application designed for 3D printing users who want to calculate manufacturing costs, manage filament inventory, monitor compatible 3D printers and improve the financial management of their printing activities.
 
-El instalador crea `C:\PrintCostProfit` con los scripts de Orca y muestra la ruta que debes pegar en **Ajustes de impresión → Otros → Scripts de postprocesado**. Consulta `INSTALACION_ORCA_v2.0.235.md`.
+The application combines a 3D printing cost calculator with inventory management, printer monitoring, G-code integration, quotes, invoices, accounting and local data storage.
 
-La documentación histórica que menciona el puente local corresponde a versiones anteriores y no describe la arquitectura de escritorio de la v2.0.235.
-
----
-
-****# Instalación rápida
-
-Elige el paquete correspondiente a tu sistema operativo:
-
-### Windows 10 / 11 — versión estable v1.2
-
-- **[Descargar el instalador de Windows v1.2](https://github.com/nilose2014/PrintCostProfit/releases/download/v1.2/PrintCostProfit-Windows-Installer-v1.2.zip)**.
-- Extrae el archivo ZIP y ejecuta `PrintCostProfit-Setup-1.2.exe`.
-- Sigue los pasos del instalador. Después, inicia Print Cost & Profit desde el acceso directo creado.
-- El instalador incluye los componentes necesarios para el almacenamiento local SQLite; no necesitas instalar Python manualmente.
-
-**Repositorio de Windows:** [PrintCostProfit — rama principal](https://github.com/nilose2014/PrintCostProfit). Si prefieres instalar desde el código fuente, entra en **Code → Download ZIP**, extrae todos los archivos en una carpeta permanente y ejecuta `Integracion_Orca_Postprocesado.bat`.
-
-### Linux / Ubuntu — versión estable
-
-- **[Descargar la versión estable de Linux](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1)**.
-- Extrae el archivo ZIP descargado.
-- Sigue las instrucciones de instalación y arranque incluidas en el paquete.
-
-**Repositorio / versión de Linux:** [PrintCostProfit — Linux](https://github.com/nilose2014/PrintCostProfit/tree/linux).
-
+**Developer:** Beatriz Toro Martin  
+**Official GitHub repository:** https://github.com/nilose2014/PrintCostProfit  
+**Official downloads:** https://github.com/nilose2014/PrintCostProfit/releases
 
 ---
 
-# Print Cost & Profit v1.2
+# 1. Download Print Cost & Profit
 
-## Calculadora de costes, producción y gestión para impresión 3D
+Choose your operating system and download the corresponding package from the official GitHub Releases page.
 
-Print Cost & Profit es una aplicación diseñada para ayudar a los usuarios de impresión 3D a calcular los costes reales de fabricación, controlar el consumo de filamento, gestionar materiales y organizar la actividad comercial relacionada con sus impresiones.
+## Windows 10 / Windows 11 — Version 2.0
 
-La aplicación integra una calculadora de costes con herramientas de gestión, almacenamiento local e integración con laminadores basados en OrcaSlicer, especialmente Snapmaker Orca, OrcaSlicer y Creality Print. También incluye un monitor para impresoras compatibles, con distintos niveles de compatibilidad según el modelo y la conexión disponible.
+<ins>Two download options are available:</ins>
 
-## Capturas de la aplicación
+### Standard installer
 
-A continuación se muestran algunas pantallas de Print Cost & Profit. Las imágenes ilustran distintas áreas de la interfaz; las funciones disponibles dependen de la versión y de la configuración instalada.
+**File:** `PrintCostProfit-Setup-v2.0.zip`
 
-![Calculadora de costes](galeria/es/01-calculadora-de-costes.jpg)
+[Download Windows Installer — Version 2.0](https://github.com/nilose2014/PrintCostProfit/releases/tag/v2.0)
 
-![Resultado y beneficio](galeria/es/02-resultado-y-beneficio.jpg)
+Installation:
+1. Download the ZIP package.
+2. Right-click the downloaded file and select **Extract All**.
+3. Open the extracted folder.
+4. Run `PrintCostProfit-Setup.exe`.
+5. Follow the installation instructions.
+6. Launch Print Cost & Profit from the Windows Start menu or desktop shortcut, if created.
 
-![Panel flotante de impresión](galeria/es/03-panel-flotante-de-impresion.jpg)
+### Portable version
 
-**Autoría:** Beatriz Toro Martin &#x20;
+**File:** `PrintCostProfit-Portable-v2.0.zip`
 
-**Versión publicada:** v1.2 &#x20;
+[Download Windows Portable — Version 2.0](https://github.com/nilose2014/PrintCostProfit/releases/tag/v2.0)
 
-**Sistema operativo de referencia:** Windows 10 y Windows 11 &#x20;
+Installation:
+1. Download the portable ZIP package.
+2. Extract the ZIP file into a permanent folder.
+3. Open the extracted folder.
+4. Run `PrintCostProfit-Portable.exe`.
 
-**Repositorio oficial:** https\://github.com/nilose2014/PrintCostProfit
+The portable edition does not require a traditional installation.
 
----
+Keep all extracted application files together. Do not run the executable directly from inside the ZIP archive.
 
-# 1. Características principales
+## Linux — Version 1.4
 
-## 1.1. Calculadora de costes de impresión 3D
+Linux packages are available from the existing Linux release.
 
-La calculadora permite estimar el coste de fabricación de una pieza a partir de los parámetros de impresión y los costes asociados.
+[Download Print Cost & Profit for Linux — Version 1.4](https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-v1.4)
 
-Entre los conceptos de coste que se pueden utilizar, según la configuración disponible, se encuentran:
+Two package formats are available:
 
-- Consumo de filamento.
+### Debian / Ubuntu (.deb)
 
-- Precio del material utilizado.
+**File:** `printcostprofit_1.4.1_amd64.deb`
 
-- Tiempo de impresión.
+[Download Linux Debian package](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/printcostprofit_1.4.1_amd64.deb)
 
-- Coste de funcionamiento y desgaste de la impresora.
+### AppImage
 
-- Amortización del equipo.
+**File:** `PrintCostProfit-Linux-x86_64.AppImage`
 
-- Otros gastos asociados a la fabricación.
+[Download Linux AppImage](https://github.com/nilose2014/PrintCostProfit/releases/download/linux-v1.4/PrintCostProfit-Linux-x86_64.AppImage)
 
-- Margen de beneficio deseado.
-
-- Impuestos y moneda seleccionados.
-
-El objetivo es conocer cuánto cuesta fabricar una pieza antes de decidir su precio de venta.
-
-## 1.2. Precio de venta, beneficio y margen
-
-La calculadora permite estudiar el resultado económico estimado de una impresión.
-
-Los cálculos ayudan a distinguir entre:
-
-- **Coste de fabricación:** importe estimado de los recursos utilizados.
-
-- **Precio de venta:** cantidad que se plantea cobrar por la pieza.
-
-- **Beneficio estimado:** diferencia calculada entre los ingresos y los costes considerados.
-
-- **Margen:** relación entre el beneficio y el precio de venta, según la definición empleada por el cálculo.
-
-- **Precio recomendado:** propuesta de precio calculada a partir de los parámetros configurados.
-
-Los resultados dependen de los precios, porcentajes, tiempos y demás valores introducidos. Para obtener estimaciones útiles, conviene mantener actualizados los costes del filamento, la impresora y los gastos adicionales.
-
-![Inventario de productos](galeria/es/04-inventario-de-productos.jpg)
-
-## 1.3. Perfiles de impresora
-
-Los perfiles permiten configurar los parámetros económicos asociados a los equipos utilizados.
-
-Pueden servir para tener en cuenta datos como el coste de adquisición, la vida útil estimada y los costes de funcionamiento cuando estén contemplados en el perfil.
-
-Si se utilizan varias impresoras, es importante seleccionar el perfil adecuado para que las estimaciones reflejen las diferencias entre equipos.
-
-![Perfiles y monitor de impresoras](galeria/es/06-perfiles-y-monitor-de-impresoras.jpg)
-
-## 1.4. Compatibilidad con laminadores
-
-La integración está diseñada para laminadores basados en OrcaSlicer, especialmente **Snapmaker Orca, OrcaSlicer y Creality Print**. La compatibilidad con estos laminadores está aproximadamente al **90 %**; todavía puede haber diferencias de comportamiento según la versión y la configuración. Por tanto, no debe describirse como una compatibilidad del 100 %.
-
-La integración mediante scripts de posprocesamiento permite procesar archivos G-code generados por el laminador y utilizar los datos disponibles en el flujo de trabajo de Print Cost & Profit. La información recuperable depende del archivo, de la configuración y de la versión del laminador.
-
-![Presupuestos](galeria/es/08-presupuestos.jpg)
-
-## 1.5. Monitor y compatibilidad con impresoras
-
-La impresora con compatibilidad confirmada al **100 %** es la **Snapmaker U1**. El monitor también funciona con otras impresoras, incluidas las que permiten acceder a través de **Fluidd** o **Mainsail/Moonraker** (según la configuración), pero la compatibilidad de esos modelos todavía está en fase de ajuste. Algunas funciones pueden no estar disponibles o comportarse de forma diferente mientras continúan las pruebas.
-
-## 1.6. Almacenamiento local SQLite
-
-La aplicación incluye componentes de almacenamiento local mediante SQLite.
-
-El objetivo es conservar los datos en una base de datos del ordenador y evitar que se repartan entre el almacenamiento del PC y el del navegador.
-
-Si el almacenamiento local no puede iniciarse, la aplicación debe mostrar el error correspondiente en lugar de cambiar silenciosamente a otro almacenamiento.
-
-## 1.7. Herramientas de diagnóstico
-
-El proyecto incluye scripts para ayudar a comprobar el inicio de la aplicación, el funcionamiento del puente local y determinados problemas de integración.
-
-Estas herramientas permiten obtener información útil cuando un componente no se inicia o una operación no termina correctamente.
+**Important version information:** Windows and Linux currently have separate release lines. Windows is version 2.0, while the published Linux release is version 1.4.
 
 ---
 
-# 2. Requisitos previos
+# 2. Installing on Windows
 
-Antes de iniciar el programa, se recomienda disponer de:
+## 2.1. Standard installation
 
-- Un ordenador con Windows 10 o Windows 11 o linux.
+1. Visit the official [GitHub Releases page](https://github.com/nilose2014/PrintCostProfit/releases/tag/v2.0).
+2. Download `PrintCostProfit-Setup-v2.0.zip`.
+3. Extract the ZIP archive.
+4. Open the extracted folder.
+5. Double-click `PrintCostProfit-Setup.exe`.
+6. Follow the installation wizard.
+7. Start the application.
 
-- Una carpeta local permanente para instalar el proyecto.
+The installer is intended to provide a straightforward Windows installation without requiring the user to manually configure Node.js or Python.
 
-- Un laminador basado en OrcaSlicer —especialmente Snapmaker Orca, OrcaSlicer o Creality Print— si se desea utilizar la integración.
+## 2.2. Portable installation
 
-- Los archivos completos de la distribución descargada.
+1. Visit the official [GitHub Releases page](https://github.com/nilose2014/PrintCostProfit/releases/tag/v2.0).
+2. Download `PrintCostProfit-Portable-v2.0.zip`.
+3. Extract the archive.
+4. Open the extracted folder.
+5. Run `PrintCostProfit-Portable.exe`.
 
-- Los componentes de almacenamiento y configuración incluidos en el paquete de distribución.
+The portable edition can be kept in a folder of your choice. Do not separate the executable from the other files included in the extracted package.
 
-La distribución debe incluir el ejecutable de SQLite preparado para Windows para evitar que el usuario final tenga que instalar Python manualmente.
+## 2.3. Windows security notice
 
-No ejecutes la aplicación directamente desde el archivo ZIP. Extrae primero todos los archivos.
+The Windows application is distributed without a commercial code-signing certificate.
 
----
+Depending on your Windows configuration, Microsoft Defender SmartScreen or another security product may display a warning when launching the application.
 
-# 3. Descargar e instalar Print Cost & Profit
+Always verify that the package comes from the official Print Cost & Profit GitHub repository.
 
-## Paso 1. Descargar el programa
-
-1. Abre el repositorio oficial:
-
-   https\://github.com/nilose2014/PrintCostProfit para windows y https://github.com/nilose2014/PrintCostProfit/releases/tag/linux-preview-0.1 para linux
-
-2. Pulsa **Code**.
-
-3. Selecciona **Download ZIP**.
-
-4. Espera a que finalice la descarga.
-
-5. Extrae el contenido del ZIP.
-
-## Paso 2. Elegir la carpeta
-
-Puedes utilizar una carpeta como:
-
-`C:\PrintCostProfit`
-
-También puedes escoger otra ubicación permanente. Evita utilizar carpetas temporales y no muevas el programa después de configurar las rutas de OrcaSlicer, salvo que actualices dichas rutas.
-
-## Paso 3. Iniciar el programa
-
-Abre la carpeta donde has extraído los archivos y haz doble clic en:
-
-**`Integracion_Orca_Postprocesado.bat`**
-
-Este archivo sirve tanto para el inicio manual como para la integración con OrcaSlicer.
-
-Cuando se ejecuta manualmente, comprueba si el servicio local está disponible. Si no responde, intenta iniciarlo y espera a que esté preparado antes de abrir la interfaz en el navegador.
-
-No necesitas abrir primero el archivo HTML ni iniciar por separado el puente local cuando el lanzador puede encargarse de ello.
-
-**Importante:** para utilizar las funciones que necesitan almacenamiento local, inicia la aplicación mediante este archivo y no abriendo directamente `Print_Cost_Profit.html`.
+Do not ignore antivirus detections or bypass security warnings if your security software identifies a genuine threat.
 
 ---
 
-# 4. Configurar un laminador basado en OrcaSlicer
+# 3. Installing on Linux
 
-La integración está pensada para laminadores basados en OrcaSlicer, especialmente Snapmaker Orca, OrcaSlicer y Creality Print. Los nombres de menús y algunos detalles pueden variar entre ellos. La compatibilidad general está aproximadamente al 90 %, por lo que conviene realizar una prueba con la versión instalada.
+The published Linux version is 1.4 and provides two installation formats for 64-bit AMD64 systems.
 
-La integración utiliza el script de posprocesamiento para procesar el G-code cuando el laminador termina de laminar.
+## 3.1. Debian / Ubuntu installation
 
-## Paso 1. Localizar el archivo de integración
+Download:
 
-En la carpeta del programa, localiza:
+`printcostprofit_1.4.1_amd64.deb`
 
-`Integracion_Orca_Postprocesado.bat`
+You can install the package using the graphical package installer:
 
-Copia su ruta completa. Si has utilizado la carpeta de ejemplo, será:
+1. Open the downloaded file.
+2. Select the option to install the package.
+3. Authenticate if your system requests administrator permission.
+4. Wait for the installation to finish.
+5. Launch Print Cost & Profit from your applications menu.
 
-`C:\PrintCostProfit\Integracion_Orca_Postprocesado.bat`
+Alternatively, install it from a terminal.
 
-Si has instalado el programa en otra ubicación, utiliza la ruta real.
+Open a terminal in the download folder and execute:
 
-## Paso 2. Abrir los ajustes de impresión
+```bash
+sudo apt install ./printcostprofit_1.4.1_amd64.deb
+```
 
-1. Abre OrcaSlicer.
+## 3.2. AppImage installation
 
-2. Selecciona el perfil de impresora que deseas utilizar.
+Download:
 
-3. Entra en los ajustes de impresión.
+`PrintCostProfit-Linux-x86_64.AppImage`
 
-4. Activa el modo avanzado o experto si es necesario.
+Open a terminal in the folder where the file was downloaded.
 
-5. Abre la sección **Otros**.
+First, grant execution permission:
 
-6. Localiza el apartado **Scripts de posprocesamiento**.
+```bash
+chmod +x PrintCostProfit-Linux-x86_64.AppImage
+```
 
-Los nombres y la disposición de los menús pueden variar según el laminador, su versión y el idioma seleccionado.
+Then launch the application:
 
-## Paso 3. Añadir el script
+```bash
+./PrintCostProfit-Linux-x86_64.AppImage
+```
 
-Introduce la ruta completa de:
+The AppImage format allows the application to be launched without installing a Debian package.
 
-`Integracion_Orca_Postprocesado.bat`
+## 3.3. Linux compatibility
 
-Guarda los ajustes del perfil.
+The published Linux packages target 64-bit AMD64 systems.
 
-Si tu laminador necesita una sintaxis concreta para las rutas o los argumentos, utiliza el formato correspondiente a esa versión.
-
-## Paso 4. Realizar una prueba
-
-1. Carga un modelo sencillo.
-
-2. Selecciona la impresora y el perfil de impresión.
-
-3. Configura el material.
-
-4. Lamina el modelo.
-
-5. Exporta el G-code.
-
-6. Comprueba que el posprocesamiento se ejecuta sin errores.
-
-El script procesa el archivo G-code cuando OrcaSlicer lo llama con la ruta del archivo. En ese caso, el comportamiento es distinto del inicio manual: procesa el archivo y termina sin abrir una segunda ventana de la aplicación.
+The Linux release is maintained separately from the Windows desktop release. Consult the Linux release notes for version-specific information.
 
 ---
 
-# 5. Procesamiento de archivos G-code
+# 4. Main features
 
-El G-code contiene instrucciones que el laminador genera para la impresora 3D.
+## 4.1. 3D printing cost calculator
 
-La integración de Print Cost & Profit permite procesar estos archivos para recuperar los datos disponibles que resulten útiles para el cálculo y el registro de trabajos.
+Calculate the estimated manufacturing cost of a printed part using configurable parameters.
 
-Según la información presente en el archivo y las funciones disponibles, pueden resultar relevantes datos como:
+The calculator can take into account:
 
-- Nombre o ruta del archivo.
+- Filament consumption.
+- Material price.
+- Printing time.
+- Electricity and machine operating costs.
+- Printer depreciation.
+- Maintenance costs.
+- Labour and additional expenses.
+- Failure allowances and other configured costs.
+- Desired profit percentage.
+- Currency and applicable taxes.
 
-- Información de impresión generada por el laminador.
+The objective is to estimate the actual manufacturing cost before deciding the selling price.
 
-- Datos estimados de tiempo y consumo de material.
+## 4.2. Selling price and profitability
 
-- Información de filamentos cuando está disponible.
+Review the economic result of a print.
 
-Los valores procedentes del G-code son estimaciones del laminado. No deben confundirse automáticamente con el consumo real confirmado por la impresora.
+The calculator distinguishes between:
 
-## Prueba manual con un G-code
+- **Manufacturing cost:** estimated cost of producing the part.
+- **Selling price:** amount charged to the customer.
+- **Estimated profit:** difference between revenue and the costs considered.
+- **Profit margin:** profit expressed relative to the selling price.
+- **Recommended price:** suggested selling price based on the configured parameters.
 
-El proyecto incluye:
+Results depend on the values entered and the configuration of the application.
 
-`Probar_Integracion_con_Gcode.bat`
+## 4.3. Filament inventory management
 
-Para realizar una prueba:
+Manage filament spools and their associated information.
 
-1. Localiza un archivo G-code generado por el laminador compatible que estés utilizando.
+Depending on the available configuration, inventory information includes:
 
-2. Arrastra el archivo sobre `Probar_Integracion_con_Gcode.bat`.
+- Filament brand.
+- Material type.
+- Colour.
+- Colour code.
+- Initial filament quantity.
+- Remaining filament quantity.
+- Material price per kilogram.
 
-3. Espera a que termine el proceso.
+Inventory information can be used when calculating print costs and checking material availability.
 
-4. Comprueba el resultado y cualquier mensaje de error.
+## 4.4. Printer profiles
 
-Esta prueba ayuda a distinguir entre un problema del procesamiento del archivo y un problema del servicio local.
+Configure the economic parameters associated with each printer.
+
+Printer profiles can include information such as:
+
+- Printer name.
+- Purchase cost.
+- Estimated useful life.
+- Operating costs.
+- Maintenance costs.
+- Other parameters used by the calculator.
+
+When multiple printers are used, selecting the correct profile helps ensure that cost estimates reflect the equipment used.
+
+## 4.5. Printer monitoring
+
+The application includes a printer monitoring system.
+
+The Snapmaker U1 is the printer with confirmed full compatibility.
+
+Other printers that provide access through Moonraker, Fluidd or Mainsail may also work, depending on their configuration. Compatibility and available functionality can vary between models.
+
+## 4.6. OrcaSlicer integration
+
+Print Cost & Profit is designed to integrate with slicers based on OrcaSlicer, particularly:
+
+- Snapmaker Orca.
+- OrcaSlicer.
+- Creality Print.
+
+The integration can process G-code information generated by compatible slicers.
+
+Compatibility is approximately 90%, and differences may occur depending on the slicer version and configuration. Compatibility should not be considered 100%.
+
+## 4.7. G-code information
+
+The application can retrieve available information from G-code files, including:
+
+- File name and path.
+- Estimated printing time.
+- Estimated filament consumption.
+- Available filament information.
+- Other metadata generated by the slicer.
+
+G-code values are slicer estimates and should not automatically be treated as actual printer consumption.
+
+## 4.8. Quotes and invoices
+
+The application includes tools for managing commercial documents, including quotes and invoices.
+
+These functions help organise customer transactions and the commercial activity associated with 3D printing.
+
+## 4.9. Accounting
+
+Accounting tools allow users to organise financial movements associated with printing activities.
+
+The application is designed to help distinguish production costs, sales and profitability.
+
+## 4.10. Local SQLite storage
+
+Windows desktop version 2.0 uses local SQLite storage.
+
+The Electron application communicates with the local database through IPC.
+
+This architecture avoids relying on browser local storage for the main application data.
+
+If local storage cannot be initialized, the application should report the corresponding error rather than silently switching to another storage system.
 
 ---
 
-# 6. Gestión de costes y rentabilidad ![Resumen de costes](galeria/es/14-resumen-de-costes.jpg)
+# 5. Windows desktop architecture — Version 2.0
 
-Para obtener resultados útiles, conviene configurar los datos económicos antes de calcular el precio de una pieza.
+Version 2.0 introduces a desktop architecture based on Electron.
 
-## Filamento
+The application loads its interface directly from local application files rather than using the previous HTTP server and PowerShell bridge architecture.
 
-Mantén actualizado el precio de cada material utilizado. Una variación en el precio por kilogramo puede modificar significativamente el coste de las piezas fabricadas.
+The main components include:
 
-## Impresora
+- Electron desktop application.
+- Local SQLite database.
+- IPC communication between the interface and the database.
+- Direct printer access through network IP addresses using Moonraker.
+- Local file monitoring for receiving G-code information from Orca-based slicers.
 
-Utiliza el perfil del equipo con el que se va a fabricar la pieza. Los parámetros de amortización y desgaste deben basarse en estimaciones razonables de coste y vida útil.
+This architecture replaces the previous local HTTP bridge approach used in earlier versions.
 
-## Tiempo de fabricación
-
-El tiempo previsto por el laminador permite estimar el coste asociado al uso de la máquina. El resultado real puede variar por pausas, cambios de material, fallos o diferencias entre el tiempo estimado y el efectivo.
-
-## Gastos adicionales
-
-Incluye los gastos que correspondan al trabajo y que estén contemplados en la configuración de la calculadora.
-
-## Precio de venta
-
-Revisa el precio recomendado junto con el coste, el beneficio y el margen. Un precio calculado solo es fiable en la medida en que los datos introducidos sean adecuados.
+Documentation referring to the old PowerShell bridge or HTTP server relates to earlier releases and should not be used as the installation procedure for Windows desktop version 2.0.
 
 ---
 
-# 7. Almacenamiento y conservación de los datos
+# 6. Configuring OrcaSlicer integration
 
-Print Cost & Profit utiliza un servicio local y una base de datos SQLite para las funciones que dependen de ese almacenamiento.
+The integration is designed for OrcaSlicer-based applications, particularly Snapmaker Orca, OrcaSlicer and Creality Print.
 
-La ubicación utilizada por la instalación puede encontrarse dentro del perfil local del usuario de Windows.
+The available menus and settings can vary depending on the slicer version.
 
-## Recomendaciones
+The integration uses the slicer's post-processing workflow to deliver G-code information to Print Cost & Profit.
 
-- No elimines la base de datos mientras el servicio está funcionando.
+To configure it:
 
-- No muevas manualmente la carpeta de datos.
+1. Open the slicer.
+2. Select the printer profile.
+3. Open the print settings.
+4. Enable advanced or expert settings if necessary.
+5. Open the **Others** section.
+6. Locate the post-processing scripts configuration.
+7. Configure the integration using the instructions supplied with the corresponding application package.
+8. Save the printer or print profile.
+9. Generate a test G-code file.
+10. Check that the information is received by Print Cost & Profit.
 
-- Haz una copia de seguridad antes de actualizar el programa.
+The desktop version 2.0 uses a local file-watching mechanism managed by Electron for the Orca G-code workflow.
 
-- Comprueba que el servicio local se inicia correctamente después de una actualización.
-
-- Verifica que los datos se conservan después de cerrar y volver a abrir la aplicación.
-
-## Si aparece un error de almacenamiento
-
-Si la aplicación indica que no puede iniciar el almacenamiento del PC, no continúes registrando datos como si se estuvieran guardando correctamente.
-
-Comprueba el servicio local y utiliza las herramientas de diagnóstico. No borres la base de datos para intentar resolver el problema.
-
-La protección contra el cambio silencioso al almacenamiento del navegador está diseñada para evitar que existan datos separados en dos ubicaciones distintas.
-
----
-
-# 8. Scripts y herramientas incluidos ![Documentación y ayuda](galeria/es/19-documentacion-y-ayuda.jpg)
-
-El repositorio contiene diferentes archivos auxiliares. No todos deben ejecutarse manualmente en el uso habitual.
-
-| Archivo | Función |
-
-|---|---|
-
-| `Integracion_Orca_Postprocesado.bat` | Inicio manual de la aplicación y entrada del posprocesamiento de laminadores compatibles basados en OrcaSlicer. |
-
-| `Iniciar_Puente_Orca.ps1` | Inicio o comprobación del puente de integración. |
-
-| `Iniciar_Puente_Orca_Independiente.cmd` | Lanzador independiente del puente local. |
-
-| `Integracion_Print_Cost_Profit.ps1` | Procesamiento de la integración con el archivo G-code. |
-
-| `Probar_Integracion_con_Gcode.bat` | Prueba manual del procesamiento de un G-code. |
-
-| `Comprobar_Puente_U1.bat` | Comprobación del puente relacionado con la Snapmaker U1. |
-
-| `Diagnostico_Arranque.bat` | Ayuda para investigar problemas de inicio. |
-
-| `Diagnostico_Print_Cost_Profit.bat` | Herramienta de diagnóstico de la aplicación. |
-
-| `Diagnostico_Version.bat` | Comprobación de información de versión. |
-
-| `pcp_sqlite_api.py` | Código del servicio de almacenamiento SQLite. |
-
-| `pcp_sqlite_store.py` | Componente de acceso y gestión del almacenamiento SQLite. |
-
-| `storage-client.js` | Cliente utilizado por la interfaz para comunicarse con el almacenamiento. |
-
-| `VERSION` | Información de versión del proyecto. |
-
-| `LICENSE.txt` | Condiciones de uso y aviso de derechos de autor. |
-
-La disponibilidad y el comportamiento exacto de cada función dependen de los archivos incluidos en la distribución y de su configuración.
+Do not apply instructions from older releases that require starting the previous PowerShell HTTP bridge.
 
 ---
 
-# 9. Solución de problemas
+# 7. Printer network configuration
 
-## La aplicación no se abre
+Compatible printers can be accessed directly over the local network.
 
-1. Comprueba que has extraído todos los archivos.
+For printers using Moonraker:
 
-2. Ejecuta `Integracion_Orca_Postprocesado.bat`.
+1. Make sure the printer and computer are connected to the same accessible network.
+2. Obtain the printer's IP address.
+3. Check that Moonraker is accessible.
+4. Configure the printer connection in Print Cost & Profit.
+5. Verify the printer status and available monitoring information.
 
-3. Espera a que el servicio local responda.
+The exact functionality depends on the printer model, firmware and network configuration.
 
-4. Si no se abre, ejecuta `Diagnostico_Arranque.bat`.
-
-5. Conserva el mensaje de error completo.
-
-## El almacenamiento del PC no se inicia
-
-Comprueba que el paquete incluye el ejecutable de SQLite para Windows y que se encuentra en la ubicación esperada por el servidor.
-
-Si aparece un error HTTP 500, revisa el estado del servicio y los mensajes de diagnóstico antes de intentar modificar los datos.
-
-No cambies al almacenamiento del navegador ni elimines la base de datos como solución improvisada.
-
-## El laminador no ejecuta la integración
-
-1. Verifica la ruta del archivo `.bat`.
-
-2. Comprueba que el archivo existe.
-
-3. Revisa la configuración del perfil de impresión.
-
-4. Prueba con `Probar_Integracion_con_Gcode.bat`.
-
-5. Conserva el error y la ruta del G-code utilizado.
-
-## Los datos no se conservan
-
-Comprueba que has iniciado la aplicación mediante el lanzador y que el servicio local está funcionando.
-
-Después, realiza una prueba con un dato no crítico y verifica que se conserva tras reiniciar la aplicación.
-
-No borres los datos existentes para intentar reparar el almacenamiento.
+The Snapmaker U1 is the reference printer for confirmed full compatibility.
 
 ---
 
-# 10. Seguridad y buenas prácticas
+# 8. Data storage and backups
 
-- Descarga el programa desde el repositorio oficial.
+The Windows desktop application uses SQLite for local data storage.
 
-- No compartas contraseñas, claves privadas ni credenciales.
+The database is stored locally on the computer.
 
-- No ejecutes scripts de procedencia desconocida.
+For data protection:
 
-- No expongas el servicio local a Internet sin una configuración de seguridad adecuada.
+- Make regular backups.
+- Keep backups in a safe location.
+- Do not manually delete the database while the application is running.
+- Avoid moving application data folders manually.
+- Verify that important data remains available after updating.
+- Make a backup before installing a new version.
 
-- Conserva copias de seguridad de los datos importantes.
+If the application reports a storage initialization error, do not continue entering important information under the assumption that it is being saved correctly.
 
-- Comprueba las dependencias y el funcionamiento del programa antes de sustituir archivos por una actualización.
-
----
-
-# 11. Derechos de autor y condiciones de uso
-
-Print Cost & Profit está sujeto a las condiciones indicadas en `LICENSE.txt`.
-
-La publicación del código en GitHub no concede por sí sola autorización para comercializar, revender, sublicenciar, redistribuir o explotar comercialmente el software, sus versiones modificadas o los productos derivados cuando esas actividades estén prohibidas por la licencia aplicable.
-
-Las solicitudes de autorización deberán realizarse por escrito y estar expresamente aceptadas por la titular de los derechos.
+Preserve the database and investigate the error before attempting repairs.
 
 ---
 
-# 12. Ayuda e incidencias
+# 9. System requirements
 
-Para comunicar un problema, incluye:
+## Windows
 
-- Versión de Print Cost & Profit.
+- Windows 10 or Windows 11.
+- 64-bit system.
+- Sufficient storage space for the application and local database.
+- Network access for printer monitoring, where required.
 
-- Versión de Windows.
+The released Windows packages are designed to avoid requiring users to manually install Node.js or Python.
 
-- Nombre y versión del laminador (Snapmaker Orca, OrcaSlicer, Creality Print u otro).
+## Linux
 
-- Impresora utilizada, si es relevante.
+- 64-bit AMD64 system.
+- Debian/Ubuntu package support for the `.deb` distribution.
+- An environment compatible with the supplied AppImage for the AppImage distribution.
 
-- Operación realizada.
+## Optional integrations
 
-- Mensaje de error completo.
-
-- Pasos para reproducir el problema.
-
-No incluyas contraseñas, claves privadas ni datos personales innecesarios.
+- Snapmaker Orca.
+- OrcaSlicer.
+- Creality Print.
+- Compatible 3D printers.
+- Moonraker, Fluidd or Mainsail, depending on the printer configuration.
 
 ---
 
-**Print Cost & Profit v1.2** &#x20;
+# 10. Updating Print Cost & Profit
 
-Desarrollado por Beatriz Toro Martin.
+When a new release becomes available:
 
-&#x20; Calcula tus costes, controla tus trabajos y mejora la gestión económica d   &#x20;
+1. Visit the official GitHub Releases page.
+2. Read the release notes.
+3. Select the package for your operating system.
+4. Download the new package.
+5. Back up important application data.
+6. Follow the installation instructions for your operating system.
+
+Do not delete existing application data when updating.
+
+Windows and Linux have separate release lines. Always check the version number and release notes before updating.
+
+---
+
+# 11. Troubleshooting
+
+## The Windows application does not start
+
+1. Verify that the ZIP archive was extracted completely.
+2. Check that the application files remain together.
+3. Try launching the application again.
+4. Record any error message displayed.
+5. Check Windows security notifications if the application is blocked.
+
+## Windows displays a security warning
+
+The Windows application is currently distributed without a commercial code-signing certificate.
+
+Verify the source of the download and check any antivirus detection before proceeding.
+
+## Printer monitoring does not work
+
+1. Check that the printer is powered on.
+2. Verify its network connection.
+3. Confirm the printer's IP address.
+4. Check that Moonraker is accessible, where applicable.
+5. Review the printer connection settings.
+
+## OrcaSlicer integration does not work
+
+1. Check the slicer version.
+2. Verify the integration configuration.
+3. Confirm that the G-code file is being generated correctly.
+4. Check the local G-code reception workflow.
+5. Record any error messages.
+
+## Application data is not being saved
+
+1. Check whether local SQLite storage initializes correctly.
+2. Preserve the existing database.
+3. Do not delete application data as an improvised repair.
+4. Record the error and the operation that caused it.
+
+## Linux application does not start
+
+For the AppImage version:
+
+1. Verify that the file has execution permission.
+2. Run the `chmod +x` command if necessary.
+3. Launch the AppImage from a terminal.
+4. Record any terminal error messages.
+
+For the Debian package, check the package installation result and any missing dependency messages.
+
+---
+
+# 12. Development and source code
+
+The source code is available from the official repository:
+
+https://github.com/nilose2014/PrintCostProfit
+
+The Windows desktop development environment uses Node.js and Electron.
+
+To install the development dependencies:
+
+```bash
+npm install
+```
+
+To launch the application in development mode:
+
+```bash
+npm start
+```
+
+To generate the Windows distribution:
+
+```bash
+npm run dist:win
+```
+
+These commands are intended for developers working with the source code. Ordinary users should download the ready-to-use installation packages from GitHub Releases.
+
+---
+
+# 13. Copyright and licence
+
+Print Cost & Profit is distributed under the conditions specified in the project's `LICENSE.txt` file.
+
+Users should read the applicable licence before redistributing, modifying or using the software in ways covered by its terms.
+
+The official repository is the reference source for the project and its published releases.
+
+---
+
+# 14. Support and bug reports
+
+When reporting an issue, please provide:
+
+- Print Cost & Profit version.
+- Operating system and version.
+- Printer model, if relevant.
+- Slicer name and version, if relevant.
+- Description of the problem.
+- Complete error message.
+- Steps required to reproduce the issue.
+
+Do not include passwords, private keys or unnecessary personal information in bug reports.
+
+**Official GitHub repository:**  
+https://github.com/nilose2014/PrintCostProfit
+
+**Official releases:**  
+https://github.com/nilose2014/PrintCostProfit/releases
+
+---
+
+**Print Cost & Profit**  
+**Windows Desktop Version 2.0 · Linux Version 1.4**
+
+Developed by Beatriz Toro Martin.
