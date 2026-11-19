@@ -2,7 +2,7 @@
   "name": "print-cost-profit-desktop",
   "version": "2.0.0",
   "private": true,
-  "description": "Aplicación de escritorio Print Cost & Profit para Windows",
+  "description": "Aplicación de escritorio Print Cost & Profit para Windows y Linux",
   "main": "desktop/electron/main.cjs",
   "author": "Print Cost & Profit",
   "license": "UNLICENSED",
@@ -11,7 +11,11 @@
     "dist:win:setup": "electron-builder --win nsis --x64",
     "dist:win:portable": "electron-builder --win portable --x64",
     "dist:win:all": "electron-builder --win nsis portable --x64",
-    "dist:win": "electron-builder --win nsis portable --x64"
+    "dist:win": "electron-builder --win nsis portable --x64",
+    "dist:linux:appimage": "electron-builder --linux AppImage --x64",
+    "dist:linux:portable": "electron-builder --linux tar.gz --x64",
+    "dist:linux:deb": "electron-builder --linux deb --x64",
+    "dist:linux": "electron-builder --linux AppImage tar.gz deb --x64"
   },
   "devDependencies": {
     "electron": "45.2.3",
@@ -92,6 +96,41 @@
     },
     "portable": {
       "artifactName": "PrintCostProfit-Portable.${ext}"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "tar.gz",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Utility",
+      "artifactName": "${productName}-2.0-${arch}.${ext}"
+    },
+    "deb": {
+      "packageName": "print-cost-profit",
+      "maintainer": "Print Cost & Profit",
+      "synopsis": "Calculadora de costes y beneficios para impresión 3D",
+      "depends": [
+        "libgtk-3-0",
+        "libnss3",
+        "libxss1",
+        "libasound2"
+      ]
     }
   }
 }
