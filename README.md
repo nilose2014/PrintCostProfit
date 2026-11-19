@@ -1,4 +1,4 @@
-# Print Cost & Profit — escritorio directo v2.0.235
+# Print Cost & Profit — escritorio directo v2.0
 
 > **Migración de escritorio:** esta versión de desarrollo carga la interfaz desde los archivos locales de Electron y ya no inicia el antiguo servidor HTTP/puente PowerShell. El almacenamiento de la aplicación se comunica con SQLite mediante IPC; las impresoras compatibles se consultan directamente por IP a través de Moonraker. La integración de G-code de Orca entrega sus datos mediante una bandeja local de archivos vigilada por Electron.
 
