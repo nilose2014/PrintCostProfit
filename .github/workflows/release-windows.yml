@@ -55,9 +55,9 @@ jobs:
           if-no-files-found: error
 
       - name: Publish GitHub release v2.0
-        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v2.0
           name: Print Cost & Profit 2.0 — Windows
           draft: false
           prerelease: false
